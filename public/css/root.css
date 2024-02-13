@@ -3,7 +3,7 @@
 /* ----------------------------------- Root Variable ---------------------------------- */
 
 :root {
-    --primary-color: rgba(43, 247, 84, 0.742);
+    --primary-color: rgba(247, 43, 128, 0.742);
     --primary-color-light: var(--primary-color);
 
     --primary-gradient-right: repeating-linear-gradient(
