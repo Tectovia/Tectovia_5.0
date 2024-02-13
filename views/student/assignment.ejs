@@ -4,7 +4,7 @@
     <div class="window_navbar">
         <%- include('../partials/student/navigation_bar.ejs') %>
      </div>
-</div>
+
 <%}else{%>
     
         <div class="window_navbar">
@@ -14,10 +14,8 @@
 <%}%>
      
     <div class="window_container">
-        <% student.assignment.forEach((item,i)=> { %>
-         
-      
-            <div class="container_todo">
+    <% assign.assignment.forEach((item,i)=> { %>
+         <div class="container_todo">
                 <div class="todo_profile hour">
                   <h1><%=i+1%></h1>
                 </div>
@@ -40,7 +38,7 @@
                
                 <div class="todo_buttons pending">
                   <%if(role==='student'){%>
-                  <% if (item.source=='null') { %>
+                  <% if (item.status=='null') { %>
                     <a href="/student/assignment_write/<%=student.rollno %>/<%= student.id %>/<%=student.section%>/<%= item.ref_id._id %>"><button>Write</button></a>
                   <% }else{%>
                     
@@ -48,7 +46,7 @@
                     <%} %>
                     <%}else{%>
                       
-                      <% if (item.source=='null') { %>
+                      <% if (item.status=='null') { %>
                         <button>not submitted</button>
                       <% }else{%>
                         

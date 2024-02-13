@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-mongoose.connect(process.env.ATDBURL, {
+mongoose.connect(process.env.LOCALDBURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
