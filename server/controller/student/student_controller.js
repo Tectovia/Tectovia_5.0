@@ -25,12 +25,12 @@ exports.student_index = async (req, res) => {
 
     title+='_'+batch;
 
-    console.log(title);
+    
 
     const selected = mongoose.model(title);
     var student=await selected.findOne({rollno:id});
     req.session.obj_id= student._id.toString();
-    console.log(req.session);
+    console.log(student);
     res.render('student_index',{student});
 };
 

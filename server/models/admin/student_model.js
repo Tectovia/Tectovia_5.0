@@ -120,19 +120,7 @@ const student_master = new mongoose.Schema({
     address: {
         type: String
     },
-    assignment:
-        [{
-          
-          ref_id:{
-            type:ObjectId,
-            ref:'assignment'
-        },
-        
-        source:String,
-        mark:Number
-
-        }
-        ]
+   
 });
 
 

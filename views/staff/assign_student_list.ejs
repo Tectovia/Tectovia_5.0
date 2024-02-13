@@ -40,7 +40,7 @@
          <h2 style="text-align: center;">Pending</h2>
          <% list.assign.forEach((element,i)=>{%>
             <% element.assignment.forEach((assign)=> { %>
-               <% if (assign.ref_id==params.assign_id &&assign.source=='null' ) { %>
+               <% if (assign.ref_id==params.assign_id &&assign.status=='null' ) { %>
                   <div class="container_todo">
                      <div class="todo_profile hour">
                         <h1>
@@ -73,7 +73,7 @@
          <h2 style="text-align: center;">Submitted</h2>
          <% list.assign.forEach((element,i)=>{%>
             <% element.assignment.forEach((assign)=> { %>
-               <% if (assign.ref_id==params.assign_id &&assign.source!='null' ) { %>
+               <% if (assign.ref_id==params.assign_id &&assign.status!='null' ) { %>
                   <div class="container_todo">
                      <div class="todo_profile hour">
                         <h1>
