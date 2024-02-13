@@ -66,6 +66,10 @@ exports.instruction=async (req,res,next)=>{
       oldMessage
   }
 
+
+  // console.log(classes);
+
+  // res.send("sucess")
    res.render('./staff/staff_instructions.ejs',data)
 
 }

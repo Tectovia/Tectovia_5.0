@@ -279,3 +279,9 @@ input[type=file]::file-selector-button:hover {
     top: -1px;
     margin-right: 4px;
   }
+
+
+
+  input[type="date"] {
+    color: black;
+  }

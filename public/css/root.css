@@ -3,8 +3,8 @@
 /* ----------------------------------- Root Variable ---------------------------------- */
 
 :root {
-    --primary-color: rgba(247, 43, 128, 0.742);
-    --primary-color-light: var(--primary-color);
+    --primary-color: rgba(43, 247, 57, 0.742);
+    --primary-color-light: rgba(13, 99, 19, 0.742);
 
     --primary-gradient-right: repeating-linear-gradient(
         45deg,
@@ -52,7 +52,6 @@ body.dark {
     --text-color: rgb(255, 255, 255);
     --box-color: rgb(42, 41, 41);
     --bg-color: rgba(10, 6, 30, 0.932);
-    --primary-color: var(--primary-color-light);
 }
 
 input::-webkit-calendar-picker-indicator {
@@ -83,6 +82,10 @@ a {
 
 li {
     list-style: none;
+}
+
+h1 {
+    color: var(--text-color);
 }
 
 .active {
