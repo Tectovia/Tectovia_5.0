@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="/css/admin/institution_info/common_info.css">
+
+<script>
+
+    function hide_popup() {
+        var element = document.getElementById("popup");
+        element.style.display = "none";
+    }
+    
+    function display_popup() {
+        var element = document.getElementById("popup");
+        element.style.display = "flex";
+    }
+    
+</script>
+
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+
+    <div class="window_container">
+        <%- include('../../partials/admin/institution_subnavbar.ejs') %>
+        <div class="container center_title">
+            <%= page_title %>
+            <div class="float_right">
+                <button onclick="display_popup()">Edit</button>
+            </div>
+        </div>
+        
+        <% if(item !== null) { %>
+            <div class="home_container">
+                <div class="center">
+                    <div class="row logo">
+                        <img src="/uploads/instition_info/common_info/<%- item.school_logo %>" alt="<%= item.school_logo %>">
+                    </div>
+        
+                    <div class="row details">
+                        <p class="school_name"><%- item.school_name %></p>
+                        <p class="school_address"><%- item.school_address %></p>
+                        <p class="school_rno">Regitration Number : <%- item.school_rno %></p>
+                        <p class="school_dob">Established Year : <%- item.school_dob %></p>
+                        <p class="school_phone">Phone : <%- item.school_phone %></p>
+                        <p class="school_email">Email ID : <%- item.school_email %></p>
+                        <p class="borad">Borad of Education : <%- item.board_of_education %></p>
+                        <p class="borad">Medium of Education : <%- item.medium_of_education %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+        <% if(item == null) { %>
+            <div class="popup_container" id="popup" style="display: none;">
+                <div class="popup">
+                    <div class="popup_header">
+                        <p class="pop_title">Add - <%= page_title %></p>
+                    <span class="close_icon" id="closePopup"  onclick="hide_popup()">&times;</span>
+                    </div>
+                    <div class="pop_body">
+                        <form action="/admin/institution_info/common_info/submit_common_info" method="post" enctype="multipart/form-data" class="form">
+                            <div class="form_inputs">
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_name" name="school_name">
+                                    <label for="school_name">School Name</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_rno" name="school_rno" required>
+                                    <label for="school_rno">School Register Number</label>
+                                </div>
+                    
+                                <div class="form_div file_input">
+                                    <label for="school_logo">School Logo</label>
+                                    <input class="input" type="file" id="school_logo" name="school_logo">
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="date" id="school_dob" name="school_dob" required>
+                                    <label for="school_dob">School Established Year</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_address" name="school_address" required>
+                                    <label for="school_address">School Address</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="number" id="school_phone" name="school_phone" required>
+                                    <label for="school_phone">Phone</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="email" id="school_email" name="school_email" required>
+                                    <label for="school_email">Email</label>
+                                </div>
+                                
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="board_of_education">Board Of Education</label>
+                                    <select name="board_of_education" id="board_of_education" required>
+                                        <option value=""></option>
+                                        <option value="State Board">State Board</option>
+                                        <option value="CBSC">CBSC</option>
+                                        <option value="ICSE">ICSE</option>
+                                        <option value="CISCE">CISCE</option>
+                                        <option value="NIOS">NIOS</option>
+                                        <option value="IB">IB</option>
+                                        <option value="Metric">Metric</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="medium_of_education">Medium of Education</label>
+                                    <select name="medium_of_education" id="medium_of_education" required>
+                                        <option value=""></option>
+                                        <option value="Tamil">Tamil</option>
+                                        <option value="English">English</option>
+                                        <option value="Hindi">Hindi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form_submit">
+                                <input type="submit">
+                            </div>    
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+        <% if(item !== null) { %>
+            <div class="popup_container" id="popup" style="display: none;">
+                <div class="popup">
+                    <div class="popup_header">
+                        <p class="pop_title">Edit - <%= page_title %></p>
+                    <span class="close_icon" id="closePopup"  onclick="hide_popup()">&times;</span>
+                    </div>
+                    <div class="pop_body">
+                        <form action="/admin/institution_info/common_info/update_common_info" method="post" enctype="multipart/form-data" class="form">
+                            <div class="form_inputs">
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_name" name="school_name" value="<%- item.school_name %>">
+                                    <label for="school_name">School Name</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_rno" name="school_rno" value="<%- item.school_rno %>">
+                                    <label for="school_rno">School Register Number</label>
+                                </div>
+                    
+                                <div class="form_div file_input">
+                                    <label for="school_logo">School Logo</label>
+                                    <input class="input" type="file" id="school_logo" name="school_logo">
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="date" id="school_dob" name="school_dob" value="<%- item.school_dob %>">
+                                    <label for="school_dob">School Established Year</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="text" id="school_address" name="school_address" value="<%- item.school_address %>">
+                                    <label for="school_address">School Address</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="number" id="school_phone" name="school_phone" value="<%- item.school_phone %>">
+                                    <label for="school_phone">Phone</label>
+                                </div>
+        
+                                <div class="form_div text_input">
+                                    <input class="input" type="email" id="school_email" name="school_email" value="<%- item.school_email %>">
+                                    <label for="school_email">Email</label>
+                                </div>
+                                
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="board_of_education">Board Of Education</label>
+                                    <select name="board_of_education" id="board_of_education">
+                                        <option value="<%- item.board_of_education %>"><%- item.board_of_education %></option>
+                                        <option value="State Board">State Board</option>
+                                        <option value="CBSC">CBSC</option>
+                                        <option value="ICSE">ICSE</option>
+                                        <option value="CISCE">CISCE</option>
+                                        <option value="NIOS">NIOS</option>
+                                        <option value="IB">IB</option>
+                                        <option value="Metric">Metric</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="medium_of_education">Medium of Education</label>
+                                    <select name="medium_of_education" id="medium_of_education">
+                                        <option value="<%- item.medium_of_education %>"><%- item.medium_of_education %></option>
+                                        <option value="Tamil">Tamil</option>
+                                        <option value="English">English</option>
+                                        <option value="Hindi">Hindi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form_submit">
+                                <input type="submit">
+                            </div>    
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+        
+             
+    </div>
+</div>

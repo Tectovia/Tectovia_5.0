@@ -1,0 +1,199 @@
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <%- include('../../partials/admin/staff_subnavbar.ejs') %>
+        <div class="popup" id="popup">
+            <div class="popup_header">
+                <p class="pop_title">Education Details</p>
+                <a href="/admin/staff_info  "><span class="close_icon" id="closePopup">&times;</span></a>
+            </div>
+            <div class="pop_body">
+                <form action="/staff_education_form/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
+                    <div class="form_inputs">
+                        <div class="form_div text_input">
+                            <p>ID</p>
+                            <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
+                        
+                        </div>
+                        <div class="form_div text_input">
+                            <p>Name</p>
+                            <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>">
+                
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_sslc_mark" name="staff_sslc_mark" >
+                            <label for="staff_sslc_mark">SSLC Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_sslc_school" name="staff_sslc_school" >
+                            <label for="staff_sslc_school">SSLC School</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_sslc_per" name="staff_sslc_per" >
+                            <label for="staff_sslc_per">SSLC Percentage</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_sslc_marksheet" name="staff_sslc_marksheet" >
+                            <label for="staff_sslc_marksheet">SSLC Marksheet</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_hsc_mark" name="staff_hsc_mark" >
+                            <label for="staff_hsc_mark">HSC Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_hsc_school" name="staff_hsc_school" >
+                            <label for="staff_hsc_school">HSC School</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_hsc_per" name="staff_hsc_per" >
+                            <label for="staff_hsc_per">HSC Percentage</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_hsc_marksheet" name="staff_hsc_marksheet" >
+                            <label for="staff_hsc_marksheet">HSC Marksheet</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_ug_mark" name="staff_ug_mark" >
+                            <label for="staff_ug_mark">UG Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_ug_per" name="staff_ug_per" >
+                            <label for="staff_ug_per">UG Percentage</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_ug_college" name="staff_ug_college" >
+                            <label for="staff_ug_college">UG College</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_ug_marksheet" name="staff_ug_marksheet" >
+                            <label for="staff_ug_marksheet">UG MarksheeT</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_pg_mark" name="staff_pg_mark" >
+                            <label for="staff_pg_mark">PG Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_pg_per" name="staff_pg_per" >
+                            <label for="staff_pg_per">UG Percentage</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_pg_college" name="staff_pg_college" >
+                            <label for="staff_pg_college">PG College</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_pg_marksheet" name="staff_pg_marksheet" >
+                            <label for="staff_pg_marksheet">PG Marksheet</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_bed" name="staff_bed" >
+                            <label for="staff_bed">B.Ed</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_bed_mark" name="staff_bed_mark" >
+                            <label for="staff_bed_mark">B.Ed Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_bed_college" name="staff_bed_college" >
+                            <label for="staff_bed_college">B.Ed College</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_bed_marksheet" name="staff_bed_marksheet" >
+                            <label for="staff_bed_marksheet">B.Ed Marksheet</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_med" name="staff_med" >
+                            <label for="staff_med">M.Ed</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_med_mark" name="staff_med_mark" >
+                            <label for="staff_med_mark">M.Ed Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_med_college" name="staff_med_college" >
+                            <label for="staff_med_college">M.Ed College</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="staff_med_marksheet" name="staff_med_marksheet" >
+                            <label for="staff_med_marksheet">M.Ed Marksheet</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_mpill" name="staff_mpill" >
+                            <label for="staff_mpill">M.Pill</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="number" class="input" id="staff_mpill_mark" name="staff_mpill_mark" >
+                            <label for="staff_mpill_mark">M.Pill Mark</label>
+                        </div>
+                    
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="staff_mpill_university" name="staff_mpill_university" >
+                            <label for="staff_mpill_university">M.Pill University</label>
+                        </div>
+
+                        
+                                <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_mpill_marksheet" name="staff_mpill_marksheet" >
+                                <label for="staff_mpill_marksheet">M.Pill Marksheet</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_phd" name="staff_phd" >
+                                <label for="staff_phd">M.Pill University</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_add_pg1" name="staff_add_pg1" >
+                                <label for="staff_add_pg1">Additional PG</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_add_pg1_mark" name="staff_add_pg1_mark" >
+                                <label for="staff_add_pg1_mark">Add PG Mark</label>
+                            </div>
+            
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_add_pg1_per" name="staff_add_pg1_per" >
+                                <label for="staff_add_pg1_per"> Add PG Percentange</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_add_pg1_college" name="staff_add_pg1_college" >
+                                <label for="staff_add_pg1_college">Add PG College</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" >
+                                <label for="staff_pg_marksheet">Add PG Marksheet</label>
+                            </div>
+                        </div>
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
+                    </form>
+                    
+                </div>
+            
+        </div>
+    </div>
+</div>

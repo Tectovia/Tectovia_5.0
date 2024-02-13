@@ -1,0 +1,74 @@
+@import url(root.css);
+
+.container_todo {
+    margin-right: 10rem;
+    margin-left: 10rem;
+    padding: 5px;
+    height: auto;
+    display: grid;
+    justify-content: start;
+    grid-template-columns: 20% 65% 15%;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    transition: .3s;
+    background-color:var(--bg-color);
+    margin-bottom: 2rem;
+}
+.container_todo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.todo_profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo_profile img {
+    width: 100%;
+}
+
+
+.todo_content {
+    margin: 20px;
+    padding: 10px;
+    margin-left: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    border-left: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+}
+
+.todo_content .todo_row {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.todo_content .todo_row h3 {
+    margin-left: 2rem;
+}
+
+.todo_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .container_todo {
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+
+    .todo_content {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,168 @@
+@import url(root.css);
+
+form {
+  height: 500px;
+  width: 450px;
+  background: var(--primary-color-light);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 6% auto;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.login {
+  font-weight: 900;
+  font-size: 4rem;
+  text-align: center;
+  justify-content: center;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  margin-left: 25%;
+}
+
+.input_box {
+  margin-top: 15%;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.input_user_id {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1.2em;
+  background-color: var(--box-color);
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.input_user_id:focus {
+  background-color: white;
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px var(--primary-color);
+}
+
+.input_user_password {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1.2em;
+  background-color: var(--box-color);
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.input_user_password:focus {
+  background-color: white;
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px var(--primary-color);
+}
+
+.enter {
+  margin-top: 17%;
+  margin-left: 34%;
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: 1px solid var(--primary-color);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: var(--text-color-dark);
+  color: var(--text-color);
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.enter:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 30px 5px var(--primary-color);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.enter:hover::before {
+  -webkit-animation: sh02 0.5s 0s linear;
+  -moz-animation: sh02 0.5s 0s linear;
+  animation: sh02 0.5s 0s linear;
+}
+
+.enter::before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.enter:active {
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    height: auto;
+  }
+
+  .login {
+    font-size: 2.5rem;
+    margin-left: 0;
+  }
+
+  .input_box {
+    margin-top: 10%;
+  }
+
+  .enter {
+    margin-top: 15%;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .input_user_id,
+  .input_user_password {
+    padding: 1em;
+  }
+}

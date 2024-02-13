@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/css/admin/circular/circular.css">
+
+<% function formatDate(date) {
+    const formattedDate = new Date(date);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return formattedDate.toLocaleDateString('en-GB', options);
+} %>
+
+<% function formatTime(date) {
+    const formattedTime = new Date(date);
+    const hours = formattedTime.getHours() % 12 || 12;
+    const minutes = formattedTime.getMinutes();
+    const ampm = formattedTime.getHours() >= 12 ? 'PM' : 'AM';
+
+    return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+} %>
+
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../partials/staff/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <div class="container center_title">
+            Inbox
+        </div>
+
+        <!-- Previous Circulars -->
+        <% circular.forEach(function(item) { %>
+            <% if(item.delete === false) { %>
+              <div class="circular_container">
+                  <div class="circular_header">
+                    <div class="circular_info">
+                        <div class="from">From : <%- item.from %> </div>
+                        <div class="time">Date : <%- formatDate(item.date) %> </div>
+                        <div class="time">Time : <%- formatTime(item.date) %> </div>
+                    </div>
+                    <div class="circular_buttons">
+                        <div class="delete">
+                            <button class="btn_warning" onclick="display_delete_circular(`<%- item._id %>`)">Seen</button>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="circular_title">
+                      <div class="title"><%- item.title %></div>
+                  </div>
+
+                  <div class="circular_message">
+                      <div class="message">
+                          <p><%- item.message %></p>
+                      </div>
+                  </div>
+              </div>
+              <% } %>
+          <% }) %>
+    </div>
+</div>

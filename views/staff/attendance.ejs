@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/css/staff/staff_attendance.css">
+
+<div class="window" id="window_layout">
+  <div class="window_navbar">
+    <%- include('../partials/staff/navigation_bar.ejs') %>
+  </div>
+
+  <div class="window_container">
+    <div class="container center_title">
+      Attendance
+    </div>
+
+    <div class="attendance_container">
+      <div class="staff_details">
+        <p class="align_right">Staff ID</p>
+        <p>:</p>
+        <p class="align_left"><%=staffdata[0].staff_id%></p>
+
+        <p class="align_right">Date</p>
+        <p>:</p>
+        <p class="align_left"><%=order.date%></p>
+      
+        <p class="align_right">Day Order</p>
+        <p>:</p>
+        <p class="align_left"><%=order.dayorder%></p>
+      </div>
+    </div>
+
+    <% if(order.dayorder!='null'){%>
+        <% periods.forEach((item,i)=>{%> <% if(item.sub!='null'){%>
+        <div class="container_todo">
+          <div class="todo_profile hour">
+            <h1><%=i+1%></h1>
+          </div>
+
+          <div class="todo_content">
+            <div class="todo_row">
+              <h3>Subject : <%=item.sub%></h3>
+            </div>
+            <div class="todo_row">
+              <h3>Class : <%=item.class%></h3>
+            </div>
+            <div class="todo_row">
+              <h3>Section : <%=item.sec%></h3>
+            </div>
+            <%if(details.absent[i]!=0){%>
+              <div class="todo_row">
+                <h3>Absentees: <%=details.absent[i]%></h3>
+              </div>
+            <%}%>
+          </div>
+          <% if(staff_ack[i]=='null'){%>
+            <div class="todo_buttons pending">
+              <a
+                href="/staff/attendance_link/<%=staffdata[0]._id%>/<%=order.date%>/<%=order.dayorder%>/<%=i%>/<%=item.class%>/<%=item.sec%>"
+                ><button class="pending_btn">Pending</button></a
+              >
+            </div>
+          <%}else{%>
+            <div class="todo_buttons">
+              <button class="done">Done</button>
+            </div>
+          <%}%>
+        </div>
+    <%}%> 
+
+    <%})}else{%>
+        <h2>Holiday</h2>
+      <%}%>
+  </div>
+</div>
+
+<style>
+  .done {
+    padding: 5px 10px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+  }
+  .hour h1 {
+    color: var(--primary-color);
+    font-size: 25px;
+    font-weight: bolder;
+  }
+  .pending_btn {
+    padding: 5px 10px;
+    background-color: rgb(245, 8, 39);
+    border-radius: 10px;
+    color: white;
+  }
+</style>
+
+<script>
+  const currentDate = new Date();
+  const maxDate = currentDate.toISOString().slice(0, 10);
+  const date_selector = document.getElementById("date_selector");
+  date_selector.setAttribute("max", maxDate);
+  date_selector.addEventListener("change", () => {
+    date = date_selector.value;
+    datepart = date.split("-");
+    if (datepart.length === 3) {
+      const day = datepart[2];
+      const month = datepart[1];
+      const year = datepart[0];
+      formated_date = `${day}-${month}-${year}`;
+      window.location.href =`/staff/attendance/<%=staffdata[0]._id%>/${formated_date}`;
+    }
+  });
+</script>

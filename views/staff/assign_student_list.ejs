@@ -1,0 +1,182 @@
+<script>
+   function viewcontent(content) {
+      const text = document.getElementById('source');
+      console.log(content);
+      // text.value=content;
+      // display_popup_subject();
+
+   }
+
+</script>
+<style>
+   .show {
+      display: block;
+   }
+
+   .hide {
+      display: none;
+   }
+</style>
+<div class="window" id="window_layout">
+   <div class="window_navbar">
+      <%- include('../partials/staff/navigation_bar.ejs') %>
+   </div>
+
+   <div class="window_container">
+      <h3>Subject:<%= list.sub %>
+      </h3>
+      <h3>Unit:<%= list.unit %>
+      </h3>
+      <h3>Title:<%= list.title %>
+      </h3><br>
+
+      <select id="select">
+         <option value="all" selected>All</option>
+         <option value="pending">Pending</option>
+         <option value="submitted">Submitted</option>
+      </select>
+
+      <div class="pending " id="pending">
+         <h2 style="text-align: center;">Pending</h2>
+         <% list.assign.forEach((element,i)=>{%>
+            <% element.assignment.forEach((assign)=> { %>
+               <% if (assign.ref_id==params.assign_id &&assign.source=='null' ) { %>
+                  <div class="container_todo">
+                     <div class="todo_profile hour">
+                        <h1>
+                           <%=i+1%>
+                        </h1>
+                     </div>
+                     <div class="todo_content">
+                        <div class="todo_row">
+                           <h4>Name : <%= element.name %>
+                           </h4>
+                        </div>
+                        <div class="todo_row">
+                           <h4>Rollno : <%= element.rollno %>
+                           </h4>
+                        </div>
+
+
+                     </div>
+
+
+
+                  </div>
+                  <br>
+                  <% } %>
+                     <% }) %>
+
+                        <% }) %>
+      </div>
+      <div class="submitted " id="submitted">
+         <h2 style="text-align: center;">Submitted</h2>
+         <% list.assign.forEach((element,i)=>{%>
+            <% element.assignment.forEach((assign)=> { %>
+               <% if (assign.ref_id==params.assign_id &&assign.source!='null' ) { %>
+                  <div class="container_todo">
+                     <div class="todo_profile hour">
+                        <h1>
+                           <%=i+1%>
+                        </h1>
+                     </div>
+                     <div class="todo_content">
+                        <div class="todo_row">
+                           <h4>Name : <%= element.name %>
+                           </h4>
+                        </div>
+                        <div class="todo_row">
+                           <h4>Rollno : <%= element.rollno %>
+                           </h4>
+                        </div>
+                       
+                     </div>
+                   
+                   
+                     <div class="todo_buttons pending">
+                              
+                     <% var text=assign.source %>
+               
+                           <a onclick='viewcontent(`<%=text%>`)'><button
+                                 class="pending_btn">View</button></a>
+
+
+                     </div>
+                  </div>
+                  <br>
+                  <% } %>
+                     <% }) %>
+
+                        <% }) %>
+      </div>
+
+      <div class="popup_container" id="popup_subject" style="display: none;">
+         <div class="popup" id="popup">
+            <div class="popup_header">
+               <p class="pop_title">Source</p>
+               <span class="close_icon" id="closePopup" onclick="hide_popup_subject()">&times;</span>
+            </div>
+            <div class="pop_body">
+               <form action="" method="post" enctype="multipart/form-data" class="form">
+                  <div class="form_inputs">
+                     <div class="form_div text_input">
+                        <textarea name="source" id="source" cols="80" rows="8" placeholder="Source" readonly
+                           required></textarea>
+
+                     </div>
+                     <br>
+                     <div class="form_div text_input">
+                        <input type="text" class="input" id="title" name="mark" required>
+                        <label for="mark">Mark</label>
+                     </div>
+                  </div>
+                  <div class="form_submit">
+                     <input type="submit">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+   const selection = document.getElementById('select');
+
+   const pending = document.getElementById('pending');
+   const submitted = document.getElementById('submitted');
+
+   selection.addEventListener('change', () => {
+      const val = selection.value;
+
+      if (val == 'pending') {
+         pending.classList.remove('hide');
+         submitted.classList.add('hide');
+
+      }
+      else if (val == 'submitted') {
+         submitted.classList.remove('hide');
+         pending.classList.add('hide');
+      }
+      else {
+         submitted.classList.remove('hide');
+         pending.classList.remove('hide');
+      }
+   }
+   )
+
+   const source = document.getElementById('source');
+
+
+   function hide_popup_subject() {
+      var element = document.getElementById("popup_subject");
+      element.style.display = "none";
+   }
+
+   function display_popup_subject() {
+      var element = document.getElementById("popup_subject");
+      element.style.display = "flex";
+   }
+
+</script>
+</div>

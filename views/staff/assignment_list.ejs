@@ -1,0 +1,98 @@
+<script>
+    function hide_popup_subject() {
+    var element = document.getElementById("popup_subject");
+    element.style.display = "none";
+}
+
+function display_popup_subject() {
+    var element = document.getElementById("popup_subject");
+    element.style.display = "flex";
+}
+
+</script>
+
+
+
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+      <%- include('../partials/staff/navigation_bar.ejs') %>
+    </div>
+  
+  
+    <div class="window_container">
+        <div class="float_right">
+          
+            <button onclick="display_popup_subject()">Add </button>
+        </div>
+        <br><br>
+        <br><br>
+       
+        <% assign.forEach((items,i)=> { %>
+         
+      <a href="/staff/assignment/viewlist/<%- staffdata[0]._id %>/<%= item.class  %>/<%= item.sec  %>/<%= items._id %>">
+        <div class="container_todo">
+            <div class="todo_profile hour">
+              <h1><%=i+1%></h1>
+            </div>
+            <div class="todo_content">
+              <div class="todo_row">
+                <h3>Title :<%= items.ref_id %> </h3>
+              </div>
+              <div class="todo_row">
+                <h3>Unit : <%=items.unit%></h3>
+              </div>
+              <div class="todo_row">
+                <h3>Due Date : <%=items.due%></h3>
+              </div>
+              <div class="todo_row">
+                <h3>Desc : <%=items.desc%></h3>
+              </div>
+             
+            </div>
+           
+            <div class="todo_buttons pending">
+             
+           
+          </div>
+          </div>
+        </a>
+          <br>
+          <% }) %>
+      
+        <div class="popup_container" id="popup_subject" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">New Assignment</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_subject()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/staff/new_assignment/<%- staffdata[0]._id %>/<%= item.class  %>/<%= item.sec  %>/<%= item.sub %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="topic" name="unit" required>
+                                <label for="topic">Unit</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="title" name="title" required>
+                                <label for="title">Title</label>
+                            </div>
+                            <div class="form_div text_input form_div_span">
+                                <input type="date" class="input" id="date" name="date" required>
+                                <label for="date">Last Date</label>
+                            </div>
+                            <div class="form_div  textarea">
+                              <label for="topic">Description</label>
+                                <textarea name="desc"></textarea>
+                            </div>   
+                            
+                            <div class="form_submit form_div_span">
+                              <input type="submit">
+                          </div>   
+                        </div>
+                    </form>
+                </div>        
+            </div>
+        </div>
+
+    </div>
+</div>

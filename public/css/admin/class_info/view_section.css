@@ -1,0 +1,9 @@
+@import url(../../root.css);
+
+.section_header {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    padding: 10px;
+}

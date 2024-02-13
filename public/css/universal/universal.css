@@ -1,0 +1,16 @@
+.universal_main {
+    padding: 40px;
+}
+
+.universal_main .home_title {
+    width: 55%;
+}
+
+.universal_main .home_title h2 {
+    font-size: 80px;
+}
+
+.universal_main .description p {
+    padding-top: 30px;
+    font-size: 18px;
+}

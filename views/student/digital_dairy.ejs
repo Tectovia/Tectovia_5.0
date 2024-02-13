@@ -1,0 +1,56 @@
+<div class="window" id="window_layout">
+<%if(role==="student"){%>
+    <div class="window_navbar">
+        <%- include('../partials//student/navigation_bar.ejs') %>
+     </div>
+</div>
+<%}else{%>
+    
+        <div class="window_navbar">
+          <%- include('../partials/parent/navigation_bar.ejs') %>
+        </div>
+
+<%}%>
+
+
+<div class="digital_dairy">
+<div >
+    <br>
+    <%instructions.map((item)=>{%>
+    <div class="container_todo" id="<%=item.date%>">
+        <input type="checkbox" class="hide" value="<%=item.date%>">
+        <span>Date and Time:</span><span><%=item.date%></span><br>
+        <span>from:</span><span><%=item.from%></span><br>
+        <span>subjects:</span><span><%=item.subjects%></span><br><br>
+        <h5>instruction</h5>
+        <p><%=item.message%></p>
+</div>
+<br>
+    <%})%>
+</div>
+
+</div>
+</div>
+
+<style>
+    .hide{
+        display: none;
+    }
+    .show{
+          display: block;
+    }
+    .digital_dairy{
+        margin-left: 18%;
+    }
+</style>
+<script>
+// document.getElementById('select_delete').addEventListener('click',()=>{
+//     const checkboxes=document.querySelectorAll('checkbox')
+//     for(let i=0;i<checkboxes.length;i++)
+//     {
+//         console.log(checkboxes[i]);
+//     }
+//     console.log();
+// })
+
+</script>

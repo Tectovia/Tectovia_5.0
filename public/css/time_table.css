@@ -1,0 +1,59 @@
+.time_table{
+    position: fixed;
+    background: url(../img/backsblur.jpg);
+ 
+    background-position: -40px 0px;
+    background-size: cover;
+    background-size:99%;
+    width: 1400px;
+    height: 900px;
+    margin-top: -20px;
+    left: 15%;
+   
+    
+}
+
+.time_table .header{
+    background-color:rgb(94,139,110);
+    color: #000;
+    transition: transform 0.3s ease-in-out;
+   
+}
+.time_table .table{
+    background-color: rgb(250, 250, 250);
+    margin-top: 15px;
+    margin-left: 140px;
+    width: 960px;
+    height: 520px;
+    border-radius: 20px;
+    font-size: 15px;
+    transition: transform 0.3s ease-in-out; /* Adding smooth hover animation */
+}
+.time_table .time_table_bg h1 {
+    font-size: 45px;
+    margin-top: 20px;
+    width: 260px;
+    margin-left: 450px;
+    background-color: rgb(198, 200, 202);
+    border-radius: 30%;
+  
+ 
+}
+
+
+
+.time_table .table:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+.time_table_bg h1{
+    margin-left: 550px ;
+    font-size: 20px;
+    color: #000;
+  
+}
+.time_table .one{
+    background-color: aquamarine;
+}
+.time_table .header{
+    transform: scale(1.05);
+}

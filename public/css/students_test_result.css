@@ -1,0 +1,333 @@
+.container_marks {
+    margin-right: 10rem;
+    margin-left: 10rem;
+    margin-top: 5rem;
+    padding: 5px;
+    height: 100px;
+   display: flex;
+    justify-content: start;
+  
+    box-shadow: 0 0 10px rgb(196, 178, 178);
+    border-radius: 10px;
+    transition: .3s;
+}
+.container_marks:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+ .test_result_heading h1{
+  
+    font-size: 50px;
+    margin-left: 32%;
+    /* text-shadow: 0 0 0 rgb(0, 0, 0), 1px 0 0 rgb(0, 0, 0),
+    2px 0 0 rgb(28, 214, 84), 3px 0 0 rgb(23, 209, 79), 4px 0 0 rgb(18, 204, 74),
+    5px 0 0 rgb(13, 199, 69), 6px 0 0 rgb(8, 194, 64), 7px 0 0 rgb(3, 189, 59),
+    8px 0 0 rgb(2, 184, 54), 9px 0 0 rgb(7, 179, 49), 10px 0 0 rgb(12, 174, 44),
+    11px 0 10px rgba(4, 110, 0, 0.6), 11px 0 1px rgba(4, 110, 0, 0.5),
+    0 0 10px rgba(4, 110, 0, 0.2); */
+}
+
+
+.test_mainsss{
+    display: flex;
+    font-size: 25px;
+}
+.test_mainsss button{
+    margin-left: 140px;
+    margin-top: 20px;
+}
+.test_maxmarks{
+    margin-left: 170px;
+    margin-top: 20px;
+  
+    
+}
+.test_title{
+    margin-left: 170px;
+    margin-top: 30px;
+}
+.test_date{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.popup_container{
+   
+    margin-top: -150px;
+    width: 700px;
+    height: 500px;
+    border: solid;
+    background-color:aqua;
+    border-radius: 30px;
+    margin-left: -250px;
+}
+
+.main_date{
+    margin-left: 130px;
+    margin-top: 20px;
+    
+}
+.mark_button{
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 150px;
+}
+.marks_popup{
+    margin-top: -180px;
+    margin-left: 350px;
+    height: 530px;
+    background-color: aqua;
+    width: 550px;
+    border-radius: 30px;
+}
+.mark_popup_title{
+
+    margin-left: 100px;
+}
+.mark_popup_heading{
+    
+    margin-top: -530px;
+  margin-bottom: 10px;
+    margin-left: 30px;
+
+}
+.mark_popup_heading h1{
+    font-size: 30px;
+    margin-left: 150px;
+    margin-top: 30px;
+   
+}
+.mark_popup_date{
+    margin-left: 370px;
+    padding: 5px;
+    display: flex;
+    background-color: aliceblue;
+    width: 150px;
+    height: 30px;
+    border-radius: 30px;
+}
+.mark_popup_date h1{
+    margin-left: 6px;
+    
+}
+.mark_popup_title{
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    width: 170px;
+    height: 30px;
+    border-radius: 30px;
+    margin-left: 180px;
+}
+.mark_popup_title h1{
+    margin-left: 54px;
+    font-size: 20px;
+}
+.main_marks_popup_container{
+    margin-top: 30px;
+    background-color: rgb(247, 243, 239);
+    width: 470px;
+    margin-left: 40px;
+    border-radius: 30px;
+  
+}
+.mark_popup_maxmarks{
+    display: flex;
+    padding: 10px;
+    margin-left: 30px;
+}
+.mark_popup_maxmarks h1{
+    margin-left: 200px;
+}
+.mark_popup_minmarks{
+    display: flex;
+    padding: 10px;
+    margin-left: 30px;
+}
+.mark_popup_minmarks h1{
+    margin-left: 216px;
+}
+.mark_popup_obtainedmarks{
+    display: flex;
+    padding: 10px;
+    margin-left: 30px;
+}
+.mark_popup_obtainedmarks h1{
+    margin-left: 207px;
+}
+.mark_popup_status{
+    display: flex;
+    padding: 10px;
+    margin-left: 31px;
+}
+.mark_popup_status h1{
+    margin-left: 267px;
+}
+.mark_popup_button{
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+/* Define a class for the blurred background */
+.blurred-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+    z-index: 999; /* Ensure it appears above other content */
+    display: none; /* Hide it by default */
+}
+
+/* Adjust the styles for the popup */
+/* Define the initial state of the popup */
+/* Define the animation keyframes */
+@keyframes zoomIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5); /* Start with smaller size */
+        opacity: 0; /* Start with opacity 0 */
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1); /* End with original size */
+        opacity: 1; /* End with full opacity */
+    }
+}
+
+/* Apply the animation to the popup */
+.marks_popup {
+    position: fixed;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%) scale(0.5); /* Initial position and size */
+    background-color: rgb(193, 228, 240);
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    animation: zoomIn .4s forwards; /* Apply the animation */
+}
+.close{
+   
+    margin-left: 500px;
+}
+.close:hover{
+    background-color: rgba(41, 136, 136, 0.181);
+    border-radius: 50%;
+    width: 20px;
+   
+}
+
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+  }
+  
+  @property --gradX {
+    syntax: '<percentage>';
+    initial-value: 50%;
+    inherits: true;
+  }
+  
+  @property --gradY {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: true;
+  }
+  
+  
+  
+ 
+  
+  :root {
+      --d: 2500ms;
+      --angle: 90deg;
+      --gradX: 100%;
+      --gradY: 50%;
+      --c1: rgb(60, 255, 0);
+      --c2: rgba(12, 32, 245, 0.1);
+  }
+  
+  
+  
+  .box {
+    
+      
+      border: 0.25rem solid;
+      
+      border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+      animation: borderRotate var(--d) linear infinite forwards;
+  }
+  
+  .box:nth-child(2) {
+      border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+      animation: borderRadial var(--d) linear infinite forwards;
+  }
+  
+  @keyframes borderRotate {
+      100% {
+          --angle: 420deg;
+      }
+  }
+  
+  @keyframes borderRadial {
+      20% {
+          --gradX: 100%;
+          --gradY: 50%;
+      }
+      40% {
+          --gradX: 100%;
+          --gradY: 100%;
+      }
+      60% {
+          --gradX: 50%;
+          --gradY: 100%;
+      }
+      80% {
+          --gradX: 0%;
+          --gradY: 50%;
+      }
+      100% {
+          --gradX: 50%;
+          --gradY: 0%;
+      }
+  }
+
+.A1_grade{
+    display: flex;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+margin-top: 20px;
+margin-left: 30px;
+transform: rotate(-20deg);
+}
+.mark_popup_grade{
+    display: flex;
+    
+    width: 100px;
+}
+.grade{
+    display: flex;
+   
+    width: 450px;
+    height: 80px;
+  margin-top: 300px;
+  margin-left: 60px;  
+}
+.a_grade{
+    margin-left: 70px;
+}
+#canvas {
+    display: flex;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Ensure canvas is behind other elements */
+    width: 700px;
+    height: 500px;
+  }
+  

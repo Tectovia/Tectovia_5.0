@@ -1,0 +1,72 @@
+<div class="window" id="window_layout">
+  
+  <%if(role==="student"){%>
+    <div class="window_navbar">
+        <%- include('../partials/student/navigation_bar.ejs') %>
+     </div>
+</div>
+<%}else{%>
+    
+        <div class="window_navbar">
+          <%- include('../partials/parent/navigation_bar.ejs') %>
+        </div>
+
+<%}%>
+     
+    <div class="window_container">
+        <% student.assignment.forEach((item,i)=> { %>
+         
+      
+            <div class="container_todo">
+                <div class="todo_profile hour">
+                  <h1><%=i+1%></h1>
+                </div>
+                
+                <div class="todo_content">
+                  <div class="todo_row">
+                    <h3>Title : <%=item.ref_id.title%></h3>
+                  </div>
+                  <div class="todo_row">
+                    <h3>Unit : <%=item.ref_id.unit%></h3>
+                  </div>
+                  <div class="todo_row">
+                    <h3>Due Date : <%=item.ref_id.due%></h3>
+                  </div>
+                  <div class="todo_row">
+                    <h3>Desc : <%=item.ref_id.desc%></h3>
+                  </div>
+                 
+                </div>
+               
+                <div class="todo_buttons pending">
+                  <%if(role==='student'){%>
+                  <% if (item.source=='null') { %>
+                    <a href="/student/assignment_write/<%=student.rollno %>/<%= student.id %>/<%=student.section%>/<%= item.ref_id._id %>"><button>Write</button></a>
+                  <% }else{%>
+                    
+                    <button class="success">Success</button>
+                    <%} %>
+                    <%}else{%>
+                      
+                      <% if (item.source=='null') { %>
+                        <button>not submitted</button>
+                      <% }else{%>
+                        
+                        <button class="success">Submitted</button>
+                        <%} %>
+                      
+                      <%}%>
+             
+               
+              </div>
+              </div>
+              <br>
+              <% }) %>
+    </div>
+</div>    
+
+<style>
+  .success{
+    background-color: rgb(10, 168, 10);
+  }
+</style>

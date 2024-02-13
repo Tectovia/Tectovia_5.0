@@ -1,0 +1,19 @@
+<aside>
+    <nav class="container_lr nav_bar">
+        <div class="sub_container nav_list">
+            <ul>
+                <li><a href="/parent_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>">Info</a></li>
+                <li><a href="/parent/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today">Attendance</a></li>
+                <li><a href="/parent/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Time Table</a></li>
+                <li><a href="/parent/dairy/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Diary</a></li>
+                <!-- <li><a href="/parent/quiz/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Quiz</a></li> -->
+                <li><a href="/parent/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Assignment</a></li>
+                <li><a href="/parent/circular/<%=student.rollno%>/<%=student.id%>">circular</a></li>
+            </ul>
+        </div>
+        
+        <div class="sub_container logout">
+            <a href="/logout"><button>Logout</button></a>
+        </div>
+    </nav>
+</aside>

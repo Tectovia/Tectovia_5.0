@@ -1,0 +1,54 @@
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+
+    <div class="window_container">
+        <%- include('../../partials/admin/institution_subnavbar.ejs') %>
+        <div class="container center_title">
+            <%- page_title %>
+            <div class="float_right">
+                <a href="/admin/institution_info/achievements/form_achievements" id="toggleButton"><button>Add</button></a>
+            </div>
+        </div>
+        <% if(add === "display") { %>
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title"><%= page_title %></p>
+                    <a href="/admin/institution_info/achievements"><span class="close_icon" id="closePopup">&times;</span></a>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/institution_info/achievements/submit_achievements" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="achievement_title" name="title" required>
+                                <label for="achievement_title">Achievement Title</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="achievement_feild" name="field" required>
+                                <label for="achievement_feild">Field of Achievement</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="date" class="input" id="achievement_date" name="date" required>
+                                <label for="achievement_date">Achievement Date</label>
+                            </div>
+                            <div class="form_div file_input">
+                                <label for="achievement_photo">Photo</label>
+                                <input type="file" class="input"  id="achievement_photo" name="img">
+                            </div>
+                            <div class="form_div textarea">
+                                <label for="achievement_discription">Achievement Discription</label>
+                                <textarea name="achievement_discription" id="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
+                    </form>
+                </div>        
+            </div>
+        <% } %>
+    </div>
+</div>
+
+

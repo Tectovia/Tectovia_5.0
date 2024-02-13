@@ -1,0 +1,23 @@
+<div class="window" id="window_layout">
+    <div class="window_navabr">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+
+    <div class="window_container">
+        <div class="container center_title">
+            <%- title %>
+            <div class="float_left">
+                <a href="/admin/class_info/class_list" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Subject Name : <%= item.subject_name %></h3>
+        </div>
+        <div class="row">
+            <h3>Subject Code : <%= item.subject_code %></h3>
+        </div>
+        <div class="row">
+            <h3>Subject Medium : <%= item.subject_medium %></h3>
+        </div>
+    </div>
+</div>

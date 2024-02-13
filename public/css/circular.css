@@ -1,0 +1,58 @@
+@import url(root.css);
+
+.circular_container {
+    background-color: var(--bg-color);
+    height: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 9rem;
+    margin-right: 6rem;
+    margin-bottom: 2rem;
+    padding: 10px;
+}
+
+.circular_header {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    color: white;
+}
+
+.circular_info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.circular_buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.circular_title {
+    padding: 10px;
+    text-align: center;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.circular_container .title {
+    font-size: 30px;
+}
+
+.circular_message .message p {
+    background-color: var(--box-color);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+
+/* Circular Form */
+
+.circular_form {
+    padding: 10px;
+}

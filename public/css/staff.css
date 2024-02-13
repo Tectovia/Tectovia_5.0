@@ -1,0 +1,14 @@
+.staff {
+    display: grid;
+    grid-template-columns: 14% 84.5%;
+}
+
+.staff_container {
+    margin-bottom: 4rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .staff {
+        grid-template-columns: 19% 80%;
+    }
+}

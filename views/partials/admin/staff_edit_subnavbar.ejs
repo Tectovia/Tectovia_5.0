@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/admin/institution_info/subnav_bar.css">
+<div class="container_lr">
+    <div class="subnav_bar">
+        <div class="logo">
+            <div class="img"><img src="/img/logo.svg" alt=""></div>
+        </div>
+        <div class="title">
+            <div class="name">Staff Name : <span><%=data.staff_name%></span></div>
+        </div>
+        <div class="nav_bar">
+            <ul>
+                <li><a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>">Personal Info</a></li>
+                <li><a href="/admin/staff_info/staff_list/education_edit/<%=data.id%>">Educational Info</a></li>
+                <li><a href="/admin/staff_info/staff_list/achievement_edit/<%=data.id%>">Achievements</a></li>
+               
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <div class="popup_container">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Staff Personal Details</p>
+                    <a href="/admin/staff_info"><span class="close_icon" id="closePopup">&times;</span></a>
+                </div>
+                <div class="pop_body">
+                    <form action="/staff_personal_details/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <p>ID</p>
+                                <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
+                            
+                            </div>
+                            
+                            <div class="form_div text_input">
+                                <p>Name</p>
+                                <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>">
+                    
+                            </div>
+                            <div class="form_div file_input">
+                                <label for="staff_profile">Profile Photo</label>
+                                <input class="input" type="file" id="staff_profile" name="staff_profile" >
+                            
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_father_name" name="staff_father">
+                                <label for="staff_father_name">Father's Name</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_mother" name="staff_mother" >
+                                <label for="staff_mother">Mother's Name</label>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="staff_marital_status">Marital Status</label>
+                                <select name="staff_marrital" id="staff_marital_status">
+                                    <option value=""></option>
+                                    <option value="Married">Married</option>
+                                    <option value="Unmarried">Unmarried</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="staff_gender">Gender</label>
+                                <select name="staff_gender" id="staff_gender" >
+                                    <option value=""></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Trans_Gender">Others</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="satff_qualification" name="staff_qualifiaction" >
+                                <label for="satff_qualification">Qualification</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="satff_blood_group" name=" staff_blood" >
+                                <label for="satff_blood_group">Blood Group</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="date" id="satff_dob" name="staff_dob" required>
+                                <label for="satff_dob">Date of Birth</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id="satff_aadhar_number" name=" staff_aadhar_no">
+                                <label for="satff_aadhar_number">Aadhar Number</label>
+                            </div>
+                            <div class="form_div file_input">
+                                <label for="staff_aadhar_photo">Aadhar Photo</label>
+                                <input class="input" type="file" id="staff_aadhar_photo" name="staff_aadhar_img">
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id=" staff_voter_id" name="  staff_voter_id" >
+                                <label for=" staff_voter_id">Voter ID</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_pan" name="staff_pan" >
+                                <label for="staff_pan">Pan Number</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="file" id="staff_community_img" name="staff_community_img" >
+                                <label for="staff_community_img">Community Certificate</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="file" id="staff_community_img" name="staff_income_img" >
+                                <label for="staff_income_img">Income Certificate</label>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="staff_nationality">Nationality</label>
+                                <select name="staff_nationality" id="staff_nationality" >
+                                    <option value=""></option>
+                                    <option value="indian">Indian</option>
+                                    <option value="others">Others</option>
+                            
+                                </select>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="staff_disability">Disability</label>
+                                <select name="staff_disability" id="staff_disability" >
+                                    <option value=""></option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                            
+                                </select>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="file" id="staff_disability_img" name="staff_disability_img" >
+                                <label for="staff_disability_img">Disability Certificate</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id="staff_mobile" name="staff_mobile" >
+                                <label for="staff_mobile">Mobile Number</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id="staff_whatsapp" name="staff_whatsapp" >
+                                <label for="staff_whatsapp">Whatsapp Number</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="email" id="staff_off_mail" name="staff_off_mail" >
+                                <label for="staff_off_mail">Official Mail</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="email" id="staff_per_mail" name="staff_per_mail" >
+                                <label for="staff_per_mail">Personal Mail</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <textarea name="staff_per_address" id="staff_per_address" cols="30" rows="10" draggable="false"></textarea>
+                                <label for="staff_per_address">Permanent Address</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <textarea name="staff_temp_address" id="staff_temp_address" cols="30" rows="10" draggable="false"></textarea>
+                                <label for="staff_temp_address">Tempory Address</label>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="staff_experience">Experience</label>
+                                <select name="staff_experience" id="staff_experience" >
+                                    <option value=""></option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                            
+                                </select>
+                            </div>
+                           
+                            <div class="form_div text_input">
+                                <input class="input" type="file" id="staff_experience_img" name="staff_experience_img" >
+                                <label for="staff_experience_img">Experience Certificate</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id="staff_account_no" name="staff_account_no" >
+                                <label for="staff_account_no">Bank Account Number</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_accountholder_name" name="staff_accountholder_name" >
+                                <label for="staff_accountholder_name">Bank Account Holder Name</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_bank_name" name="staff_bank_name">
+                                <label for="staff_bank_name">Bank Name</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id="staff_bank_branch" name="staff_bank_branch" >
+                                <label for="staff_bank_branch">Bank Branch Name</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="number" id="staff_account_ifsc" name="staff_account_ifsc" >
+                                <label for="staff_account_ifsc">Bank IFSC Number</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="file" id="staff_account_passbook" name="staff_account_passbook" >
+                                <label for="staff_account_passbook">Bank Passbook Image</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id=" staff_social_media1" name=" staff_social_media1" >
+                                <label for=" staff_social_media1">Website</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input class="input" type="text" id=" staff_social_media2" name=" staff_social_media2" >
+                                <label for=" staff_social_media2">Website</label>
+                            </div>
+                        </div>
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
+                
+                    </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+</div>

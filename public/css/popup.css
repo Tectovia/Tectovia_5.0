@@ -1,0 +1,60 @@
+@import url(root.css);
+
+
+.popup_container {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    height: 100vh;
+    width: 100%;
+}
+
+.popup {
+    position: absolute;
+    background-color: var(--bg-color);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    height: auto;
+    border-radius: 10px;
+    width: auto;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.close_icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 25px;
+    transition: .3s;
+    
+}
+
+.close_icon:hover {
+    color: red;
+    transform: translateY(-3px);
+}
+
+.popup_header {
+    min-width: 300px;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop_title {
+    font-size: var(--pop-font-size);
+}
+
+.pop_body {
+    padding: 10px;
+}

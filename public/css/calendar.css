@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap");
+
+.calender_container {
+  width: 100%;
+}
+
+.header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header #month {
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+button {
+  width: 75px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+}
+
+.header button {
+  background-color: var(--secondary-color);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #2f3640;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+
+.weekdays div {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#calendar {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.day {
+  
+  height: 100px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 3px #cbd4c2;
+  color: #7f8fa6;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.day:hover {
+  background-color: rgba(112, 111, 211, 0.1);
+  color: #706fd3;
+}
+
+#currentDay {
+  background-color: #706fd3;
+  color: #fff;
+}
+
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #3d3d3d;
+  color: #fff;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+
+.holiday {
+  font-size: 10px;
+  padding: 3px;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+  background-color: rgb(233, 23, 23);
+  color: #f8f1f1;
+}
+
+.plain {
+  cursor: default;
+  box-shadow: none;
+}
+
+.addEvent,
+#viewEvent {
+  display: none;
+  background-color: #fff;
+  padding: 20px;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  background-color: var(--bg-color-light);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+#addEvent h2,
+#viewEvent h2 {
+  font-weight: 500;
+}
+
+.txtTitle {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #3d3d3d;
+  color: #fff;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+
+.hide_cal{
+  visibility: hidden;
+}
+#btnSave {
+  background-color: #2ed573;
+}
+.closebuttondiv{
+  width: 100%;
+  text-align: right;
+}
+.btnClose {
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+}
+
+#viewEvent p {
+  margin-bottom: 20px;
+}
+
+#btnDelete {
+  background-color: #ea2027;
+}
+
+.error {
+  border-color: #ea2027 !important;
+}
+
+.display{
+  display: block;
+}

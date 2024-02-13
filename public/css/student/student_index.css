@@ -1,0 +1,155 @@
+@import url(root.css);
+
+.student_information {
+  position: relative;
+}
+
+.information_container {
+  position: relative;
+  display: grid;
+  height: 110vh;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-bottom: 4%;
+  margin-top: 20%;
+  background: var(--primary-color);
+  box-shadow: 0 10px 20px 0 rgb(0, 0, 0);
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+.user_profile {
+  position: absolute;
+  top: -170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--bg-color-light) url("/img/logo.svg") center/cover;
+  border: 2px solid black;
+  z-index: 10;
+}
+
+.user_id {
+  margin-top: 15%;
+  margin-left: 10%;
+  height: 280px;
+  width: 500px;
+  background: var(--primary-color);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  grid-row: span 2;
+  grid-column: 1;
+}
+
+.user_detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: left;
+  font-weight: 700;
+  margin: 30px;
+  margin-left: 10px;
+}
+
+.user_title,
+.user_colon,
+.user_data {
+  padding: 5px;
+  margin: 10px;
+}
+
+.user_data {
+  margin-left: -60px;
+}
+
+.user_contact {
+  margin-left: 10%;
+  margin-top: 15%;
+  height: 280px;
+  width: 500px;
+  background: var(--primary-color);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.contact_detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: left;
+  font-weight: 700;
+  margin: 30px;
+  margin-left: 10px;
+}
+
+.contact_title,
+.conatct_colon,
+.conatct_data {
+  padding: 5px;
+  margin: 10px;
+}
+
+.conatct_data {
+  margin-left: -60px;
+}
+
+.information_container h1 {
+  font-size: 2rem;
+  margin-left: -15%;
+  margin-bottom: -5%;
+  color: black;
+}
+
+.basic_details {
+  margin-left: 5%;
+  height: 300px;
+  width: 90%;
+  font-weight: 700;
+  background: var(--primary-color);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  grid-row: 3;
+  grid-column: span 2;
+}
+
+.basic_data {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.detail_1,
+.detail_2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.basic_title_1,
+.basic_title_2,
+.basic_colon_1,
+.basic_colon_2,
+.basic_data_1,
+.basic_data_2 {
+  padding: 5px;
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.basic_data_1,
+.basic_data_2 {
+  margin-left: -60px;
+}
+
+.detail_1,
+.detail_2 {
+  margin: 10px;
+}

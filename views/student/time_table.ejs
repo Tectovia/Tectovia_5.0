@@ -1,0 +1,55 @@
+<div class="window" id="window_layout">
+  <%if(role==="student"){%>
+    <div class="window_navbar">
+        <%- include('../partials//student/navigation_bar.ejs') %>
+     </div>
+  <%}else{%>
+    <div class="window_navbar">
+      <%- include('../partials/parent/navigation_bar.ejs') %>
+    </div>
+  <%}%>
+    <div class="window_container">
+      <!-- css/table.css -->
+        <div class="table_container">
+            <div class="table_header">
+                <h1 class="title">Time Table</h1>
+            </div> 
+            <table class="table">
+                <tr class="row">
+                    <th class="header">D/H</th>
+                    <%for(let i=1;i<=dayhour.hr;i++){%>
+                      <th class="header"><%=i%></th>
+                      <%}%>
+                </tr>
+    
+                <%for(let i=1;i<=dayhour.day;i++){%>
+                  <tr>
+                      <th class="header"><%=i%></th> 
+                      <%for(let j=0;j< dayhour.hr;j++){%>
+                        <td>
+                          <% let disp=true; %>
+                      
+                        <% if (time_table.time_table['day' + i][j].sub !== 'null') { %>
+                              <p><%=time_table.time_table['day' + i][j].sub%></p>
+                              <p><%=time_table.time_table['day' + i][j].staff_name%></p>
+                  
+                  
+                              
+                              <% disp=false; %>
+                          <%}%>
+                          
+                        
+                        <% if(disp){%>
+                          <p>None</p>
+                          <%}%>
+                        </td>
+                        <%}%>
+                    </tr>
+                    <%}%>
+                    
+                    
+    
+                </table>
+        </div>
+    </div> 
+</div>

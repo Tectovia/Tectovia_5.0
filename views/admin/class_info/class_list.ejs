@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/css/admin/class_info/class_list.css">
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%-include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+
+    <div class="window_container">  
+        <div class="container center_title">
+            <%= page_title %>
+        </div>
+
+        <div class="container_lr">
+            <div class="ag-format-container">
+                <div class="ag-courses_box">
+                    <% classes.forEach((element,i )=> { %>
+                        <div class="ag-courses_item">
+                            <a href="/admin/class_info/class_list/<%= element %>" class="ag-courses-item_link"
+                                style="background: url('/img/admin/class_info/class<%=i+1 %>.png');
+                                background-position: center;
+                                background-size: cover;
+                                background-repeat: no-repeat;">
+                                <div class="ag-courses-item_bg"></div>
+        
+                                <div class="ag-courses-item_title">Class <%=i+1 %></div>
+        
+                                <div class="ag-courses-item_date-box">
+                                Boys :
+                                <span class="ag-courses-item_date"> 000 </span>
+                                </div>
+                                <br />
+        
+                                <div class="ag-courses-item_date-box">
+                                Girls :
+                                <span class="ag-courses-item_date"> 000 </span>
+                                </div>
+                                <br />
+        
+                                <div class="ag-courses-item_date-box">
+                                Total :
+                                <span class="ag-courses-item_date"> 000 </span>
+                                </div>
+                            </a>
+                        </div>
+                    <% }) %>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

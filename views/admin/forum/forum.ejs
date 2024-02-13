@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="/css/card.css">
+
+<script>
+
+function hide_popup_forum() {
+    var element = document.getElementById("popup_forum");
+    element.style.display = "none";
+}
+
+function display_popup_forum() {
+    var element = document.getElementById("popup_forum");
+    element.style.display = "flex";
+}
+</script>
+
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <div class="container center_title">
+            Forum
+            <div class="float_left">
+                <a href="/admin/forum/forum" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+            </div>
+            <div class="float_right">
+                <button onclick="display_popup_forum()">Add Forum</button>
+            </div>
+        </div>
+        
+        <div class="popup_forum" id="popup_forum" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Forum</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_forum()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/forum/" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="forum_title" name="forum_title" required>
+                                <label for="forum_title">Forum Title</label>
+                            </div>
+                            <div class="form_div select_input">
+                                <label class="select_label" for="forum_incharge4">Class</label>
+                                <select name="forum_incharge4" id="forum_incharge4" required>
+                                    <option value="" selected disabled>Choose a class</option>
+                                    <% 
+                                        const uniqueIds = new Set();
+                                        class_info.forEach(function(item) {
+                                            if (!uniqueIds.has(item.id)) {
+                                                uniqueIds.add(item.id);
+                                    %>
+                                        <option value="<%- item.id %>" name="classes">
+                                            <%- item.id %>
+                                        </option>
+                                    <% 
+                                            }
+                                        });
+                                    %>
+                                </select>
+                            </div> 
+  
+                            <div class="form_div select_input">
+                                <label class="select_label" for="forum_incharge1">Forum Incharge - 1</label>
+                                <select name="forum_incharge1" id="forum_incharge1" required>
+                                    <option value=""></option>
+                                    <% if (staff) { %>
+                                        <% staff.forEach(function(item) { %>
+                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
+                                        <% }) %>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div class="form_div select_input">
+                                <label class="select_label" for="forum_incharge2">Forum Incharge - 2</label>
+                                <select name="forum_incharge2" id="forum_incharge2" required>
+                                    <option value=""></option>
+                                    <% if (staff) { %>
+                                        <% staff.forEach(function(item) { %>
+                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
+                                        <% }) %>
+                                    <% } %>
+                                </select>
+                            </div> 
+
+                            <div class="form_div select_input">
+                                <label class="select_label" for="forum_incharge3">Forum Incharge - 3</label>
+                                <select name="forum_incharge3" id="forum_incharge3" required>
+                                    <option value=""></option>
+                                    <% if (staff) { %>
+                                        <% staff.forEach(function(item) { %>
+                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
+                                        <% }) %>
+                                    <% } %>
+                                </select>
+                            </div> 
+
+                            <div class="form_div select_input">
+                                <label class="select_label" for="forum_incharge4">Forum Incharge - 4</label>
+                                <select name="forum_incharge4" id="forum_incharge4" required>
+                                    <option value=""></option>
+                                    <% if (staff) { %>
+                                        <% staff.forEach(function(item) { %>
+                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
+                                        <% }) %>
+                                    <% } %>
+                                </select>
+                            </div>         
+                            <div class="form_submit form_div_span">
+                            <input type="submit">
+                        </div>  
+                        </div>  
+                    </form>
+                </div>        
+            </div>
+        </div>
+
+    </div>
+</div>

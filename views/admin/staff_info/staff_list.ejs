@@ -1,0 +1,104 @@
+<script>
+  function hide_popup_add() {
+      var element = document.getElementById("add_staff");
+      element.style.display = "none";
+  }
+  
+  function display_popup_add() {
+      var element = document.getElementById("add_staff");
+      element.style.display = "flex";
+  }
+</script>
+
+<div class="window" id="window_layout">
+  <div class="window_navbar">
+    <%- include('../../partials/admin/navigation_bar.ejs') %>
+  </div>
+  <div class="window_container">
+    <div class="container center_title">
+      <%= page_title %>
+      <div class="float_right">
+        <button onclick="display_popup_add()">Add</button>
+      </div>
+    </div>
+<!-- showing staff list -->
+    <% if (data) { %> <% data.forEach(function(item) { %>
+      <div class="container_todo">
+        <div class="todo_profile">
+        <img
+          src="/uploads/staff_info/<%-item.staff_id%>/<%- item.staff_profile_img %>" alt=""/>
+      </div>
+      <div class="todo_content">
+        <div class="todo_row">
+          <h3>Name : <%-item.staff_name%></h3>
+        </div>
+
+        <div class="todo_row">
+          <h3>Staff ID :<%-item.staff_id%></h3>
+        </div>
+        <div class="todo_row">
+          <h3>Phone Number:<%-item.staff_mobile%></h3>
+        </div>
+        <div class="todo_row">
+          <h3>Email ID :<%-item.staff_off_mail%></h3>
+        </div>
+       
+      </div>
+
+      <div class="todo_buttons">
+        <div class="todo_edit">
+          <a href="/admin/staff_info/staff_list/view/<%=item._id%>"><button class="btn_warning">View</button></a>
+        </div>
+        <div class="todo_delete">
+          <a href="/admin/staff_info/staff_list/delete/<%=item._id%> "><button class="btn_danger">Delete</button></a>
+        </div>
+      </div>
+    </div>
+    <br />
+    <% }) %> <% } %>
+
+
+    <div class="popup_container" id="add_staff" style="display: none;">
+      <div class="popup">
+        <div class="popup_header">
+          <p class="pop_title">Add New Staff</p>
+          <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+        </div>
+
+        <div class="pop_body">
+          <form action="/admin/staff_info/new_staff" method="post" enctype="multipart/form-data" class="form">
+            <div class="form_inputs">
+                <div class="form_div text_input">
+                    <input class="input" type="text" id="staff_id" name="staff_id" required>
+                    <label for="staff_id">Staff ID</label>
+                </div>
+
+                <div class="form_div text_input">
+                    <input class="input" type="text" id="staff_name" name="staff_name" required>
+                    <label for="staff_name">Staff Name</label>
+                </div>
+
+                <div class="form_div text_input">
+                    <input class="input" type="text" id="staff_pass" name="staff_pass" required>
+                    <label for="staff_pass">Staff Password</label>
+                </div>
+
+                <div class="form_div select_input">
+                  <label class="select_label" for="staff_experience">staff designation</label>
+                  <select name="staff_designation" id="staff_designation" >
+                      <option value=""></option>
+                      <option value="teaching">teaching</option>
+                      <option value="non-teaching">non-teaching</option>
+                  </select>
+              </div>
+              <div class="form_submit form_div_span">
+                <input type="submit">
+              </div> 
+            </div>
+            
+        </form>
+        </div>
+      </div>
+    </div>
+
+</div>

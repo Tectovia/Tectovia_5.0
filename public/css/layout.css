@@ -1,0 +1,29 @@
+@import url(root.css);
+
+.window {
+    display: grid;
+    grid-template-columns: 18.5% 81.5%;
+}
+
+.window-closed {
+    grid-template-columns: 5% 95%; /* Adjust the values based on your design preferences */
+}
+
+.window_navbar {
+    height: 100vh;
+}
+
+.window_container {
+    margin-top: 70px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    .window {
+        grid-template-columns: 19% 80%;
+    }
+
+    .window-closed {
+        grid-template-columns: 5% 95%; /* Adjust the values based on your design preferences */
+    }
+}

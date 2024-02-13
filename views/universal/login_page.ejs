@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/universal/login.css" />
+
+<div class="universal_header">
+  <%- include('../partials/universal/universal_navbar.ejs') %>
+</div>
+
+<div class="universal_main"></div>
+<form action="/login_submission" method="post">
+    <div class="login_container">
+        <div class="card">
+            <a class="login">LOGIN</a>
+
+            <div class="input_box">
+                <div class="inputBox"> 
+                    <input type="user_name" id="user_name" name="user_id"  autocomplete="off" class="input_user_id" placeholder="User ID" required>
+                </div>
+        
+                <div class="inputBox">
+                    <input type="password" id="password" name="password" id="user_name" name="user_id"  autocomplete="off" class="input_user_password" placeholder="Password" required>
+                </div>
+                <button class="enter"> 
+                    LOGIN
+                </button>
+        
+            </div>
+        </div>
+    </form>

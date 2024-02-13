@@ -1,0 +1,34 @@
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <%- include('../../partials/admin/staff_subnavbar.ejs') %>
+<div class="popup" id="popup">
+    <div class="popup_header">
+        <p class="pop_title">Achivements</p>
+        <a href="/admin/staff_info"><span class="close_icon" id="closePopup">&times;</span></a>
+    </div>
+    <div class="pop_body">
+        <form action="/staff_achivements_form/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
+            <div class="form_inputs">
+                <div class="form_div text_input">
+                   <textarea name="staff_achievement" id="staff_achievement" cols="30" rows="10"></textarea>
+                    <label for="staff_achievement">Enter Your Achivements</label>
+                </div>
+                <div class="form_div file_input">
+                    <label for="staff_achievement_img1">Achivement </label>
+                    <input class="input" type="file" id="staff_achievement_img1" name="staff_achievement_img1">
+                </div>
+              
+            </div>
+            <div class="form_submit">
+                <input type="submit">
+            </div>    
+        </form>
+        
+    </div>
+
+</div>
+    </div>
+</div>
