@@ -134,8 +134,12 @@
   color: var(--danger-color-dark);
 }
 
-#sidebar .side_menu li a.logout .text {
+#sidebar .side_menu li a.logout .logout_btn {
   color: var(--danger-color-dark);
+}
+
+#sidebar .side_menu li .logout:hover {
+  border-bottom: 3px solid var(--danger-color-dark);
 }
 
 #sidebar .side_menu.top li a:hover {

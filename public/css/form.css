@@ -133,7 +133,7 @@
 input[type=file]::file-selector-button {
     margin-right: 10px;
     border: none;
-    background: var(--secondary-color);
+    background: var(--primary-color);
     padding: 2px 20px;
     border-radius: 10px;
     color: var(--text-color-dark);
@@ -283,5 +283,5 @@ input[type=file]::file-selector-button:hover {
 
 
   input[type="date"] {
-    color: black;
+    color: var(--text-color);
   }
