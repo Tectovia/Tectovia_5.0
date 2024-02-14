@@ -6,33 +6,40 @@
     <div class="window_container">
         <div class="container_lr">
             <form action="/staff/attendance_submit/<%=req_data.id%>/<%=req_data.date%>/<%=req_data.order%>/<%=req_data.hour%>/<%=req_data.std%>/<%=req_data.sec%>" class="form" method="post">
-                <table class="table">
-                   <tr class="row">
-                       <th class="header">
-                       Roll NO
-                       </th>
-                       <th class="header">
-                           Status
-                       </th>
-                   </tr>
-                   <% for (item in stu_data){%>
-                       <%if(item !='ack'){%>
-                       <tr>
-                           <td><%=item%></td>
-                           <td>
-                          
-                           <input class="check" class="check" type="checkbox" name="<%= item%>" value="0">
-                           </td>
-                       </tr>
-                       <%}%>
-                   <%}%>
-                   
-                </table>
-                <input type="hidden" value="<%=staffdata[0].staff_id%>" name="staff_id">
-                <div class="form_submit">
-                   <input type="submit">
-               </div>   
-               </form>
+                <div class="form_inputs">
+                    <div class="form_div">
+                        <table class="table">
+                            <tr class="row">
+                                <th class="header">
+                                     Roll NO
+                                </th>
+                                <th class="header">
+                                    Status
+                                </th>
+                            </tr>
+                         <% for (item in stu_data){%>
+                             <%if(item !='ack'){%>
+                             <tr>
+                                 <td>
+                                     <%=item%>
+                                 </td>
+                                 <td>
+                                     <input class="check" class="check" type="checkbox" name="<%= item%>" value="0">
+                                 </td>
+                             </tr>
+                             <%}%>
+                         <%}%>
+                            
+                         </table>
+                    </div>
+                    <div class="form_div">
+                        <input type="hidden" value="<%=staffdata[0].staff_id%>" name="staff_id">
+                        <div class="form_submit ">
+                            <input type="submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>    
