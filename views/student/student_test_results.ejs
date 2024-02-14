@@ -16,6 +16,8 @@
             
             <h1>TEST RESULTS</h1>
         </div>
+        <% if (testMarks!=null) { %>
+         
         <% testMarks.test_marks.reverse().forEach((item, index) => { %>
             <div>
                 <div class="container_marks box">
@@ -64,7 +66,7 @@
                     <!-- for quotes -->
                     <div class="mark_popup_quotes grade">
                           
-                        <h1 style="color:' <%= item.staus === 'pass'   %>;">
+                        <h1><%= item.staus === 'pass'   %>;">
                             <% 
                                 if (item.staus === 'pass') {
                                     if (item.marks == 100) {
@@ -85,7 +87,7 @@
                                         %> "Embrace every 'E' as an opportunity to Evolve and Excel, for your journey to success is uniquely yours!" 🌟📚 <% 
                                     }
                                 } else {
-                                    %> "F"! Failure is just the first step towards success. Keep pushing forward, your journey doesn't end here! 💪📚 <% 
+                                    %> "F! Failure is just the first step towards success. Keep pushing forward, your journey doesn't end here! "💪📚 <% 
                                 }
                             %>
                         </h1>
@@ -111,7 +113,7 @@
                             Obtained marks:<h1><%= item.marks %></h1>
                         </div>
                         <div class="mark_popup_status">
-                            status:<h1 style="color: '<%= item.staus === 'pass' ? 'green' : 'red' %>'"> <%= item.staus %></h1>
+                            status:<h1 ><%= item.staus === 'pass' ? 'green' : 'red' %>'"> <%= item.staus %></h1>
                         </div>
                        
                     </div>
@@ -119,6 +121,10 @@
                 </div>
             </div>
         <% }) %>
+        <% } else{%>
+            <h1>No Test Assigned</h1>
+        <%}%>
+        
         </div>
     </div>
 </div>

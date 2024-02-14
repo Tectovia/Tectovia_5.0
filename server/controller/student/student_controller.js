@@ -29,9 +29,17 @@ exports.student_index = async (req, res) => {
 
     const selected = mongoose.model(title);
     var student=await selected.findOne({rollno:id});
-    req.session.obj_id= student._id.toString();
     console.log(student);
-    res.render('student_index',{student});
+    if (student) {
+        req.session.obj_id= student._id.toString();
+        console.log(student);
+        res.render('student_index',{student});
+    }
+    else{
+        console.log("Student not found");
+        res.redirect('/');
+    }
+   
 };
 
 // Time table 

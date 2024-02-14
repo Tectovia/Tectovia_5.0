@@ -160,8 +160,7 @@ async function Timetable_gen() {
   class_model.find({}, { id: 1, section_name: 1 }).then((class_data) => {
     class_data.forEach((item) => {
       // create collection
-      const name =
-        item.id.toLowerCase().replace(" ", "_") + "_" + item.section_name;
+      const name = item.id+"_" + item.section_name;
 
       //  fetch data of each class
       const selected = mongoose.model(item.id);
