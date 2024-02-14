@@ -68,12 +68,12 @@
                                 </div>
                             </div>
                             <form id="myform" action="/student/assignment_submission/<%= student.rollno %>/<%= student.id %>/<%= student.section %>/<%= assign_id %>" method="post" enctype="multipart/form-data" class="myform">
-                                <div id="content" contenteditable="true" spellcheck="false">
+                                <div id="content" contenteditable="true" spellcheck="false" style="min-width: 70%; min-height: 30vh; border: .5px solid black;" >
                                     Enter Your Text
                                 </div>
                                 <input type="hidden" id="source" name="source">
                                 <div class="form_submit">
-                                    <input type="submit" id="submit">
+                                    <button id="submit" onclick="submitForm()">Submit</button>
                                 </div> 
                             </form>    
                         </div>
