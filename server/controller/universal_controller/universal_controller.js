@@ -5,9 +5,12 @@ require("./../../database/database");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const login_data = require("../../models/login_data/login_info_model");
+const attendance_schema=require('../../models/admin/attendance_model')
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
 
 exports.uni_index = async (req, res) => {
   

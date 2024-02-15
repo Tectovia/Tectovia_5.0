@@ -23,29 +23,36 @@ const dayhour={
 exports.attendance= async (req,res)=>{
     const {id,title,sec,req_date}=req.params;
     const selected = mongoose.model(title)
-    const name =title.toLowerCase().replace(" ", "_") + "_" +sec;
+    const name =title.split('_')[0]+"_attendance"
     const date = new Date();
     const role=req.originalUrl.toString().split('/')[1]
     
     const year = date.getFullYear();
+    // check for Current date & Assign req date
     if (req_date == "today") {
       var datetext = format(date, "dd-MM-yyyy");
     } else {
       var datetext =req_date;
     }
+
    const student=await selected.findOne({rollno:id});
    const acad_data = await db.collection("academic_calendar").findOne({ year: year });
-   const dayorder=acad_data[datetext].dayorder
+   var dayorder=acad_data[datetext].dayorder
    if (dayorder !='null') {
       const time_table=await class_model.findOne({id:title,section_name:sec},{time_table:1});
       const periods=time_table.time_table[`day${dayorder}`];
      
       const common=  await db.collection(`attend_${name}`).findOne({ [datetext]: { $exists: true } });
+     if(common!=null){
+       const student_attend=common[datetext][id]
+       const ack=common[datetext].ack
       
-     const student_attend=common[datetext][id]
-     const ack=common[datetext].ack
-    console.log(dayorder);
-     res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role})
+      res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role})
+      }
+      else{
+        dayorder='null'
+        res.render('student/attendance',{student,dayorder,datetext,role})
+      }
     } else {
       res.render('student/attendance',{student,dayorder,datetext,role})
     }
