@@ -405,8 +405,6 @@ exports.submit_subject = async (req, res) => {
   var name=title.split('_')[0];
   name=classes_map[name]; 
   
-
-
   try {
     const subject_submit = new subject_model({
       id: title,
