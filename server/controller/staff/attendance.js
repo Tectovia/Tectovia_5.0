@@ -62,9 +62,9 @@ exports.attendance = async (req, res) => {
 
         for (const key in data[datetext][section]) {
           if (key != "ack") {
-            if (data[datetext].hasOwnProperty(key)) {
+            if (data[datetext][section].hasOwnProperty(key)) {
               strn_count++;
-                
+               
               if (data[datetext][section][key][i] == 0) {
                 
                 count++;
@@ -74,6 +74,7 @@ exports.attendance = async (req, res) => {
         }
 
         staff_ack[i] = data[datetext][section]["ack"][i];
+        console.log(count);
         absent[i] = count;
         strength[i] = strn_count;
         console.log("strenth", strength);
