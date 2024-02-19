@@ -43,9 +43,6 @@ exports.submit_section = async (req, res) => {
   const attend_name = title.toLowerCase().replace(" ", "_") + "_" + section_name;
 
 
- 
-  
-
   // Update staff - class_incharge
   try {
     const class_incharge = `${title}_${section_name}`;
@@ -149,6 +146,7 @@ exports.submit_section = async (req, res) => {
       ],
     };
 
+    console.log("batch here : ",title);
     const section_submit = new class_model({
       id: title,
       section_name: section_name,
@@ -159,7 +157,6 @@ exports.submit_section = async (req, res) => {
     });
 
     await section_submit.save();
-
 
     // create collection for attendance
     db.createCollection(`attend_${attend_name}`);
@@ -213,9 +210,9 @@ exports.view_section = async (req, res) => {
     var no_boys = genderCount.boys;
     var no_girls = genderCount.girls;
     var no_others = genderCount.others;
-    var no_total =students_doc.length;
+    var no_total = no_boys+no_girls+no_others;
     var staff_doc = await get_staff();
-  const section_doc= await class_model.findOne({ _id: id });
+    const section_doc= await class_model.findOne({ _id: id });
  
 
     
@@ -239,6 +236,7 @@ exports.view_section = async (req, res) => {
           }      
     
 };
+
 exports.after_submission=async(req,res)=>{
   const title = req.params.title;
   const sec = req.params.section;
@@ -313,7 +311,8 @@ exports.after_submission=async(req,res)=>{
       }
     );
   });
-}
+};
+
 exports.delete_section = async (req, res) => {
   const section_id = req.params.id;
   const title = req.params.title;
@@ -396,7 +395,7 @@ exports.delete_section = async (req, res) => {
         console.error(err);
         return res.status(500).json({ error: "Internal server error" });
       }
-    };
+};
     
 
 //------------------- SUBJECT FUNCTIONS -------------------

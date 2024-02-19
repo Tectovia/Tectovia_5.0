@@ -67,10 +67,6 @@ if (fees!=null) {
   
 }
 
-
-
-
-
   const genderCount = students_doc.reduce((count, item) => {
     const gender = item['gender'];
   
@@ -89,11 +85,13 @@ if (fees!=null) {
   var no_girls = genderCount.girls;
   var no_others = genderCount.others;
   var no_total =students_doc.length; 
+  console.log("title here : ",title);
   
       var staff = await get_staff();
       const sec=await class_model.find({id:title});
       
      const sub=await subject_model.find({id:title});
+     console.log("subjects here : ",sub );
      res.render("admin/class_info/class",{ title,name, sec, staff, sub, no_boys, no_girls, no_others, no_total,fees,feesobj, add_section: "none",add_subject: "none"});  
 
   }
@@ -103,6 +101,7 @@ if (fees!=null) {
   }
 
  };
+
 async function dog(){
 // const names="2022-2023_batch";
 // // const class_list=await student_model.student_mapping();

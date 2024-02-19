@@ -1,45 +1,79 @@
+<link rel="stylesheet" href="/css/staff/staff_attendance.css">
+
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
   
     <div class="window_container">
+        <div class="container center_title">
+            Attendance
+        </div>
         <div class="container_lr">
-            <form action="/staff/attendance_submit/<%=req_data.id%>/<%=req_data.date%>/<%=req_data.order%>/<%=req_data.hour%>/<%=req_data.std%>/<%=req_data.sec%>" class="form" method="post">
-                <div class="form_inputs">
-                    <div class="form_div">
-                        <table class="table">
-                            <tr class="row">
-                                <th class="header">
-                                     Roll NO
-                                </th>
-                                <th class="header">
-                                    Status
-                                </th>
-                            </tr>
-                         <% for (item in stu_data){%>
-                             <%if(item !='ack'){%>
-                             <tr>
-                                 <td>
-                                     <%=item%>
-                                 </td>
-                                 <td>
-                                     <input class="check" class="check" type="checkbox" name="<%= item%>" value="0">
-                                 </td>
-                             </tr>
+            <div class="attendance_container">
+                <div class="staff_details">
+                  <p class="align_right">Staff ID</p>
+                  <p>:</p>
+                  <p class="align_left"><%=staffdata[0].staff_id%></p>
+
+                  <p class="align_right">Date</p>
+                  <p>:</p>
+                  <p class="align_left"><%=req_data.date%></p>
+                
+                  <p class="align_right">Day Order</p>
+                  <p>:</p>
+                  <p class="align_left"><%=req_data.order%></p>
+
+                  <p class="align_right">Batch</p>
+                  <p>:</p>
+                  <p class="align_left"><%=req_data.std%></p>
+
+                  <p class="align_right">Section</p>
+                  <p>:</p>
+                  <p class="align_left"><%=req_data.sec%></p>
+                </div>
+            </div>
+
+            <div class="container_lr flex_center">
+                <form action="/staff/attendance_submit/<%=req_data.id%>/<%=req_data.date%>/<%=req_data.order%>/<%=req_data.hour%>/<%=req_data.std%>/<%=req_data.sec%>" class="form" method="post">
+                    <div class="form_inputs">
+                        <div class="form_div">
+                            <table class="table">
+                                <tr class="row">
+                                    <th class="header">
+                                         Roll NO
+                                    </th>
+                                    <th class="header">
+                                        Status
+                                    </th>
+                                </tr>
+                             <% for (item in stu_data){%>
+                                 <%if(item !='ack'){%>
+                                 <tr>
+                                     <td>
+                                         <%=item%>
+                                     </td>
+                                     <td>
+                                         <input class="check" class="check" type="checkbox" name="<%= item%>" value="0">
+                                     </td>
+                                 </tr>
+                                 <%}%>
                              <%}%>
-                         <%}%>
-                            
-                         </table>
-                    </div>
-                    <div class="form_div">
-                        <input type="hidden" value="<%=staffdata[0].staff_id%>" name="staff_id">
-                        <div class="form_submit ">
-                            <input type="submit">
+                                
+                             </table>
+                        </div>
+                        <div class="form_div">
+                            <input type="hidden" value="<%=staffdata[0].staff_id%>" name="staff_id">
+                        </div>
+                        <div class="form_submit">
+                            <div class="form_submit">
+                                <input type="submit">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>    
