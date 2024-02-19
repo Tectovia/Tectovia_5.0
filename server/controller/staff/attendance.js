@@ -104,6 +104,7 @@ exports.attendance = async (req, res) => {
     });
   }
 };
+
 exports.attendance_link = async (req, res) => {
   const req_data = req.params;
   const name =req_data.std.split('_')[0]+'_attendance'
@@ -115,12 +116,9 @@ exports.attendance_link = async (req, res) => {
   console.log(stu_data);
   const staffdata=await staff_model.find({ _id: req_data.id }, { staff_id: 1, staff_name: 1 })
   
-
-     
    res.render("staff/attendance_list", {staffdata, stu_data,req_data, });
-       
-   
 };
+
 exports.attendance_submit = async (req, res) => {
   var req_data = req.params;
   const hour = parseInt(req_data.hour);
