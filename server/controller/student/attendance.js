@@ -19,7 +19,10 @@ const dayhour={
     'hr':5
 }
 const section_map={'A':0,'B':1,'C':2,'D':4,'E':5}
-
+function isValidDate(dateString) {
+  const parsedDate = parseISO(dateString);
+  return isValid(parsedDate);
+}
 exports.attendance= async (req,res)=>{
     const {id,title,sec,req_date}=req.params;
     const selected = mongoose.model(title)
@@ -32,6 +35,7 @@ exports.attendance= async (req,res)=>{
     if (req_date == "today") {
       var datetext = format(date, "dd-MM-yyyy");
     } else {
+      if(isValidDate(req_date))
       var datetext =req_date;
     }
     
