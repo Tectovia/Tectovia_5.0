@@ -40,9 +40,8 @@ exports.submit_section = async (req, res) => {
   var section_name = req.body.section_name;
   var section_incharge = req.body.section_incharge;
   var room_number = req.body.room_number;
+
   const attend_name = title.toLowerCase().replace(" ", "_") + "_" + section_name;
-
-
   // Update staff - class_incharge
   try {
     const class_incharge = `${title}_${section_name}`;
@@ -157,6 +156,7 @@ exports.submit_section = async (req, res) => {
     });
 
     await section_submit.save();
+
 
     // create collection for attendance
     db.createCollection(`attend_${attend_name}`);
