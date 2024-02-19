@@ -32,7 +32,10 @@ const circular_management=require('../controller/admin/circular/circular')
 
 //--------------------  Academic calendar  -------------------------------
 
-const academic=require('../controller/admin/academic_calender/academic_calender')
+const academic=require('../controller/admin/academic_calender/academic_calender');
+
+//--------------------  Attendance graph COntroller ---------------------------
+const attendance_graph=require('../controller/admin/attendance_graph/attendance_graph');
 
 // ----------------------Fees Controller----------------------------------
 const fees_controller=require('../controller/fees_controller/fees')
@@ -170,7 +173,7 @@ router.get("/admin/circular/delete_circular/:_id",circular_management.message_de
 
 
 //--------------------  attendance_graph  -------------------------------
-// router.get('admin/attendance_graph', admin_controller.attendance_graph);
+router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
 
 //--------------------  set_holidays  -------------------------------
 // router.get('admin/set_holidays', admin_controller.set_holidays);

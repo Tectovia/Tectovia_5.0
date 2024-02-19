@@ -402,7 +402,7 @@ exports.submit_subject = async (req, res) => {
 
   try {
     const subject_submit = new subject_model({
-      id: name,
+      id: title,
       subject_name: req.body.subject_name,
       subject_code: req.body.subject_code,
       subject_medium: req.body.subject_medium,
