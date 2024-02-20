@@ -22,10 +22,13 @@ const admin_timetable=require('../controller/admin/class_info/time_table');
 
 //--------------------  circular_controller  ---------------------------------
 
-const circular_management=require('../controller/admin/circular/circular')
+const circular_management=require('../controller/admin/circular/circular');
 
-//--------------------  staff_info_models  -------------------------------
+//--------------------  Infrastructure -------------------------------
+const infrastructure=require('../controller/admin/infrastructure/infrastructure');
 
+//--------------------  Facilities -------------------------------
+const facilities=require('../controller/admin/facilities/facilities');
 
 //--------------------  institution_info  -------------------------------
 
@@ -41,6 +44,8 @@ const attendance_graph=require('../controller/admin/attendance_graph/attendance_
 const fees_controller=require('../controller/fees_controller/fees')
 //-----------------------Forum controller----------------------------------
 const forum=require('../controller/admin/forum/forum')
+
+
 
     //----------- Common Info ----------------
     router.get('/admin/institution_info/common_info' ,admin_common_info.common_info);
@@ -149,7 +154,18 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //goback to section
     router.get('/admin/class_info/class_list/:_id/:title/section' , admin_class.go_back_section);
 
-    
+
+//--------------------  Infrastructure  -------------------------------
+    router.get('/admin/infrastructure' , infrastructure.view_infrastructure);
+
+
+//--------------------  Facilities  -------------------------------
+    router.get('/admin/facilities/hostel' , facilities.hostel);
+    router.get('/admin/facilities/transport' , facilities.transport);
+    router.get('/admin/facilities/lab' , facilities.lab);
+    router.get('/admin/facilities/library' , facilities.library);
+    router.get('/admin/facilities/coaching' , facilities.coaching);
+
 // -----------------------------time table------------------------
     router.get('/admin/class_info/class_list/view_section/time_table/:id/:title/:section' ,admin_timetable.timetable);
     // ----------------------------Add-time Table Form----------------------------------------------------
