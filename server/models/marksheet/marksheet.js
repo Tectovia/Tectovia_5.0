@@ -6,24 +6,7 @@ const mongoose = require("mongoose");
 
 const date = new Date()
 
-const test_schema = new mongoose.Schema({
-    
-    "rollno":{
-        type:String
-    },
-    "batch":{
-        type:String
-    },
-    "section":{
-        type:String
-    },
-    "test_marks":{
-        type:Array
-    },
-    "assignments":{
-        type:Array
-    }
-});
+
 
 
 exports.create_test_collection=async (collection_name,schema)=>{
@@ -43,7 +26,9 @@ exports.create_test_collection=async (collection_name,schema)=>{
 
 
 var batches=[]
-  var batch_map={}
+var batch_map={}
+var assign=[]
+
   
   for(i=0;i<12;i++)
   {
@@ -52,9 +37,42 @@ var batches=[]
   else
   batch_date=date.getFullYear()-1-i
   batches.push((batch_date)+"-"+(batch_date+1)+"_test")
+  assign.push((batch_date)+"-"+(batch_date+1)+"_assign")
   }
 
-  batches.map((item)=>{
+  batches.map((item,i)=>{
+    const test_schema = new mongoose.Schema({
+    
+        "rollno":{
+            type:String
+        },
+        "batch":{
+            type:String
+        },
+        "section":{
+            type:String
+        },
+        "test_marks":{
+            type:Array
+        },
+        "assignment":[
+            {
+                ref_id:{
+                    type:ObjectId,
+                    ref:assign[i]
+                },
+                mark:{
+                   type:Number,
+                   default:0 
+                },
+                status:{
+                    type:String,
+                    default:'null'
+                }
+            }
+        ]
+        
+    });
     this.create_test_collection(item,test_schema)
   })
    

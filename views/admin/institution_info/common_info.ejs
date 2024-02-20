@@ -22,7 +22,7 @@
     <div class="window_container">
         <%- include('../../partials/admin/institution_subnavbar.ejs') %>
         <div class="container center_title">
-            <%= page_title %>
+            School Info
             <div class="float_right">
                 <button onclick="display_popup()">Edit</button>
             </div>
@@ -132,7 +132,7 @@
             <div class="popup_container" id="popup" style="display: none;">
                 <div class="popup">
                     <div class="popup_header">
-                        <p class="pop_title">Edit - <%= page_title %></p>
+                        <p class="pop_title">Edit - School Information</p>
                     <span class="close_icon" id="closePopup"  onclick="hide_popup()">&times;</span>
                     </div>
                     <div class="pop_body">
@@ -196,10 +196,11 @@
                                         <option value="Hindi">Hindi</option>
                                     </select>
                                 </div>
+                                <div class="form_submit form_div_span">
+                                    <input type="submit">
+                                </div>  
                             </div>
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
+                              
                         </form>
                         
                     </div>

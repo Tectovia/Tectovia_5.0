@@ -23,6 +23,8 @@ router.use('/staff/inbox/:id',staff_inbox.staff_inbox)
 router.use('/staff/deleteInstructions/:id/:staffId' ,staff_instruction.deleteInstruction)
 router.use('/staff/instructions/:id' ,staff_instruction.instruction)
 router.use('/staff/instructions_send/:id' ,staff_instruction.instruction_send)
+
+//----------------------Attendance------------------------------------------
 router.get("/staff/attendance/:id/:date" , staff_attendance.attendance);
 router.get("/staff/attendance_link/:id/:date/:order/:hour/:std/:sec" ,staff_attendance.attendance_link);
 router.post("/staff/attendance_submit/:id/:date/:order/:hour/:std/:sec" , staff_attendance.attendance_submit);

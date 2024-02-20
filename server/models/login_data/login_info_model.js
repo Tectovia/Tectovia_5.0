@@ -11,6 +11,10 @@ const login_schema= new mongoose.Schema({
     name: {
         type: String,
     },
+    gender:{
+        type:String,
+        required:true
+    },
     password:{
         type:String,
         required:true
@@ -18,10 +22,7 @@ const login_schema= new mongoose.Schema({
     role:{
         type:String,
         required:true
-    },
-    
-
-   
+    }
 })
 
 

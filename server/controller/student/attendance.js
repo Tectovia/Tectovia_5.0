@@ -18,34 +18,49 @@ const dayhour={
     'day':6,
     'hr':5
 }
-
-
+const section_map={'A':0,'B':1,'C':2,'D':4,'E':5}
+function isValidDate(dateString) {
+  const parsedDate = parseISO(dateString);
+  return isValid(parsedDate);
+}
 exports.attendance= async (req,res)=>{
     const {id,title,sec,req_date}=req.params;
     const selected = mongoose.model(title)
-    const name =title.toLowerCase().replace(" ", "_") + "_" +sec;
+    const name =title.split('_')[0]+"_attendance"
     const date = new Date();
     const role=req.originalUrl.toString().split('/')[1]
-    
+    var attend_model=mongoose.model(name);
     const year = date.getFullYear();
+    // check for Current date & Assign req date
     if (req_date == "today") {
       var datetext = format(date, "dd-MM-yyyy");
     } else {
+      if(isValidDate(req_date))
       var datetext =req_date;
     }
+    
+    var section=section_map[sec];
+
    const student=await selected.findOne({rollno:id});
    const acad_data = await db.collection("academic_calendar").findOne({ year: year });
-   const dayorder=acad_data[datetext].dayorder
+   var dayorder=acad_data[datetext].dayorder
    if (dayorder !='null') {
+    //  get timetable from class
       const time_table=await class_model.findOne({id:title,section_name:sec},{time_table:1});
+      // fetch Specific day
       const periods=time_table.time_table[`day${dayorder}`];
      
-      const common=  await db.collection(`attend_${name}`).findOne({ [datetext]: { $exists: true } });
+      const common=  await attend_model.findOne({ [datetext]: { $exists: true } });
+     if(common!=null){
+       const student_attend=common[datetext][section][id]
+       const ack=common[datetext][section].ack
       
-     const student_attend=common[datetext][id]
-     const ack=common[datetext].ack
-    console.log(dayorder);
-     res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role})
+      res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role})
+      }
+      else{
+        dayorder='null'
+        res.render('student/attendance',{student,dayorder,datetext,role})
+      }
     } else {
       res.render('student/attendance',{student,dayorder,datetext,role})
     }

@@ -63,12 +63,15 @@ function fileHandle(value) {
         html2pdf(content).save(filename.value)
     }
 }
-const source =document.getElementById('source');
-const form = document.getElementById('myform');
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    source.value=content.innerHTML;
-form.submit();
+
+function submitForm() {
+    
+    var content = document.getElementById("content").innerHTML;
+
    
-})
+    document.getElementById("source").value = content;
+
+    
+    document.getElementById("myform").submit();
+}
 

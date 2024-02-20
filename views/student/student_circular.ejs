@@ -28,16 +28,13 @@
         <%datas.map((item)=>{%> 
             <div class="circular_container">
                 <div class="circular_header">
-                    <div class="from">From : <%- item.from %> </div>
-                    <div class="time">Date : <%- formatDate(item.date) %> </div>
-                    <div class="time">Time : <%- formatTime(item.date) %> </div>
-                    <div class="edit">
-                        <a href="" id="toggleButton">
-                            <button class="btn_warning">Edit</button>
-                        </a>
+                    <div class="circular_info">
+                        <div class="from">From : <%- item.from %> </div>
+                        <div class="time">Date : <%- formatDate(item.date) %> </div>
+                        <div class="time">Time : <%- formatTime(item.date) %> </div>
                     </div>
                     <div class="delete">
-                        <button class="btn_danger" onclick="display_delete_circular(`<%- item._id %>`)">Delete</button>
+                        <button class="btn_warning" onclick="display_delete_circular(`<%- item._id %>`)">Seen</button>
                     </div>
                 </div>
                 <div class="circular_title">
