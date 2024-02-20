@@ -37,11 +37,8 @@ exports.submit_student_basic = async (req, res) => {
     const id = req.params.id;
     const title = req.params.title;
     const section = req.params.section;
-    const batch=title.split('_batch')[0]
-
-   
-
-    
+    const batch=title.split('_batch')[0];
+    console.log("datas here : ",req.body);
 
     try {
         
@@ -52,29 +49,28 @@ exports.submit_student_basic = async (req, res) => {
 
        const data= [
             {
-           
             user_id: req.body.student_rollno,
+            gender: req.body.gender,
             password: hashedPassword,
             role: title+"_"+section
            },
            {
             user_id: req.body.student_rollno+"_p",
+            gender: req.body.gender,
             password: hashedPassword,
             role: title+"_"+section+"_parent"
            }
         ]
         const saved_data= await login_data.create(data)
-
-      
-
-            var obj_id = saved_data[0]._id;
-
+            
+        var obj_id = saved_data[0]._id;
 
             if (StudentModel && TestModel) {
                 const student_submit = new StudentModel({
                     obj_id: obj_id,
                     id: title,
                     name: req.body.student_name,
+                    gender: req.body.gender,
                     rollno: req.body.student_rollno,
                     section: section,
                 });
@@ -106,6 +102,7 @@ exports.submit_student_basic = async (req, res) => {
         console.log('infoErrors', error);
     }
 };
+
 // submit student other Information
 exports.submit_student_details = async (req, res) => {
     try {
@@ -180,7 +177,6 @@ exports.submit_student_parent = async (req, res) => {
         res.status(500).json({ error: 'An error occurred' });
     }
 };
-
 
 exports.delete_student = async (req, res) => {
     const _id = req.params._id;

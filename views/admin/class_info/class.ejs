@@ -40,9 +40,7 @@ function hide_popup_update_fees() {
 function display_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
     element.style.display = "flex";
-    
     calculateupdateTotalAmount();
-
 }
 
 function addFees() {
@@ -228,6 +226,7 @@ function calculateupdateTotalAmount() {
         <div class="container center_title">
             Sections
         </div>
+
         <div class="card_container">
             <% if (sec) { %>
                 <% sec.forEach(function(item) { %>

@@ -19,11 +19,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 exports.assignment=async(req,res)=>{
     try {
     const {id,title,sec,}=req.params;
-    const selected = mongoose.model( title);
-    const role=req.originalUrl.toString().split('/')[1]
-   const student=await selected.findOne({ rollno: id },{rollno:1,assignment:1,id:1,section:1}).populate('assignment.ref_id')
-   console.log(student.assignment);
-  res.render('student/assignment',{student,role}); 
+    
+    const role=req.originalUrl.toString().split('/')[1];
+   
+    var assign_name=title.split('_')[0]+"_test";
+    
+    const selected = mongoose.model(title);
+    const assign_model=mongoose.model(assign_name);
+   const assign=await assign_model.findOne({ rollno: id },).populate('assignment.ref_id');
+   const student= await selected.findOne({rollno:id},{id:1,name:1,rollno:1,section:1})
+   console.log(assign);
+   
+  res.render('student/assignment',{student,role,assign}); 
     } catch (error) {
         console.log("At student Assignment",error);
     }
@@ -43,34 +50,35 @@ exports.assignment_write=async(req,res)=>{
 
 exports.assignment_submission=async (req,res)=>{
   const {id,title,sec,assign_id}=req.params;
-  console.log("title: "+title);
+ 
 
   try {
     const {id,title,sec,assign_id}=req.params;
-    const selected = mongoose.model(title)
-    const student= await selected.findOne({rollno:id});
-    let assign;
+    var assign_name=title.split('_')[0]+"_assign";
+    var test_name=title.split('_')[0]+"_test";
+    const test_model=mongoose.model(test_name);
+    const assign_model=mongoose.model(assign_name);
+
+   var student=await test_model.findOne({rollno:id})
     
    await  student.assignment.forEach((item) => {
         if(item.ref_id.toString()===assign_id){
-            assign=item._id;
-           item.source=req.body.source;
+            
+           item.status='done';
         };
      
        });
    
-    const result=await selected.updateOne({rollno:id},student);
-    console.log(result);
- 
+    const result=await test_model.updateOne({rollno:id},student,{new:true});
+    var doc={};
+    doc[id]=req.body.source
+    console.log();
+    const assign_result=await assign_model.findOneAndUpdate({_id:assign_id},{$push:{source:doc}} ,{new:true})
+    console.log(assign_result);
     
     res.redirect(`/student/assignment/${id}/${title}/${sec}`);
   } catch (error) {
-    
+    console.log(error);
   }
 }
-async function test(){
 
-  const test=await assign_model.findOne().populate('attachment.ref_id','assignment')
-  console.log(test.attachment[0].ref_id);
-}
-// test()

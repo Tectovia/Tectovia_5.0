@@ -1,7 +1,9 @@
 <script>
+
   function hide_popup_add() {
-      var element = document.getElementById("add_staff");
-      element.style.display = "none";
+    var element = document.getElementById("add_staff");
+    element.style.display = "none";
+      
   }
   
   function display_popup_add() {
@@ -14,7 +16,7 @@
   <div class="window_navbar">
     <%- include('../../partials/admin/navigation_bar.ejs') %>
   </div>
-  <div class="window_container">
+  <div class="window_container" id="window_container">
     <div class="container center_title">
       <%= page_title %>
       <div class="float_right">
@@ -47,7 +49,7 @@
 
       <div class="todo_buttons">
         <div class="todo_edit">
-          <a href="/admin/staff_info/staff_list/view/<%=item._id%>"><button class="btn_warning">View</button></a>
+          <a href="/admin/staff_info/staff_list/view/<%=item._id%>" target="_blank"><button class="btn_warning">View</button></a>
         </div>
         <div class="todo_delete">
           <a href="/admin/staff_info/staff_list/delete/<%=item._id%> "><button class="btn_danger">Delete</button></a>
@@ -95,8 +97,7 @@
                 <input type="submit">
               </div> 
             </div>
-            
-        </form>
+          </form>
         </div>
       </div>
     </div>

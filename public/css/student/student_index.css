@@ -12,7 +12,7 @@
   margin-left: 2.5%;
   margin-bottom: 4%;
   margin-top: 20%;
-  background: var(--primary-color);
+  background: var(--primary-gradient-right);
   box-shadow: 0 10px 20px 0 rgb(0, 0, 0);
   border-radius: 10px;
   border: 1px solid rgb(0, 0, 0);
@@ -28,9 +28,9 @@
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  background: var(--bg-color-light) url("/img/logo.svg") center/cover;
-  border: 2px solid black;
+  background: var(--bg-color) url("/img/logo.svg") center/cover;
   z-index: 10;
+  box-shadow: 0 0 50px var(--primary-color);
 }
 
 .user_id {
@@ -38,7 +38,7 @@
   margin-left: 10%;
   height: 280px;
   width: 500px;
-  background: var(--primary-color);
+  background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
   border: 1px solid rgb(255, 255, 255);
@@ -71,7 +71,7 @@
   margin-top: 15%;
   height: 280px;
   width: 500px;
-  background: var(--primary-color);
+  background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
   border: 1px solid rgb(255, 255, 255);
@@ -111,7 +111,7 @@
   height: 300px;
   width: 90%;
   font-weight: 700;
-  background: var(--primary-color);
+  background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
   border: 1px solid rgb(255, 255, 255);

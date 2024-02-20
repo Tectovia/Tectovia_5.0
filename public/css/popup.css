@@ -1,16 +1,15 @@
 @import url(root.css);
 
-
 .popup_container {
     position: absolute;
-    top: 5rem;
     left: 0;
+    top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    z-index: 1000;
 }
 
 .popup {

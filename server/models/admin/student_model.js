@@ -12,6 +12,9 @@ const student_master = new mongoose.Schema({
     name: {
         type: String
     },
+    gender: {
+        type: String
+    },
     rollno: {
         type: String
     },
@@ -22,9 +25,6 @@ const student_master = new mongoose.Schema({
         type: String
     },
     dob: {
-        type: String
-    },
-    gender: {
         type: String
     },
     blood_group: {
@@ -120,19 +120,7 @@ const student_master = new mongoose.Schema({
     address: {
         type: String
     },
-    assignment:
-        [{
-          
-          ref_id:{
-            type:ObjectId,
-            ref:'assignment'
-        },
-        
-        source:String,
-        mark:Number
-
-        }
-        ]
+   
 });
 
 

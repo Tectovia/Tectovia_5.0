@@ -10,7 +10,7 @@ const staff_model = require("../../models/admin/staff_information_model");
 const class_model = require("../../models/admin/section_model");
 const subject_model = require("../../models/admin/subject_model");
 const student_model = require("../../models/admin/student_model");
-const assign_model = require("../../models/assignment/assignment_model");
+
 
 
 var db = mongoose.connection;
@@ -81,12 +81,13 @@ exports.assignment=async (req,res)=>{
 exports.assignment_list=async(req,res)=>{
   const id=req.params.id;
   const params=req.params;
-  console.log(params);
- 
+  var assign_name=params.class.split('_')[0]+"_assign";
+  const assign_model=mongoose.model(assign_name)
+
   try {
     const staffdata = await staff_model.find({ _id:id },{ staff_id: 1, staff_name: 1, });
-    const assign=await assign_model.find({class:params.class,sec:params.sec,sub:params.sub})
-
+    const assign=await assign_model.find({sub:params.sub,sec:params.sec,staff_id:params.id});
+    console.log(assign);
      res.render('staff/assignment_list',{staffdata,item:params,assign});
    
   } catch (error) {
@@ -98,19 +99,11 @@ exports.assignment_list=async(req,res)=>{
 
 exports.new_assignment= async (req,res)=>{
   const id=req.params.id;
-  const params=req.params
-
-  // let test_collection=req.params.class.split("_batch")[0]+"_test"
-  // console.log("collection name: "+ test_collection);
-
-  // test_collection = mongoose.model(test_collection)
-
-  // console.log("collection name: "+ test_collection);
-
-
-  try {
+  const params=req.params;
+try {
     
-    
+  var assign_name=params.class.split('_')[0]+"_assign";
+  const assign_model=mongoose.model(assign_name)
     const data= new assign_model({
       title:req.body.title,
       unit:req.body.unit,
@@ -118,30 +111,23 @@ exports.new_assignment= async (req,res)=>{
       due:req.body.date,
       class:params.class,
       sec:params.sec,
-      sub:params.sub
+      sub:params.sub,
+      staff_id:id
+
     })
    
     const result= await data.save();
     const assignment=[{
       ref_id:result._id,
-      source:'null',
-      mark:0
+      status:'null',
+      
       
     }]
-
+    var test_name=params.class.split('_')[0]+"_test"
+   const selected =mongoose.model(test_name)
+    const classdata=await selected.updateMany({}, { $push: { assignment: { $each: assignment } } },{new:true});
     
-
-
-
-    const selected =mongoose.model(params.class)
-    const classdata=await selected.find({section:params.sec});
-    classdata.forEach(async(student )=> {
-      const res = await selected.findOneAndUpdate(
-        { rollno: student.rollno },
-        { $push: { assignment: { $each: assignment } } }
-      );
-     console.log(res);
-    });
+    console.log(classdata);
     
      res.redirect(`/staff/assignment_list/${id}/${params.class}/${params.sec}/${params.sub}`);
  
@@ -159,8 +145,10 @@ exports.viewlist=async (req,res)=>{
   const id=req.params.id;
   const params=req.params;
   const staffdata = await staff_model.find({ _id:id },{ staff_id: 1, staff_name: 1, });
-  const name = params.class.toLowerCase().replace(" ", "_")+'s';
- console.log(name);
+  var name = params.class.split('_')[0]+"_assign"
+  var test_name = params.class.split('_')[0]+"_tests"
+  const assign_model=mongoose.model(name);
+
 
  const list=await assign_model.aggregate([
   {
@@ -171,7 +159,7 @@ exports.viewlist=async (req,res)=>{
   {
    
     $lookup: {
-      from: name, 
+      from: test_name, 
       localField: '_id',
       foreignField: 'assignment.ref_id',
       as: 'assign'
