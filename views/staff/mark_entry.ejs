@@ -3,12 +3,11 @@
     <div class="window_navbar">
       <%-include('../partials/staff/navigation_bar.ejs') %>
     </div>
-
+    
     <div class="window_container">
     <h1><%=class_data.class%>-<%=class_data.section%></h1>
     <br>
     <form class="form" action="/staff/markentry/<%=staffdata[0]._id%>/<%=class_data.batch%>_<%=class_data.section%>/markentered" method="post">
-      
             <div class="form_inputs">
                   <div class="form_div text_input">
                     <input class="input" type="date" name="date" id="date"  required>
@@ -27,7 +26,7 @@
                     <label for="minmarks" >minium marks</label>
                   </div>
               </div>    
-        
+
         <div class="table_container">
           <table class="table">
                 <tr class="row">
@@ -82,8 +81,6 @@
                     status_element.value="fail"
                   }         
               }
-
-
       function getvalue(element){
 
         var value=parseInt(element.value)

@@ -45,7 +45,12 @@ const forum=require('../controller/admin/forum/forum')
     router.post('/admin/institution_info/common_info/update_common_info' ,admin_common_info.update_common_info);
 
     //Forum
-    router.get('/admin/forum',validator.admin_validator,forum.forum)
+    router.get('/admin/forum',validator.admin_validator,forum.forum);
+    router.post('/admin/forum',validator.admin_validator,forum.forum_post);
+    router.get('/admin/forum/edit_forum/:id',validator.admin_validator,forum.edit_forum_form);
+    router.post('/admin/forum/edit_forum/:id',validator.admin_validator,forum.submitForm);
+    //Forum delete
+    router.get('/admin/forum/delete_forum/:id',validator.admin_validator,forum.delete_forum);
     //---------- Higher authority -------------
     router.get('/admin/institution_info/higher_authority' ,admin_higher_authority.higher_authority);
 

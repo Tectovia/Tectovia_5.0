@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/css/card.css">
+<div class="window">
+    <div class="window_navbar">
+        <%- include('../partials/staff/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+      
+     
+      <div class="container center_title">
+        Class Incharge Details
+    </div>
+  <div class="card_container">
+    <% if (classInchargeDetails) { %>
+              <div class="card">
+                  <div class="card_content">
+                      <div class="row">
+                          <h3>Class: <%= classInchargeDetails.classname %></h3>
+                      </div>
+                      <div class="row">
+                          <h3>Section: <%= classInchargeDetails.sectioname %></h3>
+                      </div>
+                      <div class="row">
+                          <h3>Section Incharge ID: <%= classInchargeDetails.sectioninchargeid %></h3>
+                      </div>
+                      <div class="row">
+                        <h3>Section Incharge Name: <%= classInchargeDetails.sectioninchargename %></h3>
+                    </div>
+                    <div class="row">
+                      <h3>Room Number: <%= classInchargeDetails.roomnumber %></h3>
+                    </div>
+                  </div>
+                </div>
+      </div>
+                    <% } else { %>
+                      <div class="card">
+                          <div class="card_content">
+                              <div class="row">
+                                  <h3>No Class incharge is aggined for this staff member.</h3>
+                              </div>
+                          </div>
+                      </div>
+                    <% } %>
+           
+<div class="container center_title">
+  Forum Details
+</div>
+<div class="card_container">
+  <% if (typeof forumDetails !='undefined' && forumDetails) { %>
+            <div class="card">
+                <div class="card_content">
+                    <div class="row">
+                        <h3>Forum Title: <%= forumDetails.forum_title %></h3>
+                    </div>
+                    <div class="row">
+                        <h3>Forum Class: <%= forumDetails.forum_class %></h3>
+                    </div>
+                    <div class="row">
+                        <h3>Total: <%= forumDetails.total %></h3>
+                    </div>
+          </div>
+        </div>
+        <% } else { %>
+          <div class="card">
+              <div class="card_content">
+                  <div class="row">
+                      <h3>No forum details available for this staff member.</h3>
+                  </div>
+              </div>
+          </div>
+        <% } %>
+</div>
+
+</div>
