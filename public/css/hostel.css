@@ -1,0 +1,52 @@
+/* Button and form styling */
+.hostel_addstudent_button {
+    margin-left: 1100px;
+}
+
+.hostel_form {
+    position: fixed;
+    margin-top: -450px;
+    margin-left: 350px;
+}
+
+/* Gender option styling */
+.gender_option {
+    display: flex;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.gender_option input {
+    font-size: 30px;
+    margin-left: 120px;
+}
+
+.display_students{
+    display: flex;
+    margin-top: 50px;
+}
+.boys_container{
+    margin-left: 60px;
+  
+}
+.girls_container{
+    margin-left: 200px;
+}
+.Girls_Hostel_Students{
+    font-size: 20px;
+    margin-left: 150px;
+}
+.Boys_Hostel_Students{
+    font-size: 20px;
+    margin-left: 150px;
+}
+.display_students .table {
+    border-collapse: collapse;
+    width: 135%; /* Increase width as needed */
+    margin-top: 20px;
+    transition: transform 0.3s ease-in;
+}
+.table:hover{
+    transform:scale(1.04);
+}
+

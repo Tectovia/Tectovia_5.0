@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="../../../css/hostel.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -8,18 +10,117 @@
         <div class="container center_title">
             Hostel
         </div>
-        <form action="/admin/boyshostel/addstudents/boys" method="post">
-            <label >Name</label><input type="text" name="name">
-            <label >Class</label>
-            <select name="classes" id="">
-                <% Object.keys(classes_map).forEach(function(key) { %>
-                    <option value="<%= key %>"><%= classes_map[key] %></option>
-                <% }); %>
-            </select>
-            <label >Roll no</label><input type="text" name="rollno"> 
-            <label >Room no</label><input type="text" name="roomnumber">
-            <input type="submit">
-        </form>
+        <div class="add_students">
+            <button id="addStudentsButton" class="hostel_addstudent_button" onclick="show()" >add students</button>
+        </div>
+
+<!-------------------------- display students -->
+<div class="display_students">
+    <div class="boys_container">
+    <table border="1" class=" table">
+        <h1 class="Boys_Hostel_Students">Boys Hostel Students</h1>
+        <tr class="header">
+            <th>Name</th>
+            <th>Roll No</th>
+           
+            <th>Room Number</th>
+        </tr>
+        <% students.boys.forEach(student => { %>
+            <tr >
+                <td><%- student.name %></td>
+                <td><%- student.rollno %></td>
+               
+                <td><%- student.roomnumber %></td>
+            </tr>
+        <% }) %>
+    </table></div>
+<div class="girls_container">
+<table border="1"class=" table">
+    <h1 class="Girls_Hostel_Students">Girls Hostel Students</h1>
+    <tr class="header">
+        <th>Name</th>
+        <th>Roll No</th>
+        
+        <th>Room Number</th>
+    </tr>
+    <% students.girls.forEach(student => { %>
+        <tr >
+            <td><%- student.name %></td>
+            <td><%- student.rollno %></td>
+           
+            <td><%- student.roomnumber %></td>
+        </tr>
+    <% }) %>
+</table>
+
+</div>
+
+</div>
+    <!--  --------------------------------------------------- -->
+        <div class="pop_body">
+          
+            <div id="formContainer" class="popup hostel_form" style="display: none;">
+                <span class="close_icon" id="closePopup">&times;</span> <br><br>
+                <form id="studentForm" action="/admin/hostel/addstudents" method="post">
+                    <div class="form_inputs">
+                        <div class="form_div file_input">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" id="name">
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="class">Class:</label>
+                            <select name="class" id="classes">
+                                <% Object.keys(classes_map).forEach(function(key) { %>
+                                    <option value="<%= key %>"><%= classes_map[key] %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="rollno">Roll No:</label>
+                            <input type="text" name="rollno" id="rollno">
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="roomnumber">Room No:</label>
+                            <input type="text" name="roomnumber" id="roomnumber">
+                        </div>
+                        <div class="form_div  gender_option">
+                            <input type="radio" id="boysRadio" name="gender" value="boys">
+                            <label for="boysRadio">Boy</label>
+                            <input type="radio" id="girlsRadio" name="gender" value="girls" >
+                            <label for="girlsRadio">Girl</label>
+                        </div>
+                    </div>
+                    <div class="form_submit">
+                        <input type="submit" value="Save & Next">
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+        <script>
+
+           function show(){ 
+            document.getElementById("formContainer").style.display = "block";
+           }
+
+           document.getElementById("closePopup").addEventListener('click',()=>{
+             document.getElementById("formContainer").style.display = "none";
+           })
+           // JavaScript
+function adjustFormPosition() {
+    var contentHeight = document.querySelector('.display_students').offsetHeight;
+    var form = document.querySelector('.hostel_form');
+    form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
+}
+
+window.addEventListener('load', adjustFormPosition);
+
+
+        </script>
+        
+        
+        
+        
     </div>
 </div>
 

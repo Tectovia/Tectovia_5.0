@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 // ---------------------validator router-------------------------------------------
 const validator=require('../controller/universal_controller/validator');
 //--------------------  institution_info_controllers  -------------------------------
@@ -162,11 +163,14 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
 //--------------------  Facilities  -------------------------------
     router.get('/admin/facilities/hostel' , facilities.hostel);
 //---------------------hostel students add-------------------------
-    router.post('/admin/boyshostel/addstudents/:gender',facilities.addstudents);
-    router.get('/admin/facilities/transport' , facilities.transport);
-    router.get('/admin/facilities/lab' , facilities.lab);
-    router.get('/admin/facilities/library' , facilities.library);
-    router.get('/admin/facilities/coaching' , facilities.coaching);
+    router.post('/admin/hostel/addstudents',facilities.addstudents);
+    
+    
+     
+    // router.get('/admin/facilities/transport' , facilities.transport);
+    // router.get('/admin/facilities/lab' , facilities.lab);
+    // router.get('/admin/facilities/library' , facilities.library);
+    // router.get('/admin/facilities/coaching' , facilities.coaching);
 
 // -----------------------------time table------------------------
     router.get('/admin/class_info/class_list/view_section/time_table/:id/:title/:section' ,admin_timetable.timetable);

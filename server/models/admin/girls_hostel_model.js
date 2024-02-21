@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const boys_hostel_schema = new mongoose.Schema({
+const girls_hostel_schema = new mongoose.Schema({
     name:{
         type:String
     },
@@ -18,6 +18,6 @@ const boys_hostel_schema = new mongoose.Schema({
         type:String
     }
 })
-const boys_hostel_model=mongoose.model('boys_hostel',boys_hostel_schema);
-exports.boys_hostel_model=boys_hostel_model;
+const girls_hostel_model=mongoose.model('girls_hostel',girls_hostel_schema);
+exports.girls_hostel_model=girls_hostel_model;
 //console.log(mongoose.modelNames());
