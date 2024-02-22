@@ -2,7 +2,7 @@ require('../../database/database');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const express = require('express');
-const { format, eachDayOfInterval } = require("date-fns");
+const { format, eachDayOfInterval, parseISO,isValid} = require("date-fns");
 var db = mongoose.connection;
 
 const staff_model = require("../../models/admin/staff_information_model");
@@ -31,12 +31,15 @@ exports.attendance= async (req,res)=>{
     const role=req.originalUrl.toString().split('/')[1]
     var attend_model=mongoose.model(name);
     const year = date.getFullYear();
+    var datetext;
     // check for Current date & Assign req date
     if (req_date == "today") {
-      var datetext = format(date, "dd-MM-yyyy");
+       datetext = format(date, "dd-MM-yyyy");
     } else {
       if(isValidDate(req_date))
-      var datetext =req_date;
+         datetext =req_date;
+      else
+        datetext = format(date, "dd-MM-yyyy");
     }
     
     var section=section_map[sec];

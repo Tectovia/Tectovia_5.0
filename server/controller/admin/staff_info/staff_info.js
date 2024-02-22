@@ -351,14 +351,14 @@ exports.staff_achivements = async (req, res) => {
 exports.staff_delete = async (req, res) => {
   var id = req.params.id;
   staff_model.findById(id,{time_table:1}).then((data) => {
-    console.log(data);
-    
+
+    console.log(dayhour);
     for (let i = 1; i <= dayhour.day; i++) {
-      for (let j = 0; j < dayhour.hour; j++) {
+      for (let j = 0; j < dayhour.hr; j++) {
+      
         if (data.time_table["day" + i][j].sub != "null") {
           var class_name = data.time_table["day" + i][j].class;
           var section_name = data.time_table["day" + i][j].sec;
-          console.log(class_name + section_name);
           class_model
             .findOneAndUpdate(
               { id: class_name, section_name: section_name },
