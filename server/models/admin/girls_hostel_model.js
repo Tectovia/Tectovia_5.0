@@ -16,6 +16,13 @@ const girls_hostel_schema = new mongoose.Schema({
     },
     roomnumber:{
         type:String
+    },
+    available:{
+        type:Boolean,
+        default:true
+    },
+    gender:{
+        type:String
     }
 })
 const girls_hostel_model=mongoose.model('girls_hostel',girls_hostel_schema);

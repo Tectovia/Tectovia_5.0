@@ -30,7 +30,7 @@
   
 }
 .girls_container{
-    margin-left: 200px;
+    margin-left: 40px;
 }
 .Girls_Hostel_Students{
     font-size: 20px;
@@ -42,7 +42,7 @@
 }
 .display_students .table {
     border-collapse: collapse;
-    width: 135%; /* Increase width as needed */
+    width: 100%; /* Increase width as needed */
     margin-top: 20px;
     transition: transform 0.3s ease-in;
 }

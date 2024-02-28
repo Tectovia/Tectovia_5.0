@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="../../../css/hostel.css">
+<link rel="stylesheet" href="/css/hostel.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -17,94 +17,200 @@
 <!-------------------------- display students -->
 <div class="display_students">
     <div class="boys_container">
-    <table border="1" class=" table">
-        <h1 class="Boys_Hostel_Students">Boys Hostel Students</h1>
-        <tr class="header">
-            <th>Name</th>
-            <th>Roll No</th>
-           
-            <th>Room Number</th>
-        </tr>
-        <% students.boys.forEach(student => { %>
-            <tr >
-                <td><%- student.name %></td>
-                <td><%- student.rollno %></td>
-               
-                <td><%- student.roomnumber %></td>
+        <table border="1" class="table">
+            <h1 class="Boys_Hostel_Students">Boys Hostel Students</h1>
+            <tr class="header">
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Room Number</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        <% }) %>
-    </table></div>
-<div class="girls_container">
-<table border="1"class=" table">
-    <h1 class="Girls_Hostel_Students">Girls Hostel Students</h1>
-    <tr class="header">
-        <th>Name</th>
-        <th>Roll No</th>
-        
-        <th>Room Number</th>
-    </tr>
-    <% students.girls.forEach(student => { %>
-        <tr >
-            <td><%- student.name %></td>
-            <td><%- student.rollno %></td>
-           
-            <td><%- student.roomnumber %></td>
-        </tr>
-    <% }) %>
-</table>
+            <% students.boys.forEach(student => { %>
+                <tr>
+                    <td><%- student.name %></td>
+                    <td><%- student.rollno %></td>
+                    <td><%- student.roomnumber %></td>
+                    <td><a href="" onclick="show1(`<%- student.name %>`,`<%- student.rollno %>`,`<%- student.roomnumber %>`,`<%- student.class %>`,`<%- student.gender %>`); event.preventDefault();"><button>Edit</button></a></td>
+                    <td><a href="/admin/hostel/<%- student.rollno %>/<%- student.class %>"><button>Delete</button></a></td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+    <div class="girls_container">
+        <table border="1" class="table">
+            <h1 class="Girls_Hostel_Students">Girls Hostel Students</h1>
+            <tr class="header">
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Room Number</th>
+                <th>Edit</th>
 
+                 <th>Delete</th>
+            </tr>
+            <% students.girls.forEach(student => { %>
+                <tr>
+                    <td><%- student.name %></td>
+                    <td><%- student.rollno %></td>
+                    <td><%- student.roomnumber %></td>
+                    <td><a href="" onclick="show1(`<%- student.name %>`,`<%- student.rollno %>`,`<%- student.roomnumber %>`,`<%- student.class %>`,`<%- student.gender %>`); event.preventDefault();"><button>Edit</button></a></td>
+                    <td><a href="/admin/hostel/<%- student.rollno %>/<%- student.class %>"><button>Delete</button></a></td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
 </div>
-
-</div>
-    <!--  --------------------------------------------------- -->
-        <div class="pop_body">
-          
-            <div id="formContainer" class="popup hostel_form" style="display: none;">
-                <span class="close_icon" id="closePopup">&times;</span> <br><br>
-                <form id="studentForm" action="/admin/hostel/addstudents" method="post">
-                    <div class="form_inputs">
-                        <div class="form_div file_input">
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" id="name">
-                        </div>
-                        <div class="form_div file_input">
-                            <label for="class">Class:</label>
-                            <select name="class" id="classes">
-                                <% Object.keys(classes_map).forEach(function(key) { %>
-                                    <option value="<%= key %>"><%= classes_map[key] %></option>
-                                <% }); %>
-                            </select>
-                        </div>
-                        <div class="form_div file_input">
-                            <label for="rollno">Roll No:</label>
-                            <input type="text" name="rollno" id="rollno">
-                        </div>
-                        <div class="form_div file_input">
-                            <label for="roomnumber">Room No:</label>
-                            <input type="text" name="roomnumber" id="roomnumber">
-                        </div>
-                        <div class="form_div  gender_option">
-                            <input type="radio" id="boysRadio" name="gender" value="boys">
-                            <label for="boysRadio">Boy</label>
-                            <input type="radio" id="girlsRadio" name="gender" value="girls" >
-                            <label for="girlsRadio">Girl</label>
-                        </div>
+<% if (typeof class_data !== 'undefined') { %>
+    <div class="pop_body">
+        <div id="formContainer" class="popup hostel_form" style="display:block;">
+            <span class="close_icon" id="closePopup">&times;</span> <br><br>
+            <form id="studentForm" action="/admin/hostel/addstudents" method="post">
+                <div class="form_inputs">
+                    <div class="form_div file_input">
+                        <label for="name">Name:</label>
+                        <input type="text"  id="name" name="name">
                     </div>
-                    <div class="form_submit">
-                        <input type="submit" value="Save & Next">
+                    <div class="form_div file_input">
+                        <label for="class">Class:</label>
+                        <select name="class" id="class">
+                            <% Object.keys(classes_map).forEach(function(key) { %>
+                                <option value="<%= key %>" <%- (class_name && (class_name === key)) ? 'selected' : '' %> ><%= classes_map[key] %></option>
+                            <% }); %>
+                        </select>
                     </div>
-                </form>
-            </div>
+                    <div class="form_div file_input">
+                        <label for="rollno">Roll No:</label>
+                        <select name="rollno" id="rollNumbers">
+                            <option value="" selected> Select Student</option>
+                            <% class_data.forEach(cls => { %>
+                               <option value="<%= cls['rollno'] %>-<%= cls['name'] %>-<%= cls['gender'] %>"><%= cls['rollno'] %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form_div file_input">
+                        <label for="roomnumber">Room No:</label>
+                        <input type="text" name="roomnumber" id="roomnumber">
+                    </div>
+                    <div class="form_div gender_option">
+                        <input type="radio" id="boysRadio" name="gender" value="boys">
+                        <label for="boysRadio">Boy</label>
+                        <input type="radio" id="girlsRadio" name="gender" value="girls">
+                        <label for="girlsRadio">Girl</label>
+                    </div>
+                </div>
+                <div class="form_submit">
+                    <input type="submit" value="Save & Next">
+                </div>
+            </form>
         </div>
-       
+    </div>
+<% } %>
+
+
+
+
+    <!--  --------------------------------------------------- -->
+    <div class="pop_body">
+        <div id="formContainer" class="popup hostel_form" style="display: none;">
+            <span class="close_icon" id="closePopup">&times;</span> <br><br>
+            <form id="studentForm" action="/admin/hostel/addstudents" method="post">
+                <div class="form_inputs">
+                    <div class="form_div file_input">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="form_div file_input">
+                        <label for="class">Class:</label>
+                        <select name="class" id="class">
+                            <option selected>Select Class</option>
+                            <% Object.keys(classes_map).forEach(function(key) { %>
+                                <option value="<%= key %>" ><%= classes_map[key] %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="form_div file_input">
+                        <label for="rollno">Roll No:</label>
+                        <select name="rollno" id="rollNumbers"></select>
+                    </div>
+                    <div class="form_div file_input">
+                        <label for="roomnumber">Room No:</label>
+                        <input type="text" name="roomnumber" id="roomnumber">
+                    </div>
+                    <div class="form_div gender_option">
+                        <input type="radio" id="boysRadio" name="gender" value="Male">
+                        <label for="boysRadio">Boy</label>
+                        <input type="radio" id="girlsRadio" name="gender" value="Female">
+                        <label for="girlsRadio">Girl</label>
+                    </div>
+                </div>
+                <div class="form_submit">
+                    <input type="submit" value="Save & Next">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ------------------for edit---------------------- -->
+    <div class="pop_body">
+        <div id="formContainer1" class="popup hostel_form" style="display: none;">
+            <span class="close_icon" id="closePopup1" style="color: red;">&times;</span>
+            <br><br>
+            <form id="studentForm" action="/admin/hostel/edithostel" method="post">
+                <div class="form_inputs">
+                    <div class="form_div file_input">
+                        <label for="name">Name:</label>
+                        
+                        <input type="text" name="name" id="editname" readonly >
+                        
+                    </div>
+                    
+                  
+                    <div class="form_div file_input">
+                        <label for="rollno">Roll No:</label>
+                        <input name="rollno" id="editrollNumbers" readonly>
+                    </div>
+                    <div class="form_div file_input">
+                        <label for="roomnumber">Room No:</label>
+                        <input type="text" name="roomnumber" id="editroomnumber">
+                        <input type="hidden" name="batch" id="editbatch">
+                        <input type="hidden" name="gender" id="editgender">
+                    </div>
+                   
+                </div>
+                <div class="form_submit">
+                    <input type="submit" value="Save & Next">
+                </div>
+            </form>
+        </div>
+    </div>
+   
+
         <script>
 
            function show(){ 
             document.getElementById("formContainer").style.display = "block";
            }
-
+           
            document.getElementById("closePopup").addEventListener('click',()=>{
              document.getElementById("formContainer").style.display = "none";
+             
+             
+           })
+
+           function show1(name,roll,room,cls,gender){ 
+            
+               document.getElementById("formContainer1").style.display = "block";
+               document.getElementById("editname").value=name;
+               document.getElementById("editrollNumbers").value=roll;
+               document.getElementById("editroomnumber").value=room;
+               document.getElementById("editbatch").value=cls;
+               document.getElementById("editgender").value=gender;
+        }
+          
+
+           document.getElementById("closePopup1").addEventListener('click',()=>{
+             document.getElementById("formContainer1").style.display = "none";
+             
+             
            })
            // JavaScript
 function adjustFormPosition() {
@@ -125,3 +231,40 @@ window.addEventListener('load', adjustFormPosition);
 </div>
 
 
+<script>
+    var classes=document.getElementById('class');
+
+    classes.addEventListener("change",()=>{
+        var class_name=classes.value;
+        window.location.href=`/admin/facilities/hostel/class_find/${class_name}`
+    })
+    var names = document.getElementById('name');
+    var gender = document.getElementById('gender');
+    var rollno = document.getElementById('rollNumbers');
+
+    rollno.addEventListener("change", () => {
+    var selectedOption = rollno.options[rollno.selectedIndex];
+    var parts = selectedOption.value.split('-');
+    var student_name = parts[1].trim(); 
+    names.value = student_name; 
+    var student_gender = parts[2].trim(); 
+    console.log("Student gender:", student_gender);
+
+    var boysRadio = document.getElementById('boysRadio');
+    var girlsRadio = document.getElementById('girlsRadio');
+
+    if (student_gender === 'Male') {
+        boysRadio.checked = true; 
+    } else if (student_gender === 'Female') {
+        girlsRadio.checked = true; 
+    } else {
+       
+        console.error("Invalid gender value:", student_gender);
+    }
+});
+
+
+
+
+
+</script>

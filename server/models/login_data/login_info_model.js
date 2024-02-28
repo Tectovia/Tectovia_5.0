@@ -13,7 +13,7 @@ const login_schema= new mongoose.Schema({
     },
     gender:{
         type:String,
-        required:true
+        // required:true
     },
     password:{
         type:String,

@@ -73,6 +73,11 @@
                         <h1>Gender</h1>
                         <h1>:</h1>
                         <h1><%- student_doc.gender %></h1>
+                    </div>  
+                    <div class="section_row">
+                        <h1>residence</h1>
+                        <h1>:</h1>
+                        <h1><%- student_doc.residence %></h1>
                     </div>
                     <div class="section_row">
                         <h1>Father's Name</h1>
@@ -159,7 +164,7 @@
                             </div>
                         </div>
                     </div> 
-
+                  
                     <div class="form_div select_input">
                         <label class="select_label" for="blood_group">Blood Group</label>
                         <select name="blood_group" id="blood_group" required>
@@ -174,6 +179,7 @@
                             <option value="O-">O-</option>
                         </select>
                     </div>
+                  
 
                     <div class="form_div text_input">
                         <input type="number" class="input" id="phone" name="phone" required>
@@ -262,6 +268,16 @@
                             <option value="A-">A-</option>
                             <option value="B-">B-</option>
                             <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form_div select_input">
+                        <label class="select_label" for="residence">residence</label>
+                        <select name="residence" id="blood_group" required>
+                            <option  selected></option>
+                            <option value="local">local</option>
+                            <option value="hostel">hostel</option>
+                            <option value="bus">Bus</option>
+                          
                         </select>
                     </div>
 
