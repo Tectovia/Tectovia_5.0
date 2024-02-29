@@ -264,7 +264,7 @@ exports.after_submission=async(req,res)=>{
     var staff_doc = await get_staff();
  
   const current_student= await student_schema.findOne({_id:current_id})
-
+  console.log(current_student);
  class_model.findOne({ _id: id }, function (err, section_doc) {
     console.log("section detail",section_doc);
 

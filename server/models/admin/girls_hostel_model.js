@@ -1,30 +1,29 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 
 const girls_hostel_schema = new mongoose.Schema({
-    name:{
-        type:String
+    name: {
+        type: String
     },
-    student_id:{
-        type:String
+    student_id: {
+        type: String
     },
-    rollno:{
-        type:String
+    rollno: {
+        type: String
     },
-    class:{
-        type:String
+    class: {
+        type: String
     },
-    roomnumber:{
-        type:String
+    roomnumber: {
+        type: String
     },
-    available:{
-        type:Boolean,
-        default:true
+    available: {
+        type: Boolean,
+        default: true
     },
-    gender:{
-        type:String
+    gender: {
+        type: String
     }
-})
-const girls_hostel_model=mongoose.model('girls_hostel',girls_hostel_schema);
-exports.girls_hostel_model=girls_hostel_model;
-//console.log(mongoose.modelNames());
+});
+
+const girls_hostel_model = mongoose.model('girls_hostel', girls_hostel_schema);
+module.exports = girls_hostel_model;

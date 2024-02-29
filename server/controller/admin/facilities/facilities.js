@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { log } = require('util');
 const {classes_map}=require('../../universal_controller/class_map');
-const {boys_hostel_model}=require('../../../models/admin/boys_hostel_model');
-const {girls_hostel_model}=require('../../../models/admin/girls_hostel_model')
+const boys_hostel_model=require('../../../models/admin/boys_hostel_model');
+const girls_hostel_model=require('../../../models/admin/girls_hostel_model')
 
 //-----------------hostel----------
 
@@ -49,9 +49,9 @@ exports.addstudents = async (req, res) => {
         };
 
         let HostelModel;
-        if (req.body.gender === 'girls') {
+        if (req.body.gender === 'Female') {
             HostelModel = girls_hostel_model;
-        } else if (req.body.gender === 'boys') {
+        } else if (req.body.gender === 'Male') {
             HostelModel = boys_hostel_model;
         } else {
             throw new Error('Invalid gender');
@@ -100,12 +100,12 @@ exports.delete_student = async (req, res) => {
         console.log(newDocumentData);
 
         // Assuming mongoose and HostelModel are properly imported
-        const MasterStudent = mongoose.model(req.params.batch + "_batch");
+        const MasterStudent = mongoose.model(req.params.batch );
 
         // Update the residence field to null in the master database
 
         const dummy = await MasterStudent.findOne( { rollno :  req.params.rollno })
-
+        
         const student = await MasterStudent.findOneAndUpdate(
             { rollno :  req.params.rollno },
             { residence: null },
@@ -148,9 +148,9 @@ exports.delete_student = async (req, res) => {
     
         try {
             let HostelModel;
-            if (req.body.gender === 'girls') {
+            if (req.body.gender === 'Female') {
                 HostelModel = girls_hostel_model;
-            } else if (req.body.gender === 'boys') {
+            } else if (req.body.gender === 'Male') {
                 HostelModel = boys_hostel_model;
             } else {
                 return res.status(400).json({ message: 'Invalid gender provided' });

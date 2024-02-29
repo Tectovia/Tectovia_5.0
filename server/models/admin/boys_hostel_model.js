@@ -26,5 +26,6 @@ const boys_hostel_schema = new mongoose.Schema({
     }
 })
 const boys_hostel_model=mongoose.model('boys_hostel',boys_hostel_schema);
-exports.boys_hostel_model=boys_hostel_model;
+module.exports =boys_hostel_model
 //console.log(mongoose.modelNames());
+//exports.boys_hostel_model=boys_hostel_model;

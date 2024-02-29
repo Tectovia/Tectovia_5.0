@@ -261,6 +261,21 @@
                                     <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
                                     <label for="rollno">Roll Number</label>
                                 </div>
+                                <div class="radio_buttons">
+                                    <div class="radio_option">
+                                        <input type="radio" id="male" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male">
+                                        <label for="male">Male</label>                                  
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="female" name="gender" <%-( current_student.gender=='Female')?'checked':""%> value="Female">
+                                        <label for="female">Female</label>                                           
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="other" name="gender"<%-( current_student.gender=='Other')?'checked':""%> value="Other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                                
             
                                 <div class="form_div text_input">
                                     <input type="date" class="input" id="dob" name="dob">
