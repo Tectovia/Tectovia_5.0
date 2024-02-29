@@ -9,14 +9,13 @@ exports.staff_inbox= async (req,res,next)=>{
 
     const id=req.params.id;
 
+  const staffdata=await staff.find({_id:id},{})
 
-    const staffdata=await staff.find({_id:id},{})
-
-    console.log(staffdata);
+    // console.log(staffdata);
 
    const data =await circular_model.find({})
 
-   console.log(data);
+//    console.log(data);
 
    const circular = data.filter((item)=>{
     return ([staffdata[0].staff_id] in item.staffs && item.staffs[staffdata[0].staff_id]===false)
