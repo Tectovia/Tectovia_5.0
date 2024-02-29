@@ -99,8 +99,7 @@ exports.forum_post = async (req, res) => {
                 }
             }
         }
-        res.redirect("/admin/forum"); 
-  
+                res.redirect("/admin/forum");
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: "Internal server error" });
@@ -144,42 +143,3 @@ exports.submitForm = async (req, res) => {
         res.status(500).send("An error occurred while updating the forum.");
     }
 };
-
-// exports.submitForm = async (req, res) => {
-    
-//     try {
-    
-//      var doc={
-//         forum_title:req.body.forum_title,
-//         forum_incharge:[],
-//         forum_class:[]
-//      }
-//      if(Array.isArray(req.body.forum_incharge)){
-//         doc['forum_incharge'].push(...req.body.forum_incharge);
-//      }
-//      else{
-//         doc['forum_incharge'].push(req.body.forum_incharge);
-//      }
-//      if(Array.isArray(req.body.forum_class)){
-//         doc['forum_class'].push(...req.body.forum_class);
-//      }
-//      else{
-//         doc['forum_class'].push(req.body.forum_class);
-//      }
-//      console.log(doc);
-//      const obj_id=req.params.id;
-//      var result=await Forum.findByIdAndUpdate(obj_id,doc,{new:true});
-//      const class_info = await class_model.find();
-//      const staff_data = await staff_model.find();
-//      //console.log(result);
-//     // res.send('ok');
-//      res.render("./admin/forum/forum", { result, class_info, staff: staff_data,forums  });
-
-//     } catch (error) {
-//         console.error("Error fetching forum data:", error);
-//         res.status(500).send("An error occurred while fetching forum data.");
-//     }
-// };
-
-
-

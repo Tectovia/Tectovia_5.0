@@ -1,0 +1,564 @@
+<link rel="stylesheet" href="/css/admin/class_info/view_section.css">
+
+<script>
+
+    function hide_popup_add_student() {
+        var element = document.getElementById("popup_add_student_basic");
+        element.style.display = "none";
+    }
+    
+    function display_popup_add_student() {
+        var element = document.getElementById("popup_add_student_basic");
+        element.style.display = "flex";
+    }
+    
+    function hide_popup_edit_section() {
+        var element = document.getElementById("popup_edit_section");
+        element.style.display = "none";
+    }
+    
+    function display_popup_edit_section() {
+        var element = document.getElementById("popup_edit_section");
+        element.style.display = "flex";
+    }
+    
+</script>
+
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../partials/staff/navigation_bar.ejs') %>
+    </div>
+    <div class="window_container">
+        <div class="container center_title">
+            <!-- <%- name %> - <%= section_doc.section_name %> -->
+            <div class="float_right">
+                <button class="btn_success" onclick="display_popup_add_student()">Add Student</button>
+            </div>
+        </div>
+        <div class="section_header">
+            <h1>Staff Incharge : <%= section_doc.section_incharge_name %> - <%= section_doc.section_incharge_id %></h1>
+            <h1>Room Number : <%= section_doc.room_number %></h1>
+        </div>
+        <div class="table_container">
+            <div class="table_header">
+                <h1 class="title">Section Strength</h1>
+            </div>
+            <table class="table">
+                <tr class="header">
+                    <th>Boys</th>
+                    <th>Girls</th>
+                    <th>Others</th>
+                    <th>Total</th>
+                </tr>
+                <tr class="row">
+                    <td><%= no_boys %></td>
+                    <td><%= no_girls %></td>
+                    <td><%= no_others %></td>
+                    <td><%= no_total %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="table_container">
+            <div class="table_header">
+                <h1 class="title">Time Table</h1>
+            </div>
+            <table class="table">
+                <tr class="row">
+    
+                    <th class="header">D/H</th>
+                    <%for(let i=1;i<=dayhour.hr;i++){%>
+                      <th class="header"><%=i%></th>
+                      <%}%>
+                </tr>
+    
+                <%for(let i=1;i<=dayhour.day;i++){%>
+                  <tr>
+                      <th class="header"><%=i%></th> 
+                      <%for(let j=0;j< dayhour.hr;j++){%>
+                        <td>
+                          <% let disp=true; %>
+                      
+                        <% if (section_doc.time_table['day' + i][j].sub !== 'null') { %>
+                             <p><%=section_doc.time_table['day' + i][j].sub%></p>
+                             <p><%=section_doc.time_table['day' + i][j].staff_name%>-<%=section_doc.time_table['day' + i][j].staff_id%></p>
+                              <% disp=false; %>
+                         <%}%>
+                         
+                        <% if(disp){%>
+                          <p>None</p>
+                          <%}%>
+                        </td>
+                        <%}%>
+                    </tr>
+                    <%}%>
+                </table>
+        </div>
+        <% if (students_doc) { %>
+            <div class="table_container">
+                <div class="table_header">
+                    <h1 class="title">Students Details</h1>
+                </div>
+                <table class="table">
+                    <tr class="header">
+                        <th>Name</th>
+                        <th>Roll.No</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <% students_doc.forEach(function(item) { %>
+                    <tr class="row">
+                        <td><%= item.name %></td>
+                        <td><%= item.rollno %></td>
+                        <td><%= item.dob %></td>
+                        <td><%= item.gender %></td>
+                        <td><%= item.blood_group %></td>
+                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" target="_blank"><button class="btn_success">View</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="btn_danger">Delete</button></a></td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+        <% } else { %>
+            <h1>No Students Data</h1>
+        <% } %>
+        
+        <div class="window_container">
+            <!-- css/table.css -->
+            <% if(typeof fees !='undefined' && fees !=null){%>
+              <div class="table_container">
+                  <div class="table_header">
+                      <div class="center_title">
+                          Fees Table
+                      </div>
+                      <center><h1 class="title">I - MID TERM</h1></center>
+                  </div>
+                  <% var total=0 %>
+                  <table class="table">
+                      <tr class="header">
+                          <th>Title</th>
+                          <th>Amount</th>
+                      </tr>
+                     
+                     <% fees.I_mid_term.forEach((item)=>{%>
+                      <tr>
+                         <td> <%= item.fees_title %></td>
+                         <td> <%= item.fees_amount %></td>
+                         <%  total +=parseFloat(item.fees_amount)%>
+                      </tr>
+                      <%}) %>
+                      <tr class="header">
+                          <th>Total</th>
+                          <th><%=total %></th>
+                      </tr> 
+                     
+                  </table>
+              </div>
+      
+              <div class="table_container">
+                  <div class="table_header">
+                      <center><h1 class="title">II - MID TERM</h1></center>
+                  </div>
+                  <% var total=0 %>
+                  <table class="table">
+                      <tr class="header">
+                          <th>Title</th>
+                          <th>Amount</th>
+                      </tr>
+                     <% fees.II_mid_term.forEach((item)=>{%>
+                      <tr>
+                         <td> <%= item.fees_title %></td>
+                         <td> <%= item.fees_amount %></td>
+                         <%  total +=parseFloat(item.fees_amount)%>
+                      </tr>
+                      <%}) %>
+                      <tr class="header">
+                          <th>Total</th>
+                          <th><%=total %></th>
+                      </tr>
+                  </table>
+              </div>
+              <div class="table_container">
+                  <div class="table_header">
+                      <center><h1 class="title">III - MID TERM</h1></center>
+                  </div>
+                  <% var total=0 %>
+                  <table class="table">
+                      <tr class="header">
+                          <th>Title</th>
+                          <th>Amount</th>
+                      </tr>
+                     <% fees.III_mid_term.forEach((item)=>{%>
+                      <tr>
+                         <td> <%= item.fees_title %></td>
+                         <td> <%= item.fees_amount %></td>
+                         <%  total +=parseFloat(item.fees_amount)%>
+                      </tr>
+                      <%}) %>
+                      <tr class="header">
+                          <th>Total</th>
+                          <th><%=total %></th>
+                      </tr>
+                  </table>
+              </div>
+              <%} %>
+          </div>
+         <!-- Add Student Form -->
+         <div class="popup_container" id="popup_add_student_basic" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Add Student</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_add_student()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/staff/forum/view_class/submit_student_basic/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="student_name" name="student_name" required>
+                                <label for="student_name">Student Name</label>
+                            </div>
+
+                            <div class="form_div radio_input">
+                                <div class="radio_title">
+                                    <label for="">Gender</label>
+                                </div>
+                                <div class="radio_buttons">
+                                    <div class="radio_option">
+                                        <input type="radio" id="male" name="gender" value="Male">
+                                        <label for="male">Male</label>                                  
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="female" name="gender" value="Female">
+                                        <label for="female">Female</label>                                           
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="other" name="gender" value="Other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div> 
+        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="student_rollno" name="student_rollno" required>
+                                <label for="student_rollno">Roll Number</label>
+                            </div>
+        
+                            <div class="form_div text_input">
+                                <input type="password" class="input" id="student_password" name="student_password" required>
+                                <label for="student_password">Password</label>
+                            </div>
+
+                            <div class="form_submit">
+                                <input type="submit">
+                            </div>
+
+                            <div class="form_reset">
+                                <input type="reset">
+                            </div>
+                        </div>
+                    </form>
+                </div>        
+            </div>
+        </div>
+
+        <% if (formprop.student_info_personal == "display") { %>
+            <div class="popup_container" id="popup_add_student_personal">
+                    <div class="popup" id="popup">
+                        <div class="popup_header">
+                            <p class="pop_title">Student Details</p>
+                            <a href="/staff/forum/view_class/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup">&times;</span></a>
+                        </div>
+                        <div class="pop_body">
+                            <form action="/admin/class_info/class_list/view_section/submit_student_details/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
+                                <div class="form_inputs">
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="readonly" name="name" value="<%- current_student.name %>" readonly>
+                                        <label for="name">Student Name</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
+                                        <label for="rollno">Roll Number</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="date" class="input" id="dob" name="dob">
+                                        <label for="dob">Date of Birth</label>
+                                    </div>
+                
+                                    <div class="form_div select_input">
+                                        <label class="select_label" for="blood_group">Blood Group</label>
+                                        <select name="blood_group" id="blood_group">
+                                            <option value=""></option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="A+">A+</option>
+                                            <option value="B+">B+</option>
+                                            <option value="O+">O+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="phone" name="phone">
+                                        <label for="phone">Phone Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="phone" name="emis">
+                                        <label for="phone">Emis Number</label>
+                                    </div>
+                
+                                    <div class="form_div textarea">
+                                        <label for="address">Address</label>
+                                        <textarea name="address" id="address"></textarea>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="aadhar_no" name="aadhar_no">
+                                        <label for="aadhar_no">Aadhar No</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="nativity" name="nativity">
+                                        <label for="nativity">Nativity</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="community" name="community">
+                                        <label for="community">Community</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="email" class="input" id="email" name="email">
+                                        <label for="email">Email ID</label>
+                                    </div>
+                
+                                    <div class="form_div select_input">
+                                        <label class="select_label" for="transport_type">Transport</label>
+                                        <select name="transport_type" id="transport_type">
+                                            <option value=""></option>
+                                            <option value="School Bus">School Bus</option>
+                                            <option value="Out Bus">Out Bus</option>+</option>
+                                        </select>
+                                    </div>
+    
+                                    <div class="form_div radio_input">
+                                        <div class="radio_title">
+                                            <label for="">Disability</label>
+                                        </div>
+                                        <div class="radio_buttons">
+                                            <div class="radio_option">
+                                                <input type="radio" id="yes_disability" name="disability" value="yes_disability">
+                                                <label for="yes_disability">Yes</label>                                  
+                                            </div>
+                                            <div class="radio_option">
+                                                <input type="radio" id="no_disability" name="disability" value="no_disability">
+                                                <label for="no_disability">No</label>                                           
+                                            </div>
+                                        </div>
+                                    </div> 
+    
+                                <!-- <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_pic" name="stu_pic">
+                                        <label for="stu_pic">Student Picture</label>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="file" class="input" id="stu_aadhar_img" name="stu_aadhar_img">
+                                        <label for="stu_aadhar_img">Aadhar img</label>
+                                    </div> 
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_community_img" name="stu_community_img">
+                                        <label for="stu_community_img">Community Certificate</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_nativity_img" name="stu_nativity_img">
+                                        <label for="stu_nativity_img">Nativity Certificate</label>
+                                    </div>
+                 
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_disability_img" name="stu_disability_img" >
+                                        <label for="stu_disability_img">Disability Certificate</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_birth_img" name="stu_birth_img">
+                                        <label for="stu_birth_img">Birth Certificate</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_tc_img" name="stu_tc_img">
+                                        <label for="stu_tc_img">Transefer Certificate(TC)</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_10_img" name="stu_10_img">
+                                        <label for="stu_10_img">10 th Marksheet</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_11_img" name="stu_11_img">
+                                        <label for="stu_11_img">11 th Marksheet</label>
+                                    </div> -->
+                                    
+                                </div>
+                
+                                <div class="form_submit">
+                                    <input type="submit">
+                                </div>    
+                            </form>
+                        </div>        
+                </div>
+            <% } %>
+            
+    
+            <% if (formprop.student_info_parent == "display") { %>
+                <div class="popup_container" id="popup_add_student">
+                    <div class="popup" id="popup">
+                        <div class="popup_header">
+                            <p class="pop_title">Add Parents</p>
+                            <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup" onclick="hide_popup_add_student()">&times;</span></a>
+                        </div>
+                        <div class="pop_body">
+                            <form action="/admin/class_info/class_list/view_section/submit_student_parent/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
+                                <div class="form_inputs">
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="readonly" name="name" value="<%- current_student.name %>" readonly>
+                                        <label for="name">Student Name</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
+                                        <label for="rollno">Roll Number</label>
+                                    </div>
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_father_name" name="father_name" required>
+                                        <label for="stu_father_name">Father's Name</label>
+                                    </div> 
+                
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_mother_name" name="mother_name" required>
+                                        <label for="stu_mother_name">Mother's Name</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_father_img" name="father_img" required>
+                                        <label for="stu_father_img">Father's Image</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_mother_img" name="mother_img" >
+                                        <label for="stu_mother_img">Mother's Image</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_guardian" name="guardian_name" required>
+                                        <label for="stu_guardian">Guardian Name</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_guardian_img" name="guardian_img" >
+                                        <label for="stu_guardian_img">Guradian Image</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_guardian_address" name="guardian_address" required>
+                                        <label for="stu_guardian_address">Guradian Address</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_parent_phone1" name="parent_phone1" required>
+                                        <label for="stu_parent_phone1">Parent's Number-1</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_parent_phone2" name="parent_phone2" required>
+                                        <label for="stu_parent_phone2">Parent's Number-2</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_parent_alter" name="parent_alter" required>
+                                        <label for="stu_parent_alter">Parent's Alternative Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_parent_whatsapp" name="parent_whatsapp" required>
+                                        <label for="stu_parent_whatsapp">Parent's Whatsapp Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_guardian_phone1" name="guardian_phone1" required>
+                                        <label for="stu_guardian_phone1">Guardian Number-1</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_guardian_phone2" name="guardian_phone2" required>
+                                        <label for="stu_guardian_phone2">Guardian Number-2</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_guardian_alter" name="guardian_alter" required>
+                                        <label for="stu_guardian_alter">Guardian Alternative Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_guardian_whatsapp" name="guardian_whatsapp" required>
+                                        <label for="stu_guardian_whatsapp">Guardian Whatsapp Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_father_occupation" name="father_occupation" required>
+                                        <label for="stu_father_occupation">Father Occupation</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_mother_occupation" name="mother_occupation" required>
+                                        <label for="stu_mother_occupation">Mother Occupation</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_guardian_occupation" name="guardian_occupation" required>
+                                        <label for="stu_guardian_occupation">Guardian Occupation</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_parent_annual" name="parent_annual" required>
+                                        <label for="stu_parent_annual">Parent's Annual Income</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="number" class="input" id="stu_father_aadhar" name="father_aadhar" required>
+                                        <label for="stu_father_aadhar">Father Aadhar Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_mother_aadhar" name="mother_aadhar" required>
+                                        <label for="stu_mother_aadhar">Mother Aadhar Number</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_father_aadhar_img" name="father_aadhar_img" >
+                                        <label for="stu_father_aadhar_img">Father Aadhar Image</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_mother_aadhar_img" name="mother_aadhar_img" >
+                                        <label for="stu_mother_aadhar_img">Father Aadhar Image</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_income_img" name="income_cer" >
+                                        <label for="stu_income_img">Income Certificate</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_father_voter" name="father_voter" required>
+                                        <label for="stu_father_voter">Father Voter ID</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="text" class="input" id="stu_mother_voter" name="mother_voter" required>
+                                        <label for="stu_mother_voter">Mother Voter ID</label>
+                                    </div>
+                                    <div class="form_div text_input">
+                                        <input type="file" class="input" id="stu_smart_img" name="smart_img" >
+                                        <label for="stu_smart_img">Smart Card</label>
+                                    </div>
+                                </div>
+                                <div class="form_submit">
+                                    <input type="submit">
+                                </div>    
+                            </form>
+                        </div>        
+                    </div>
+                </div>
+            <% } %>
+    
+            </div>
+    </div>
+</div>
+    

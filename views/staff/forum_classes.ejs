@@ -4,8 +4,7 @@
         <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
     <div class="window_container">
-      
-     
+       
       <div class="container center_title">
         Class Incharge Details
     </div>
@@ -30,11 +29,12 @@
                     </div>
                     <div class="card_buttons">
                       <div class="">
-                          <a href=""><button class="btn_success">View</button></a>
+                        <a href="/staff/forum/view_class/<%=staffdata[0]._id%>/<%= classInchargeDetails.classname %>/<%= classInchargeDetails.sectioname %>"><button class="btn_success">View</button></a>
                       </div>
                   </div>
                 </div>
       </div>
+    </div>
                     <% } else { %>
                       <div class="card">
                           <div class="card_content">
@@ -74,4 +74,3 @@
         <% } %>
 </div>
 
-</div>

@@ -19,7 +19,7 @@ const { date } = require('date-fns/locale');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
- const dayhour=JSON.parse(process.env.DAYHOUR);
+const dayhour=JSON.parse(process.env.DAYHOUR);
   
 async function get_staff() {
     try {

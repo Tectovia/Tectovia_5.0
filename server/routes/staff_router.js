@@ -31,6 +31,10 @@ router.post("/staff/attendance_submit/:id/:date/:order/:hour/:std/:sec" , staff_
 
 //-------------------------Forum Routes----------------------------------------
 router.get("/staff/forum/:id/",forum.add_forum);
+router.get("/staff/forum/view_class/:id/:title/:section/",forum.view_section);
+router.post('/staff/forum/view_class/submit_student_basic/:id/:title/:section',forum.submit_student_basic);
+router.post('/staff/forum/view_class/submit_student_details/:stu_id/:title/:sec_id/:section', forum.submit_student_details);
+router.post('/staff/forum/view_class/submit_student_parent/:stu_id/:title/:sec_id/:section', forum.submit_student_parent);
 
 //----------------------Assignment------------------------------------------
 router.get("/staff/assignment/:id/", assignment.assignment);
