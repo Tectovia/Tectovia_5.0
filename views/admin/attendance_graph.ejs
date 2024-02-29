@@ -5,7 +5,8 @@
   google.charts.setOnLoadCallback(drawCharts);
 
   function drawCharts() {
-      var backdata = <%-JSON.stringify(data)%>;
+      var backdata = '<%-JSON.stringify(data)%>';
+      backdata=JSON.parse(backdata);
 
       var barData = google.visualization.arrayToDataTable(backdata);
 

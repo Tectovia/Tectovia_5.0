@@ -119,7 +119,19 @@ exports.attendance_link = async (req, res) => {
   
    res.render("staff/attendance_list", {staffdata, stu_data,req_data, });
 };
-
+exports.attendance_link_edit= async (req, res) => {
+  const req_data = req.params;
+  const name =req_data.std.split('_')[0]+'_attendance'
+  const attend_model=mongoose.model(name)
+  var section=req_data.sec;
+  section=section_map[section]
+  const data=  await attend_model.findOne({ [req_data.date]: { $exists: true } });
+  const stu_data=data[req_data.date][section];
+  console.log("student data is" ,stu_data);
+  const staffdata=await staff_model.find({ _id: req_data.id }, { staff_id: 1, staff_name: 1 })
+  
+   res.render("staff/attendance_list_edit", {staffdata, stu_data,req_data, });
+};
 exports.attendance_submit = async (req, res) => {
   var req_data = req.params;
   const hour = parseInt(req_data.hour);
@@ -145,7 +157,38 @@ exports.attendance_submit = async (req, res) => {
       res.redirect(`/staff/attendance/${req_data.id}/${req_data.date}`);
 
 };
+exports.attendance_edit_submit = async (req, res) => {
+  var req_data = req.params;
+  const hour = parseInt(req_data.hour);
+  const rec_data = req.body;
+  var section=req_data.sec;
+  section=section_map[section]
+  const name =req_data.std.split('_')[0]+'_attendance';
+  const attend_model=mongoose.model(name);
+  var data = await  attend_model.findOne({ [`${req_data.date}`]: { $exists: true } });
+  console.log("before submit",data[req_data.date][section]);
+  console.log("received",rec_data);
+   for(let key in data[req_data.date][section]) 
+   {
+    if (key!='ack') {
+      data[req_data.date][section][key][hour]=1
+    for (const stud in rec_data) {
+      if (stud!='staff_id') {
+        if(stud==key){
+          data[req_data.date][section][key][hour]=0
+        }
+      }
+    }
+   }
+  }
+  
+  data[req_data.date][section]["ack"][hour] = rec_data.staff_id;
+  //console.log("updated data",data[req_data.date][section]);
+ var result=await attend_model.replaceOne({ [`${req_data.date}`]: { $exists: true } }, data)
+ console.log(result);
+      res.redirect(`/staff/attendance/${req_data.id}/${req_data.date}`);
 
+};
 async function Timetable_gen() {
   const date = new Date();
   const year=date.getFullYear();

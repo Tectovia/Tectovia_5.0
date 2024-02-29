@@ -36,10 +36,10 @@ exports.attendance= async (req,res)=>{
     if (req_date == "today") {
        datetext = format(date, "dd-MM-yyyy");
     } else {
-      if(isValidDate(req_date))
+      
          datetext =req_date;
-      else
-        datetext = format(date, "dd-MM-yyyy");
+      
+        
     }
     
     var section=section_map[sec];

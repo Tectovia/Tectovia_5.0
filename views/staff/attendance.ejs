@@ -8,10 +8,16 @@
   <div class="window_container">
     <div class="container center_title">
       Attendance
+      
     </div>
-
+   
+    <div>
+      <label for="date_selector">Pick A Date</label>
+      <input id="date_selector" type="date" name="goto" style="color: black;">
+    </div>
     <div class="attendance_container">
       <div class="staff_details">
+    
         <p class="align_right">Staff ID</p>
         <p>:</p>
         <p class="align_left"><%=staffdata[0].staff_id%></p>
@@ -61,7 +67,10 @@
             </div>
           <%}else{%>
             <div class="todo_buttons">
-              <button class="done">Done</button>
+            
+              <a
+                href="/staff/attendance_link_edit/<%=staffdata[0]._id%>/<%=order.date%>/<%=order.dayorder%>/<%=i%>/<%=item.class%>/<%=item.sec%>"
+                ><button class="edit_btn">Edit</button></a>
             </div>
           <%}%>
         </div>
@@ -89,6 +98,12 @@
   .pending_btn {
     padding: 5px 10px;
     background-color: rgb(245, 8, 39);
+    border-radius: 10px;
+    color: white;
+  }
+  .edit_btn {
+    padding: 5px 10px;
+    background-color: rgb(245, 142, 8);
     border-radius: 10px;
     color: white;
   }
