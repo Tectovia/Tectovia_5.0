@@ -1,9 +1,9 @@
 @import url(root.css);
 
 .popup_container {
-    position: fixed;
+    position: absolute;
     left: 0;
-    top: 0;
+    top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;

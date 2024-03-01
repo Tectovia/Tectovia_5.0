@@ -9,7 +9,7 @@ const staff_inbox=require('../controller/staff/staff_inbox')
 const staff_instruction=require('../controller/staff/staff_instructions');
 const validator=require("../controller/universal_controller/validator");
 const assignment=require("../controller/staff/assignment");
-
+const forum=require('../controller/staff/forum');
 const mark_entry_controller=require('../controller/marksheet/mark_entry_controller')
 
 
@@ -18,7 +18,7 @@ const mark_entry_controller=require('../controller/marksheet/mark_entry_controll
 //----------------------time table------------------------------------------
 router.get("/staff/time_table/:id" ,staff_time_table.time_table);
 router.get('/staff/message_seen/:id/:date' ,staff_inbox.message_seen)
-router.use('/staff/inbox/:id' ,staff_inbox.staff_inbox)
+router.use('/staff/inbox/:id',staff_inbox.staff_inbox)
 
 router.use('/staff/deleteInstructions/:id/:staffId' ,staff_instruction.deleteInstruction)
 router.use('/staff/instructions/:id' ,staff_instruction.instruction)
@@ -32,6 +32,12 @@ router.post("/staff/attendance_submit/:id/:date/:order/:hour/:std/:sec" , staff_
 router.get("/staff/attendance_link_edit/:id/:date/:order/:hour/:std/:sec" ,staff_attendance.attendance_link_edit);
 router.post("/staff/attendance_edit_submit/:id/:date/:order/:hour/:std/:sec" , staff_attendance.attendance_edit_submit);
 
+//-------------------------Forum Routes----------------------------------------
+router.get("/staff/forum/:id/",forum.add_forum);
+router.get("/staff/forum/view_class/:id/:title/:section/",forum.view_section);
+router.post('/staff/forum/view_class/submit_student_basic/:id/:title/:section',forum.submit_student_basic);
+router.post('/staff/forum/view_class/submit_student_details/:stu_id/:title/:sec_id/:section', forum.submit_student_details);
+router.post('/staff/forum/view_class/submit_student_parent/:stu_id/:title/:sec_id/:section', forum.submit_student_parent);
 
 //----------------------Assignment------------------------------------------
 router.get("/staff/assignment/:id/", assignment.assignment);

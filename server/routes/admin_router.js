@@ -22,10 +22,13 @@ const admin_timetable=require('../controller/admin/class_info/time_table');
 
 //--------------------  circular_controller  ---------------------------------
 
-const circular_management=require('../controller/admin/circular/circular')
+const circular_management=require('../controller/admin/circular/circular');
 
-//--------------------  staff_info_models  -------------------------------
+//--------------------  Infrastructure -------------------------------
+const infrastructure=require('../controller/admin/infrastructure/infrastructure');
 
+//--------------------  Facilities -------------------------------
+const facilities=require('../controller/admin/facilities/facilities');
 
 //--------------------  institution_info  -------------------------------
 
@@ -42,13 +45,20 @@ const fees_controller=require('../controller/fees_controller/fees')
 //-----------------------Forum controller----------------------------------
 const forum=require('../controller/admin/forum/forum')
 
+
+
     //----------- Common Info ----------------
     router.get('/admin/institution_info/common_info' ,admin_common_info.common_info);
     router.post('/admin/institution_info/common_info/submit_common_info' ,admin_common_info.submit_common_info);
     router.post('/admin/institution_info/common_info/update_common_info' ,admin_common_info.update_common_info);
 
     //Forum
-    router.get('/admin/forum',validator.admin_validator,forum.forum)
+    router.get('/admin/forum',validator.admin_validator,forum.forum);
+    router.post('/admin/forum',validator.admin_validator,forum.forum_post);
+    router.get('/admin/forum/edit_forum/:id',validator.admin_validator,forum.edit_forum_form);
+    router.post('/admin/forum/edit_forum/:id',validator.admin_validator,forum.submitForm);
+    //Forum delete
+    router.get('/admin/forum/delete_forum/:id',validator.admin_validator,forum.delete_forum);
     //---------- Higher authority -------------
     router.get('/admin/institution_info/higher_authority' ,admin_higher_authority.higher_authority);
 
@@ -149,7 +159,18 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //goback to section
     router.get('/admin/class_info/class_list/:_id/:title/section' , admin_class.go_back_section);
 
-    
+
+//--------------------  Infrastructure  -------------------------------
+    router.get('/admin/infrastructure' , infrastructure.view_infrastructure);
+
+
+//--------------------  Facilities  -------------------------------
+    router.get('/admin/facilities/hostel' , facilities.hostel);
+    router.get('/admin/facilities/transport' , facilities.transport);
+    router.get('/admin/facilities/lab' , facilities.lab);
+    router.get('/admin/facilities/library' , facilities.library);
+    router.get('/admin/facilities/coaching' , facilities.coaching);
+
 // -----------------------------time table------------------------
     router.get('/admin/class_info/class_list/view_section/time_table/:id/:title/:section' ,admin_timetable.timetable);
     // ----------------------------Add-time Table Form----------------------------------------------------

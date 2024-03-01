@@ -21,7 +21,7 @@ app.use(flash());
 app.use(fileUpload());
 
 app.set("layout", "./layout/layout");
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
 app.set("trust proxy", 1);
 app.use(
