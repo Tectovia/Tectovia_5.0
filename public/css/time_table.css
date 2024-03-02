@@ -1,14 +1,15 @@
+
 .time_table{
     position: absolute;
     background: url(../img/backsblur.jpg);
  
     background-position: -100px 0px;
     
-    background-size:99%;
+    background-size:100%;
     width: 1500px;
     height: 700px;
     margin-top: -20px;
-    left: 0%;
+    left: 1%;
    
     
 }
@@ -35,7 +36,7 @@
     margin-top: 20px;
     width: 260px;
     margin-left: 450px;
-    background-color: rgba(64, 255, 0, 0.599);
+    background-color: rgba(70, 244, 12, 0.707);
     border-radius: 30%;
   
  
