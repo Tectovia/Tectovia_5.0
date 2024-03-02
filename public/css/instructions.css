@@ -234,3 +234,12 @@ margin-left: 300px;
     width: 750px;
     height: 300px;
 }
+@media screen and (max-width: 725px) {
+    .history_button{
+        margin-left: -800px;
+    }
+    .instructions_main{
+        margin-top: 140px;
+    }
+  
+}

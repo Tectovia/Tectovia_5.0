@@ -40,8 +40,8 @@ td {
 }
 
 .header{
-    background-color: var(--primary-color);
-    color: #fff;
+    background-image: linear-gradient(to top, #14f52e, #08af1c);
+    color: #000000;
     
 }
 

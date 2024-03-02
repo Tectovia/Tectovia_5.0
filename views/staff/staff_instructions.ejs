@@ -67,21 +67,28 @@
     </form>
 </div></div>
 <div class="history_dropdown">
-<div class="history">
-    <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
-      <div>  <h3>History</h3></div> <div> <i class="fa fa-history" ></i></div>
-    </button>
-   <div class="history_values" id="historySection"> 
-    <div class="oldInstructions hidden old_history " id="oldInstructions">
-        <% oldMessage.map((item)=>{%>
-          <div class="history_messages">  <h1><%= item.message%></h1> </div>
-          <div class="history_delete_button">
-            <a href="/staff/deleteInstructions/<%=item._id%>/<%=staffdata[0]._id%>">
-                <button class="history_dropdown_button">delete</button></a></div>
-        <%})%>
-    </div></div>
-    
-</div> </div>
+    <div class="history">
+        <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
+            <div><h3>History</h3></div> 
+            <div><i class="fa fa-history"></i></div>
+        </button>
+        <div class="history_values" id="historySection"> 
+            <div class="oldInstructions hidden old_history " id="oldInstructions">
+                <!-- Reverse the order of oldMessage array -->
+                <% oldMessage.reverse().map((item) => { %>
+                    <div class="history_messages">
+                        <h1><%= item.message %></h1>
+                    </div>
+                    <div class="history_delete_button">
+                        <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
+                            <button class="history_dropdown_button">delete</button>
+                        </a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>    
+    </div>
+</div>
 
 
 
@@ -124,7 +131,7 @@ document.querySelector('.history_button').addEventListener('click', function() {
     console.log('Scrolling to:', offsetTop, 'with buffer:', buffer);
 
     window.scrollTo({
-        top:530,
+        top:540,
         behavior: 'smooth'
     });
 });
