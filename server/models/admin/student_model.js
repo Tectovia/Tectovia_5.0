@@ -120,6 +120,10 @@ const student_master = new mongoose.Schema({
     address: {
         type: String
     },
+    forum:{
+        type:String,
+        default:null,
+    },
    
 });
 

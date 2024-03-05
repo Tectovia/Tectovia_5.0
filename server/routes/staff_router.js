@@ -10,7 +10,8 @@ const staff_instruction=require('../controller/staff/staff_instructions');
 const validator=require("../controller/universal_controller/validator");
 const assignment=require("../controller/staff/assignment");
 const forum=require('../controller/staff/forum');
-const mark_entry_controller=require('../controller/marksheet/mark_entry_controller')
+const mark_entry_controller=require('../controller/marksheet/mark_entry_controller');
+
 
 
 //--------------------  Navigation Routes  -------------------------------
@@ -35,6 +36,8 @@ router.get("/staff/forum/view_class/:id/:title/:section/",forum.view_section);
 router.post('/staff/forum/view_class/submit_student_basic/:id/:title/:section',forum.submit_student_basic);
 router.post('/staff/forum/view_class/submit_student_details/:stu_id/:title/:sec_id/:section', forum.submit_student_details);
 router.post('/staff/forum/view_class/submit_student_parent/:stu_id/:title/:sec_id/:section', forum.submit_student_parent);
+router.get('/staff/forum/view_class/view_subject/:id/:title',forum.view_subject);
+router.post('/staff/forum/view_class/submit_forum_student/:id/:title/:section',forum.submitForumStudent)
 
 //----------------------Assignment------------------------------------------
 router.get("/staff/assignment/:id/", assignment.assignment);

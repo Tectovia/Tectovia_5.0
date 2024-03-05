@@ -49,10 +49,6 @@ app.use(parent_routes);
 app.listen(port, () => console.log(`click here : http://localhost:${port}`));
 
 
-
-
-
-
 app.get("/admin/calendar", function (req, res) {
     db.collection("academic_calendar")
       .findOne({'year':2024})
