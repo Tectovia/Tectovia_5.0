@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/transports.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -8,5 +9,163 @@
         <div class="container center_title">
             Transport
         </div>
+        <div class="display_students">
+            <div class="boys_container">
+            <table border="1" class=" tablee">
+                <h1 class="Transport_bus"> Transport details </h1>
+                <tr class="header">
+                    <th>bus number</th>
+                    <th>number plate</th>
+                   
+                    <th>Route</th>
+                    <!-- <th>staff designation</th> -->
+                    <th>Roll no1</th>
+                    <th>Roll no2</th>
+                    <th>Diver name</th>
+                    <th>alternate Driver </th>
+                    
+                </tr>
+                
+                <% transport.transports.forEach(transport => { %>
+                    <tr >
+                        <td><%- transport.bus_number %></td>
+                        <td><%- transport.number_plate %></td>
+                       
+                        <td><%- transport.route %></td>
+                        <td><%- transport.roll_no1 %></td>
+                        <td><%- transport.roll_no2 %></td>
+                        <!-- <td><%- transport.staff_designation %></td> -->
+                        
+                        <td><%- transport.Driver %></td>
+                        <td><%- transport.Alterdriver %></td>
+                        
+                       
+                    </tr>
+                    <% }) %>
+            </table>
+    
+        
+        </div>
+        
+        </div>
+        <div class="add_students">
+            <button onclick="show()">Add transports</button>
+        </div>
+        
+        <div class="pop_body">
+          
+            <div id="formContainer" class="popup hostel_form" style="display: none;">
+                <span class="close_icon" id="closePopup">&times;</span> <br><br>
+                <form id="studentForm" action="/admin/Transport/add_transport" method="post">
+                    <div class="form_inputs">
+                        <div class="form_div file_input">
+                            <label for="name">bus number:</label>
+                            <input type="text" name="bus_number" class="input-data" required>
+                        </div>
+                        <div class="form_div file_input">
+                            
+                            <label for="classes">number plate:</label>
+                            <input type="text" name="number_plate" class="input-data" required>
+                        </div>
+                        <div class="form_div file_input">
+                            <label >Route:</label>
+                            <input type="text" name="route" class="input-data" required>
+                        </div>
+                        <div class="form_div file_input">
+                            <label >Roll no1:</label>
+                            <select id="" name="roll_no1" class="input-data" onchange="UpdateRoll(this.value)">
+                                <option value="default" class="input-data">choose a roll no</option>
+                                <% nonteach.forEach(nonteach => { %>
+                                    <option value="<%- nonteach.staff_id %>" class="input-data"><%- nonteach.staff_id %></option>
+                                    <%})%>
+                            </select>
+                        </div>
+
+                        
+                        <div class="form_div file_input">
+                            <label >select alternate driver:</label>
+                            <input type="text" id="driName" name="Alterdriver">
+                           
+                        </div>
+                        
+                        <div class="form_dive file_input">
+                            <label >Roll no2:</label>
+                            <select id="" name="roll_no2" class="input-data" onchange="UpdateRoll2(this.value)">
+                                <option value="default" class="input-data">choose a roll no</option>
+                                <% nonteach.forEach(nonteach => { %>
+                                    <option value="<%- nonteach.staff_id %>" class="input-data"><%- nonteach.staff_id %></option>
+                                    <%})%>
+                            </select>
+                        </div>
+                       
+
+                        <div class="form_div file_input">
+                            <label >select driver:</label>
+                            <input type="text" id="drName" name="Driver" class="input-data">
+                           
+                        </div>
+                                    
+                    </div>
+                    <div class="form_submit">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+         
+            var drivername = document.getElementById('drName')
+         function show(){ 
+            document.getElementById("formContainer").style.display = "block";
+           }
+
+           document.getElementById("closePopup").addEventListener('click',()=>{
+             document.getElementById("formContainer").style.display = "none";
+            })
+             var alternate_driver = document.getElementById('driName')
+         function show(){ 
+            document.getElementById("formContainer").style.display = "block";
+           }
+
+           document.getElementById("closePopup").addEventListener('click',()=>{
+             document.getElementById("formContainer").style.display = "none";
+})
+
+function UpdateRoll(optionValue) {
+              console.log(optionValue);
+             
+            <% for (var i = 0; i < nonteach.length; i++) { %>
+                if ('<%= nonteach[i].staff_id %>' == optionValue) {
+                    console.log('<%= nonteach[i].staff_name %>');
+                    var ffrrr = '<%= nonteach[i].staff_name %>';
+                    console.log(typeof(ffrrr));
+                    alternate_driver.value = ffrrr;
+                    //  // Assuming feesInput is defined elsewhere
+                }
+            <% } %>
+       
+    }
+
+function UpdateRoll2(optionValue) {
+              console.log(optionValue);
+             
+            <% for (var i = 0; i < nonteach.length; i++) { %>
+                if ('<%= nonteach[i].staff_id %>' == optionValue) {
+                    console.log('<%= nonteach[i].staff_name %>');
+                    var ffrrr = '<%= nonteach[i].staff_name %>';
+                    console.log(typeof(ffrrr));
+                    drivername.value = ffrrr;
+                    //  // Assuming feesInput is defined elsewhere
+                }
+            <% } %>
+       
+    }
+
+        </script>
+        
+        
+        
+        
     </div>
 </div>
