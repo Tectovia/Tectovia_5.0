@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 // ---------------------validator router-------------------------------------------
 const validator=require('../controller/universal_controller/validator');
 //--------------------  institution_info_controllers  -------------------------------
@@ -53,7 +54,12 @@ const forum=require('../controller/admin/forum/forum')
     router.post('/admin/institution_info/common_info/update_common_info' ,admin_common_info.update_common_info);
 
     //Forum
-    router.get('/admin/forum',validator.admin_validator,forum.forum)
+    router.get('/admin/forum',validator.admin_validator,forum.forum);
+    router.post('/admin/forum',validator.admin_validator,forum.forum_post);
+    router.get('/admin/forum/edit_forum/:id',validator.admin_validator,forum.edit_forum_form);
+    router.post('/admin/forum/edit_forum/:id',validator.admin_validator,forum.submitForm);
+    //Forum delete
+    router.get('/admin/forum/delete_forum/:id',validator.admin_validator,forum.delete_forum);
     //---------- Higher authority -------------
     router.get('/admin/institution_info/higher_authority' ,admin_higher_authority.higher_authority);
 
@@ -95,6 +101,7 @@ router.get('/admin/staff_info' , admin_staff_list.admin_staff_list);
 // -------------------------------------staff personal data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/personal_edit/:id' ,admin_staff_list.staff_personal_edit);
     router.post('/admin/staff_info/staff_list/personal_edit_submission/:id' ,admin_staff_list.personal_edit_submission);
+    router.get('/admin/staff_info/staff_education_form/:staff_id' ,admin_staff_list.staff_education_form);
     // -------------------------------------staff education data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/education_edit/:id' ,admin_staff_list.staff_education_edit);
     router.post('/admin/staff_info/staff_list/education_edit_submission/:id' ,admin_staff_list.education_edit_submission);
@@ -166,10 +173,18 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
 
 //--------------------  Facilities  -------------------------------
     router.get('/admin/facilities/hostel' , facilities.hostel);
+//---------------------hostel students add-------------------------
+    router.post('/admin/hostel/addstudents',facilities.addstudents);
+   router.post('/admin/hostel/edithostel',facilities.edithostel)
+  
+    router.get('/admin/facilities/hostel/class_find/:class',facilities.class_find);
+    
+    router.get('/admin/hostel/:rollno/:batch',facilities.delete_student)
+     
     router.get('/admin/facilities/transport' , facilities.transport);
-    router.get('/admin/facilities/lab' , facilities.lab);
-    router.get('/admin/facilities/library' , facilities.library);
-    router.get('/admin/facilities/coaching' , facilities.coaching);
+     router.get('/admin/facilities/lab' , facilities.lab);
+     router.get('/admin/facilities/library' , facilities.library);
+     router.get('/admin/facilities/coaching' , facilities.coaching);
 
 // -----------------------------time table------------------------
     router.get('/admin/class_info/class_list/view_section/time_table/:id/:title/:section' ,admin_timetable.timetable);

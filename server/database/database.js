@@ -9,7 +9,7 @@ const db = mongoose.connection;
 
 
 mongoose.set("strictQuery", false);
-db.on("error", console.error.bind(console, "connection error:"));
+db.on("error", console.error.bind(console, "connection error:"));-``  
 db.once("open", function () {
   console.log("Connected");
 });

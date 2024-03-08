@@ -167,7 +167,7 @@ exports.submit_section = async (req, res) => {
     console.log("infoErrors", error);
   }
 };
-
+// View Section
 exports.view_section = async (req, res) => {
   const title = req.params.title;
   const sec = req.params.section;
@@ -264,7 +264,7 @@ exports.after_submission=async(req,res)=>{
     var staff_doc = await get_staff();
  
   const current_student= await student_schema.findOne({_id:current_id})
-
+  console.log(current_student);
  class_model.findOne({ _id: id }, function (err, section_doc) {
     console.log("section detail",section_doc);
 
@@ -512,6 +512,6 @@ exports.go_back_section = async (req, res) => {
   const title = req.params.title;
   const sec = req.params.section;
   res.redirect(
-    "/admin/class_info/class_list/view_section/" + _id + "/" + title + "/" + sec
+    "/admin/class_info/class_list/view_section/submit_student_basic" + _id + "/" + title + "/" + sec
   );
 };

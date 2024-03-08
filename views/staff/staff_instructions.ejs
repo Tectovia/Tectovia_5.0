@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="../../css/instructions.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <div class="staff">
     <div class="staff_navbar">
         <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
-  
-   
-    
+
+<div class="instructions_main">
+
     <div class="form">
     <header class="in">  <span class="underline-three">INSTR</span>UCTION </header>
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
@@ -51,7 +53,7 @@
 
 
             <div style="margin-left: 70%;">
-             <div  class="subjects_box"">   <span data-fid="subjects"><h1>subjects</h1></span></div>
+             <div  class="subjects_box">   <span data-fid="subjects"><h1>subjects</h1></span></div>
              <div class="subjects_box_dropdown">  <div id="subjects"  class="hidden">
                     <input type="checkbox" value="subjects" class="selectall" onclick="select_all(this)" class="">
                     <label>select all</label><br>
@@ -59,11 +61,13 @@
                         <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label><%=item%></label><br>
                     <%})%>
                 </div>
+               
             </div>
             </div>
 
             </div>
     </form>
+
 </div>
 
 
@@ -97,6 +101,33 @@
     
 </div>
 
+</div></div>
+<div class="history_dropdown">
+    <div class="history">
+        <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
+            <div><h3>History</h3></div> 
+            <div><i class="fa fa-history"></i></div>
+        </button>
+        <div class="history_values" id="historySection"> 
+            <div class="oldInstructions hidden old_history " id="oldInstructions">
+                <!-- Reverse the order of oldMessage array -->
+                <% oldMessage.reverse().map((item) => { %>
+                    <div class="history_messages">
+                        <h1><%= item.message %></h1>
+                    </div>
+                    <div class="history_delete_button">
+                        <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
+                            <button class="history_dropdown_button">delete</button>
+                        </a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>    
+    </div>
+</div>
+
+
+
 
 </div>
 
@@ -120,7 +151,29 @@
 
 </style>
 <script>
+    
+document.getElementById('historyButton').addEventListener('click', function() {
+  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth' });
+});
 
+document.querySelector('.history_button').addEventListener('click', function() {
+    const historyElement = document.querySelector('.history');
+    if (!historyElement) {
+        console.log('History element not found');
+        return;
+    }
+
+    // Adjust the buffer size here (ensure it matches your design requirements)
+    const buffer = 10; // Adjust this value as needed
+    const offsetTop = historyElement.getBoundingClientRect().top + window.pageYOffset - buffer;
+
+    console.log('Scrolling to:', offsetTop, 'with buffer:', buffer);
+
+    window.scrollTo({
+        top:540,
+        behavior: 'smooth'
+    });
+});
     const select_all=(x)=>{
     let ele= document.getElementsByClassName(x.value)
         for(i=0;i<=ele.length;i++)

@@ -132,6 +132,7 @@ const student_master = new mongoose.Schema({
     address: {
         type: String
     },
+
     transport_type: {
         type: String
     },
@@ -155,6 +156,19 @@ const student_master = new mongoose.Schema({
 
         }
         ]
+
+    forum:{
+        type:String,
+        default:null,
+    },
+
+    residence: {
+        type: String,
+        default:null
+    },
+    
+   
+
 });
 
 

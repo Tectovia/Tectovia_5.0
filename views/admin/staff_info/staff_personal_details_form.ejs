@@ -3,11 +3,11 @@
         <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
     <div class="window_container">
-        <div class="popup_container">
+        <div >
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Staff Personal Details</p>
-                    <a href="/admin/staff_info"><span class="close_icon" id="closePopup">&times;</span></a>
+                   
                 </div>
                 <div class="pop_body">
                     <form action="/staff_personal_details/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
@@ -226,3 +226,8 @@
         </div>
     </div>
 </div>
+<style>
+    .popup_container{
+        margin-top: 800px;
+    }
+</style>

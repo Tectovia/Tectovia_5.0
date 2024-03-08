@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 exports.staff_index = async (req, res) => { 
 
     var id=req.params.id;
+
         try{
         const data= await staff_model.find({'staff_id':id},{staff_id:1,staff_name:1,class_incharge:1})
 
@@ -23,11 +24,11 @@ exports.staff_index = async (req, res) => {
         let circularNotification = await noOfCirculars(id)
 
         res.render('staff_index',{'staffdata':data,circularNotification});
+
 }  
 catch(err){
         console.log("problem",err);
    }
 
 };
-
 

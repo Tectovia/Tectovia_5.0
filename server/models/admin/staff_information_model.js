@@ -25,7 +25,9 @@ const staff =new mongoose.Schema({
   },
   forum_incharge: {
     type: String,
-    default:null
+    default:null,
+    staff_name: String,
+    staff_id: String,
   },
   staff_designation: {
     type:String,
