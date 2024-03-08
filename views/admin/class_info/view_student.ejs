@@ -10,9 +10,14 @@
         var element = document.getElementById("popup_parent_details");
         element.style.display = "flex";
     }
+
+    function hide_popup_edit_student_details() {
+        var element = document.getElementById("popup_edit_student_details");
+        element.style.display = "none";
+    }
 </script>
 
-<div class="window" id="window_layout">
+<div class="window">
     <div class="window_navabr">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
@@ -21,7 +26,7 @@
         <div class="container center_title">
             <%- title %> - <%- sec %>
             <div class="float_left">
-                <button class="btn_success" onclick="display_popup_parent_details()">Perent Details</button>
+               <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>
             <div class="float_right">
                 <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="btn_danger">Delete</button></a>
@@ -52,9 +57,11 @@
                     </div>
                 </div>
             </div>
-            <div class="edit_section">
-                <button class="btn_success edit_section_btn">Edit</button>
-            </div>
+            <!-- <div class="edit_student">
+                <a href="/admin/edit_student/<%= student_doc._id %>/<%= title %>">
+                     <button class="btn_success edit_student_btn">Edit student basic information</button>
+                </a>             
+            </div> -->
         </div>
 
         <div class="student_section">
@@ -115,12 +122,14 @@
                 </div>
             </div>
             <div class="edit_section">
-                <button class="btn_success edit_section_btn">Edit</button>
+                <a href="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>">
+                    <button class="btn_success edit_section_btn">Edit student personal details</button>
+                </a>
             </div>
         </div>
 </div>
 
-<!-- Parent Details Form -->
+<!-- Parent Details Form
 <div class="popup_container" id="popup_parent_details" style="display: none;">
     <div class="popup" id="popup">
         <div class="popup_header">
@@ -218,52 +227,76 @@
             </form>
         </div>        
     </div>
-</div>
+</div> -->
 
-<!-- Student Edit Form -->
-<div class="popup_container" id="popup_parent_details" style="display: none;">
-    <div class="popup" id="popup">
-        <div class="popup_header">
-            <p class="pop_title">Add Student</p>
-            <span class="close_icon" id="closePopup" onclick="hide_popup_parent_details()">&times;</span>
-        </div>
-        <div class="pop_body">
-            <form action="" method="post" enctype="multipart/form-data" class="form">
-                <div class="form_inputs">
-                    <div class="form_div text_input">
-                        <input type="text" class="input" id="name" name="name" required>
-                        <label for="name">Student Name</label>
-                    </div>
+<!-- Student Edit Form 2 -->
 
-                    <div class="form_div text_input">
-                        <input type="text" class="input" id="rollno" name="rollno" required>
-                        <label for="rollno">Roll Number</label>
-                    </div>
+<%if(edit !== false){%>
+        <div class="popup_container" id="popup_edit_student_details" style="display: flex;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Student Details</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_edit_student_details()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="readonly" name="name" value="<%-(studentDetails.name !== undefined || studentDetails.name !== '') ? studentDetails.name: ' ' %> " readonly>
+                                <label for="name">Student Name</label>
+                            </div>
 
-                    <div class="form_div text_input">
-                        <input type="date" class="input" id="dob" name="dob" required>
-                        <label for="dob">Date of Birth</label>
-                    </div>  
-                    
-                    <div class="form_div radio_input">
-                        <div class="radio_title">
-                            <label for="">Gender</label>
-                        </div>
-                        <div class="radio_buttons">
-                            <div class="radio_option">
-                                <input type="radio" id="male" name="gender" value="Male">
-                                <label for="male">Male</label>                                  
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="readonly" name="rollno" value="<%-(studentDetails.rollno !== undefined || studentDetails.rollno !== '') ? studentDetails.rollno: ' ' %> " readonly>
+                                <label for="rollno">Roll Number</label>
                             </div>
-                            <div class="radio_option">
-                                <input type="radio" id="female" name="gender" value="Female">
-                                <label for="female">Female</label>                                           
+
+                            <div class="form_div text_input">
+                                <input type="date" class="input" id="dob" value="<%-(studentDetails.dob !== undefined || studentDetails.dob !== '') ? studentDetails.dob: ' ' %>" name="dob">
+                                <label for="dob">Date of Birth</label>
                             </div>
-                            <div class="radio_option">
-                                <input type="radio" id="other" name="gender" value="Other">
-                                <label for="other">Other</label>
+                            
+                            <div class="form_div radio_input">
+                                    <div class="radio_title">
+                                        <label for="">Gender</label>
+                                    </div>
+                                    <div class="radio_buttons">
+                                        <div class="radio_option">
+                                            <input type="radio" id="male" name="gender" value="Male"  <%-( ( studentDetails.gender != undefined || studentDetails.gender != '') && studentDetails.gender === 'Male')? 'checked' : '' %> >
+                                            <label for="male">Male</label>                                  
+                                        </div>
+                                        <div class="radio_option">
+                                            <input type="radio" id="female" name="gender" value="Female" <%-( ( studentDetails.gender != undefined || studentDetails.gender != '') && studentDetails.gender === 'Female')? 'checked' : '' %> >
+                                            <label for="female">Female</label>                                           
+                                        </div>
+                                        <div class="radio_option">
+                                            <input type="radio" id="other" name="gender" value="Other" <%-( ( studentDetails.gender != undefined || studentDetails.gender != '') && studentDetails.gender === 'Other')? 'checked' : '' %> >
+                                            <label for="other">Other</label>
+                                        </div>
+                                    </div>
+                            </div>  
+
+                            <div class="form_div select_input">
+                                <label class="select_label" for="blood_group">Blood Group</label>
+                                <select name="blood_group" id="blood_group" required>
+                                    <option value=""></option>
+                                    <option value="AB+" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === "AB+" )? 'selected' : '' %> >AB+</option>
+                                    <option value="A+" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'A+')? 'selected' : '' %> >A+</option>
+                                    <option value="B+" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'B+')? 'selected' : '' %> >B+</option>
+                                    <option value="O+" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'O+')? 'selected' : '' %>>O+</option>
+                                    <option value="AB-" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'AB-')? 'selected' : '' %>>AB-</option>
+                                    <option value="A-" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'A-')? 'selected' : '' %>>A-</option>
+                                    <option value="B-" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'B-')? 'selected' : '' %>>B-</option>
+                                    <option value="O-" <%-( ( studentDetails.blood_group != undefined || studentDetails.blood_group != '') && studentDetails.blood_group === 'O-')? 'selected' : '' %>>O-</option>
+                                </select>
                             </div>
-                        </div>
-                    </div> 
+            
+
+
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="phone" name="phone" value="<%-(studentDetails.phone !== undefined || studentDetails.phone !== '') ? studentDetails.phone: ' ' %>" required>
+                                <label for="phone">Phone Number</label>
+                            </div> 
 
                     <div class="form_div select_input">
                         <label class="select_label" for="blood_group">Blood Group</label>
@@ -290,32 +323,79 @@
                         </select>
                     </div>
 
-                    <div class="form_div text_input">
-                        <input type="number" class="input" id="phone" name="phone" required>
-                        <label for="phone">Phone Number</label>
-                    </div> 
 
-                    <div class="form_div text_input">
-                        <input type="text" class="input" id="father_name" name="father_name" required>
-                        <label for="father_name">Father's Name</label>
-                    </div>
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="phone" value="<%-(studentDetails.emis !== undefined || studentDetails.emis !== '') ? studentDetails.emis: ' ' %>" name="emis">
+                                <label for="phone">Emis Number</label>
+                            </div>
 
-                    <div class="form_div text_input">
-                        <input type="text" class="input" id="mother_name" name="mother_name" required>
-                        <label for="mother_name">Mother's Name</label>
-                    </div>
+                            <div class="form_div textarea">
+                                <label for="address">Address</label>
+                                <textarea name="address" id="address"> <%-(studentDetails.address !== undefined || studentDetails.address !== '') ? studentDetails.address : ' ' %> </textarea required>
+                            </div>
 
-                    <div class="form_div textarea">
-                        <label for="address">Address</label>
-                        <textarea name="address" id="address"></textarea required>
-                    </div>
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="aadhar_no" value="<%-(studentDetails.aadhar_no !== undefined || studentDetails.aadhar_no !== '') ? studentDetails.aadhar_no: ' ' %>" name="aadhar_no">
+                                <label for="aadhar_no">Aadhar No</label>
+                            </div>
 
-                </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="nativity" value="<%-(studentDetails.nativity !== undefined || studentDetails.nativity !== '') ? studentDetails.nativity: ' ' %>" name="nativity">
+                                <label for="nativity">Nativity</label>
+                            </div>
 
-                <div class="form_submit">
-                    <input type="submit">
-                </div>    
-            </form>
-        </div>        
-    </div>
-</div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="community" value="<%-(studentDetails.community !== undefined || studentDetails.community !== '') ? studentDetails.community: ' ' %>" name="community">
+                                <label for="community">Community</label>
+                            </div>
+
+                            <div class="form_div text_input">
+                                <input type="email" class="input" id="email"  value="<%-(studentDetails.email
+                                !== undefined || studentDetails.email !== '') ? studentDetails.email: ' ' %>" name="email">
+                                <label for="email">Email ID</label>
+                            </div>
+
+                            <div class="form_div select_input">
+                                <label class="select_label" for="transport_type">Transport</label>
+                                <select name="transport_type" id="transport_type">
+                                    <option value=""></option>
+                                    <option value="School Bus" 
+                                    <%-( ( studentDetails.transport_type != undefined || studentDetails.transport_type != '') && studentDetails.transport_type === "School Bus" )? 'selected' : '' %> >
+                                    School Bus
+                                    </option>
+                                    <option value="Out Bus"  
+                                    <%-( ( studentDetails.transport_type != undefined || studentDetails.transport_type != '') && studentDetails.transport_type === "Out Bus" )? 'selected' : '' %> >
+                                    Out Bus
+                                    </option>+</option>
+                                </select>
+                            </div>
+
+                            <div class="form_div radio_input">
+                                <div class="radio_title">
+                                    <label for="">Disability</label>
+                                </div>
+                                <div class="radio_buttons">
+                                    <div class="radio_option">
+                                        <input type="radio" id="yes_disability" name="disability" value="yes_disability"
+                                        <%-( ( studentDetails.disability != undefined || studentDetails.disability != '') && studentDetails.disability === 'yes_disability')? 'checked' : '' %>>
+                                        <label for="yes_disability">Yes</label>                                  
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="no_disability" name="disability" value="no_disability"
+                                        <%-( ( studentDetails.disability != undefined || studentDetails.disability != '') && studentDetails.disability === 'no_disability')? 'checked' : '' %>>
+                                        <label for="no_disability">No</label>                                           
+                                    </div>
+                                </div>
+                            </div> 
+
+                                               
+                        </div>
+
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
+                    </form>
+                </div>        
+            </div>
+        </div>
+<%}%>

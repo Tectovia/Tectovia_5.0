@@ -8,6 +8,7 @@ var compression = require("compression");
 require("dotenv").config();
 const { format, eachDayOfInterval } = require("date-fns");
 const session = require("express-session");
+require('./server/models/marksheet/marksheet')
 
 
 const app = express();

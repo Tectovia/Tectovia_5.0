@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 require("../../universal_controller/image_saver");
 const staff_model = require("../../../models/admin/staff_information_model");
 const class_model = require("../../../models/admin/section_model");
-
-const { log } = require("console");
+const { log, error } = require("console");
 const image_saver = require("../../universal_controller/image_saver");
 const fs = require("fs");
 const login_data =require( '../../../models/login_data/login_info_model');
@@ -18,7 +17,7 @@ const dayhour = JSON.parse(process.env.DAYHOUR);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.admin_staff_list = async (req, res) => {
-  staff_model.find().then((data) => {
+  staff_model.find({available:true}).then((data) => {
     res.render("admin/staff_info/staff_list", {
       data,
       page_title: "Staff Information List",
@@ -123,6 +122,7 @@ exports.new_staff = async (req, res) => {
   const add_staff = new staff_model({
     staff_name: staffname,
     staff_password: staff_pass,
+    staff_gender:req.body.gender,
     staff_id: staffid,
     class_incharge: 'null',
     staff_designation:staff_designation,
@@ -396,24 +396,36 @@ exports.staff_delete = async (req, res) => {
     }
   })
   console.log("id is "+id);
- staff_model.findByIdAndDelete(id, function (err, docs) { 
-  if (err){ 
-      console.log(err) 
-  } 
-  else{ 
-      console.log("Deleted : ", docs); 
-      const del_id=docs.staff_id;
-      login_data.deleteOne({user_id:del_id},(err,data)=>{
-        if(err){
-          console.log(err);
-        }
-        else{
-          console.log('deleted successfully',data);
-        }
-      })
+
+   let updatedDocument = await staff_model.findByIdAndUpdate(id,{available:false,class_incharge:null},{new:true}).catch((error)=>{
+    console.log(error);
+   })
+
+   await class_model.findOneAndUpdate({section_incharge_id:updatedDocument.staff_id,section_incharge_name:updatedDocument.staff_name},
+                                      {section_incharge_id:null,section_incharge_name:null})
+
+   await login_data.deleteOne({user_id:updatedDocument.staff_id}).catch((error)=>{
+    console.log(error);
+   })
+
+//  staff_model.findByIdAndDelete(id, function (err, docs) { 
+//   if (err){ 
+//       console.log(err) 
+//   } 
+//   else{ 
+//       console.log("Deleted : ", docs); 
+//       const del_id=docs.staff_id;
+//       login_data.deleteOne({user_id:del_id},(err,data)=>{
+//         if(err){
+//           console.log(err);
+//         }
+//         else{
+//           console.log('deleted successfully',data);
+//         }
+//       })
       
-  } 
-}); 
+//   } 
+// }); 
     res.redirect("/admin/staff_info");
 
 };

@@ -6,9 +6,6 @@ exports.validator=(req,res,next)=>{
       const session_id=req.session.user_id;
       const session_obj_id=req.session.obj_id;
       
-      
-
-     
      
       if(params_id===session_id||params_id===session_obj_id){
         

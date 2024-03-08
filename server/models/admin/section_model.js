@@ -20,6 +20,10 @@ const class_list_schema = new mongoose.Schema({
   room_number: {
     type: String,
   },
+  in: {
+    type: Boolean,
+    default:true
+  },
   time_table: {
     day1: [
       {

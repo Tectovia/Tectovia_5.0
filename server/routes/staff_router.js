@@ -18,8 +18,10 @@ const mark_entry_controller=require('../controller/marksheet/mark_entry_controll
 
 //----------------------time table------------------------------------------
 router.get("/staff/time_table/:id" ,staff_time_table.time_table);
-router.get('/staff/message_seen/:id/:date' ,staff_inbox.message_seen)
-router.use('/staff/inbox/:id',staff_inbox.staff_inbox)
+
+router.get('/staff/message_seen/:id/:_id' ,staff_inbox.message_seen)
+router.use('/staff/inbox/:id' ,staff_inbox.staff_inbox)
+
 
 router.use('/staff/deleteInstructions/:id/:staffId' ,staff_instruction.deleteInstruction)
 router.use('/staff/instructions/:id' ,staff_instruction.instruction)
@@ -53,6 +55,7 @@ router.get("/staff/assignment/viewlist/:id/:class/:sec/:assign_id",assignment.vi
 router.get('/staff/markentry/:id',mark_entry_controller.mark_entry_index)
 router.get('/staff/markentry/viewclass/:_id/:batch',mark_entry_controller.mark_entry)
 router.post('/staff/markentry/:_id/:batch/markentered',mark_entry_controller.mark_entered)
+
 
 
 module.exports = router;

@@ -10,6 +10,9 @@ const staff_model = require("../../models/admin/staff_information_model");
 const class_model = require("../../models/admin/section_model");
 const subject_model = require("../../models/admin/subject_model");
 
+// used to show circular notification for staff edited by purushothaman @ 27/2
+const {noOfCirculars}=require('../universal_controller/notificationFunction')
+
 
 var db = mongoose.connection;
 // Body-Parser
@@ -20,6 +23,7 @@ var myObjectStr=process.env.SECTION
 const section_map = JSON.parse(myObjectStr);
 
 exports.attendance = async (req, res) => {
+
   var id = req.params.id;
  
   const date = new Date();
@@ -35,7 +39,12 @@ exports.attendance = async (req, res) => {
   const acad_data = await db.collection("academic_calendar").findOne({ year: year });
   const dayorder = acad_data[datetext].dayorder;
 
-  var staff = await staff_model.find( { _id: id }, { staff_id: 1, staff_name: 1, time_table: 1 } );
+  var staffdata = await staff_model.find( { _id: id }, { staff_id: 1, staff_name: 1, time_table: 1 } );
+
+  
+  // used to show circular notification for staff edited by purushothaman @ 27/2
+  let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+  //----------------------------------------------------------------------
   
   if (dayorder != "null") {
     
@@ -45,7 +54,7 @@ exports.attendance = async (req, res) => {
     var strength = [0, 0, 0, 0, 0];
 
     // console.log(staff);
-    var periods = staff[0].time_table[`day${dayorder}`];
+    var periods = staffdata[0].time_table[`day${dayorder}`];
     // Getting Specific day timetable
     for (let i = 0; i < periods.length; i++) {
       const item = periods[i];
@@ -88,11 +97,12 @@ exports.attendance = async (req, res) => {
     };
     console.log(staff_ack);
     res.render("staff/attendance", {
-      staffdata: staff,
+      staffdata,
       periods,
       details,
       order,
       staff_ack,
+      circularNotification
     });
   } else {
     const order = {
@@ -100,8 +110,9 @@ exports.attendance = async (req, res) => {
       dayorder: dayorder,
     };
     res.render("staff/attendance", {
-      staffdata: staff,
+      staffdata,
       order,
+      circularNotification
     });
   }
 };
@@ -116,8 +127,12 @@ exports.attendance_link = async (req, res) => {
   const stu_data=data[req_data.date][section];
   console.log(stu_data);
   const staffdata=await staff_model.find({ _id: req_data.id }, { staff_id: 1, staff_name: 1 })
+
+   // used to show circular notification for staff edited by purushothaman @ 27/2
+   let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+   //----------------------------------------------------------------------
   
-   res.render("staff/attendance_list", {staffdata, stu_data,req_data, });
+   res.render("staff/attendance_list", {staffdata, stu_data,req_data,circularNotification });
 };
 exports.attendance_link_edit= async (req, res) => {
   const req_data = req.params;

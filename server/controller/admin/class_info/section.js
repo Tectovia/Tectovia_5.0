@@ -55,13 +55,13 @@ exports.submit_student_basic = async (req, res) => {
        const data= [
             {
             user_id: req.body.student_rollno,
-            
+
             password: hashedPassword,
             role: title+"_"+section
            },
            {
             user_id: req.body.student_rollno+"_p",
-            
+
             password: hashedPassword,
             role: title+"_"+section+"_parent"
            }
@@ -269,13 +269,24 @@ exports.delete_student = async (req, res) => {
 };
 
 exports.view_student = async (req, res) => {
-    const title = req.params.title;
-    const sec = req.params.section;
-    const id = req.params._id;
-
-
-
+    const title = req.params.title || req.data.id;
+    const sec = req.params.section || req.data.section;
+    const id = req.params._id || req.data._id
     const selectedModel = mongoose.model(title);
+    let studentDetails = req.data;
+    let edit=false;
+    console.log("params");
+    console.log(req.params);
+    console.log("data");
+    console.log(req.data);
+    
+    if(studentDetails !== undefined){
+        edit=true
+    }
+
+    const {obj_id} =  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
+
+   
 
     if (!selectedModel) {
         console.log("Invalid title");
@@ -284,17 +295,17 @@ exports.view_student = async (req, res) => {
 
         var hash_student_password;
 
-        login_data.find({obj_id:id}).then(async (login_doc) => {
+        login_data.find({_id:obj_id}).then(async (login_doc) => {
             hash_student_password = login_doc[0].password;
         selectedModel.findById(id, (err, student_doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send("Error retrieving student document");
             } else {
-                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password });
+                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password,edit,studentDetails });
             }
         });
-    });
+    })
 }
 
 //------------------- SECTION FUNCTIONS -------------------
@@ -339,4 +350,20 @@ exports.edit_section = async (req, res) => {
     res.redirect(`/admin/class_info/class_list/view_section/${id}/${title}/${sec}`)
 
   
+}
+
+
+
+//--------------------- EDIT STUDENT PERSONAL DETAILS ----------------------
+
+exports.edit_student=async (req,res,next)=>{
+    const {_id,batch}=req.params
+    req.data= await mongoose.model(batch).findOne({_id:_id},{})
+    next()
+}
+
+exports.edit_student_submit = async (req,res,next)=>{
+    const {_id,batch}=req.params
+    let updatetdData = await mongoose.model(batch).findByIdAndUpdate({_id:_id},req.body,{new:true})
+    res.redirect(`/admin/class_info/class_list/view_section/view_student/${updatetdData._id}/${updatetdData.id}/${updatetdData.section}`)
 }

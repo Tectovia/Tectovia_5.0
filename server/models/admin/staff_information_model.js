@@ -309,6 +309,10 @@ const staff =new mongoose.Schema({
   staff_achievement_img2: {
     type: String,
   },
+  available:{
+    type:Boolean,
+    default:true
+  },
 
   time_table: {
     day1: [
