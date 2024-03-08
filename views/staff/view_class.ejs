@@ -1,6 +1,21 @@
 <link rel="stylesheet" href="/css/admin/class_info/view_section.css">
+<link rel="stylesheet" href="/css/card.css">
 
 <script>
+    function hide_popup_add_formstudent() {
+        var element = document.getElementById("popup_add_forumstudent");
+        element.style.display = "none";
+    }
+    
+    // function display_popup_add_formstudent() {
+      
+    // }    
+    
+    function display_popup_add_formstudent(forumTitle) {
+    var element = document.getElementById("popup_add_forumstudent");
+    element.style.display = "flex";
+    document.getElementById("forumname").value = forumTitle;
+}
 
     function hide_popup_add_student() {
         var element = document.getElementById("popup_add_student_basic");
@@ -21,7 +36,6 @@
         var element = document.getElementById("popup_edit_section");
         element.style.display = "flex";
     }
-    
 </script>
 
 <div class="window" id="window_layout">
@@ -124,8 +138,103 @@
         <% } else { %>
             <h1>No Students Data</h1>
         <% } %>
-        
-        <div class="window_container">
+        <div class="container center_title">
+            Subject
+        </div>
+        <div class="card_container">
+            <% if (sub) { %>
+                <% sub.forEach(function(item) { %>
+                    <div class="card">
+                        <div class="card_content">
+                            <div class="row">
+                                <h3>Subject Name : <%= item.subject_name %></h3>
+                            </div>
+                            <div class="row">
+                                <h3>Subject Code : <%= item.subject_code %></h3>
+                            </div>
+                            <div class="row">
+                                <h3>Subject Medium : <%= item.subject_medium %></h3>
+                            </div>
+                        </div>
+    
+                        <div class="card_buttons">
+                            <div class="">
+                                <a href="/staff/forum/view_class/view_subject/<%= item._id %>/<%= title %>"><button class="btn_success">View</button></a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+        <div class="container center_title">
+            Forum
+        </div>
+        <div class="card_container">
+            <% if (forum_class ) { %>
+                <% forum_class.forEach(function(forum) { %>
+                    <div class="card">
+                        <div class="card_content">
+                            <div class="row">
+                                <h3>Forum Title: <%= forum.forum_title %></h3>
+                            </div>
+                            <div class="row">
+                                <h3>Forum Incharges: 
+                                  <% if (forum.forum_incharge && forum.forum_incharge.length > 0) { %>
+                                    <% forum.forum_incharge.forEach(function(incharge) { %>
+                                        <% if (incharge && incharge.staff_name && incharge.staff_id) { %>
+                                            <%= incharge.staff_name %> - <%= incharge.staff_id %><br>
+                                        <% } %>
+                                    <% }) %>
+                                <% } else { %>
+                                    No incharges assigned.
+                                <% } %>
+                                </h3>
+                            </div> 
+                        </div>
+                        <% if (forums) { %>
+                                  <!-- Your card content here -->
+                                  <div class="card_buttons">
+                                          <div class="todo_delete">
+                                            <button class="btn_success" onclick="display_popup_add_formstudent('<%= forum.forum_title %>')">Add Student</button>
+                                        </div>
+                          </div>
+                      <% } %>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <!---------------Forum Table-------------------->
+
+        <div class="table_container">
+            <div class="table_header">
+                <div class="center_title">
+                    Forum Table
+                </div>
+            </div>
+            <% if (students_doc) { %>
+            <table class="table">
+                <tr class="header">
+                    <th>Roll No</th>
+                    <th>Student</th>
+                    <th>Forum Title</th>
+                </tr>
+               
+                <% students_doc.forEach(function(item) { %>
+                    <% if(item.forum===null){ %>
+                        <% } else{%>
+                <tr>
+                   <td> <%= item.rollno %></td>
+                   <td> <%= item.name %></td>
+                   <td><%= item.forum %></td>
+                  </tr>
+                <%}%>
+                <%}) %>
+            </table>
+        </div>
+        <% } else { %>
+            <h1>No Students Data</h1>
+        <% } %>
             <!-- css/table.css -->
             <% if(typeof fees !='undefined' && fees !=null){%>
               <div class="table_container">
@@ -205,6 +314,50 @@
               </div>
               <%} %>
           </div>
+        <!-- Add Forum Student Form -->
+        <div class="popup_container" id="popup_add_forumstudent" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Add Forum Student</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_add_formstudent()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/staff/forum/view_class/submit_forum_student/<%= staffdata[0]._id %>/<%= title %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="forumname" name="forumname" value="" readonly>
+                            </div>
+                            <div class="form_div">
+                                <div class="dropdown" data-control="checkbox-dropdown">
+                                    <label for="edit_forum_incharge">Student Name</label>
+                                    <div class="dropdown-label">Select Options</div>
+                                    <div class="dropdown-list">
+                                        <% students_doc.forEach(function(item) { %>
+                                            <% if(item.forum===null){ %>
+                                            <label class="dropdown-option">
+                                                <input type="checkbox" value="<%= item.name + '-' + item.rollno %>" name="forum_student_name">
+                                                <%= item.name + '-' + item.rollno %>
+                                            </label>
+                                            <% } %>
+                                        <% }); %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div>
+                            <div class="form_reset form_div_span">
+                                <input type="reset">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
          <!-- Add Student Form -->
          <div class="popup_container" id="popup_add_student_basic" style="display: none;">
             <div class="popup" id="popup">
@@ -561,4 +714,98 @@
             </div>
     </div>
 </div>
-    
+<script>
+  
+    (function($) {
+      var CheckboxDropdown = function(el) {
+        var _this = this;
+        this.isOpen = false;
+        this.areAllChecked = false;
+        this.$el = $(el);
+        this.$label = this.$el.find('.dropdown-label');
+        this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+        this.$inputs = this.$el.find('[type="checkbox"]');
+        
+        this.onCheckBox();
+        
+        this.$label.on('click', function(e) {
+          e.preventDefault();
+          _this.toggleOpen();
+        });
+        
+        this.$checkAll.on('click', function(e) {
+          e.preventDefault();
+          _this.onCheckAll();
+        });
+        
+        this.$inputs.on('change', function(e) {
+          _this.onCheckBox();
+        });
+      };
+      
+      CheckboxDropdown.prototype.onCheckBox = function() {
+        this.updateStatus();
+      };
+      
+      CheckboxDropdown.prototype.updateStatus = function() {
+        var checked = this.$el.find(':checked');
+        
+        this.areAllChecked = false;
+        this.$checkAll.html('Check All');
+        
+        if(checked.length <= 0) {
+          this.$label.html('Select Options');
+        }
+        else if(checked.length === 1) {
+          this.$label.html(checked.parent('label').text());
+        }
+        else if(checked.length === this.$inputs.length) {
+          this.$label.html('All Selected');
+          this.areAllChecked = true;
+          this.$checkAll.html('Uncheck All');
+        }
+        else {
+          this.$label.html(checked.length + ' Selected');
+        }
+      };
+      
+      CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+        if(!this.areAllChecked || checkAll) {
+          this.areAllChecked = true;
+          this.$checkAll.html('Uncheck All');
+          this.$inputs.prop('checked', true);
+        }
+        else {
+          this.areAllChecked = false;
+          this.$checkAll.html('Check All');
+          this.$inputs.prop('checked', false);
+        }
+        
+        this.updateStatus();
+      };
+      
+      CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+        var _this = this;
+        
+        if(!this.isOpen || forceOpen) {
+           this.isOpen = true;
+           this.$el.addClass('on');
+          $(document).on('click', function(e) {
+            if(!$(e.target).closest('[data-control]').length) {
+             _this.toggleOpen();
+            }
+          });
+        }
+        else {
+          this.isOpen = false;
+          this.$el.removeClass('on');
+          $(document).off('click');
+        }
+      };
+      
+      var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+      for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+        new CheckboxDropdown(checkboxesDropdowns[i]);
+      }
+    })(jQuery);
+    </script>

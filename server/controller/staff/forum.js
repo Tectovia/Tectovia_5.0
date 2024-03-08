@@ -19,6 +19,7 @@ const login_data = require('../../models/login_data/login_info_model');
 const forum_model=require("../../models/admin/forum_model");
 const class_fees=require("../../models/admin/fees_models");
 const { log } = require("util");
+const Forum=require("../../models/admin/forum_model");
 
 
 
@@ -84,23 +85,41 @@ async function get_staff() {
     }
   }
 
+  exports.view_subject = async (req, res) => {
+    const title = req.params.title;
+    var id = req.params.id;
+  
+    subject_model.findById(id, function (err, item) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("./staff/view_subject", {
+          item,
+          title,
+          add_section: "none",
+          add_subject: "none",
+        });
+      }
+    });
+  };
+
+  
 // View Section
 exports.view_section = async (req, res) => {
     const { id,title,section } = req.params; 
     const staffdata = await staff_model.find({_id:id}); 
-    var fees= await class_fees.findOne({class:name},{_id:0,class:0,total:0,__v:0});
-    
     const prop=req.params.prop;
     var name=title.split('_')[0];
-    name=classes_map[name];
+    name=await classes_map[name];
+    const forum_id = req.params.id;
+    const forums = await Forum.find();
+    const forum = await Forum.findById(forum_id);
+    var fees= await class_fees.findOne({class:name},{_id:0,class:0,total:0,__v:0})
     let formprop={
              
               student_info_student: "none",
               student_info_personal: "none",
     }
-    
-    
-  
     const student_schema = mongoose.model(title);
   
     if (!student_schema) {
@@ -142,22 +161,25 @@ exports.view_section = async (req, res) => {
         }
         
       }
-  
-      
       var no_boys = genderCount.boys;
       var no_girls = genderCount.girls;
       var no_others = genderCount.others;
       var no_total = no_boys+no_girls+no_others;
       var staff_doc = await get_staff();
       const section_doc= await class_model.findOne({id:title,section_name:section});
-   
-  
+      const sub=await subject_model.find({id:title});
+      console.log("subjects here : ",sub );
+
+      const forum_class = forums.filter(forum => {return forum.forum_class.includes(section_doc.id)});
       
             res.render("./staff/view_class", {
               section_doc,
               students_doc,
+              forum_class,
               dayhour,
               name,
+              forum:forum,
+              forums,
               fees,
               staff_doc,
               title,
@@ -166,26 +188,48 @@ exports.view_section = async (req, res) => {
               no_others,
               no_total,
               formprop,
-              staffdata
+              sub,
+              staffdata,
             });
-  
           }
             catch (err) {
               console.log(err);
             }      
       
   };
+//-------------------Submit Forum Details-----------------
 
-  //go_back_section
-exports.go_back_section = async (req, res) => {
-    const _id = req.params._id;
-    const title = req.params.title;
-    const sec = req.params.section;
-    res.redirect(
-      "/staff/forum/view_class/submit_student_basic/" + _id + "/" + title + "/" + sec
-    );
-  };
-  
+exports.submitForumStudent = async (req, res) => {
+    try {
+      const { id, title, section } = req.params;
+        const { forum_student_name, forumname } = req.body;
+        if(Array.isArray(forum_student_name)){
+          for (const studentName of forum_student_name) {
+            const [name, rollno] = studentName.split('-');
+            const updatedStudent = await mongoose.model(title).findOneAndUpdate(
+                {rollno:rollno},
+                {$set : { forum: forumname} },
+                { new: true }
+            );      
+        }
+      }else{
+        const [name, rollno] = forum_student_name.split('-');
+            const updatedStudent = await mongoose.model(title).findOneAndUpdate(
+                {rollno:rollno},
+                {$set : { forum: forumname} },
+                { new: true }
+            ); 
+      }
+       
+         res.redirect(`/staff/forum/view_class/${id}/${title}/${section}`);
+         
+    } catch (error) {
+        console.error('Error updating student forum:', error);
+    }
+};
+
+
+
 //------------------- STUDENT FUNCTIONS -------------------
 
 exports.submit_student_basic = async (req, res) => {

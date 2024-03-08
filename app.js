@@ -52,8 +52,10 @@ app.listen(port, () => console.log(`click here : http://localhost:${port}`));
 
 
 
+
 app.get('/api/test',async(req,res)=>{
   var data=await db.collection('academic_calendar').findOne({year:2024});
+
   console.log(data);
   res.send(data);
  })
