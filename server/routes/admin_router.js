@@ -30,7 +30,7 @@ const infrastructure=require('../controller/admin/infrastructure/infrastructure'
 //--------------------  Facilities -------------------------------
 const facilities=require('../controller/admin/facilities/facilities');
 // ---------------------add transport---------------------
-router.post('/admin/Transport/add_transport',facilities.addtransport);
+router.post('/admin/Transport/add_transport',facilities.addtransport)
 //--------------------  institution_info  -------------------------------
 
 

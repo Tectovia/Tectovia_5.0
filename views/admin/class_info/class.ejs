@@ -377,7 +377,7 @@ function calculateupdateTotalAmount() {
             </div>
         <%} %>
       
-        <div class="popup_container" id="popup_section" style="display: none;">
+        <div class="popup_container fade-up" id="popup_section" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Add Section</p>
@@ -555,3 +555,21 @@ function calculateupdateTotalAmount() {
     </div>
 </div>
 
+<style>
+    .popup_container.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>

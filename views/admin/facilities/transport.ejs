@@ -20,9 +20,8 @@
                     <th>Route</th>
                     <!-- <th>staff designation</th> -->
                     <th>Roll no1</th>
-                    <th>Diver name</th>
                     <th>Roll no2</th>
-                
+                    <th>Diver name</th>
                     <th>alternate Driver </th>
                     
                 </tr>
@@ -34,13 +33,11 @@
                        
                         <td><%- transport.route %></td>
                         <td><%- transport.roll_no1 %></td>
-                        <td><%- transport.Driver %></td>
-                       
+                        <td><%- transport.roll_no2 %></td>
                         <!-- <td><%- transport.staff_designation %></td> -->
                         
-                        <td><%- transport.roll_no2 %></td>
+                        <td><%- transport.Driver %></td>
                         <td><%- transport.Alterdriver %></td>
-                        
                         
                        
                     </tr>
@@ -51,7 +48,7 @@
         </div>
         
         </div>
-        <div class="add_transports">
+        <div class="add_students">
             <button onclick="show()">Add transports</button>
         </div>
         
@@ -87,11 +84,11 @@
                         
                         <div class="form_div file_input">
                             <label >select alternate driver:</label>
-                            <input type="text" id="driName" name="Alterdriver" class="driver-input">
+                            <input type="text" id="driName" name="Alterdriver">
                            
                         </div>
                         
-                        <div class="form_div file_input">
+                        <div class="form_dive file_input">
                             <label >Roll no2:</label>
                             <select id="" name="roll_no2" class="input-data" onchange="UpdateRoll2(this.value)">
                                 <option value="default" class="input-data">choose a roll no</option>

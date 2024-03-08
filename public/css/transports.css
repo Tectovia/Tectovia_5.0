@@ -17,21 +17,12 @@ font-size: 30px;
 /* .display_students{
 
 } */
-.add_transports{
-   margin-left: 1130px;
-   margin-right: 20px;
-   margin-top: -25rem;
-   aspect-ratio: 16/9;
-   display: block;
-   
+.add_students{
+   margin-left: 1050px;
+   margin-right: 200px;
+   margin-top: 1rem;
+    
 }
-
-.driver-input{
-    color: black;
-}
-
-
-
 .tablee{
     margin-left: 28rem;
     border-collapse: collapse;
@@ -47,17 +38,16 @@ font-size: 30px;
     font-size: 20px;
 }
 
-/* .add_students{
+.add_students{
     margin-top: -30rem;
-    margin-left: 80rem;} */
+    margin-left: 80rem;
 
-
+}
 .input-data{
     color: black;
 }
 .form_divv{
-    margin-bottom: -19rem;
-
+    margin-bottom: -14rem;
 }
 .form_dive{
     margin-bottom: -16.9rem;
