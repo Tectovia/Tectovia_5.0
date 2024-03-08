@@ -141,6 +141,11 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //View student
     router.get('/admin/class_info/class_list/view_section/view_student/:_id/:title/:section' , admin_section.view_student);
     
+    // ---------------view parent details------------------------------------
+    router.get("/admin/viewParent/:_id/:batch",view_student.view_parent)
+    router.post("/admin/viewStudent/editStudentParent/:_id/:batch",view_student.edit_parent)
+   
+
     //Delete student
     router.get('/admin/class_info/class_list/view_section/delete_student/:_id/:_sec_id/:title/:section' , admin_section.delete_student);
 
@@ -186,6 +191,8 @@ router.get('/admin/circular',circular_management.circular_management);
 router.post('/admin/circular/message_sent',circular_management.message_sent) ;
 router.get("/admin/circular/archive_circular/:_id",circular_management.message_archive)
 router.get("/admin/circular/delete_circular/:_id",circular_management.message_delete)
+router.get("/admin/circular/edit_circular/:_id",circular_management.message_edit,circular_management.circular_management)
+router.post("/admin/circular/messageEditDone/:_id",circular_management.message_editSubmission)
 
 
 //--------------------  attendance_graph  -------------------------------
@@ -194,6 +201,9 @@ router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
 //--------------------  set_holidays  -------------------------------
 // router.get('admin/set_holidays', admin_controller.set_holidays);
 
+ //edit student
+ router.get('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student,admin_section.view_student);
+ router.post('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student_submit,admin_section.view_student);
 
 module.exports = router;
     

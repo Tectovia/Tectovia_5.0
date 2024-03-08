@@ -70,8 +70,7 @@ var assign=[]
                     default:'null'
                 }
             }
-        ]
-        
+        ] 
     });
     this.create_test_collection(item,test_schema)
   })

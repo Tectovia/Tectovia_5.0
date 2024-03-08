@@ -10,6 +10,10 @@ const class_model = require("../../models/admin/section_model");
 const subject_model = require("../../models/admin/subject_model");
 const student_model = require("../../models/admin/student_model");
 
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+const {noOfNotificationsForStudents} = require('../universal_controller/notificationFunction')
+//-----------------------------------------------------------------------------
+
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -51,18 +55,23 @@ exports.attendance= async (req,res)=>{
       const periods=time_table.time_table[`day${dayorder}`];
      
       const common=  await attend_model.findOne({ [datetext]: { $exists: true } });
+
+      // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+      let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+      //----------------------------------------------------------------------------------
+
      if(common!=null){
        const student_attend=common[datetext][section][id]
        const ack=common[datetext][section].ack
       
-      res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role})
+      res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role,notification})
       }
       else{
         dayorder='null'
-        res.render('student/attendance',{student,dayorder,datetext,role})
+        res.render('student/attendance',{student,dayorder,datetext,role,notification})
       }
     } else {
-      res.render('student/attendance',{student,dayorder,datetext,role})
+      res.render('student/attendance',{student,dayorder,datetext,role,notification})
     }
    
     

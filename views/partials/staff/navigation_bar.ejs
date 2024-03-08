@@ -32,7 +32,7 @@
         <li>
             <a href="/staff/inbox/<%=staffdata[0]._id%>">
                 <i class='bx bxs-group' ></i>
-                <span class="text">Circullar</span>
+                <span class="text">Circullar </span>
             </a>
         </li>
         <li>
@@ -80,12 +80,12 @@
         <div class="notification">
             <a href="#" class="notification-icon">
               <i class="bx bxs-bell"></i>
-              <span class="num">8</span>
+              <span class="num"> <%- circularNotification.length %></span>
             </a>
             <div class="dropdown">
-              <a href="#" class="dropdown-item">Notification 1</a>
-              <a href="#" class="dropdown-item">Notification 2</a>
-              <a href="#" class="dropdown-item">Notification 3</a>
+                <% circularNotification.map((item)=>{ %>
+                    <a href="/staff/inbox/<%=staffdata[0]._id%>" class="dropdown-item"><%- item.title %></a>
+                <% }) %>
             </div>
           </div>
 

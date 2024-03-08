@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="../../css/instructions.css">
 <div class="staff">
     <div class="staff_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs') %>
+        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
+  
+   
     
     <div class="form">
-        <header class="in">  <span class="underline-three">INSTR</span>UCTION </header>
+    <header class="in">  <span class="underline-three">INSTR</span>UCTION </header>
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
         <label for="instruction" class="sub_instruction"></label><br>
         <textarea type="text" id="instruction" class="textbox textarea" name="instruction"></textarea><br><input type="submit" class="submitbox " value="Send"><br><br>
@@ -63,6 +65,27 @@
             </div>
     </form>
 </div>
+
+
+
+<%if(lastVisited==='sent'){%>
+    <div class="popup_container" id="messageSentContainer" >
+      <div class="popup">
+        <div class="popup_header">
+          <p class="pop_title">Message sent</p>
+              <span class="close_icon" id="closePopup" onclick="hideMessageContainer()">&times;</span>
+        </div>
+        <div class="pop_body">
+          <div style="text-align: center;">
+              <img src="/img/admin/bx-check.svg" ><br>
+              <h1>Message sent</h1>
+          </div>
+          
+        </div>
+      </div>
+    </div> 
+<%}%>
+
 <div>
     <button value="oldInstructions" onclick="showOldInstructions(this.value)">past messages</button>
     <div class="oldInstructions hidden" id="oldInstructions">
@@ -72,10 +95,13 @@
         <%})%>
     </div>
     
-</div> 
+</div>
 
 
 </div>
+
+ 
+ 
 <style>
     .hidden{
         display: none;
@@ -129,5 +155,7 @@
             .toggle('show')
         })
     }
+    function hideMessageContainer(){
+        document.getElementById('messageSentContainer').style.display='none'
+    }
 </script>
-</html>

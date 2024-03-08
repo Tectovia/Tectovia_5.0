@@ -1,7 +1,7 @@
 <div class="window" id="window_layout">
   <%if(role==="student"){%>
     <div class="window_navbar">
-        <%- include('../partials//student/navigation_bar.ejs') %>
+      <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
      </div>
   <%}else{%>
     <div class="window_navbar">

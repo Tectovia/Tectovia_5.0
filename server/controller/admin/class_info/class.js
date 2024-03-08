@@ -329,10 +329,8 @@ exports.delete_section = async (req, res) => {
     }
     
     // Delete student documents
-    const deleted_students = await student_schema.deleteMany({
-      id: title,
-      section: sec,
-    });
+
+    const deleted_students = await student_schema.updateMany({section: sec},{section:null},{new:true})
 
     if (deleted_students.deletedCount === 0) {
       console.log("Cannot Delete Student Documents");
@@ -384,7 +382,7 @@ exports.delete_section = async (req, res) => {
         }
         
         
-        const deleted = await class_model.findByIdAndRemove(section_id);
+        const deleted = await class_model.findOneAndUpdate({_id:section_id},{in:false},{new:true})
         
         if (!deleted) {
           console.log("Cannot Delete");
