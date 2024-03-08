@@ -20,7 +20,7 @@ router.get("/parent/dairy/:id/:title/:sec",student_dairy_contoller.student_dairy
 
 //---------------------attendence parent----------------
 router.get('/parent/attendance/:id/:title/:sec/:req_date',student_attendance.attendance);
-//------------assignment parent------------------
+//------------assignment parent--------------------------
 router.get('/parent/assignment/:id/:title/:sec/',student_assignment.assignment);
 
 //-----------------------------parent circular------------------------------
