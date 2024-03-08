@@ -1,3 +1,4 @@
+
 <script>
 
   function hide_popup_add() {
@@ -37,10 +38,12 @@
 <!-- showing staff list -->
     <% if (data) { %> <% data.forEach(function(item) { %>
       <div class="container_todo">
-        <div class="todo_profile">
-        <img
-          src="/uploads/staff_info/<%-item.staff_id%>/<%- item.staff_profile_img %>" alt=""/>
-      </div>
+        <div class="img_contain">
+            <div class="todo_profile staff_profile">
+
+            <img src="/uploads/staff_info/<%-item.staff_id%>/<%- item.staff_profile_img %>" alt=""/>
+          </div>
+          </div>
       <div class="todo_content">
         <div class="todo_row">
           <h3>Name : <%-item.staff_name%></h3>
@@ -140,3 +143,19 @@
     </div>
 
 </div>
+
+<style>
+  .staff_profile{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+   border: 2px solid var(--primary-color);
+  }
+.img_contain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
