@@ -139,7 +139,7 @@
         <% } %>
 
         <!-- Add Student Form -->
-        <div class="popup_container" id="popup_add_student_basic" style="display: none;">
+        <div class="popup_container fade-up" id="popup_add_student_basic" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Add Student</p>
@@ -243,15 +243,15 @@
         </div>
 
         <% if (formprop.student_info_personal == "display") { %>
-        <div class="popup_container" id="popup_add_student_personal">
-                <div class="popup" id="popup">
+            <div class="popup_container form-input-detail fade-up" id="popup_add_student_personal">
+                <div class="popup display" id="popup">
                     <div class="popup_header">
                         <p class="pop_title">Student Details</p>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup">&times;</span></a>
                     </div>
                     <div class="pop_body">
                         <form action="/admin/class_info/class_list/view_section/submit_student_details/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
-                            <div class="form_inputs">
+                            <div class="form_inputs pop">
                                 <div class="form_div text_input">
                                     <input type="text" class="input" id="readonly" name="name" value="<%- current_student.name %>" readonly>
                                     <label for="name">Student Name</label>
@@ -385,28 +385,34 @@
                                     <input type="file" class="input" id="stu_11_img" name="stu_11_img">
                                     <label for="stu_11_img">11 th Marksheet</label>
                                 </div> -->
-                                
+                                <div class="form_submits">
+                                    <div class="form_submit">
+                                        <div class="btn">
+                                            <input type="submit">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-            
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
+    
                         </form>
-                    </div>        
+                     
+                            <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+                    </div> 
+                </div>        
             </div>
         <% } %>
         
 
         <% if (formprop.student_info_parent == "display") { %>
-            <div class="popup_container" id="popup_add_student">
-                <div class="popup" id="popup">
+            <div class="popup_container form-input-detail fade-up  id="popup_add_student">
+                <div class="popup parants_popup" id="popup">
                     <div class="popup_header">
                         <p class="pop_title">Add Parents</p>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup" onclick="hide_popup_add_student()">&times;</span></a>
                     </div>
                     <div class="pop_body">
                         <form action="/admin/class_info/class_list/view_section/submit_student_parent/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
-                            <div class="form_inputs">
+                            <div class="form_inputs pops">
                                 <div class="form_div text_input">
                                     <input type="text" class="input" id="readonly" name="name" value="<%- current_student.name %>" readonly>
                                     <label for="name">Student Name</label>
@@ -526,11 +532,16 @@
                                     <input type="file" class="input" id="stu_smart_img" name="smart_img" >
                                     <label for="stu_smart_img">Smart Card</label>
                                 </div>
+                                <div class="form_submits_parent">
+                                <div class="form_submit">
+                                    <div class="btn">
+                                    <input type="submit">
+                                    </div>
+                                </div>
+                            </div>  
                             </div>
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
                         </form>
+                        <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
                     </div>        
                 </div>
             </div>
@@ -538,3 +549,94 @@
 
         </div>
 </div>
+
+
+<style>
+    .form-input-detail{
+        margin-top: 10%;
+    }
+    .popup_container.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+}
+
+.pop{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.pops{
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form_submits{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / span 3;
+    margin-left: 43%;
+}
+.btn{
+    width: 30%;
+}
+.parants_popup{
+    margin-top: 60%;
+}
+
+.form_submits_parent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / span 2;
+    margin-left: 43%;
+}
+
+</style>
+
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+</script>
+
