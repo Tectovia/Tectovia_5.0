@@ -52,14 +52,8 @@ app.listen(port, () => console.log(`click here : http://localhost:${port}`));
 
 
 
-
-app.get("/admin/calendar", function (req, res) {
-    db.collection("academic_calendar")
-      .findOne({'year':2024})
-      .then((data) => {
-      
+app.get('/api/test',async(req,res)=>{
+  var data=await db.collection('academic_calendar').findOne({year:2024});
   console.log(data);
-        res.send(data);
-        // res.render("admin/academic_calendar/academic_calend", { data });
-      });
-  });
+  res.send(data);
+ })
