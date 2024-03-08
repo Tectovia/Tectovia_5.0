@@ -30,6 +30,9 @@ router.get("/staff/attendance/:id/:date" , staff_attendance.attendance);
 router.get("/staff/attendance_link/:id/:date/:order/:hour/:std/:sec" ,staff_attendance.attendance_link);
 router.post("/staff/attendance_submit/:id/:date/:order/:hour/:std/:sec" , staff_attendance.attendance_submit);
 
+router.get("/staff/attendance_link_edit/:id/:date/:order/:hour/:std/:sec" ,staff_attendance.attendance_link_edit);
+router.post("/staff/attendance_edit_submit/:id/:date/:order/:hour/:std/:sec" , staff_attendance.attendance_edit_submit);
+
 //-------------------------Forum Routes----------------------------------------
 router.get("/staff/forum/:id/",forum.add_forum);
 router.get("/staff/forum/view_class/:id/:title/:section/",forum.view_section);

@@ -233,13 +233,28 @@ exports.staff_personal = async (req, res) => {
     .findByIdAndUpdate(staff_id, Object)
     .then((data) => {
       console.log(data);
-      res.render("admin/staff_info/staff_education_form", { data });
+      res.redirect(`/admin/staff_info/staff_education_form/${staff_id}`);
     })
     .catch((err) => {
       console.log(err);
     });
 };
-
+exports.staff_education_form=async(req,res)=>{
+  var staff_id=req.params.staff;
+  try {
+    var data=staff_model. findById(staff_id)
+    
+      console.log(data);
+      res.render("admin/staff_info/staff_education_form", { data });
+    
+  } catch (error) {
+    console.log(err);
+    res.redirect('/');
+  }
+ 
+    
+   
+}
 exports.staff_education = async (req, res) => {
   staff_id = req.params.id;
 
@@ -351,14 +366,14 @@ exports.staff_achivements = async (req, res) => {
 exports.staff_delete = async (req, res) => {
   var id = req.params.id;
   staff_model.findById(id,{time_table:1}).then((data) => {
-    console.log(data);
-    
+
+    console.log(dayhour);
     for (let i = 1; i <= dayhour.day; i++) {
-      for (let j = 0; j < dayhour.hour; j++) {
+      for (let j = 0; j < dayhour.hr; j++) {
+      
         if (data.time_table["day" + i][j].sub != "null") {
           var class_name = data.time_table["day" + i][j].class;
           var section_name = data.time_table["day" + i][j].sec;
-          console.log(class_name + section_name);
           class_model
             .findOneAndUpdate(
               { id: class_name, section_name: section_name },
@@ -444,71 +459,32 @@ exports.personal_edit_submission = async (req, res) => {
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
-  var uploadpath =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno +
-    "/";
+  var uploadpath =  require("path").resolve("./") +  "/public/uploads/staff_info/" +  staff_rollno + "/";
 
   var Object = req.body;
   //  image saver
   if (req.files) {
     if (req.files.staff_profile)
-      Object.staff_profile_img = image = image_saver(
-        req.files.staff_profile,
-        "_profile_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_profile_img = image = image_saver(req.files.staff_profile,"profile_", uploadpath);
 
     if (req.files.staff_community_img)
-      Object.staff_community_img = image_saver(
-        req.files.staff_community_img,
-        "_community_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_community_img = image_saver( req.files.staff_community_img, "community_", uploadpath );
 
     if (req.files.staff_income_img) {
-      Object.staff_income_img = image_saver(
-        req.files.staff_income_img,
-        "_income_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_income_img = image_saver( req.files.staff_income_img, "income_", uploadpath);
     }
 
     if (req.files.staff_disability_img)
-      Object.staff_disability_img = image_saver(
-        req.files.staff_disability_img,
-        "_disability_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_disability_img = image_saver( req.files.staff_disability_img, "disability_", uploadpath);
 
     if (req.files.staff_experience_img)
-      Object.staff_experience_img = image_saver(
-        req.files.staff_experience_img,
-        "_experience_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_experience_img = image_saver(  req.files.staff_experience_img,  "experience_",  uploadpath);
 
     if (req.files.staff_account_passbook)
-      Object.staff_account_passbook = image_saver(
-        req.files.staff_account_passbook,
-        "_passbook_",
-        uploadpath,
-        staff_rollno
-      );
+      Object.staff_account_passbook = image_saver(  req.files.staff_account_passbook,  "passbook_",  uploadpath);
 
-    if (req.files.staff_aadhar_img)
-      Object.staff_aadhar_img = image_saver(
-        req.files.staff_aadhar_img,
-        "_aadhar_",
-        uploadpath,
-        staff_rollno
-      );
+    if (req.files.staff_aadhar_img) 
+    Object.staff_aadhar_img = image_saver(   req.files.staff_aadhar_img,   "aadhar_",uploadpath);
   }
   staff_model
     .findByIdAndUpdate(staff_id, Object)
@@ -552,67 +528,64 @@ exports.education_edit_submission = async (req, res) => {
     fs.mkdirSync(path);
   }
   var uploadpath =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno +
-    "/";
+    require("path").resolve("./") + "/public/uploads/staff_info/" + staff_rollno + "/";
   // save image file
   if (req.files) {
     if (req.files.staff_sslc_marksheet)
       obj.staff_sslc_marksheet = image_saver(
         req.files.staff_sslc_marksheet,
-        "_sslc_",
+        "sslc_",
         uploadpath,
-        staff_rollno
+        
       );
     if (req.files.staff_hsc_marksheet)
       obj.staff_hsc_marksheet = image_saver(
         req.files.staff_hsc_marksheet,
-        "_hsc_",
+        "hsc_",
         uploadpath,
-        staff_rollno
+        
       );
     if (req.files.staff_ug_marksheet)
       obj.staff_ug_marksheet = image_saver(
         req.files.staff_ug_marksheet,
-        "_ug_",
+        "ug_",
         uploadpath,
-        staff_rollno
+      
       );
     if (req.files.staff_pg_marksheet)
       obj.staff_pg_marksheet = image_saver(
         req.files.staff_pg_marksheet,
-        "_pg_",
+        "pg_",
         uploadpath,
-        staff_rollno
+       
       );
     if (req.files.staff_bed_marksheet)
       obj.staff_bed_marksheet = image_saver(
         req.files.staff_bed_marksheet,
-        "_B-ed_",
+        "B-ed_",
         uploadpath,
-        staff_rollno
+       
       );
     if (req.files.staff_med_marksheet)
       obj.staff_med_marksheet = image_saver(
         req.files.staff_med_marksheet,
-        "_M-ed_",
+        "M-ed_",
         uploadpath,
-        staff_rollno
+      
       );
     if (req.files.staff_mpill_marksheet)
       obj.staff_mpill_marksheet = image_saver(
         req.files.staff_mpill_marksheet,
-        "_mpill_",
+        "mpill_",
         uploadpath,
-        staff_rollno
+       
       );
     if (req.files.staff_add_pg_marksheet)
       obj.staff_add_pg_marksheet = image_saver(
         req.files.staff_add_pg_marksheet,
-        "_Add_pg_",
+        "Add_pg_",
         uploadpath,
-        staff_rollno
+      
       );
   }
 

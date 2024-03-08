@@ -1,45 +1,90 @@
-<div class="window" id="window_layout">
+<link rel="stylesheet" href="/css/staff_information.css">
+<div class="window">
     <div class="window_navbar">
       <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
-    <div class="window_container">
+    
+    <div class="window_container ">
+      
       <div class="container center_title">
-        <div class="float_right">
+        <!-- <div class="float_right staff_edit_button">
           <a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
+        </div> -->
         </div>
-        </div>
+      
         <div>
-            <h3>Name:<%=data.staff_name%></h3>
-            <h3>ID:<%=data.staff_id%></h3>
-            <h3>Father's Name:<%=data.staff_father%></h3>
-            <h3>Mother's Name:<%=data.staff_mother%></h3>
-            <h3>Staff Marrital:<%=data.staff_marrital%></h3>
-            <h3>Gender:<%=data.staff_gender%></h3>
-            <h3>Qualification:<%=data.staff_qualifiaction%></h3>
-            <h3>Blood:<%=data.staff_blood%></h3>
-            <h3>Date Of Birth:<%=data.staff_dob%></h3>
-            <h3>Aadhar Number:<%=data.staff_aadhar_no%></h3>
-            <h3>Pan:<%=data.staff_pan%></h3>
-            <h3>Nationality:<%=data.staff_nationality%></h3>
-            <h3>Disability:<%=data.staff_disability%></h3>
-            <h3>Staff Mobile:<%=data.staff_mobile%></h3>
-            <h3>Official Mail id:<%=data.staff_off_mail%></h3>
-            <h3>Personal Mail id:<%=data.staff_per_mail%></h3>
-            <h3>Permantent Address:<%=data.staff_per_address%></h3>
-            <h3>Tempory Address:<%=data.staff_temp_address%></h3>
-            <h3>Exprience:<%=data.staff_experience%></h3>
-            <h3>Account Number:<%=data.staff_account_no%></h3>
-            <h3>Accountholder Name:<%=data.staff_accountholder_name%></h3>
-            <h3>Staff Bank Name:<%=data.staff_bank_name%></h3>
-            <h3>Bank Branch:<%=data.staff_bank_branch%></h3>
-            <h3>Account IFSC Code:<%=data.staff_account_ifsc%></h3>
-            <h3>Website 1:<%=data.staff_social_media1%></h3>
-            <h3>Website 2:<%=data.staff_social_media2%></h3>
-            <div style="width: 250px;height: 250px;">
-             <img style="height:100%;width:100%;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt="image">
+            <div class="staff_main_container">
+               
+                <div class="staff_details">
+                   
+                  <div class="staff_name_img_id"> 
+                  
+                    <div class="float_right staff_edit_button">
+                        <a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
+                      </div>  
+       <div class="staff_name">  <h3><%=data.staff_name%></h3></div>
+     
+      
+       <div class="staff_id">        <h3>ID:<%=data.staff_id%></h3></div>
+       <div >
+                     
+        <img src="/img/profile.jpg" alt="" class="staff_profile_img"> 
+        
+       </div></div>
+       
+       <div class="staff_main_details"></div>
+        <div class="staff_name_details">
+            <div class="staff_name_details_1">
+                <h1>Basic Details</h1>
+            <h3>Gender <span class="staff_colon">:</span> <span class="staff_basic_details"><%=data.staff_gender%></span></h3>
+            <h3>Date Of Birth<span class="staff_colon_1">:</span> <span class="staff_basic_details"></span><%=data.staff_dob%></span></h3>
+            <h3>Staff Mobile<span class="staff_colon_2">:</span> <span class="staff_basic_details"></span><%=data.staff_mobile%></span></h3>
+            <h3>Qualification<span class="staff_colon_3">:</span> <span class="staff_basic_details"></span><%=data.staff_qualifiaction%></span></h3>
+           
+            <h3>Exprience<span class="staff_colon_4">:</span> <span class="staff_basic_details"></span><%=data.staff_experience%></span></h3>
+            <h3>Staff Marrital<span class="staff_colon_5">:</span> <span class="staff_basic_details"></span><%=data.staff_marrital%></span></h3>
+           
+            
+            <h3>Nationality<span class="staff_colon_6">:</span> <span class="staff_basic_details"></span><%=data.staff_nationality%></span></h3>
+        </div>
+        </div>
+        <div class="staff_main_details_2"></div>
+        
+            
+            <div class="staff_emails">
+                <div class="staff_emails_1">
+                    <h1>Address</h1>
+                <h3>Blood <span class="staff_colon_7">:</span><span class="staff_basic_details_2"><%=data.staff_blood%></span></h3>
+                <h3>Aadhar Number<span class="staff_colon_8">:</span><span class="staff_basic_details_2"></span><%=data.staff_aadhar_no%></span></h3>
+                <h3>Pan<span class="staff_colon_9">:</span><span class="staff_basic_details_2"></span><%=data.staff_pan%></span></h3>
+            <h3>Official Mail id<span class="staff_colon_10">:</span><span class="staff_basic_details_2"></span><%=data.staff_off_mail%></span></h3>
+            <h3>Personal Mail id<span class="staff_colon_11">:</span><span class="staff_basic_details_2"></span><%=data.staff_per_mail%></span></h3>
+            <h3>Permantent Address<span class="staff_colon_12">:</span><span class="staff_basic_details_2"></span><%=data.staff_per_address%></span></h3>
+            <h3>Tempory Address<span class="staff_colon_13">:</span><span class="staff_basic_details_2"></span><%=data.staff_temp_address%></span></h3>
+          
+           
+         </div>
             </div>
+            <div class="staff_main_details_3"></div>
+            <div class="staff_details_3">
+                <div class="staff_details_31">
+            <h1>Account Details</h1>
+         <div>   <h3>Father's Name<span class="staff_colon_14">:</span><span class="staff_basic_details_3"><%=data.staff_father%></span></h3>
+            <h3>Mother's Name<span class="staff_colon_15">:</span><span class="staff_basic_details_3"><%=data.staff_mother%></span></h3>
+           
+            <h3>Account Number<span class="staff_colon_16">:</span><span class="staff_basic_details_3"><%=data.staff_account_no%></span></h3>
+            <h3>Accountholder Name<span class="staff_colon_17">:</span><span class="staff_basic_details_3"><%=data.staff_accountholder_name%></span></h3>
+            <h3>Staff Bank Name<span class="staff_colon_18">:</span><span class="staff_basic_details_3"><%=data.staff_bank_name%></span></h3></div>
+           <div class="side"> <h3>Bank Branch<span class="staff_colon_19">:</span><span class="staff_basic_details_3"><%=data.staff_bank_branch%></span></h3>
+            <h3>Disability<span class="staff_colon_20">:</span><span class="staff_basic_details_3"><%=data.staff_disability%></span></h3>
+            <h3>Account IFSC Code<span class="staff_colon_21">:</span><span class="staff_basic_details_3"><%=data.staff_account_ifsc%></span></h3>
+            <h3>Website 1<span class="staff_colon_22">:</span><span class="staff_basic_details_3"><%=data.staff_social_media1%></span></h3>
+            <h3>Website 2<span class="staff_colon_23">:</span><span class="staff_basic_details_3"><%=data.staff_social_media2%></span></h3></div>
+        </div></div>
+        </div></div>
 
         </div>
+        
 <% if(personal=="display"){%>
 <div class="popup" id="popup">
   <div class="popup_header">
@@ -230,14 +275,17 @@
 <%}%>
 <!----------------------------staff education------------------------>
     <div>
-        <div>
-            <h1 style="margin-left: 5rem;">Education Info</h1>
-            <h3> SSLC Mark:<%=data.staff_sslc_mark%></h3>
-            <h3> SSLC school:<%=data.staff_sslc_school%></h3>
+        
+        <div class="education_info">
+            <div class="education_details">
+      
+            <h1 >Education Info</h1>
+            <h3> SSLC Mark<span class="staff_colon_24">:</span><span class="staff_basic_details_4"><%=data.staff_sslc_mark%></span></h3>
+            <h3> SSLC school<span class="staff_colon_25">:</span><span class="staff_basic_details_4"><%=data.staff_sslc_school%></span></h3>
             <div class="float">
                 <a href="/admin/staff_info/staff_list/education_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
-            </div>
-        </div>
+           </div></div>
+       </div>
         <%if(education=='display'){%>
             <div class="popup" id="popup">
                 <div class="popup_header">
@@ -440,14 +488,16 @@
     </div>
 <!----------------------------staff achievement------------------------>
     <div>
+        <div class="acheivement_box">
+            <div class="acheivement_value">
         <div>
-            <h1 style="margin-left: 5rem;">Achievement Info</h1>
-            <h3>Achievement :</h3>
-            <h3>Description </h3>
+            <h1>Achievement Info</h1>
+            <h3>Achievement <span class="staff_colon_26">:</span></h3>
+            <h3>Description <span class="staff_colon_27">:</span></h3>
             <div class="float">
                 <a href="/admin/staff_info/staff_list/achievement_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
-            </div>
-        </div>
+            </div></div>
+        </div></div>
         <%if(achievement=='display'){%>
             <div class="popup" id="popup">
                 <div class="popup_header">
@@ -480,7 +530,7 @@
          <br>
          <div>
         <div class="float">
-            <a href="/admin/staff_info/staff_list/view_document/<%=data.id%>" id="toggleButton"><button>View Documents</button></a>
+   <div class="view_document">       <a href="/admin/staff_info/staff_list/view_document/<%=data.id%>" id="toggleButton"><button>View Documents</button></a></div>
         </div>
         <%if(document=='display'){%>
             <div class="popup" id="popup">
