@@ -198,7 +198,7 @@
         </div>
 
         <!-- Edit Section Form -->
-        <div class="popup_container" id="popup_edit_section" style="display: none;">
+        <div class="popup_container " id="popup_edit_section" style="display: none;">
             <div class="popup">
                 <div class="popup_header">
                     <p class="pop_title">Edit Section</p>
@@ -261,6 +261,21 @@
                                     <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
                                     <label for="rollno">Roll Number</label>
                                 </div>
+                                <div class="radio_buttons">
+                                    <div class="radio_option">
+                                        <input type="radio" id="male" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male">
+                                        <label for="male">Male</label>                                  
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="female" name="gender" <%-( current_student.gender=='Female')?'checked':""%> value="Female">
+                                        <label for="female">Female</label>                                           
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="other" name="gender"<%-( current_student.gender=='Other')?'checked':""%> value="Other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                                
             
                                 <div class="form_div text_input">
                                     <input type="date" class="input" id="dob" name="dob">
@@ -279,6 +294,17 @@
                                         <option value="A-">A-</option>
                                         <option value="B-">B-</option>
                                         <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                              
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="residence">residence</label>
+                                    <select name="residence" id="residence" required>
+                                        <option  selected></option>
+                                        <option value="local">local</option>
+                                        <option value="hostel">hostel</option>
+                                        <option value="bus">Bus</option>
+                                      
                                     </select>
                                 </div>
             
@@ -538,3 +564,8 @@
 
         </div>
 </div>
+<style>
+    /* .add_student{
+        margin-top: 150px;
+    } */
+</style>

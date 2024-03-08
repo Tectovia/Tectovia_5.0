@@ -23,7 +23,7 @@
     }
 .recievers_box {
     margin-top: -60px;
-    margin-left: -570px;
+    margin-left: -670px;
     border:  solid;
     width: 150px;
     height: 50px;
@@ -51,7 +51,7 @@
 
 .reciever_dropdown {
     /* Other styles */
-    margin-left: -570px;
+    margin-left: -700px;
     margin-top: 0px;
     width: 200px;
     background-color: rgba(255, 255, 255, 0.5); /* Adjust transparency as needed */
@@ -67,8 +67,9 @@
     background: url(../img/back55.jpg);
     background-size: cover;
     border: solid;
-    width: 1100px;
-    height: 600px;
+   
+    width: 1000px;
+    height: 500px;
     border-radius: 20px;
     box-shadow: -5px 2px 18px 3px rgb(233, 199, 185);
     transition: transform 0.3s ease-in-out; /* Adding smooth hover animation */
@@ -82,7 +83,7 @@
     width: 700px;
     height: 200px;
     margin-top: 100px;
-    margin-left: -570px;
+    margin-left: -630px;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
     padding: 10px;
@@ -104,7 +105,7 @@
     font-size: 15px;
 }
 .subjects_box_dropdown {
-    margin-left: -500px;
+    margin-left: -630px;
     background-color: rgba(255, 255, 255, 0.5); /* Adjust transparency as needed */
     width: 200px;
    
@@ -129,7 +130,7 @@
 .submitbox {
     padding: 10px 40px;
     outline: none;
-    margin-left: 50px;
+    margin-left: 0px;
     width: 150px;
     height: 50px;
     margin-top: 10px;
@@ -146,7 +147,7 @@
 }
 .subjects_box {
     margin-top: -60px;
-    margin-left: -500px;
+    margin-left: -610px;
     width: 150px;
     height: 50px;
     padding: 10px 40px;
@@ -161,4 +162,84 @@
 .subjects_box:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--danger-color-dark);
+}
+.history{
+   
+margin-left: 300px;
+    z-index: 1000;
+}
+.instructions_main{
+    margin-top: 30px;
+    margin-left: -200px;
+}
+.history_dropdown{
+   margin-top: 430px;
+   
+    width:410px;
+    height: 61px;
+    z-index: 1000;
+    margin-left: 650px;
+    border-radius: 10px;
+
+}
+.history_button {
+    width: 810px; 
+    margin-left: -500px;
+    margin-top:140px;
+}
+.history_values{
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 1000px;
+    margin-left: -620px;
+    
+}
+.history_dropdown_button{
+    width: 0px; 
+    height: 40px;
+    margin-left: 800px;
+    margin-top: -80px;
+    z-index: 1000;
+    border-radius: 30px;
+   
+}
+.old_history{
+    padding: 20px;
+    display: flex;
+
+}
+.history_messages{
+    background: rgba(224, 231, 230, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(7, 106, 100, 0.37);
+    /* backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px ); */
+    height: 80px;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 10px;
+    width: 950px;
+}
+.old_history button{
+    margin-top: -150px;
+}
+.history_delete_button{
+    margin-top: -50px;
+    z-index: 1000;
+}
+.history_messages h1{
+    width: 750px;
+    height: 300px;
+}
+@media screen and (max-width: 725px) {
+    .history_button{
+        margin-left: -800px;
+    }
+    .instructions_main{
+        margin-top: 140px;
+    }
+  
 }

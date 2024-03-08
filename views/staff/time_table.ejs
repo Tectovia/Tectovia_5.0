@@ -1,11 +1,17 @@
+
+
+
 <link rel="stylesheet" href="/css/time_table.css">
+
 <div class="window">
     <div class="window_navbar">
         <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
-    <div class="time_table">
-<div class="time_table_bg">
+
     <div class="window_container">
+        <div class="time_table">
+            <div class="time_table11">
+            <div class="time_table_bg">
         <span class="timetable_heading"><h1>Time Table</h1></span>
         <!-- <table>
             <tr>
@@ -22,10 +28,10 @@
                   <th class="header"><%=i%></th>
                   <%}%>
             </tr>
-
+         
             <%for(let i=1;i<=dayhour.day;i++){%>
               <tr>
-                  <th class="header"><%=i%></th> 
+                  <th class="header1"><%=i%></th> 
                   <%for(let j=0;j< dayhour.hr;j++){%>
                     <td>
                       <% let disp=true; %>
@@ -49,6 +55,8 @@
 
 
             </table>
+            
+           </div>
             
     </div>
     </div>
