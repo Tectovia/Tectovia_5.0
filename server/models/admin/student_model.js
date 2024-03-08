@@ -120,6 +120,11 @@ const student_master = new mongoose.Schema({
     address: {
         type: String
     },
+    residence: {
+        type: String,
+        default:null
+    },
+    
    
 });
 
