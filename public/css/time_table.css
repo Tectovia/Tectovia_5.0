@@ -6,16 +6,27 @@
     background-position: -100px 0px;
     
     background-size:100%;
+<<<<<<< Updated upstream
     width: 1500px;
     height: 700px;
     margin-top: -20px;
     left: 1%;
+=======
+    width: 1800px;
+    height: 750px;
+    margin-top: -20px;
+    left: 3%;
+>>>>>>> Stashed changes
    
     
 }
 
 .time_table .header{
+<<<<<<< Updated upstream
    
+=======
+    background-image: linear-gradient(to top, #14f52e, #08af1c);
+>>>>>>> Stashed changes
     color: #000;
     transition: transform 0.3s ease-in-out;
    

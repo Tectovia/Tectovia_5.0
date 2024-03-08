@@ -40,7 +40,11 @@ td {
 }
 
 .header{
+<<<<<<< Updated upstream
     background-image: linear-gradient(to top, #14f52e, #08af1c);
+=======
+   background-color: var(--primary-color);
+>>>>>>> Stashed changes
     color: #000000;
     
 }
