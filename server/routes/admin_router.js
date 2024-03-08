@@ -78,11 +78,11 @@ const forum=require('../controller/admin/forum/forum')
 
 
     //----------- Annual report -----------
-    router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
+   // router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
 
 
     //------------ Others -----------------
-    router.get('/admin/institution_info/others' , admin_others.others);
+    //router.get('/admin/institution_info/others' , admin_others.others);
 
 
 

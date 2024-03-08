@@ -72,7 +72,7 @@
             </div>
 
             <div class="table_header">
-                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" target="_blank"><button class="btn_success">Edit Time Table</button></a>
+                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="btn_success">Edit Time Table</button></a>
             </div>
             <table class="table">
                 <tr class="row">
@@ -266,7 +266,11 @@
                                     <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
                                     <label for="rollno">Roll Number</label>
                                 </div>
-                                <div class="radio_buttons">
+                                <div class="form_div radio_buttons">
+                                    <div class="radio_title">
+                                        <label for="">Gender</label>
+                                    </div>
+                                    <div class="radio_buttons">
                                     <div class="radio_option">
                                         <input type="radio" id="male" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male">
                                         <label for="male">Male</label>                                  
@@ -280,6 +284,7 @@
                                         <label for="other">Other</label>
                                     </div>
                                 </div>
+                            </div>
                                 
             
                                 <div class="form_div text_input">
@@ -287,7 +292,7 @@
                                     <label for="dob">Date of Birth</label>
                                 </div>
                                 
-                                <div class="form_div radio_input">
+                                <!-- <div class="form_div radio_input">
                                     <div class="radio_title">
                                         <label for="">Gender</label>
                                     </div>
@@ -305,7 +310,7 @@
                                             <label for="other">Other</label>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>  -->
             
                                 <div class="form_div select_input">
                                     <label class="select_label" for="blood_group">Blood Group</label>
