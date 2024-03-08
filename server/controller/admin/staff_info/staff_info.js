@@ -155,7 +155,7 @@ await  bcrypt.genSalt(10, (err, salt) => {
   add_staff.save().then((data) => {
     console.log(data.id);
     res.render("admin/staff_info/staff_personal_details_form", { data });
-  });
+  });      
   console.log("inserted successfully");
 };
 
@@ -175,7 +175,7 @@ exports.staff_personal = async (req, res) => {
     require("path").resolve("./") +
     "/public/uploads/staff_info/" +
     staff_rollno +
-    "/";
+    "/"; 
   //  image saver
   if (req.files) {
     if (req.files.staff_community_img)

@@ -138,7 +138,7 @@ function adduser() {
       });
       await userdata.save((err, data) => {
         console.log(data);
-      });
+     });
     });
   });
 }
