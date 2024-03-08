@@ -13,17 +13,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 exports.staff_index = async (req, res) => { 
 
     var id=req.params.id;
-try{
-const data= await staff_model.find({'staff_id':id},{staff_id:1,staff_name:1,class_incharge:1})
+ try{
+     const data= await staff_model.find({'staff_id':id},{staff_id:1,staff_name:1,class_incharge:1})
        req.session.obj_id= data[0]._id.toString();
         console.log(req.session);
-
-        res.render('staff_index',{'staffdata':data});
+       res.render('staff_index',{'staffdata':data});
 }  
 catch(err){
         console.log("problem",err);
    }
 
 };
-
 

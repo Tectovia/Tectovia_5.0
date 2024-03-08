@@ -167,7 +167,7 @@ exports.submit_section = async (req, res) => {
     console.log("infoErrors", error);
   }
 };
-
+// View Section
 exports.view_section = async (req, res) => {
   const title = req.params.title;
   const sec = req.params.section;
@@ -514,6 +514,6 @@ exports.go_back_section = async (req, res) => {
   const title = req.params.title;
   const sec = req.params.section;
   res.redirect(
-    "/admin/class_info/class_list/view_section/" + _id + "/" + title + "/" + sec
+    "/admin/class_info/class_list/view_section/submit_student_basic" + _id + "/" + title + "/" + sec
   );
 };
