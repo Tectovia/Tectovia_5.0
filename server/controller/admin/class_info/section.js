@@ -50,13 +50,13 @@ exports.submit_student_basic = async (req, res) => {
        const data= [
             {
             user_id: req.body.student_rollno,
-            gender: req.body.gender,
+            
             password: hashedPassword,
             role: title+"_"+section
            },
            {
             user_id: req.body.student_rollno+"_p",
-            gender: req.body.gender,
+            
             password: hashedPassword,
             role: title+"_"+section+"_parent"
            }

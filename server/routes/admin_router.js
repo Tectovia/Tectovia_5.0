@@ -100,6 +100,7 @@ router.get('/admin/staff_info' , admin_staff_list.admin_staff_list);
 // -------------------------------------staff personal data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/personal_edit/:id' ,admin_staff_list.staff_personal_edit);
     router.post('/admin/staff_info/staff_list/personal_edit_submission/:id' ,admin_staff_list.personal_edit_submission);
+    router.get('/admin/staff_info/staff_education_form/:staff_id' ,admin_staff_list.staff_education_form);
     // -------------------------------------staff education data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/education_edit/:id' ,admin_staff_list.staff_education_edit);
     router.post('/admin/staff_info/staff_list/education_edit_submission/:id' ,admin_staff_list.education_edit_submission);

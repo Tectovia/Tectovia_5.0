@@ -46,7 +46,7 @@ exports.circular_management = async (req,res) => {
 
      // console.log(data.class_info);
 
-    res.render("admin/circular_management", data) 
+    res.render("admin/circular_management", data,) 
   };
 
 exports.message_sent= async (req,res,next)=>{
