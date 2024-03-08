@@ -3,12 +3,14 @@ const router = express.Router();
 
 const universal_controller = require('../controller/universal_controller/universal_controller');
 
+const dummy = require('../controller/universal_controller/notificationFunction')
+
 const admin_controller = require('../controller/admin/admin_controller')
 const staff_controller = require('../controller/staff/staff_controller')
 const student_controller = require('../controller/student/student_controller')
 const parent_controller = require('../controller/parent/parent_controller');
 const validator=require('../controller/universal_controller/validator');
-
+const {studentNotification,dummy1} = require('../controller/student/notificationontroller')
 //------------------------------------------------------------------------------------
 
 // universal

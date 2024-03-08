@@ -41,6 +41,7 @@ exports.timetable = async (req, res) => {
 
 
 // ----------------------Add Button-------------------------
+
 exports.add_form = async (req, res) => {
   data = {
     title: req.params.title,
@@ -61,7 +62,7 @@ exports.add_form = async (req, res) => {
     section_name: data.sec,
   });
   console.log(classdata);
-  const subdata = await subject_model.find({id:name});
+  const subdata = await subject_model.find({id:data.title});
   res.render("admin/class_info/time_table", {
     data,
     dayhour,

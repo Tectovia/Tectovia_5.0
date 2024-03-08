@@ -6,11 +6,19 @@ function hide_popup_forum() {
     var element = document.getElementById("popup_forum");
     element.style.display = "none";
 }
-
 function display_popup_forum() {
     var element = document.getElementById("popup_forum");
     element.style.display = "flex";
 }
+function hide_edit_popup_forum() {
+    var element = document.getElementById("edit_popup_forum");
+    element.style.display = "none";
+}
+  function display_edit_popup_forum(forumId) {
+        var editPopup = document.getElementById("edit_popup_forum");
+        editPopup.style.display = "flex";
+}
+
 </script>
 
 <div class="window" id="window_layout">
@@ -20,14 +28,50 @@ function display_popup_forum() {
     <div class="window_container">
         <div class="container center_title">
             Forum
-            <div class="float_left">
-                <a href="/admin/forum/forum" id="toggleButton"><button class="btn_warning">Go Back</button></a>
-            </div>
             <div class="float_right">
                 <button onclick="display_popup_forum()">Add Forum</button>
             </div>
         </div>
-        
+      <div class="card_container">
+          <% if (forums) { %>
+              <% forums.forEach(function(forum) { %>
+                  <div class="card">
+                      <div class="card_content">
+                          <div class="row">
+                              <h3>Forum Title: <%= forum.forum_title %></h3>
+                          </div>
+                          <div class="row">
+                              <h3>Forum Incharges: 
+                                <% if (forum.forum_incharge && forum.forum_incharge.length > 0) { %>
+                                  <% forum.forum_incharge.forEach(function(incharge) { %>
+                                      <% if (incharge && incharge.staff_name && incharge.staff_id) { %>
+                                          <%= incharge.staff_name %> - <%= incharge.staff_id %><br>
+                                      <% } %>
+                                  <% }) %>
+                              <% } else { %>
+                                  No incharges assigned.
+                              <% } %>
+                              </h3>
+                          </div> 
+                          <div class="row">
+                              <h3>Forum Class: <%= forum.forum_class %></h3>
+                          </div>
+                      </div>
+                      <% if (forums) { %>
+                                <!-- Your card content here -->
+                                <div class="card_buttons">
+                                    <div class="">
+                                        <a href="/admin/forum/edit_forum/<%= forum._id %>"><button  class="btn_success">Edit</button></a>
+                                      </div>
+                                        <div class="todo_delete">
+                                        <a href="/admin/forum/delete_forum/<%= forum._id %>"><button class="btn_danger">Delete</button></a>
+                                      </div>
+                        </div>
+                    <% } %>
+                  </div>
+              <% }) %>
+          <% } %>
+      </div>
         <div class="popup_forum" id="popup_forum" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
@@ -41,73 +85,38 @@ function display_popup_forum() {
                                 <input type="text" class="input" id="forum_title" name="forum_title" required>
                                 <label for="forum_title">Forum Title</label>
                             </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="forum_incharge4">Class</label>
-                                <select name="forum_incharge4" id="forum_incharge4" required>
-                                    <option value="" selected disabled>Choose a class</option>
+                            <div class="form_div">
+                                <div class="dropdown" data-control="checkbox-dropdown">
+                                  <label for="class">Class</label>
+                                  <div class="dropdown-label">Select class</div>
+                                  <div class="dropdown-list">
                                     <% 
                                         const uniqueIds = new Set();
                                         class_info.forEach(function(item) {
                                             if (!uniqueIds.has(item.id)) {
                                                 uniqueIds.add(item.id);
                                     %>
-                                        <option value="<%- item.id %>" name="classes">
-                                            <%- item.id %>
-                                        </option>
-                                    <% 
+                                        <label class="dropdown-option"><input type="checkbox" value="<%- item.id %>" name="forum_class"><%- item.id %></label>
+                                        <% 
                                             }
                                         });
                                     %>
-                                </select>
-                            </div> 
-  
-                            <div class="form_div select_input">
-                                <label class="select_label" for="forum_incharge1">Forum Incharge - 1</label>
-                                <select name="forum_incharge1" id="forum_incharge1" required>
-                                    <option value=""></option>
-                                    <% if (staff) { %>
-                                        <% staff.forEach(function(item) { %>
-                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
-                                        <% }) %>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form_div">
+                    <div class="dropdown" data-control="checkbox-dropdown">
+                      <label for="circular_discription"> Forum Incharges</label>
+                      <div class="dropdown-label">Select Options</div>
+                      <div class="dropdown-list">
+                        <% if (staff) { %>
+                            <% staff.forEach(function(item) { %>
+                            <label class="dropdown-option"><input type="checkbox" value="<%= item.staff_id %>" name="forum_incharge"><%= item.staff_name %> - <%= item.staff_id %></label>
+                            <% }) %>
                                     <% } %>
-                                </select>
-                            </div>
-
-                            <div class="form_div select_input">
-                                <label class="select_label" for="forum_incharge2">Forum Incharge - 2</label>
-                                <select name="forum_incharge2" id="forum_incharge2" required>
-                                    <option value=""></option>
-                                    <% if (staff) { %>
-                                        <% staff.forEach(function(item) { %>
-                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
-                                        <% }) %>
-                                    <% } %>
-                                </select>
-                            </div> 
-
-                            <div class="form_div select_input">
-                                <label class="select_label" for="forum_incharge3">Forum Incharge - 3</label>
-                                <select name="forum_incharge3" id="forum_incharge3" required>
-                                    <option value=""></option>
-                                    <% if (staff) { %>
-                                        <% staff.forEach(function(item) { %>
-                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
-                                        <% }) %>
-                                    <% } %>
-                                </select>
-                            </div> 
-
-                            <div class="form_div select_input">
-                                <label class="select_label" for="forum_incharge4">Forum Incharge - 4</label>
-                                <select name="forum_incharge4" id="forum_incharge4" required>
-                                    <option value=""></option>
-                                    <% if (staff) { %>
-                                        <% staff.forEach(function(item) { %>
-                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
-                                        <% }) %>
-                                    <% } %>
-                                </select>
-                            </div>         
+                      </div>
+                    </div>
+                              </div>       
                             <div class="form_submit form_div_span">
                             <input type="submit">
                         </div>  
@@ -116,6 +125,156 @@ function display_popup_forum() {
                 </div>        
             </div>
         </div>
-
+        <%if(edit === true){%>
+          
+          <%}%>
+       <% if ( forum != null ) { %>
+    <div class="forum" id="edit_popup_forum" >
+        <div class="popup" id="popup">
+            <div class="popup_header">
+                <p class="pop_title">Edit Forum</p>
+                <span class="close_icon" id="closeEditPopup" onclick="hide_edit_popup_forum()">&times;</span>
+            </div>
+            <div class="pop_body">
+                <form action="/admin/forum/edit_forum/<%= forum._id %>" method="post" id="editForm" enctype="multipart/form-data" class="form">
+                    <div class="form_inputs">
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="edit_forum_title" name="forum_title" value="<%= forum ? forum.forum_title : '' %>" required>
+                            <label for="edit_forum_title">Forum Title</label>
+                        </div>
+                        <div class="form_div">
+                            <div class="dropdown" data-control="checkbox-dropdown">
+                                <label for="edit_forum_class">Class</label>
+                                <div class="dropdown-label">Select class</div>
+                                <div class="dropdown-list">
+                                    <% const uniqueclass = new Set(); %>
+                                    <% class_info.forEach(function(item) { %>
+                                        <% if (!uniqueclass.has(item.id)) { %>
+                                            <% uniqueclass.add(item.id); %>
+                                            <label class="dropdown-option">
+                                                <input type="checkbox" value="<%= item.id %>" name="forum_class" <% if(forum && forum.forum_class && forum.forum_class.includes(item.id)) { %> checked <% } %>>
+                                                <%= item.id %>
+                                            </label>
+                                        <% } %>
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_div">
+                            <div class="dropdown" data-control="checkbox-dropdown">
+                                <label for="edit_forum_incharge">Forum Incharges</label>
+                                <div class="dropdown-label">Select Options</div>
+                                <div class="dropdown-list">
+                                    <% staff.forEach(function(item) { %>
+                                        <label class="dropdown-option">
+                                            <input type="checkbox" value="<%= item.staff_id %>" name="forum_incharge" <% if(forum && forum.forum_incharge && forum.forum_incharge.map(incharge => incharge.staff_id).includes(item.staff_id)) { %> checked <% } %>>
+                                            <%= item.staff_name %> - <%= item.staff_id %>
+                                        </label>
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_submit form_div_span">
+                            <input type="submit">
+                        </div>
+                      </div>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
+<% } %>
+<script>
+  
+(function($) {
+  var CheckboxDropdown = function(el) {
+    var _this = this;
+    this.isOpen = false;
+    this.areAllChecked = false;
+    this.$el = $(el);
+    this.$label = this.$el.find('.dropdown-label');
+    this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+    this.$inputs = this.$el.find('[type="checkbox"]');
+    
+    this.onCheckBox();
+    
+    this.$label.on('click', function(e) {
+      e.preventDefault();
+      _this.toggleOpen();
+    });
+    
+    this.$checkAll.on('click', function(e) {
+      e.preventDefault();
+      _this.onCheckAll();
+    });
+    
+    this.$inputs.on('change', function(e) {
+      _this.onCheckBox();
+    });
+  };
+  
+  CheckboxDropdown.prototype.onCheckBox = function() {
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.updateStatus = function() {
+    var checked = this.$el.find(':checked');
+    
+    this.areAllChecked = false;
+    this.$checkAll.html('Check All');
+    
+    if(checked.length <= 0) {
+      this.$label.html('Select Options');
+    }
+    else if(checked.length === 1) {
+      this.$label.html(checked.parent('label').text());
+    }
+    else if(checked.length === this.$inputs.length) {
+      this.$label.html('All Selected');
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+    }
+    else {
+      this.$label.html(checked.length + ' Selected');
+    }
+  };
+  
+  CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+    if(!this.areAllChecked || checkAll) {
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+      this.$inputs.prop('checked', true);
+    }
+    else {
+      this.areAllChecked = false;
+      this.$checkAll.html('Check All');
+      this.$inputs.prop('checked', false);
+    }
+    
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+    var _this = this;
+    
+    if(!this.isOpen || forceOpen) {
+       this.isOpen = true;
+       this.$el.addClass('on');
+      $(document).on('click', function(e) {
+        if(!$(e.target).closest('[data-control]').length) {
+         _this.toggleOpen();
+        }
+      });
+    }
+    else {
+      this.isOpen = false;
+      this.$el.removeClass('on');
+      $(document).off('click');
+    }
+  };
+  
+  var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+  for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+    new CheckboxDropdown(checkboxesDropdowns[i]);
+  }
+})(jQuery);
+</script>

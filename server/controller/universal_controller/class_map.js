@@ -45,8 +45,6 @@ const batch_map=()=>{
 
 const batches_and_classes=batch_map()
 
-
-
-
 exports.classes_map=batches_and_classes
+
 

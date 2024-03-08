@@ -1,124 +1,58 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-  google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawCharts);
-var ww = document.getElementById('blah').textContent
-var wx = parseInt(ww)
-console.log(typeof(wx));
-//console.log('venna',ss);
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawCharts);
 
+  function drawCharts() {
+      var backdata = '<%-JSON.stringify(data)%>';
+      backdata=JSON.parse(backdata);
 
-function drawCharts() {
+      var barData = google.visualization.arrayToDataTable(backdata);
 
+      var barOptions = {
+          focusTarget: 'category',
+          backgroundColor: 'transparent',
+          colors: ['cornflowerblue', 'tomato','orange'],
+          fontName: 'Open Sans',
+          chartArea: {
+              left: 10,
+              top: 10,
+              width: '80%',
+              height: '70%'
+          },
+          animation:{
+              duration: 1000,
+              easing: 'out',
+              startup: true
+          },
+          hAxis: {
+              textStyle: {
+                  fontSize: 11
+              }
+          },
+          vAxis: {
+              minValue: 0,
+              baselineColor: '#DDD',
+              gridlines: {
+                  color: '#DDD',
+                  count: 15
+              },
+              textStyle: {
+                  fontSize: 11
+              }
+          },
+          legend: {
+              position: 'bottom',
+              textStyle: {
+                  fontSize: 12
+              }
+          }
+      };
 
-var backdata= [
-['Day', 'pre', 'abs'],
-['Sun',50,25],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-['Mon',45,30],
-
-
-
-]
-
-var barData = google.visualization.arrayToDataTable(
-backdata
-);
-// set bar chart options
-var barOptions = {
-focusTarget: 'category',
-backgroundColor: 'transparent',
-colors: ['cornflowerblue', 'tomato'],
-fontName: 'Open Sans',
-chartArea: {
-left: 50,
-top: 10,
-width: '100%',
-height: '70%'
-},
-bar: {
-groupWidth: '90%'
-},
-hAxis: {
-textStyle: {
-  fontSize: 11
-}
-},
-vAxis: {
-minValue: 0,
-maxValue: 150,
-baselineColor: '#DDD',
-gridlines: {
-  color: '#DDD',
-  count: 4
-},
-textStyle: {
-  fontSize: 11
-}
-},
-legend: {
-position: 'bottom',
-textStyle: {
-  fontSize: 12
-}
-},
-animation: {
-duration: 1200,
-easing: 'out',
-      startup: true
-}
-};
-// draw bar chart twice so it animates
-var barChart = new google.visualization.ColumnChart(document.getElementById('bar-chart'));
-//barChart.draw(barZeroData, barOptions);
-barChart.draw(barData, barOptions);
-
-// BEGIN LINE GRAPH
-
-//   function randomNumber(base, step) {
-//     return Math.floor((Math.random()*step)+base);
-//   }
-//   function createData(year, start1, start2, step, offset) {
-//     var ar = [];
-//     for (var i = 0; i < 12; i++) {
-//       ar.push([new Date(year, i), randomNumber(start1, step)+offset, randomNumber(start2, step)+offset]);
-//     }
-//     return ar;
-//   }
-//   var randomLineData = [
-//     ['Year', 'Page Views', 'Unique Views']
-//   ];
-//   for (var x = 0; x < 7; x++) {
-//     var newYear = createData(2007+x, 10000, 5000, 4000, 800*Math.pow(x,2));
-//     for (var n = 0; n < 12; n++) {
-//       randomLineData.push(newYear.shift());
-//     }
-//   }
-//   var lineData = google.visualization.arrayToDataTable(randomLineData);
-
-/*
-var animLineData = [
-['Year', 'Page Views', 'Unique Views']
-];
-for (var x = 0; x < 7; x++) {
-var zeroYear = createData(2007+x, 0, 0, 0, 0);
-for (var n = 0; n < 12; n++) {
-animLineData.push(zeroYear.shift());
-}
-}
-var zeroLineData = google.visualization.arrayToDataTable(animLineData);
-*/
-
-//   // draw pie chart
-//   var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
-//   pieChart.draw(pieData, pieOptions);
-}
+      var barChart = new google.visualization.ColumnChart(document.getElementById('bar-chart'));
+      barChart.draw(barData, barOptions);
+  }
 </script>
 <div class="window" id="window_layout">
     <div class="window_navbar">
@@ -131,10 +65,11 @@ var zeroLineData = google.visualization.arrayToDataTable(animLineData);
             <h1 class="title">Attendance-Graph</h1>
         </div>
         
+          
         <div>
-            <label for="date_selector">Month</label>
-            <input id="date_selector" type="month" name="goto" />
-          </div>
+          <label for="date_selector">Pick A Date</label>
+          <input id="date_selector" type="date" name="goto" style="color: black;">
+        </div>
 
         
     </div>
@@ -145,3 +80,21 @@ var zeroLineData = google.visualization.arrayToDataTable(animLineData);
    </div>
 </div>    
 
+
+<script>
+  const currentDate = new Date();
+  const maxDate = currentDate.toISOString().slice(0, 10);
+  const date_selector = document.getElementById("date_selector");
+  date_selector.setAttribute("max", maxDate);
+  date_selector.addEventListener("change", () => {
+    date = date_selector.value;
+    datepart = date.split("-");
+    if (datepart.length === 3) {
+      const day = datepart[2];
+      const month = datepart[1];
+      const year = datepart[0];
+      formated_date = `${day}-${month}-${year}`;
+      window.location.href =`/admin/attendance_graph/${formated_date}`;
+    }
+  });
+</script>

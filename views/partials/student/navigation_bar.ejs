@@ -40,10 +40,24 @@
     </li>
     <li>
       <a
-        href="/student/dairy/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+        href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"
       >
         <i class="bx bxs-group"></i>
         <span class="text">Diary</span>
+      </a>
+    </li>
+    <li>
+      <a href="/student/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+      >
+        <i class='bx bxs-badge-dollar'></i>
+        <span class="text">Fees</span>
+      </a>
+    </li>
+    <li>
+      <a href="/student/forumclass/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+      >
+      <i class='bx bxs-extension'></i>
+        <span class="text">Class & Forum</span>
       </a>
     </li>
     <li>
@@ -61,7 +75,7 @@
       </a>
     </li>
     <li>
-      <a href="/student/circular/<%=student.rollno%>/<%=student.id%>">
+      <a href="/student/circular/<%=student._id%>/<%=student.id%>">
         <i class="bx bxs-group"></i>
         <span class="text">Circular</span>
       </a>
@@ -106,13 +120,7 @@
     <div class="notification">
       <a href="#" class="notification-icon">
         <i class="bx bxs-bell"></i>
-        <span class="num">8</span>
-      </a>
-      <div class="dropdown">
-        <a href="#" class="dropdown-item">Notification 1</a>
-        <a href="#" class="dropdown-item">Notification 2</a>
-        <a href="#" class="dropdown-item">Notification 3</a>
-      </div>
+        <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%- notification.noOfNotifications %></span></a>
     </div>
 
     <a href="#" class="profile">
@@ -120,5 +128,4 @@
     </a>
   </nav>
 </section>
-
 

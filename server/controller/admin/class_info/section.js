@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 
+
 // Models Here!
 
 const class_model = require('../../../models/admin/section_model');
@@ -12,6 +13,10 @@ const staff_model = require("../../../models/admin/staff_information_model");
 const marksheet_model=require("../../../models/marksheet/marksheet")
 const { da } = require('date-fns/locale');
 const { date } = require('date-fns/locale');
+const { log } = require('util');
+const girls_hostel_model = require('../../../models/admin/girls_hostel_model');
+const boys_hostel_model = require('../../../models/admin/boys_hostel_model');
+
 
 
 
@@ -19,7 +24,7 @@ const { date } = require('date-fns/locale');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
- const dayhour=JSON.parse(process.env.DAYHOUR);
+const dayhour=JSON.parse(process.env.DAYHOUR);
   
 async function get_staff() {
     try {
@@ -38,7 +43,7 @@ exports.submit_student_basic = async (req, res) => {
     const title = req.params.title;
     const section = req.params.section;
     const batch=title.split('_batch')[0];
-    console.log("datas here : ",req.body);
+   // console.log("datas here : ",req.body);
 
     try {
         
@@ -50,13 +55,13 @@ exports.submit_student_basic = async (req, res) => {
        const data= [
             {
             user_id: req.body.student_rollno,
-            gender: req.body.gender,
+
             password: hashedPassword,
             role: title+"_"+section
            },
            {
             user_id: req.body.student_rollno+"_p",
-            gender: req.body.gender,
+
             password: hashedPassword,
             role: title+"_"+section+"_parent"
            }
@@ -111,17 +116,14 @@ exports.submit_student_details = async (req, res) => {
         const title = req.params.title;
         const section = req.params.section;
 
-        console.log(title);
         const StudentModel = mongoose.model(title);
-
-        console.log('Updating document with _id:', studentId);
 
         const studentDetails = {
             dob: req.body.dob,
             gender: req.body.gender,
             blood_group: req.body.blood_group,
             phone: req.body.phone,
-            emis:req.body.emis,
+            emis: req.body.emis,
             father_name: req.body.father_name,
             mother_name: req.body.mother_name,
             address: req.body.address,
@@ -131,23 +133,70 @@ exports.submit_student_details = async (req, res) => {
             email: req.body.email,
             transport_type: req.body.transport_type,
             disability: req.body.disability,
-        }
-      
-        updatedStudent= await StudentModel.findByIdAndUpdate(studentId,studentDetails ,{ new: true });
+            residence: req.body.residence
+        };
+
+        const updatedStudent = await StudentModel.findByIdAndUpdate(studentId, studentDetails, { new: true });
 
         if (updatedStudent) {
             console.log('Data updated successfully!');
         } else {
             console.log('No records were updated.');
         }
-       // res.redirect(`/admin/class_info/class_list/view_section/${id}/${title}/${section}`)
-       res.redirect(`/view_section/add_student/${id}/${title}/${section}/student_info_parent/${studentId}`)
+
        
+        const editStudent = await StudentModel.findById(studentId);
+
+        if (!editStudent) {
+            console.log('Student not found');
+        } else {
+            console.log('Found student:', editStudent);
+            if (editStudent.residence === "hostel") {
+                console.log('Student has hostel residence. Saving hostel record...');
+                if (editStudent.gender === "Male") {
+                    try {
+                        const boys_hostel_instance = new boys_hostel_model({
+                            name: editStudent.name,
+                            rollno: editStudent.rollno,
+                            class: editStudent.id,
+                            gender: editStudent.gender,
+                            // student_id: editStudent.id
+                        });
+                        await boys_hostel_instance.save();
+                        console.log('Hostel record for male student saved successfully!');
+                    } catch (error) {
+                        console.error('Error saving hostel record for male student:', error);
+                    }
+                } else if (editStudent.gender === "Female") {
+                    try {
+                       
+                        const girls_hostel_instance = new girls_hostel_model({
+                            name: editStudent.name,
+                            rollno: editStudent.rollno,
+                            gender: editStudent.gender,
+                            class:editStudent.id
+                        });
+                        await girls_hostel_instance.save();
+                        console.log('Hostel record for female student saved successfully!');
+                    } catch (error) {
+                        console.error('Error saving hostel record for female student:', error);
+                    }
+                } else {
+                    console.log('Unknown gender. Cannot save hostel record.');
+                }
+            } else {
+                console.log('Student already has a residence');
+            }
+        }
+        
+
+        res.redirect(`/view_section/add_student/${id}/${title}/${section}/student_info_parent/${studentId}`);
     } catch (error) {
         console.error('An error occurred:', error);
         res.status(500).json({ error: 'An error occurred' });
     }
 };
+
 // Student parent submission
 exports.submit_student_parent = async (req, res) => {
     try {
@@ -156,10 +205,10 @@ exports.submit_student_parent = async (req, res) => {
         const title = req.params.title;
         const section = req.params.section;
 
-        console.log(title);
+        //console.log(title);
         const StudentModel = mongoose.model(title);
 
-        console.log('Updating document with _id:', studentId);
+        //console.log('Updating document with _id:', studentId);
 
         const studentDetails = req.body;
       
@@ -183,18 +232,15 @@ exports.delete_student = async (req, res) => {
     const title = req.params.title;
     const sec = req.params.section;
     const _sec_id = req.params._sec_id;
-
+    console.log("id:",_id,",title:",title,",sec:",sec);
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(400).json({ message: 'Invalid ObjectId' });
     }
 
     try {
-
+        const student_model = mongoose.model(title);
         // Construct a dynamic model variable based on the "title"
-        const modelVariable = title.toLowerCase().replace(' ', '_') + '_schema';
-        const student_schema = student_model[modelVariable];
-
-        await student_schema.findById(_id).then((student_doc) => {
+        await student_model.findById(_id).then((student_doc) => {
             login_id = student_doc.obj_id;
             login_data.findByIdAndRemove(login_id).then((deleted) => {
                 if (!deleted) {
@@ -205,7 +251,7 @@ exports.delete_student = async (req, res) => {
             });
         });
  
-        const deleted = await student_schema.findByIdAndRemove(_id);
+        const deleted = await student_model.findByIdAndRemove(_id);
         if (!deleted) {
             console.log('Cannot Delete');
         } else {
@@ -220,13 +266,24 @@ exports.delete_student = async (req, res) => {
 };
 
 exports.view_student = async (req, res) => {
-    const title = req.params.title;
-    const sec = req.params.section;
-    const id = req.params._id;
-
-
-
+    const title = req.params.title || req.data.id;
+    const sec = req.params.section || req.data.section;
+    const id = req.params._id || req.data._id
     const selectedModel = mongoose.model(title);
+    let studentDetails = req.data;
+    let edit=false;
+    console.log("params");
+    console.log(req.params);
+    console.log("data");
+    console.log(req.data);
+    
+    if(studentDetails !== undefined){
+        edit=true
+    }
+
+    const {obj_id} =  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
+
+   
 
     if (!selectedModel) {
         console.log("Invalid title");
@@ -235,17 +292,17 @@ exports.view_student = async (req, res) => {
 
         var hash_student_password;
 
-        login_data.find({obj_id:id}).then(async (login_doc) => {
+        login_data.find({_id:obj_id}).then(async (login_doc) => {
             hash_student_password = login_doc[0].password;
         selectedModel.findById(id, (err, student_doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send("Error retrieving student document");
             } else {
-                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password });
+                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password,edit,studentDetails });
             }
         });
-    });
+    })
 }
 
 //------------------- SECTION FUNCTIONS -------------------
@@ -290,4 +347,20 @@ exports.edit_section = async (req, res) => {
     res.redirect(`/admin/class_info/class_list/view_section/${id}/${title}/${sec}`)
 
   
+}
+
+
+
+//--------------------- EDIT STUDENT PERSONAL DETAILS ----------------------
+
+exports.edit_student=async (req,res,next)=>{
+    const {_id,batch}=req.params
+    req.data= await mongoose.model(batch).findOne({_id:_id},{})
+    next()
+}
+
+exports.edit_student_submit = async (req,res,next)=>{
+    const {_id,batch}=req.params
+    let updatetdData = await mongoose.model(batch).findByIdAndUpdate({_id:_id},req.body,{new:true})
+    res.redirect(`/admin/class_info/class_list/view_section/view_student/${updatetdData._id}/${updatetdData.id}/${updatetdData.section}`)
 }

@@ -5,6 +5,7 @@ const router = express.Router();
 const parent_controller = require('../controller/parent/parent_controller');
 const student_dairy_contoller=require('../controller/student/digital_dairy');
 const student_controller=require('../controller/student/student_controller');
+const student_fees=require("../controller/student/student_fees");
 //---------------------attendence parent----------------
 const student_attendance= require('../controller/student/attendance');
 //------------assignment parent------------------
@@ -23,6 +24,9 @@ router.get('/parent/attendance/:id/:title/:sec/:req_date',student_attendance.att
 router.get('/parent/assignment/:id/:title/:sec/',student_assignment.assignment);
 
 //-----------------------------parent circular------------------------------
-router.get('/parent/circular/:id/:title',student_dairy_contoller.student_circular)
+router.get('/parent/circular/:id/:title',student_dairy_contoller.student_circular);
+
+//-----------------------------parent fees---------------------------------
+router.get('/parent/fees/:id/:title/:sec', student_fees.fees);
 
 module.exports = router;
