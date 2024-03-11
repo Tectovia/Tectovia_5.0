@@ -1,0 +1,64 @@
+ 
+<link rel="stylesheet" href="/css/admin/institution_info/common_info.css">
+<style>
+  p.space{
+    word-spacing: 0.1cm;
+  }
+</style>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+    });
+  function redirectToPrint() {
+    // Redirect to the print page or perform your print logic
+    window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+  }
+    
+            
+  </script>
+
+<div class="window" id="window_layout">
+    <%if(role==="student"){%>
+
+      <div class="window_navbar">
+          <%- include('../partials//student/navigation_bar.ejs') %>
+          </div>
+       
+    <%}else{%>
+      <div class="window_navbar">
+        <%- include('../partials/parent/navigation_bar.ejs') %>
+      </div>
+    <%}%>
+
+    <div class="window_container">  
+      <div class="container center_title">
+      BONAFIDE CERTIFICATE
+      </div>
+      <div class="popup_container">
+        <div class="popup" id="popup">
+            <div class="popup_header">
+                <span class="close_icon" id="closePopup"></span>
+            </div>
+            
+            
+              <div class="popup_header">
+                <p class="pop_title">Bonafide certificate</p>
+            </div>
+                    
+              <pre><p class="space">This is to certify that MR./MRS <b> <%= student.name %></b>,S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
+with Roll Number <b><%= student.rollno %></b>  is a student of year <b> <%=student.id %></b> section of the student<b> <%=student.section%></b> 
+<br>studying in (school/college)<b> <%= common[0].school_name %>.</b></p><br>
+-------------------                        ----------------------------        ------------------                  
+<br> Signature of the principal/Dean        University/College/School Address             Date                                                            
+                                                                 
+                    </div>  
+                
+            </div>        
+      
+
+            
+    </div>
+</body>
+</html>

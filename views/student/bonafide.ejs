@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="/css/card.css">
+
+<script>
+
+    function hide_popup_bono() {
+        var element = document.getElementById("popup_bono");
+        element.style.display = "none";
+    }
+    
+    function display_popup_bono() {
+        var element = document.getElementById("popup_bono");
+        element.style.display = "flex";
+    }
+
+    function redirectToPrint() {
+    // Redirect to the print page or perform your print logic
+    window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+  }
+    </script>
+
+<div class="window" id="window_layout">
+    <%if(role==="student"){%>
+
+      <div class="window_navbar">
+          <%- include('../partials//student/navigation_bar.ejs') %>
+       </div>
+    <%}else{%>
+      <div class="window_navbar">
+        <%- include('../partials/parent/navigation_bar.ejs') %>
+      </div>
+    <%}%>
+    
+    <div class="window_container">
+        <div class="container center_title">
+            <div class="float_left">
+                <a href="/student_index/101/2023-2024_batch_A" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+            </div>
+            <div class="float_right">
+                <button onclick="display_popup_bono()">Add Bonafide</button>
+            </div>
+        </div>
+
+        <%if(role==='student'){%>
+    <div class="popup_container" id="popup_bono" style="display: none;">
+        <div class="popup" id="popup">
+            <div class="popup_header">
+                <p class="pop_title">Bonafide</p>
+                <span class="close_icon" id="closePopup" onclick="hide_popup_bono()">&times;</span>
+            </div>
+            <div class="pop_body">
+                
+                <form action="/student/bonafide/submit/<%=student.rollno %>/<%= student.id %>/<%=student.section%>" method="post" enctype="multipart/form-data" class="form" id="feesForm">
+                    <div class="form_inputs" id="feesInputs">
+                        <div id="addnum">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="bonafide_title" name="bonafide_title" required>
+                                <label for="bonafide_title">Bonafide Title</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="bonafide_des" name="bonafide_des" required>
+                                <label for="bonafide_des">Description</label>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                    <div class="form_submit form_div_span">
+                        <input type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%}%>
+
+
+
+    <div class="card_container">
+      
+        <% bonafide_data.forEach(function(bonafide) { %>
+          <div class="card">
+            <div class="card_content">
+              <div class="row">
+                <h3>Bonafide Title: <%= bonafide.bonafide_title %></h3>
+              </div>
+              <div class="row">
+                <h3>Bonafide Description: <%= bonafide.bonafide_des %></h3>
+              </div>
+              
+              <% if(bonafide.approval == true) { %>
+                <button class="btn_success printButton hidden" onclick="redirectToPrint()">print</button>
+                <% }else{ %>
+                  <h4>Not Approved</h4>
+                  <% } %>
+               
+            </div>
+          </div>
+        <% }) %>
+    </div>
+   
+

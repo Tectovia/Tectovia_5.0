@@ -281,6 +281,7 @@ function calculateupdateTotalAmount() {
         <div class="container center_title">
             Subject
         </div>
+        
         <div class="card_container">
             <% if (sub) { %>
                 <% sub.forEach(function(item) { %>
@@ -405,6 +406,7 @@ function calculateupdateTotalAmount() {
                     <p class="pop_title">Add Section</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_section()">&times;</span>
                 </div>
+
                 <div class="pop_body">
                     <form action="/admin/class_info/class_list/submit_section/<%- title %>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
@@ -445,6 +447,7 @@ function calculateupdateTotalAmount() {
                     <p class="pop_title">Add Subject</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_subject()">&times;</span>
                 </div>
+                
                 <div class="pop_body">
                     <form action="/admin/class_info/class_list/submit_subject/<%- title %>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
