@@ -25,29 +25,28 @@
         </div>
     <%}%>
     <div class="window_container">
-        <%datas.map((item)=>{%> 
-            <div class="circular_container" id="<%- item._id %>">
-                <div class="circular_header">
-                    <div class="circular_info">
-                        <div class="from">From : <%- item.from %> </div>
-                        <div class="time">Date : <%- formatDate(item.date) %> </div>
-                        <div class="time">Time : <%- formatTime(item.date) %> </div>
+        <%if(datas){%>
+            <%datas.map((item)=>{%> 
+                <div class="circular_container" id="<%- item._id %>">
+                    <div class="circular_header">
+                        <div class="circular_info">
+                            <div class="from">From : <%- item.from %> </div>
+                            <div class="time">Date : <%- formatDate(item.date) %> </div>
+                            <div class="time">Time : <%- formatTime(item.date) %> </div>
+                        </div>
+                    </div>
+                    <div class="circular_title">
+                        <div class="title"><%- item.title %></div>
+                    </div>
+                    <div class="circular_message">
+                        <div class="message">
+                            <p><%- item.message %></p>
+                        </div>
                     </div>
                 </div>
-                <div class="circular_title">
-                    <div class="title"><%- item.title %></div>
-                </div>
-                <div class="circular_message">
-                    <div class="message">
-                        <p><%- item.message %></p>
-                    </div>
-                </div>
-            </div>
-        <%})%>
-            <!-- <%datas.map((item)=>{%> 
-                <label>date and time:</label><p><%=item.date%></p>
-                <label>message:</label><p><%=item.message%></p>
-            <%})%> -->
+            <%})%>
+        <%}%>
+           
     </div>
 </div>
 <script>

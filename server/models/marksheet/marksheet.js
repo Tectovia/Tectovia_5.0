@@ -68,6 +68,10 @@ var assign=[]
                 status:{
                     type:String,
                     default:'null'
+                },
+                seen:{
+                    type:Boolean,
+                    default:false
                 }
             }
         ] 

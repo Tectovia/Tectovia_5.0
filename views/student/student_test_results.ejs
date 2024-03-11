@@ -114,10 +114,12 @@
                         </div>
                         <div class="mark_popup_status">
                             status:<h1 > <%= item.staus %></h1>
-                        </div>
-                       
-                    </div>
-                    <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button>Ok verified</button></a>
+                        </div>  
+                    </div >
+                    <%if(item.updated === 'true'){%>
+                        <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>" ><button>Ok verified</button></a>
+                    <%}%>
+                    
                     <button onclick="toggleDetails('<%= index %>')" class="mark_popup_button">back</button>
                 </div>
             </div>

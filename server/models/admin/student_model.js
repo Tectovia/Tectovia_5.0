@@ -130,6 +130,41 @@ const student_master = new mongoose.Schema({
         type: String
     },
     address: {
+
+        type: String
+    },
+
+    transport_type: {
+        type: String
+    },
+    disability: {
+        type: String
+    },
+    circularUpdate:{
+        type:Boolean,
+        default:false
+    },
+    assignment:
+        [{
+          
+          ref_id:{
+            type:ObjectId,
+            ref:'assignment'
+        },
+        
+        source:String,
+        mark:Number
+
+        }
+        ]
+    ,
+    forum :{
+        type:String,
+        default:null,
+    },
+
+    residence: {
+
         type: String,
     },
 

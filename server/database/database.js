@@ -9,6 +9,7 @@ const db = mongoose.connection;
 
 
 mongoose.set("strictQuery", false);
+// mongoose.set('strictPopulate',false);
 db.on("error", console.error.bind(console, "connection error:"));-``  
 db.once("open", function () {
   console.log("Connected");
