@@ -10,6 +10,7 @@ const image_saver = require("../../universal_controller/image_saver");
 const fs = require("fs");
 const login_data =require( '../../../models/login_data/login_info_model');
 const bcrypt = require("bcrypt");
+const { errorMonitor } = require("events");
 // Body-Parser
 const app = express();
 const dayhour = JSON.parse(process.env.DAYHOUR);
@@ -186,7 +187,7 @@ exports.staff_personal = async (req, res) => {
       );
 
     if (req.files.staff_profile)
-      Object.staff_profile_img = image_saver(req.files.staff_profile,"  ", uploadpath, staff_rollno);
+      Object.staff_profile_img = image_saver(req.files.staff_profile,"profile", uploadpath, staff_rollno);
 
     if (req.files.staff_income_img)
       Object.staff_income_img = image_saver(
@@ -232,19 +233,20 @@ exports.staff_personal = async (req, res) => {
   staff_model
     .findByIdAndUpdate(staff_id, Object)
     .then((data) => {
-      console.log(data);
-      res.redirect(`/admin/staff_info/staff_education_form/${staff_id}`);
+      
+      res.redirect(`/admin/staff_info/staff_education_form/${data._id}`);
     })
     .catch((err) => {
       console.log(err);
     });
 };
 exports.staff_education_form=async(req,res)=>{
-  var staff_id=req.params.staff;
+  var staff_id=req.params.staff_id;
+
   try {
-    var data=staff_model. findById(staff_id)
+    var data=await staff_model.findById(staff_id);
     
-      console.log(data);
+      console.log("new data",data);
       res.render("admin/staff_info/staff_education_form", { data });
     
   } catch (error) {
@@ -263,20 +265,20 @@ exports.staff_education = async (req, res) => {
   var staff_rollno = req.body.staff_id;
   // require  data
 
-  // file path
   var path =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno;
+  require("path").resolve("./") +
+  "/public/uploads/staff_info/" +
+  staff_rollno;
 
-  if (!fs.existsSync(path)) {
-    fs.mkdirSync(path);
-  }
-  var uploadpath =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno +
-    "/";
+if (!fs.existsSync(path)) {
+  fs.mkdirSync(path);
+}
+var uploadpath =
+  require("path").resolve("./") +
+  "/public/uploads/staff_info/" +
+  staff_rollno +
+  "/";
+  
   // save image file
   if (req.files) {
     if (req.files.staff_sslc_marksheet)
@@ -347,21 +349,32 @@ exports.staff_education = async (req, res) => {
 };
 
 exports.staff_achivements = async (req, res) => {
-  staff_id = req.params.id;
-  console.log(staff_id);
-  console.log(req.body);
-  obj = req.body;
+  try {
+    
+    staff_id = req.params.id;
+    var staff_rollno = req.body.staff_id;
+    
+    obj = req.body;
+    var path =require("path").resolve("./") +"/public/uploads/staff_info/" +staff_rollno;
 
-  staff_model
-    .findByIdAndUpdate(staff_id, obj)
-    .then((data) => {
-      console.log(data);
-      console.log("updated successfuly");
-      res.redirect("/admin/staff_info");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+if (!fs.existsSync(path)) {
+  fs.mkdirSync(path);
+}
+var uploadpath =require("path").resolve("./") +"/public/uploads/staff_info/" +staff_rollno + "/";
+  // save image file
+  if (req.files) {
+
+    if (req.files.staff_achievement_img1) 
+    obj.staff_achievement_img1= image_saver( req.files.staff_achievement_img1,"achievement_",uploadpath,staff_rollno );
+  }
+  var data=await   staff_model.findByIdAndUpdate(staff_id, obj);
+   res.redirect("/admin/staff_info");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/admin/staff_info");
+  }
+ 
+    
 };
 exports.staff_delete = async (req, res) => {
   var id = req.params.id;
