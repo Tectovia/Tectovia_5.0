@@ -18,7 +18,7 @@
       <a
         href="/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today"
       >
-        <i class="bx bxs-shopping-bag-alt"></i>
+      <i class='bx bx-line-chart'></i>
         <span class="text">Attendance</span>
       </a>
     </li>
@@ -26,7 +26,7 @@
       <a
         href="/student/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
       >
-        <i class="bx bxs-doughnut-chart"></i>
+      <i class='bx bxs-doughnut-chart' ></i>
         <span class="text">Assignment</span>
       </a>
     </li>
@@ -34,7 +34,7 @@
       <a
         href="/student/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
       >
-        <i class="bx bxs-message-dots"></i>
+      <i class='bx bx-table' ></i>
         <span class="text">Time Table</span>
       </a>
     </li>
@@ -42,7 +42,7 @@
       <a
         href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"
       >
-        <i class="bx bxs-group"></i>
+      <i class='bx bxs-bookmarks'></i>
         <span class="text">Diary</span>
       </a>
     </li>
@@ -61,16 +61,22 @@
       </a>
     </li>
     <li>
+      <a href="/student/academic_calendar/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+        <i class='bx bx-calendar'></i>
+        <span class="text">Academic calendar</span>
+      </a>
+  </li>
+    <li>
       <a
         href="/student/quiz/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
       >
-        <i class="bx bxs-group"></i>
+      <i class='bx bxl-redux'></i>
         <span class="text">Quiz</span>
       </a>
     </li>
     <li>
       <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>">
-        <i class="bx bxs-group"></i>
+        <i class='bx bxs-book-add'></i>
         <span class="text">Test Results</span>
       </a>
     </li>
@@ -82,7 +88,7 @@
     </li>
     <li>
       <a href="#">
-        <i class="bx bxs-group"></i>
+        <i class='bx bx-world'></i>
         <span class="text">Public Forum</span>
       </a>
     </li>

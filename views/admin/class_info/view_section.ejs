@@ -272,15 +272,15 @@
                                     </div>
                                     <div class="radio_buttons">
                                     <div class="radio_option">
-                                        <input type="radio" id="male" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male">
+                                        <input type="radio" id="male readonly" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male" checked="checked" disabled>
                                         <label for="male">Male</label>                                  
                                     </div>
                                     <div class="radio_option">
-                                        <input type="radio" id="female" name="gender" <%-( current_student.gender=='Female')?'checked':""%> value="Female">
+                                        <input type="radio" id="female readonly" name="gender" <%-( current_student.gender=='Female')?'checked':""%> value="Female" checked="checked" disabled>
                                         <label for="female">Female</label>                                           
                                     </div>
                                     <div class="radio_option">
-                                        <input type="radio" id="other" name="gender"<%-( current_student.gender=='Other')?'checked':""%> value="Other">
+                                        <input type="radio" id="other readonly" name="gender"<%-( current_student.gender=='Other')?'checked':""%> value="Other" checked="checked" disabled>
                                         <label for="other">Other</label>
                                     </div>
                                 </div>
