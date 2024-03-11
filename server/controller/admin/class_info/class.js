@@ -159,8 +159,7 @@ exports.submit_section = async (req, res) => {
 
 
     // create collection for attendance
-    db.createCollection(`attend_${attend_name}`);
-
+  
     console.log(section_submit, "Section submitted Successfully!");
     res.redirect(`/admin/class_info/class_list/${title}`);
   } catch (error) {

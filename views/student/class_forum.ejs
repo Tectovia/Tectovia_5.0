@@ -2,11 +2,11 @@
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
         <div class="window_navbar">
-            <%- include('../partials//student/navigation_bar.ejs') %>
+            <%- include('../partials//student/navigation_bar.ejs',{circularNotification}) %>
         </div>
     <%}else{%>
             <div class="window_navbar">
-            <%- include('../partials/parent/navigation_bar.ejs') %>
+            <%- include('../partials/parent/navigation_bar.ejs',{circularNotification}) %>
             </div>
     <%}%>
 <div class="container center_title">
