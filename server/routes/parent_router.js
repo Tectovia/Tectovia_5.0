@@ -10,8 +10,7 @@ const student_fees=require("../controller/student/student_fees");
 const student_attendance= require('../controller/student/attendance');
 //------------assignment parent------------------
 const student_assignment= require('../controller/student/assignment');
-
-
+const calendar=require('../controller/student/academic_calendar');
 
 //-------------------------------  parent  -------------------------------------
 router.get("/parent_index/:id/:cls",parent_controller.parent_index);
@@ -20,7 +19,7 @@ router.get("/parent/dairy/:id/:title/:sec",student_dairy_contoller.student_dairy
 
 //---------------------attendence parent----------------
 router.get('/parent/attendance/:id/:title/:sec/:req_date',student_attendance.attendance);
-//------------assignment parent------------------
+//------------assignment parent--------------------------
 router.get('/parent/assignment/:id/:title/:sec/',student_assignment.assignment);
 
 //-----------------------------parent circular------------------------------
@@ -28,5 +27,6 @@ router.get('/parent/circular/:id/:title',student_dairy_contoller.student_circula
 
 //-----------------------------parent fees---------------------------------
 router.get('/parent/fees/:id/:title/:sec', student_fees.fees);
+router.get('/parent/academic_calendar/:id/:title/:sec',calendar.academic_calendar);
 
 module.exports = router;

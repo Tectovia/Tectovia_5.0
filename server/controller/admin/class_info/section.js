@@ -232,18 +232,15 @@ exports.delete_student = async (req, res) => {
     const title = req.params.title;
     const sec = req.params.section;
     const _sec_id = req.params._sec_id;
-
+    console.log("id:",_id,",title:",title,",sec:",sec);
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(400).json({ message: 'Invalid ObjectId' });
     }
 
     try {
-
+        const student_model = mongoose.model(title);
         // Construct a dynamic model variable based on the "title"
-        const modelVariable = title.toLowerCase().replace(' ', '_') + '_schema';
-        const student_schema = student_model[modelVariable];
-
-        await student_schema.findById(_id).then((student_doc) => {
+        await student_model.findById(_id).then((student_doc) => {
             login_id = student_doc.obj_id;
             login_data.findByIdAndRemove(login_id).then((deleted) => {
                 if (!deleted) {
@@ -254,7 +251,7 @@ exports.delete_student = async (req, res) => {
             });
         });
  
-        const deleted = await student_schema.findByIdAndRemove(_id);
+        const deleted = await student_model.findByIdAndRemove(_id);
         if (!deleted) {
             console.log('Cannot Delete');
         } else {
