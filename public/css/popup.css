@@ -9,7 +9,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .popup {
@@ -23,7 +23,6 @@
     width: auto;
     box-shadow: 0 0 10px var(--primary-color);
 }
-
 .close_icon {
     position: absolute;
     top: 10px;
@@ -57,3 +56,4 @@
 .pop_body {
     padding: 10px;
 }
+

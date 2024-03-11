@@ -24,7 +24,7 @@
     
 </script>
 
-<div class="window" id="window_layout">
+<div class="window">
     <div class="window_navabr">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="table_header">
-                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" target="_blank"><button class="btn_success">Edit Time Table</button></a>
+                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="btn_success">Edit Time Table</button></a>
             </div>
             <table class="table">
                 <tr class="row">
@@ -93,9 +93,11 @@
                         <% if (section_doc.time_table['day' + i][j].sub !== 'null') { %>
                              <p><%=section_doc.time_table['day' + i][j].sub%></p>
                              <p><%=section_doc.time_table['day' + i][j].staff_name%>-<%=section_doc.time_table['day' + i][j].staff_id%></p>
+                             
                               <% disp=false; %>
                          <%}%>
                          
+                       
                         <% if(disp){%>
                           <p>None</p>
                           <%}%>
@@ -103,6 +105,9 @@
                         <%}%>
                     </tr>
                     <%}%>
+                   
+                    
+    
                 </table>
         </div>
         
@@ -128,7 +133,7 @@
                         <td><%= item.dob %></td>
                         <td><%= item.gender %></td>
                         <td><%= item.blood_group %></td>
-                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" target="_blank"><button class="btn_success">View</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" ><button class="btn_success">View</button></a></td>
                         <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="btn_danger">Delete</button></a></td>
                     </tr>
                     <% }) %>
@@ -139,7 +144,7 @@
         <% } %>
 
         <!-- Add Student Form -->
-        <div class="popup_container" id="popup_add_student_basic" style="display: none;">
+        <div class="popup_container fade-up" id="popup_add_student_basic" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Add Student</p>
@@ -197,8 +202,9 @@
             </div>
         </div>
 
+
         <!-- Edit Section Form -->
-        <div class="popup_container" id="popup_edit_section" style="display: none;">
+        <div class="popup_container " id="popup_edit_section" style="display: none;">
             <div class="popup">
                 <div class="popup_header">
                     <p class="pop_title">Edit Section</p>
@@ -243,7 +249,7 @@
         </div>
 
         <% if (formprop.student_info_personal == "display") { %>
-        <div class="popup_container" id="popup_add_student_personal">
+            <div class="popup_container form-input-detail fade-up" id="popup_add_student_personal">
                 <div class="popup" id="popup">
                     <div class="popup_header">
                         <p class="pop_title">Student Details</p>
@@ -251,7 +257,7 @@
                     </div>
                     <div class="pop_body">
                         <form action="/admin/class_info/class_list/view_section/submit_student_details/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
-                            <div class="form_inputs">
+                            <div class="form_inputs pop">
                                 <div class="form_div text_input">
                                     <input type="text" class="input" id="readonly" name="name" value="<%- current_student.name %>" readonly>
                                     <label for="name">Student Name</label>
@@ -261,11 +267,51 @@
                                     <input type="text" class="input" id="readonly" name="rollno" value="<%- current_student.rollno %>" readonly>
                                     <label for="rollno">Roll Number</label>
                                 </div>
+                                <div class="form_div radio_buttons">
+                                    <div class="radio_title">
+                                        <label for="">Gender</label>
+                                    </div>
+                                    <div class="radio_buttons">
+                                    <div class="radio_option">
+                                        <input type="radio" id="male" name="gender" <%-( current_student.gender=='Male')?'checked':""%> value="Male">
+                                        <label for="male">Male</label>                                  
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="female" name="gender" <%-( current_student.gender=='Female')?'checked':""%> value="Female">
+                                        <label for="female">Female</label>                                           
+                                    </div>
+                                    <div class="radio_option">
+                                        <input type="radio" id="other" name="gender"<%-( current_student.gender=='Other')?'checked':""%> value="Other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                                
             
                                 <div class="form_div text_input">
                                     <input type="date" class="input" id="dob" name="dob">
                                     <label for="dob">Date of Birth</label>
                                 </div>
+                                
+                                <!-- <div class="form_div radio_input">
+                                    <div class="radio_title">
+                                        <label for="">Gender</label>
+                                    </div>
+                                    <div class="radio_buttons">
+                                        <div class="radio_option">
+                                            <input type="radio" id="male" name="gender" value="Male">
+                                            <label for="male">Male</label>                                  
+                                        </div>
+                                        <div class="radio_option">
+                                            <input type="radio" id="female" name="gender" value="Female">
+                                            <label for="female">Female</label>                                           
+                                        </div>
+                                        <div class="radio_option">
+                                            <input type="radio" id="other" name="gender" value="Other">
+                                            <label for="other">Other</label>
+                                        </div>
+                                    </div>
+                                </div>  -->
             
                                 <div class="form_div select_input">
                                     <label class="select_label" for="blood_group">Blood Group</label>
@@ -279,6 +325,17 @@
                                         <option value="A-">A-</option>
                                         <option value="B-">B-</option>
                                         <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                              
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="residence">residence</label>
+                                    <select name="residence" id="residence" required>
+                                        <option  selected></option>
+                                        <option value="local">local</option>
+                                        <option value="hostel">hostel</option>
+                                        <option value="bus">Bus</option>
+                                      
                                     </select>
                                 </div>
             
@@ -385,14 +442,17 @@
                                     <input type="file" class="input" id="stu_11_img" name="stu_11_img">
                                     <label for="stu_11_img">11 th Marksheet</label>
                                 </div> -->
-                                
                             </div>
-            
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
+      
                         </form>
-                    </div>        
+                        <div class="form_submit">
+                            <div class="btn">
+                                <input type="submit">
+                            </div>
+                        </div>
+                            <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+                    </div> 
+                </div>        
             </div>
         <% } %>
         
@@ -535,6 +595,117 @@
                 </div>
             </div>
         <% } %>
+            
+        <div class="popup_container" id="popup_edit_section" style="display: none;">
+            <div class="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Edit Section</p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_edit_section()">&times;</span>
+                </div>
+                <div class="popup_body">
+                    <form action="/admin/class_info/class_list/view_section/edit_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
+                <% if (section_doc) { %>
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="section_name" name="section_name" value="<%= section_doc.section_name %>">
+                                <label for="section_name">Section Name</label>
+                            </div>
 
+                            <div class="form_div select_input">
+                                <label class="select_label" for="section_incharge">Section Incharge</label>
+                                <select name="section_incharge" id="section_incharge" >
+                                    <option selected value="<%= section_doc.section_incharge_name %>_<%= section_doc.section_incharge_id %>"><%= section_doc.section_incharge_name %> - <%= section_doc.section_incharge_id %> </option>
+                                        <% staff_doc.forEach(function(item) { %>
+                                            <option value="<%= item.staff_name%>_<%= item.staff_id%>"><%= item.staff_name %> - <%= item.staff_id %></option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="room_number" name="room_number" value="<%= section_doc.room_number %>">
+                                <label for="room_number">Room Number</label>
+                            </div>        
+                        </div>
+                <% } %>
+
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
+                    </form>
+                </div>
+            </div>
         </div>
 </div>
+
+
+<style>
+    .form-input-detail{
+        margin-top: 200px;
+    }
+    .popup_container.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+}
+
+.pop{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btn{
+    width: 20%;
+}
+
+.form_submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+</style>
+
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+</script>
+

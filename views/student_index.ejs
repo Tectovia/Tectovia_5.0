@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/student/student_index.css">
 <div class="window" id="window_layout">
   <div class="window_navbar">
-    <%- include('partials/student/navigation_bar.ejs') %>
+    <%- include('partials/student/navigation_bar.ejs',{notification}) %>
   </div>
 
   <div class="window_container">
@@ -61,7 +61,7 @@
                       :
                     </div>
                     <div class="conatct_data">
-                      40-Jul-2713
+                      <%=student.dob%>
                     </div>
 
                     <div class="contact_title">
@@ -71,10 +71,10 @@
                       :
                     </div>
                     <div class="conatct_data">
-                      0987654321
+                      <%=student.phone%>
                     </div>
 
-                    <div class="contact_title">
+                    <!-- <div class="contact_title">
                       Mobile No
                     </div>
                     <div class="conatct_colon">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="conatct_data">
                       1234567890
-                    </div>
+                    </div> -->
 
                     <div class="contact_title">
                       Email ID
@@ -91,7 +91,7 @@
                       :
                     </div>
                     <div class="conatct_data">
-                      abcdschool@gmail.com
+                      <%=student.email%>
                     </div>
                </div>
             </div>
@@ -106,7 +106,7 @@
                             :
                           </div>
                           <div class="basic_data_1">
-                            23AI138
+                            <%=student.guardian_phone1%>
                           </div>
 
                           <div class="basic_title_1">
@@ -116,7 +116,7 @@
                             :
                           </div>
                           <div class="basic_data_1">
-                            Appa
+                            <%=student.guardian_phone1%>
                           </div>
 
                           <div class="basic_title_1">
@@ -126,7 +126,7 @@
                             :
                           </div>
                           <div class="basic_data_1">
-                            Amma
+                            <%=student.mother_name%>
                           </div>
 
                           <div class="basic_title_1">
@@ -136,7 +136,7 @@
                             :
                           </div>
                           <div class="basic_data_1">
-                            X
+                            <%=student.blood_group%>
                           </div>
 
                           <div class="basic_title_1">
@@ -146,7 +146,7 @@
                             :
                           </div>
                           <div class="basic_data_1">
-                            1597534826
+                            <%=student.id%>
                           </div>
                     </div>
 
@@ -158,20 +158,20 @@
                             :
                           </div>
                           <div class="basic_data_2">
-                            ABCD
+                            <%=student.community%>
                           </div>
 
                           <div class="basic_title_2">
-                            Health issue 
+                            Disablity
                           </div>
                           <div class="basic_colon_2">
                             :
                           </div>
                           <div class="basic_data_2">
-                            non
+                            <%=student.disability%>
                           </div>
 
-                          <div class="basic_title_2">
+                          <!-- <div class="basic_title_2">
                             GR No 
                           </div>
                           <div class="basic_colon_2">
@@ -199,7 +199,8 @@
                           </div>
                           <div class="basic_data_2">
                             23AI138
-                          </div>
+                          </div> -->
+
                     </div>
                </div>
             </div>

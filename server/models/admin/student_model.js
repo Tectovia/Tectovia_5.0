@@ -12,9 +12,6 @@ const student_master = new mongoose.Schema({
     name: {
         type: String
     },
-    gender: {
-        type: String
-    },
     rollno: {
         type: String
     },
@@ -24,7 +21,16 @@ const student_master = new mongoose.Schema({
     section: {
         type: String
     },
+    community:{
+        type: String
+    },
+    nativity:{
+        type: String
+    },
     dob: {
+        type: String
+    },
+    gender: {
         type: String
     },
     blood_group: {
@@ -115,6 +121,12 @@ const student_master = new mongoose.Schema({
         type: String
     },
     emis: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    aadhar_no: {
         type: String
     },
     address: {

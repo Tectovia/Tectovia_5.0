@@ -11,7 +11,7 @@ const message_models= new mongoose.Schema({
         type:String
     },
     "recievers":{
-        
+        type:Object
     },
     "show":{
         type:Boolean

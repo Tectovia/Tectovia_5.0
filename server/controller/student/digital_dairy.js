@@ -2,36 +2,46 @@
 const message_model=require('../../models/admin/message_model')
 const student_model = require("../../models/admin/student_model");
 const circular = require('../../models/admin/circular_model');
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+const {noOfNotificationsForStudents}= require('../universal_controller/notificationFunction')
+//-----------------------------------------------------------------------------
 const mongoose=require('mongoose')
 
-exports.student_dairy=async (req,res,next)=>{
+exports.student_dairy=async (req,res)=>{
     
-    const roll_no=req.params.id;
+    const _id=req.params.id;
     const class_titile=req.params.title;
     const section=req.params.sec;
     const role=req.originalUrl.toString().split('/')[1]
-    // console.log("roll_no-"+roll_no);
-    // console.log("class_titile-"+class_titile);
-    // console.log("section-"+section);
-    // console.log("URL-"+role);
-
-    const student=mongoose.model(class_titile)
     
-    const student_data=await student.findOne({"rollno":roll_no}).then((data)=>{
+    const classModel=mongoose.model(class_titile)
+    
+    const student = await classModel.findOne({_id:_id}).then((data)=>{
         return data
     })
 
-    const temp_instructions=await message_model.find()
-    const instructions= temp_instructions.filter((item)=>{
-        return (roll_no in item.recievers && item.recievers[roll_no]!==false)
-    })
-    console.log(instructions);
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    let instructions = notification.digitalDairy
+    //-----------------------------------------------------------------------------
 
     res.render("./student/digital_dairy",{
-        "student":student_data,
-        "instructions":instructions,
-        "role":role
+        student,
+        instructions,
+        notification,
+        role
     })
+}
+
+exports.instructionSeen = async (req,res) =>{
+    let {_id,batch,instructionId} = req.params;
+    let student = await mongoose.model(batch).findById(_id)
+    let {recievers} = await message_model.findById({_id:instructionId},{recievers:1})
+
+    recievers[student.rollno]=false
+    console.log(recievers);
+    await message_model.findByIdAndUpdate({_id:instructionId},{recievers})
+    res.redirect(`/student/dairy/${student._id}/${student.id}/${student.section}`);
 }
 
 
@@ -40,12 +50,14 @@ exports.student_circular=async(req,res)=>{
     const role=req.originalUrl.toString().split('/')[1]
     const class_model= mongoose.model(title)
 
-   
-    const datas=await circular.find({classes:{$in:[title]},delete:false})
-    console.log(datas);
+    const student=await class_model.findOne({_id:id})
 
-    const student=await class_model.findOne({"rollno":id})
-    
-    res.render('./student/student_circular',{student,role,datas})
+     // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    const datas = notification.circular
+     //-----------------------------------------------------------------------------
+     await class_model.findOneAndUpdate({_id:id},{circularUpdate:false})
+     
+    res.render('./student/student_circular',{student,role,datas,notification})
 
 }

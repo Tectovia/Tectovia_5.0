@@ -10,6 +10,17 @@
       var element = document.getElementById("add_staff");
       element.style.display = "flex";
   }
+
+  function showDeleteStaffPopUp(stafId){
+      var element = document.getElementById("DeleteStaffPopUp");
+      element.style.display = "flex";
+      var deleteStaff = document.getElementById("deleteStaff");
+      deleteStaff.href = `/admin/staff_info/staff_list/delete/${stafId}`;
+  }
+
+  function hideDeleteStaffPopUp(){
+    document.getElementById("DeleteStaffPopUp").style.display='none';
+  }
 </script>
 
 <div class="window" id="window_layout">
@@ -52,12 +63,29 @@
           <a href="/admin/staff_info/staff_list/view/<%=item._id%>" target="_blank"><button class="btn_warning">View</button></a>
         </div>
         <div class="todo_delete">
-          <a href="/admin/staff_info/staff_list/delete/<%=item._id%> "><button class="btn_danger">Delete</button></a>
+          <button class="btn_danger" onclick="showDeleteStaffPopUp(`<%=item._id%>`)">Delete</button>
         </div>
       </div>
     </div>
     <br />
     <% }) %> <% } %>
+    <div>
+      <div class="popup_container" id="DeleteStaffPopUp" style="display: none;">
+        <div class="popup">
+          <div class="popup_header">
+            <p class="pop_title">Disclaimer</p>
+            <span class="close_icon" id="closePopup" onclick="hideDeleteStaffPopUp()">&times;</span>
+          </div>
+          <div class="pop_body">
+            <p>Do You Want to Delete?,You cannot retain the data</p>
+            <div class="delete">
+              <a href="" id="deleteStaff"><button class="btn_danger">Delete Staff</button></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 
     <div class="popup_container" id="add_staff" style="display: none;">
@@ -92,7 +120,16 @@
                       <option value="teaching">teaching</option>
                       <option value="non-teaching">non-teaching</option>
                   </select>
-              </div>
+                </div>
+                <!-- <div class="form_div select_input">
+                  <label class="select_label" for="staff_designation"> Gender </label>
+                  <select name="gender" id="staff_designation" >
+                      <option value=""></option>
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                      <option value="other">other</option>
+                  </select>
+                </div> -->
               <div class="form_submit form_div_span">
                 <input type="submit">
               </div> 
