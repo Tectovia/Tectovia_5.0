@@ -40,7 +40,7 @@
 
 <div class="window" id="window_layout">
     <div class="window_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs') %>
+        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
     <div class="window_container">
         <div class="container center_title">
@@ -159,7 +159,7 @@
     
                         <div class="card_buttons">
                             <div class="">
-                                <a href="/staff/forum/view_class/view_subject/<%= item._id %>/<%= title %>"><button class="btn_success">View</button></a>
+                                <a href="/staff/forum/view_class/view_subject/<%=staffdata[0]._id%>/<%= item._id %>/<%= title %>"><button class="btn_success">View</button></a>
                             </div>
                         </div>
                     </div>
