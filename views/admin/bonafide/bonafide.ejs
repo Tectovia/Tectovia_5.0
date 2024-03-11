@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="/css/card.css">
+<style>
+  .approvedButton {
+    display: none;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Loop through all cards on the page
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(function(card) {
+      const printButtonVisible = card.getAttribute("data-print-button-visible");
+
+      if (printButtonVisible === "true") {
+        showPrintButton(card);
+      }
+    });
+  });
+
+
+  function myFunction(card) {
+   
+     const printButtonVisible = card.getAttribute("data-print-button-visible");
+    
+   if (printButtonVisible === "true") {
+       hidePrintButton(card);
+    } else {
+       showPrintButton(card);
+     }
+
+      
+    // Store the state in the card's data attribute
+     card.setAttribute("data-print-button-visible", printButtonVisible === "true" ? "false" : "true");
+   }
+   function send(id){
+    
+     console.log(id)
+     console.log(ii.value)
+     ii.value = id;
+     console.log(ii.value)
+ }
+
+   function showPrintButton(card) {
+     // Hide the "Click me" button and show the "Print" button for the specific card
+     card.querySelector(".btn_success.approvalButton").classList.add("hidden");
+     card.querySelector(".btn_success.printButton").classList.remove("hidden");
+  }
+
+   function hidePrintButton(card) {
+     // Hide the "Print" button and show the "Click me" button for the specific card
+     card.querySelector(".btn_success.approvalButton").classList.remove("hidden");
+     card.querySelector(".btn_success.printButton").classList.add("hidden");
+   }
+  
+
+  
+</script>
+
+
+<div class="window" id="window_layout">
+  <div class="window_navbar">
+      <%- include('../../partials/admin/navigation_bar.ejs') %>
+  </div>
+
+  <!-- <div class="card_container">
+    <% bonafide_data.forEach(function(bonafide) { %>
+      <div class="card">
+        <div class="card_content">
+          <div class="row">
+            <h3>Student id: <%= bonafide.id %></h3>
+          </div>
+          <div class="row">
+            <h3>Student Class: <%= bonafide.class %></h3>
+          </div>
+          <div class="row">
+            <h3>Student Section: <%= bonafide.section %></h3>
+          </div>
+          <div class="row">
+            <h3>Bonafide Title: <%= bonafide.bonafide_title %></h3>
+          </div>
+          <div class="row">
+            <h3>Bonafide Description: <%= bonafide.bonafide_des %></h3>
+          </div>
+          <button class="approvalButton" onclick="showConfirmation(this)">Approval Button</button>
+          <button class="approvedButton" onclick="showAlert()">Approved Button</button>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+   -->
+
+  <!-- <div class="window_container">
+    <div class="container center_title">
+        <div class="float_left">
+            <a href="/admin_index/" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+        </div> -->
+
+        <div class="card_container">
+        
+            <% bonafide_data.forEach(function(bonafide) { %>
+              <!-- Start of the form for each bonafide item -->
+              <form action="/bonafide_approval" method="post" class="card_container">
+                <div class="card">
+                  <div class="card_content">
+                    <div class="row">
+                      <label for="id_<%= bonafide.id %>">Student id:</label>
+                      <input type="text" id="id_<%= bonafide.id %>" name="id" value="<%= bonafide.id %>" readonly>
+                    </div>
+                    <div class="row">
+                      <label for="classs_<%= bonafide.id %>">Student Class:</label>
+                      <input name="classs" type="text" id="classs_<%= bonafide.id %>" value="<%= bonafide.class %>" readonly>
+                    </div>
+                    <div class="row">
+                      <label for="section_<%= bonafide.id %>">Student Section: </label>
+                      <input name="section" type="text" id="section_<%= bonafide.id %>" value="<%= bonafide.section %>" readonly>
+                    </div>
+                    <div class="row">
+                      <label for="title_<%= bonafide.id %>">Bonafide Title:</label>
+                      <input name="title" type="text" id="title_<%= bonafide.id %>" value="<%= bonafide.bonafide_title %>" readonly>
+                    </div>
+                    <div class="row">
+                      <label for="description_<%= bonafide.id %>">Bonafide Description:</label>
+                      <input name="description" type="text" id="description_<%= bonafide.id %>" value="<%= bonafide.bonafide_des %>" readonly>
+                    </div>
+                    <input type="submit" value="Submit">
+                    <!-- Removed the inline onclick handler for the approval button to separate concerns -->
+                    <!-- Consider handling the approval click using JavaScript separately -->
+                  </div>
+                </div>
+              </form>
+              <!-- End of the form for this bonafide item -->
+            <% }) %>
+          </div>
+        </div>
+        
