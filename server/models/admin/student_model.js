@@ -156,8 +156,8 @@ const student_master = new mongoose.Schema({
 
         }
         ]
-,
-    forum:{
+    ,
+    forum :{
         type:String,
         default:null,
     },

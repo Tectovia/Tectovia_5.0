@@ -19,6 +19,16 @@ function hide_edit_popup_forum() {
         editPopup.style.display = "flex";
 }
 
+function showDeletePopUp(id){
+  document.getElementById('deleteForumContainer').style.display='flex'
+  document.getElementById('deleteForum').href = `/admin/forum/delete_forum/${id}`
+}
+
+function hideDeleteForum(){
+  document.getElementById('deleteForumContainer').style.display='none'
+}
+
+
 </script>
 
 <div class="window" id="window_layout">
@@ -63,8 +73,8 @@ function hide_edit_popup_forum() {
                                     <div class="">
                                         <a href="/admin/forum/edit_forum/<%= forum._id %>"><button  class="btn_success">Edit</button></a>
                                       </div>
-                                        <div class="todo_delete">
-                                        <a href="/admin/forum/delete_forum/<%= forum._id %>"><button class="btn_danger">Delete</button></a>
+                                        <div class="todo_delete">        
+                                        <button class="btn_danger" onclick="showDeletePopUp(`<%- forum.id %>`)">Delete</button>
                                       </div>
                         </div>
                     <% } %>
@@ -183,6 +193,21 @@ function hide_edit_popup_forum() {
         </div>
     </div>
 <% } %>
+<!-- confrim Delete -->
+
+<div class="popup_container" id="deleteForumContainer" style="display: none;">
+  <div class="popup">
+    <div class="popup_header">
+      <p class="pop_title">Confirm Delete</p>
+      <span class="close_icon" id="closePopup" onclick="hideDeleteForum()">&times;</span>
+    </div>
+    <div class="pop_body">
+      <p>Do You Want to Delete?</p>
+      <div class="delete">
+        <a href="" id="deleteForum"><button class="btn_danger">Delete Forum</button></a>
+  </div>
+</div>
+
 <script>
   
 (function($) {
