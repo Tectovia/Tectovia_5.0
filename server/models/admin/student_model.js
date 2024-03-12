@@ -130,6 +130,7 @@ const student_master = new mongoose.Schema({
         type: String
     },
     address: {
+
         type: String
     },
 
@@ -157,18 +158,18 @@ const student_master = new mongoose.Schema({
         }
         ]
     ,
-    forum:{
+    forum :{
         type:String,
         default:null,
     },
 
     residence: {
+
         type: String,
-        default:null
     },
+
     
    
-
 });
 
 
@@ -202,12 +203,9 @@ const student_master = new mongoose.Schema({
 //     batch_2013_2014_schema,
 //     batch_2012_2011_schema
 // };
-
-
 create_student_collection=async (collection_name)=>{
 
     const new_collection=await mongoose.model(collection_name,student_master);
-    
 
  }
 
@@ -234,6 +232,10 @@ for (var item of batches){
  const new_collection= create_student_collection(item);
 
 }
+
 // console.log(mongoose.modelNames());
 
+// const studentdetails= mongoose.model("studentdetails",student_master);
 
+
+// module.exports = studentdetails;

@@ -30,11 +30,16 @@ exports.assignment=async(req,res)=>{
     
     const selected = mongoose.model(title);
     const assign_model=mongoose.model(assign_name);
-   const assign=await assign_model.findOne({ rollno: id },).populate('assignment.ref_id');
+   const assign=await assign_model.findOne({ rollno: id }).populate('assignment.ref_id');
    const student= await selected.findOne({rollno:id},{id:1,name:1,rollno:1,section:1})
-   console.log(assign);
 
-   // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+   await assign_model.updateOne({rollno:id},{$set : {
+    'assignment.$[].seen':true
+   }})
+
+   // console.log(assign);
+
+   // this is to find no ofnotifications added by purushothaman @ 29/2 7.34 am
    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
    //----------------------------------------------------------------------------------
    

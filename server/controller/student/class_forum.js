@@ -19,6 +19,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 const dayhour=JSON.parse(process.env.DAYHOUR);
 
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+const {noOfNotificationsForStudents} = require('../universal_controller/notificationFunction')
+//-----------------------------------------------------------------------------
+
 // exports.classforum=async(req,res)=>{
 //     const title =req.params.title;
 //     const role=req.originalUrl.toString().split('/')[1]
@@ -50,11 +54,19 @@ exports.classforum=async(req,res)=>{
 
   const models=mongoose.model(title);
   var student=await models.findOne({rollno:id});
+
   let notification = await noOfNotificationsForStudents(student.rollno,student.id)
   console.log("student",student.forum);
+
   const staffDetails=await staff_model.find({},{class_incharge:1,staff_name:1,forum_incharge:1});
-  
+
+  // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+//----------------------------------------------------------------------------------
+let [studentCurrentClass] = student['id'].split("_batch")
+studentCurrentClass = classes_map[studentCurrentClass]
   //console.log("staff",staffDetails);
-  res.render('student/class_forum',{student,role,staffDetails,notification});
+
+  res.render('student/class_forum',{student,role,staffDetails,notification,studentCurrentClass});
 
 }

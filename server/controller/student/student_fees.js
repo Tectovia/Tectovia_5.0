@@ -12,7 +12,12 @@ const staff_model = require("../../models/admin/staff_information_model");
 const { date } = require('date-fns/locale');
 const class_fees = require('../../models/admin/fees_models');
 const {classes_map}=require('../../controller/universal_controller/class_map')
+
+
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
 const {noOfNotificationsForStudents} = require('../universal_controller/notificationFunction')
+//-----------------------------------------------------------------------------
+
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,11 +33,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
   var name=title.split('_')[0];
   name= await classes_map[name];
    const models=mongoose.model(title);
-       // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
-       var student=await models.findOne({rollno:id});
-  let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+   
+  var student=await models.findOne({rollno:id});
+   
   var fees= await class_fees.findOne({class:name},{_id:0,class:0,total:0,__v:0});
- var feesobj={
+  var feesobj={
   fees_term:[],
   fees_title:[],
   fees_amount:[],
@@ -50,7 +55,14 @@ if (fees!=null) {
   }
   
 }
-console.log(student);
-console.log(fees);
+
+
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+//----------------------------------------------------------------------------------
+
+// console.log(student);
+// console.log(fees);
+
 res.render('student/fees',{student,fees,role,notification})
 }

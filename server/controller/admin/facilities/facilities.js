@@ -102,11 +102,11 @@ exports.delete_student = async (req, res) => {
         console.log(newDocumentData);
 
         // Assuming mongoose and HostelModel are properly imported
-        const MasterStudent = mongoose.model(req.params.batch );
+        const MasterStudent = mongoose.model((req.params.batch + "_batch" ));
 
         // Update the residence field to null in the master database
 
-        const dummy = await MasterStudent.findOne( { rollno :  req.params.rollno })
+        
         
         const student = await MasterStudent.findOneAndUpdate(
             { rollno :  req.params.rollno },
@@ -126,7 +126,7 @@ exports.delete_student = async (req, res) => {
             {$set:{ available: false }},
             { new: true } 
         )
-        console.log(dummy);
+
         // Create a new HostelModel instance
         // const newdoc = new HostelModel(newDocumentData);
         

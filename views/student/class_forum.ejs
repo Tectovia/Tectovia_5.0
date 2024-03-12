@@ -19,10 +19,14 @@
             <div class="card">
                 <div class="card_content">
                     <div class="row">
-                        <h3>Class:<%= student.id %></h3>
+                        <h3>Class: <%= studentCurrentClass %></h3>
+                    </div>
+
+                    <div class="row">
+                        <h3>Batch: <%= student.id %></h3>
                     </div>
                     <div class="row">
-                        <h3>Class section:<%= student.section %></h3>
+                        <h3>Class section: <%= student.section %></h3>
                     </div>
                     <% staffDetails.forEach(function(item) { %>
                     <% if(item.class_incharge===(student.id+"_"+student.section)) {%>

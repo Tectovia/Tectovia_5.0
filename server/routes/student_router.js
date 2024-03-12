@@ -7,6 +7,7 @@ const student_attendance= require('../controller/student/attendance');
 const student_assignment= require('../controller/student/assignment');
 const student_dairy=require('../controller/student/digital_dairy')
 const student_marksheet=require("../controller/student/student_marksheet")
+const bonafide=require("../controller/student/bonafide");
 
 const {studentNotification} = require('../controller/student/notificationontroller')
 

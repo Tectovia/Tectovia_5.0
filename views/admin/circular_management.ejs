@@ -162,7 +162,7 @@
                         <div class="dropdown-label">Select Options</div>
                         <div class="dropdown-list">
                         <% staff_data.forEach(function(item) { %>
-                          <% if(item.staff_designation == 'teaching') { %>
+                          <% if(item.staff_designation == 'non-teaching') { %>
                             <label class="dropdown-option"><input type="checkbox" value="<%- item.staff_id %>" name="staff"><%- item.staff_id %></label>
                           <% } %>
                         <% }) %>
