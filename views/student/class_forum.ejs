@@ -2,16 +2,18 @@
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
         <div class="window_navbar">
-            <%- include('../partials//student/navigation_bar.ejs',{circularNotification}) %>
+            <%- include('../partials//student/navigation_bar.ejs',{notification}) %>
         </div>
     <%}else{%>
             <div class="window_navbar">
-            <%- include('../partials/parent/navigation_bar.ejs',{circularNotification}) %>
+            <%- include('../partials/parent/navigation_bar.ejs',{notification}) %>
             </div>
     <%}%>
-<div class="container center_title">
-    Class & Forum Details
-
+<div class="window_container ">
+    <div class="container center_title">
+      Class & Forum Details
+    </div>
+    
 <% if (student) { %>
     <% if(staffDetails!=='undefined'){ %>
       
@@ -39,4 +41,5 @@
             <% } %>
             <% } %>
 </div>
+
 </div>

@@ -1,10 +1,8 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-<<<<<<< Updated upstream
+
 mongoose.connect(process.env.LOCALDBURL, {
-=======
-mongoose.connect(process.env.LOCAlDBURL, {
->>>>>>> Stashed changes
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
