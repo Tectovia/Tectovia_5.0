@@ -92,15 +92,20 @@ async function get_staff() {
 
   exports.view_subject = async (req, res) => {
     const title = req.params.title;
-    var id = req.params.id;
-  
+    const { id } = req.params; 
+    const staffdata = await staff_model.find({_id:id}); 
+     // used to show circular notification for staff edited by purushothaman @ 27/2
+    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
     subject_model.findById(id, function (err, item) {
       if (err) {
         console.log(err);
       } else {
+        console.log("sub:",subject_model);
         res.render("./staff/view_subject", {
           item,
           title,
+          staffdata,
+          circularNotification,
           add_section: "none",
           add_subject: "none",
         });

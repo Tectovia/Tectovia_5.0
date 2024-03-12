@@ -2,6 +2,7 @@ require("../../../database/database");
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
+const {eachDayOfInterval,format}=require('date-fns')
 
 // Models Here!
 const class_model = require("../../../models/admin/section_model");
@@ -10,7 +11,7 @@ const student_model = require("../../../models/admin/student_model");
 const staff_model = require("../../../models/admin/staff_information_model");
 var db = mongoose.connection;
 // Body-Parser
-const { eachDayOfInterval,format} = require('date-fns');
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
