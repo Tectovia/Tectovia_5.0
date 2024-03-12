@@ -133,33 +133,34 @@
 })
 
 function UpdateRoll(optionValue) {
-              console.log(optionValue);
-             
-            <% for (var i = 0; i < nonteach.length; i++) { %>
-                if ('<%= nonteach[i].staff_id %>' == optionValue) {
-                    console.log('<%= nonteach[i].staff_name %>');
-                    var ffrrr = '<%= nonteach[i].staff_name %>';
-                    console.log(typeof(ffrrr));
-                    alternate_driver.value = ffrrr;
+            console.log(optionValue);
+             var nonteach='<%-JSON.stringify(nonteach)%>';
+             nonteach=JSON.parse(nonteach);
+             for (var i = 0; i <nonteach.length; i++) { 
+                if ( nonteach[i].staff_id == optionValue) {
+                    
+                    var staff_name =  nonteach[i].staff_name ;
+                  
+                    alternate_driver.value = staff_name;
                     //  // Assuming feesInput is defined elsewhere
                 }
-            <% } %>
+             } 
        
     }
 
 function UpdateRoll2(optionValue) {
-              console.log(optionValue);
-             
-            <% for (var i = 0; i < nonteach.length; i++) { %>
-                if ('<%= nonteach[i].staff_id %>' == optionValue) {
-                    console.log('<%= nonteach[i].staff_name %>');
-                    var ffrrr = '<%= nonteach[i].staff_name %>';
-                    console.log(typeof(ffrrr));
-                    drivername.value = ffrrr;
+    console.log(optionValue);
+             var nonteach='<%-JSON.stringify(nonteach)%>';
+             nonteach=JSON.parse(nonteach);
+             for (var i = 0; i <nonteach.length; i++) { 
+                if ( nonteach[i].staff_id == optionValue) {
+                    
+                    var staff_name =  nonteach[i].staff_name ;
+                   
+                    drivername.value = staff_name;
                     //  // Assuming feesInput is defined elsewhere
                 }
-            <% } %>
-       
+             } 
     }
 
         </script>
