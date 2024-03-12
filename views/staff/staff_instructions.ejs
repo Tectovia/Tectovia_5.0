@@ -7,12 +7,12 @@
     </div>
 <div class="instructions_main">
     <div class="form">
-        <header class="in">  <span class="underline-three">INSTR</span>UCTION </header>
+        <div class="in"> <h1>INSTRUCTION</h1>  </div>
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
         <label for="instruction" class="sub_instruction"></label><br>
         <textarea type="text" id="instruction" class="textbox textarea" name="instruction"></textarea><br><input type="submit" class="submitbox " value="Send"><br><br>
         <div style="display: flex;">
-        <div>
+        <div><div class="reciever_main">
        <div class="recievers_box"> <span  id="recievers" data-fid="classes" class="recieversbox " ><h1>recievers</h1></span></div>
            
      <div class="reciever_dropdown"> <div class="hidden  " id="classes">
@@ -45,12 +45,12 @@
                     </div>
                 <%})%> 
                     
-                </div> </div>  
+                </div> </div>  </div>
             </div>
 
 
 
-            <div style="margin-left: 70%;">
+            <div style="margin-left: 50%;">
              <div  class="subjects_box">   <span data-fid="subjects"><h1>subjects</h1></span></div>
              <div class="subjects_box_dropdown">  <div id="subjects"  class="hidden">
                     <input type="checkbox" value="subjects" class="selectall" onclick="select_all(this)" class="">
