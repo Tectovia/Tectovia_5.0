@@ -59,7 +59,7 @@ exports.assignment_write=async(req,res)=>{
    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
    //----------------------------------------------------------------------------------
 
-    res.render('student/assign_write',{student,assign_id}); 
+    res.render('student/assign_write',{student,assign_id,notification}); 
 } catch (error) {
     console.log("error from assignment");
   }
