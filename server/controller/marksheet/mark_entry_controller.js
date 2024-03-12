@@ -4,9 +4,13 @@ const staff_model=require('../../models/admin/staff_information_model')
 
 const {classes_map}=require('../universal_controller/class_map');
 const crypto=require("crypto")
+let updated;
+
+// used to show circular notification for staff edited by purushothaman @ 27/2
+const {noOfCirculars,noOfNotificationsForStudents}=require('../universal_controller/notificationFunction')
 
 let class_model;
-
+let markEntered;
 
 exports.mark_entry_index=async(req,res)=>{
 
@@ -36,9 +40,14 @@ exports.mark_entry_index=async(req,res)=>{
         })
     }
 
+    // used to show circular notification for staff edited by purushothaman @ 27/2
+    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    //----------------------------------------------------------------------
+
     res.render("./staff/mark_entry_index",{
         staffdata,
-        classes
+        classes,
+        circularNotification 
     })
    
 }
@@ -57,15 +66,24 @@ exports.mark_entry=async (req,res)=>{
     class_name= handling_class.batch+"_batch"
 
     class_model=mongoose.model(class_name)    
+
+    const oldTests=await mongoose.model(handling_class.batch+'_test').find({})
     
     const student_details= await class_model.find({id:class_name,section:handling_class.section})
+
+        // used to show circular notification for staff edited by purushothaman @ 27/2
+        let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+        //----------------------------------------------------------------------
 
     res.render("./staff/mark_entry",{
         staffdata,
         "class_data":handling_class,
         student_details,
-
+        markEntered,
+        oldTests,
+        circularNotification
     })
+    markEntered=false;
 }
 
 exports.mark_entered=async(req,res)=>{
@@ -85,32 +103,34 @@ exports.mark_entered=async(req,res)=>{
             "rollno":item,
             "tests":
             {   
-                "id":id,
+                "id":crypto.randomBytes(8).toString('hex'),
                 "date":req.body.date,
                 "testtitle":testtile,
                 "minimumMark":minmarks,
                 "maximumMarks":maxmarks,
                 "marks": req.body[item][0],
-                "staus": req.body[item][1]
+                "staus": req.body[item][1],
+                "updated":true
             }
         }
         body.push(test_object)
      })
 
+     console.log(body);
+    
       await body.map(async(item)=>{ 
 
         var old_test=await test_model.findOne({"rollno":item.rollno},{test_marks:1})
-
+        console.log(old_test);
         var old_test_marks=old_test.test_marks
-
+        
         old_test_marks.push(item.tests)
-
-        console.log(old_test_marks);
 
         await test_model.updateOne(
         {"rollno":item.rollno},
-        {$set:{test_marks:old_test_marks}}
+        {$set:{test_marks:old_test_marks,updated:true}}
         )
      })
+     markEntered=true;
     res.redirect(`/staff/markentry/viewclass/${_id}/${batch}`)
 }

@@ -30,7 +30,7 @@ exports.class_list = async (req, res) => {
 //Functions get staff details
 async function get_staff() {
     try {
-      const staff = await staff_model.find({class_incharge:'null'});
+      const staff = await staff_model.find({class_incharge:'null',available:true});
       return staff;
     } catch (error) {
       throw error;
@@ -88,8 +88,10 @@ if (fees!=null) {
   console.log("title here : ",title);
   
       var staff = await get_staff();
-      const sec=await class_model.find({id:title});
+      const sec=await class_model.find({id:title,in:true});// finding the section that are available, that is 
       
+    console.log(staff);
+
      const sub=await subject_model.find({id:title});
      console.log("subjects here : ",sub );
      res.render("admin/class_info/class",{ title,name, sec, staff, sub, no_boys, no_girls, no_others, no_total,fees,feesobj, add_section: "none",add_subject: "none"});  

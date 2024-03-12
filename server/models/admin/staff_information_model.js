@@ -25,7 +25,9 @@ const staff =new mongoose.Schema({
   },
   forum_incharge: {
     type: String,
-    default:null
+    default:null,
+    staff_name: String,
+    staff_id: String,
   },
   staff_designation: {
     type:String,
@@ -306,6 +308,10 @@ const staff =new mongoose.Schema({
   },
   staff_achievement_img2: {
     type: String,
+  },
+  available:{
+    type:Boolean,
+    default:true
   },
 
   time_table: {

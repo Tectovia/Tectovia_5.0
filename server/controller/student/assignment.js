@@ -12,6 +12,10 @@ const class_model = require("../../models/admin/section_model");
 const student_model = require("../../models/admin/student_model");
 const assign_model=require("../../models/assignment/assignment_model");
 
+// this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+const {noOfNotificationsForStudents} = require('../universal_controller/notificationFunction')
+//-----------------------------------------------------------------------------
+
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,8 +33,12 @@ exports.assignment=async(req,res)=>{
    const assign=await assign_model.findOne({ rollno: id },).populate('assignment.ref_id');
    const student= await selected.findOne({rollno:id},{id:1,name:1,rollno:1,section:1})
    console.log(assign);
+
+   // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+   let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+   //----------------------------------------------------------------------------------
    
-  res.render('student/assignment',{student,role,assign}); 
+  res.render('student/assignment',{student,role,assign,notification}); 
     } catch (error) {
         console.log("At student Assignment",error);
     }
@@ -41,6 +49,11 @@ exports.assignment_write=async(req,res)=>{
     const {id,title,sec,assign_id}=req.params;
     const selected = mongoose.model(title)
     const student= await selected.findOne({rollno:id});
+
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+   let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+   //----------------------------------------------------------------------------------
+
     res.render('student/assign_write',{student,assign_id}); 
 } catch (error) {
     console.log("error from assignment");

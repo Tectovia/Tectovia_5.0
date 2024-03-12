@@ -117,7 +117,7 @@ exports.login_submission = async (req, res) => {
 };
 
 // adding user data
-// adduser()
+//adduser()
 function adduser() {
   var user = "admin";
   var password = "123";
@@ -136,8 +136,7 @@ function adduser() {
         password: hashed_password,
         role: "admin",
       });
-
-     await userdata.save().then((data)=>{
+      await userdata.save((err, data) => {
         console.log(data);
      });
     });

@@ -1,7 +1,11 @@
 const mongoose=require('mongoose')
 
 const circular_model= new mongoose.Schema({
-    "date":String,
+
+    "date":{
+        type:Date,
+        default:Date.now()
+    },
     
     "from":{
         type:String,

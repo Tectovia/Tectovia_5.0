@@ -135,7 +135,7 @@
 function UpdateRoll(optionValue) {
               console.log(optionValue);
              
-            <% for (var i = 0; i < nonteach.length; i++) { %>
+            <%for (var i = 0; i < nonteach.length; i++) { %>
                 if ('<%= nonteach[i].staff_id %>' == optionValue) {
                     console.log('<%= nonteach[i].staff_name %>');
                     var ffrrr = '<%= nonteach[i].staff_name %>';
@@ -159,8 +159,7 @@ function UpdateRoll2(optionValue) {
                     //  // Assuming feesInput is defined elsewhere
                 }
             <% } %>
-       
-    }
+        }
 
         </script>
         
