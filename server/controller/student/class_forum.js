@@ -12,6 +12,7 @@ const staff_model = require("../../models/admin/staff_information_model");
 const { date } = require('date-fns/locale');
 const class_fees = require('../../models/admin/fees_models');
 const {classes_map}=require('../../controller/universal_controller/class_map')
+const {noOfNotificationsForStudents} = require('../universal_controller/notificationFunction')
 
 // Body-Parser
 const app = express();
@@ -49,10 +50,11 @@ exports.classforum=async(req,res)=>{
 
   const models=mongoose.model(title);
   var student=await models.findOne({rollno:id});
+  let notification = await noOfNotificationsForStudents(student.rollno,student.id)
   console.log("student",student.forum);
   const staffDetails=await staff_model.find({},{class_incharge:1,staff_name:1,forum_incharge:1});
   
   //console.log("staff",staffDetails);
-  res.render('student/class_forum',{student,role,staffDetails});
+  res.render('student/class_forum',{student,role,staffDetails,notification});
 
 }

@@ -181,7 +181,7 @@ exports.viewlist=async (req,res)=>{
 ])
 let circularNotification = await noOfCirculars(staffdata[0].staff_id)
 console.log(list[0]);
-res.render('staff/assign_student_list',{staffdata,list:list[0],params},circularNotification)
+res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularNotification})
 }
 
 
