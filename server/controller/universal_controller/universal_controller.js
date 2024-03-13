@@ -113,6 +113,10 @@ exports.login_submission = async (req, res) => {
       res.send("user not found");
     }
 
+    
+
+
+
   });
 };
 
@@ -126,7 +130,7 @@ function adduser() {
     if (err) {
       res.send(err);
     }
-    bcrypt.hash(password, salt, (err, hashed_pass) => {
+    bcrypt.hash(password, salt, async (err, hashed_pass) => {
       var hashed_password = hashed_pass;
       if (err) {
         res.send(err);
@@ -136,9 +140,9 @@ function adduser() {
         password: hashed_password,
         role: "admin",
       });
-      userdata.save((err, data) => {
+      await userdata.save((err, data) => {
         console.log(data);
-      });
+     });
     });
   });
 }

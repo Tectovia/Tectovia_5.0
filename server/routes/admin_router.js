@@ -27,10 +27,10 @@ const circular_management=require('../controller/admin/circular/circular');
 
 //--------------------  Infrastructure -------------------------------
 const infrastructure=require('../controller/admin/infrastructure/infrastructure');
-
 //--------------------  Facilities -------------------------------
 const facilities=require('../controller/admin/facilities/facilities');
-
+// ---------------------add transport---------------------
+router.post('/admin/Transport/add_transport',facilities.addtransport)
 //--------------------  institution_info  -------------------------------
 
 
@@ -44,7 +44,11 @@ const attendance_graph=require('../controller/admin/attendance_graph/attendance_
 // ----------------------Fees Controller----------------------------------
 const fees_controller=require('../controller/fees_controller/fees')
 //-----------------------Forum controller----------------------------------
-const forum=require('../controller/admin/forum/forum')
+const forum=require('../controller/admin/forum/forum');
+//---------------------bonafide---------------------------//
+const bonafide=require('../controller/admin/bonafide_admin/bonafide');
+
+
 
 
 
@@ -61,6 +65,10 @@ const forum=require('../controller/admin/forum/forum')
     //Forum delete
     router.get('/admin/forum/delete_forum/:id',validator.admin_validator,forum.delete_forum);
     //---------- Higher authority -------------
+//---------------------------------bonafide_admin-----------------------------
+
+
+
     router.get('/admin/institution_info/higher_authority' ,admin_higher_authority.higher_authority);
 
         //form and submit
@@ -76,13 +84,20 @@ const forum=require('../controller/admin/forum/forum')
     router.get('/admin/institution_info/achievements/form_achievements' ,admin_achievement.form_achievements);
     router.post('/admin/institution_info/achievements/submit_achievements' ,admin_achievement.submit_achievements);
 
+//---------------------------------------------bonafide-------------------//
+router.get('/admin/bonafide_admin',bonafide.boo);
+router.post('/bonafide_approval',bonafide.bonafide_approval);
 
+
+
+
+// router.get('/admin/bonafide/bonafide_certificate',bonafide.certificate);
     //----------- Annual report -----------
-    router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
+   // router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
 
 
     //------------ Others -----------------
-    router.get('/admin/institution_info/others' , admin_others.others);
+    //router.get('/admin/institution_info/others' , admin_others.others);
 
 
 
@@ -101,6 +116,7 @@ router.get('/admin/staff_info' , admin_staff_list.admin_staff_list);
 // -------------------------------------staff personal data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/personal_edit/:id' ,admin_staff_list.staff_personal_edit);
     router.post('/admin/staff_info/staff_list/personal_edit_submission/:id' ,admin_staff_list.personal_edit_submission);
+    router.get('/admin/staff_info/staff_education_form/:staff_id' ,admin_staff_list.staff_education_form);
     // -------------------------------------staff education data edit-----------------------------------
     router.get('/admin/staff_info/staff_list/education_edit/:id' ,admin_staff_list.staff_education_edit);
     router.post('/admin/staff_info/staff_list/education_edit_submission/:id' ,admin_staff_list.education_edit_submission);
@@ -147,6 +163,11 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //View student
     router.get('/admin/class_info/class_list/view_section/view_student/:_id/:title/:section' , admin_section.view_student);
     
+    // ---------------view parent details------------------------------------
+    router.get("/admin/viewParent/:_id/:batch",view_student.view_parent)
+    router.post("/admin/viewStudent/editStudentParent/:_id/:batch",view_student.edit_parent)
+   
+
     //Delete student
     router.get('/admin/class_info/class_list/view_section/delete_student/:_id/:_sec_id/:title/:section' , admin_section.delete_student);
 
@@ -188,7 +209,7 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     router.post('/admin/class_info/class_list/view_section/form_sub/:id/:title/:section/:day/:hr' ,admin_timetable.form_sub);
     // ---------------------------------------Remove Data of Specific day--------------------------------
     router.get('/admin/class_info/class_list/view_section/delete_day/:id/:title/:section/:day/:hr/:sub/:staff/:staff_id' ,admin_timetable.delete_day);
-// -------------------- Academic info  -------------------------------
+    // -------------------- Academic info  -------------------------------
     router.get('/admin/academic_calendar' ,academic.academic_calendar);
     router.post('/admin/academic_calendar/event/:date' ,academic.add_event);
 
@@ -200,6 +221,8 @@ router.get('/admin/circular',circular_management.circular_management);
 router.post('/admin/circular/message_sent',circular_management.message_sent) ;
 router.get("/admin/circular/archive_circular/:_id",circular_management.message_archive)
 router.get("/admin/circular/delete_circular/:_id",circular_management.message_delete)
+router.get("/admin/circular/edit_circular/:_id",circular_management.message_edit,circular_management.circular_management)
+router.post("/admin/circular/messageEditDone/:_id",circular_management.message_editSubmission)
 
 
 //--------------------  attendance_graph  -------------------------------
@@ -208,6 +231,9 @@ router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
 //--------------------  set_holidays  -------------------------------
 // router.get('admin/set_holidays', admin_controller.set_holidays);
 
+ //edit student
+ router.get('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student,admin_section.view_student);
+ router.post('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student_submit,admin_section.view_student);
 
 module.exports = router;
     

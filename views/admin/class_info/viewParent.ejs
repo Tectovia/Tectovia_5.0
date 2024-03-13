@@ -1,0 +1,216 @@
+<link rel="stylesheet" href="/css/parentdetails.css">
+<div class="window" id="window_layout">
+    <div class="window_navabr">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
+    </div>
+    
+    <div class="window_container">
+        <div class="container center_title">
+            View parent
+        </div>
+
+        <div class="container center_title">
+        
+            <div class="float_right">
+                <a href="#" onclick="display_popup()"><button>Edit</button></a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+<div class="card">
+  <div class="parent_img">
+    <img src="/img/profile.jpg" alt="" class="parent_img1">
+    <img src="/img/profile.jpg" alt="" class="parent_img1">
+  </div>
+ <div class="parent_container">
+    <div class="main_details">
+        <div class="father_details">
+            <h4>Fathers Name<span class="parent_colon">:</span><span class="parent_details"><%=data.father_name%></span></h4>
+            <h4>Father Aadhar<span class="parent_colon1">:</span><span class="parent_details"><%=data.father_aadhar%></span></h4>
+            <h4>Father occupation<span class="parent_colon2">:</span><span class="parent_details"></span><%=data. father_occupation%></span></h4>
+            <h4>Father_voter<span class="parent_colon3">:</span><span class="parent_details"></span><%=data.  father_voter %></span></h4>
+            <h4>Father Number <span class="parent_colon8">:</span> <span class="parent_details1"><%=data.parent_phone1%></span></h4>
+            <h4>Parent Whatsapp<span class="parent_colon10">:</span><span class="parent_details"><%=data.parent_whatsapp%></span></h4>
+        </div>
+        <div class="mother_details">
+            <h4>Mother Name<span class="parent_colon4">:</span><span class="parent_details"><%=data.mother_name%></span></h4>
+            <h4>Mother Aadhar<span class="parent_colon5">:</span><span class="parent_details"><%=data.father_aadhar%></span></h4>
+            <h4>Mother Occupation<span class="parent_colon6">:</span><span class="parent_details"><%=data.mother_occupation%></span></h4>
+            <h4>Mother_voter<span class="parent_colon7">:</span><span class="parent_details"><%=data.mother_voter%></span></h4>
+            <h4>Mother Number<span class="parent_colon9">:</span><span class="parent_details"><%=data.parent_phone2%></span></h4>
+            <h4> Parent Alter<span class="parent_colon11">:</span><span class="parent_details"><%=data.parent_alter%></span></h4>
+        </div>
+    </div>
+       
+      
+
+        
+        
+      
+       
+   
+      
+        <div class="guardian_other_details">
+            <span class="guardian">    <h1>Guardian Details</h1></span>
+            <div class="guardian_container">
+                <div>
+                    <h4>Guardian Name <span class="parent_colon8">:</span><span class="parent_details"><%=data.guardian_name%></span></h4>
+                    <h4>Guradian Address <span class="parent_colon12">:</span><span class="parent_details"><%=data.guradian_address%></span></h4>
+                    <h4>Guradian Alter <span class="parent_colon13">:</span><span class="parent_details"><%=data.guardian_alter%></h4></span>
+                </div>
+                <div>
+                    <h4>Guradian Whatsapp <span class="parent_colon14">:</span><span class="parent_details"><%=data.guardian_whatsapp%></span></h4>
+                    <h4>Guardian Number 1 <span class="parent_colon15">:</span><span class="parent_details"><%=data.guardian_phone1%></span></h4>
+                    <h4> Guardian Number 2<span class="parent_colon16">:</span><span class="parent_details"><%=data.guardian_phone2%></span><h4></h4>
+                </div>
+            </div>
+        </div>
+    <div class="parent_documents"> <a href=""><button>view documents</button></a></div>
+ </div>
+</div>
+
+      
+
+    <div id="parent_edit" class="parent_edit" style="display: none;">  
+    <div class="popup parent_edit_form" id="popup">
+      <div class="popup_header">
+          <p class="pop_title">Edit Parent Personal Details</p>
+          <span class="close_icon" id="closePopup">&times;</span>
+        
+      </div>
+      <div class="pop_body">
+          <form action="/admin/viewStudent/editStudentParent/<%-data._id%>/<%-data.id%>" method="post" enctype="multipart/form-data" class="form">
+              <div class="form_inputs">
+                  <div class="form_div text_input">
+                      <p>Father's Name</p>
+                      <input class="input" type="text" name="father_name"  value="<%=data.father_name%>" >
+                     
+                  </div>
+                  
+                  <div class="form_div text_input">
+                      <p>Mother's Name</p>
+                      <input class="input" type="text" name="mother_name"  value="<%=data.mother_name%>">
+          
+                  </div>
+                  <div class="form_div text_input">
+                    <p>Father's Number</p>
+                    <input class="input" type="number" name="parent_phone1"  value="<%=data.parent_phone1%>" >
+                   
+                </div>
+                <div class="form_div text_input">
+                    <p>Mother's Number</p>
+                    <input class="input" type="number" name="parent_phone2"  value="<%=data.parent_phone2%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Father's Whatsapp</p>
+                    <input class="input" type="number"  name="parent_whatsapp" value="<%=data.parent_whatsapp%>" >
+                   
+                </div>
+                <div class="form_div text_input">
+                    <p>parent's Alter</p>
+                    <input class="input" type="number"  name="parent_alter" value="<%=data.parent_alter%>" >
+                   
+                </div>
+                 
+                 
+                <div class="form_div text_input">
+                    <p>Father's aadhar</p>
+                    <input class="input" type="text" name="father_aadhar"  value="<%=data.father_aadhar%>">
+        
+                </div>
+                  
+                  <div class="form_div text_input">
+                    <p>Mother's aadhar</p>
+                    <input class="input" type="text" name="mother_aadhar"  value="<%=data. mother_aadhar%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Father's Occupation</p>
+                    <input class="input" type="text" name="father_occupation"  value="<%=data. father_occupation%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Mother's Occupation</p>
+                    <input class="input" type="text"  name="mother_occupation" value="<%=data.mother_occupation%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Father's Voter</p>
+                    <input class="input" type="text" name="father_voter"  value="<%=data.  father_voter %>">
+        
+                </div> 
+                <div class="form_div text_input">
+                    <p>Mother's Voter</p>
+                    <input class="input" type="text" name="mother_voter"  value="<%=data. mother_voter%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Guardian Name</p>
+                    <input class="input" type="text"  name="guardian_name" value="<%=data.guardian_name%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Guardian phone 1</p>
+                    <input class="input" type="text"  name="guardian_phone1" value="<%=data.guardian_phone1%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Guardian phone 2</p>
+                    <input class="input" type="text"  name="guardian_phone2"  value="<%=data.guardian_phone2%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Guardian Address</p>
+                    <input class="input" type="text"  name="guradian_address" value="<%=data.guradian_address%>">
+        
+                </div>
+                <div class="form_div text_input">
+                    <p>Guardian Alter</p>
+                    <input class="input" type="text" name="guardian_alter"  value="<%=data.guardian_alter%>">
+        
+                </div>
+                <div class="form_div file_input">
+                    <label for="satff_profile">father's Photo</label>
+                    <input class="input" type="file"   >
+                   
+                </div>
+                <div class="form_div file_input">
+                  <label for="satff_profile">Mother's Photo</label>
+                  <input class="input" type="file"   >
+                 
+              </div>
+            
+      
+                </div>
+                 
+              </div>
+              <div class="form_submit">
+                  <input type="submit" value="Save & Next">
+              </div>    
+         
+          </form>
+    </div></div>
+   
+    </div>
+   
+    <script>
+        function display_popup() {
+            var popup = document.querySelector('.parent_edit');
+            if (popup.style.display === "none") {
+                popup.style.display = "block";
+            } else {
+                popup.style.display = "none";
+            }
+        }
+        document.getElementById('closePopup').addEventListener('click',()=>{
+                document.getElementById('parent_edit').style.display='none';
+        })
+    </script>
+
+
+
+
+
+ 

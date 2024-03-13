@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/card.css">
+<div class="window" id="window_layout">
+    <%if(role==="student"){%>
+        <div class="window_navbar">
+            <%- include('../partials//student/navigation_bar.ejs',{notification}) %>
+        </div>
+    <%}else{%>
+            <div class="window_navbar">
+            <%- include('../partials/parent/navigation_bar.ejs',{notification}) %>
+            </div>
+    <%}%>
+<div class="window_container ">
+    <div class="container center_title">
+      Class & Forum Details
+    </div>
+    
+<% if (student) { %>
+    <% if(staffDetails!=='undefined'){ %>
+      
+<div class="card_container">
+            <div class="card">
+                <div class="card_content">
+                    <div class="row">
+                        <h3>Class:<%= student.id %></h3>
+                    </div>
+                    <div class="row">
+                        <h3>Class section:<%= student.section %></h3>
+                    </div>
+                    <% staffDetails.forEach(function(item) { %>
+                    <% if(item.class_incharge===(student.id+"_"+student.section)) {%>
+                    <div class="row">
+                        <h3>Class incharge:<%= item.staff_name %></h3>
+                    </div>
+                    <% } %>
+                    <% }) %>
+                    <div class="row">
+                        <h3>Forum:<%= student.forum %></h3>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <% } %>
+</div>
+
+</div>

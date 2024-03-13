@@ -5,12 +5,20 @@ const staff_model= require('../../models/admin/staff_information_model')
 const {classes_map}=require("../../controller/universal_controller/class_map");
 const { default: mongoose } = require("mongoose");
 const message_model=require('../../models/admin/message_model')
+let lastVisited;
+
+// used to show circular notification for staff edited by purushothaman @ 27/2
+const {noOfCirculars}=require('../universal_controller/notificationFunction')
 
 
 exports.instruction=async (req,res,next)=>{
     const staff_id=req.params.id;
     const staffdata=await staffs.find({_id:staff_id},{staff_id:1,time_table:1})
     const oldMessage = await message_model.find({from:staffdata[0].staff_id,show:true})
+
+      // used to show circular notification for staff edited by purushothaman @ 27/2
+      let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+      //----------------------------------------------------------------------
 
     let temp=[]
     
@@ -63,19 +71,19 @@ exports.instruction=async (req,res,next)=>{
       classes,
       allStudents,
       subjects,
-      oldMessage
+      oldMessage,
+      lastVisited,
+      circularNotification
   }
 
-
-  // console.log(classes);
-
-  // res.send("sucess")
    res.render('./staff/staff_instructions.ejs',data)
 
+    lastVisited=null
 }
 
 
 exports.instruction_send=async (req,res,next)=>{
+    lastVisited='sent'
     const staff= await staff_model.findOne({_id:req.params.id},{staff_id:1})
     const staff_instruction=req.body.instruction;
     const recievers=req.body.recievers;

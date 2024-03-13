@@ -1,0 +1,77 @@
+.hostel_addstudent_button{
+    margin-left: 1050px;
+}            
+.hostel_form{
+    margin-top: -100px;
+    margin-left: 350px;
+}
+.gender_option{
+    display: flex;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.gender_option input{
+font-size: 30px;
+    margin-left: 120px;
+}
+/* .display_students{
+
+} */
+/* .add_students{
+   margin-left: 1050px;
+   margin-right: 200px;
+   margin-top: 1rem; */
+    
+
+.tablee{
+    margin-left: 21%;
+    border-collapse: collapse;
+    width: auto;
+    height: 100px;
+    box-shadow: 0 0 20px var(--primary-color);
+    margin-top: 5%;
+    
+}
+.Transport_bus{
+    
+    margin-left: 43.5%;
+    font-size: 150%;
+}
+
+.add_students{
+    margin-top: -50%;
+    margin-left: 85%;
+
+}
+.input-data{
+    color: black;
+}
+.form_divv{
+    margin-bottom: -14rem;
+}
+.form_dive{
+    margin-bottom: -16.9rem;
+}
+.form_dev{
+    margin-left: 12rem;
+}
+.input-dataa{
+    
+    margin-top: -30%;
+}
+.input-roll{
+    margin-top: 15%;
+    color: black;
+    
+    height: 1%;
+}
+.input-driver{
+    margin-top: -20%;
+    color: black; 
+}
+.name-driver{
+    margin-top: -32%;
+}
+.data-input-roll{
+    background-color: red;
+}

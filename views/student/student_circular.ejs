@@ -16,7 +16,7 @@
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
         <div class="window_navbar">
-            <%- include('../partials/student/navigation_bar.ejs') %>
+            <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
          </div>
     <%}else{%>
         
@@ -25,34 +25,40 @@
         </div>
     <%}%>
     <div class="window_container">
-        <%datas.map((item)=>{%> 
-            <div class="circular_container">
-                <div class="circular_header">
-                    <div class="circular_info">
-                        <div class="from">From : <%- item.from %> </div>
-                        <div class="time">Date : <%- formatDate(item.date) %> </div>
-                        <div class="time">Time : <%- formatTime(item.date) %> </div>
+        <%if(datas){%>
+            <%datas.map((item)=>{%> 
+                <div class="circular_container" id="<%- item._id %>">
+                    <div class="circular_header">
+                        <div class="circular_info">
+                            <div class="from">From : <%- item.from %> </div>
+                            <div class="time">Date : <%- formatDate(item.date) %> </div>
+                            <div class="time">Time : <%- formatTime(item.date) %> </div>
+                        </div>
                     </div>
-                    <div class="delete">
-                        <button class="btn_warning" onclick="display_delete_circular(`<%- item._id %>`)">Seen</button>
+                    <div class="circular_title">
+                        <div class="title"><%- item.title %></div>
+                    </div>
+                    <div class="circular_message">
+                        <div class="message">
+                            <p><%- item.message %></p>
+                        </div>
                     </div>
                 </div>
-                <div class="circular_title">
-                    <div class="title"><%- item.title %></div>
-                </div>
-                <div class="circular_message">
-                    <div class="message">
-                        <p><%- item.message %></p>
-                    </div>
-                </div>
-            </div>
-        <%})%>
-            <!-- <%datas.map((item)=>{%> 
-                <label>date and time:</label><p><%=item.date%></p>
-                <label>message:</label><p><%=item.message%></p>
-            <%})%> -->
+            <%})%>
+        <%}%>
     </div>
 </div>
-    
+<script>
+function hideCircular(id){
+    document.getElementById(id).style.display='none';
+}
+
+function hideSeenCircularContainer(){
+        document.getElementById('seenCircularContainer').style.display='none';
+}
+function showPopUp(){
+    document.getElementById('seenCircularContainer').style.display='flex';
+}
+</script>
 
 

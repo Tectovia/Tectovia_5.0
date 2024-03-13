@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="/css/card.css">
 
 <script>
+    function displayDeletePopUp(id,title,sectionName) {
+      var element = document.getElementById("DeleteSectionPopUp");
+      element.style.display = "flex";
+      document.getElementById('deleteSectionButton').href=`/admin/class_info/class_list/delete_section/${id}/${title}/${sectionName}`
+
+  }
 function hide_popup_section() {
     var element = document.getElementById("popup_section");
     element.style.display = "none";
@@ -248,10 +254,26 @@ function calculateupdateTotalAmount() {
                                 <a href="/admin/class_info/class_list/view_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"><button class="btn_success">View</button></a>
                             </div>
                             <div class="todo_delete">
-                                <a href="/admin/class_info/class_list/delete_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"><button class="btn_danger">Delete</button></a>
+                                <!-- <a href="/admin/class_info/class_list/delete_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"></a> -->
+                                <button class="btn_danger" onclick="displayDeletePopUp(`<%= item._id %>`,`<%= title %>`,`<%= item.section_name %>`)">Delete</button>
                             </div>
                         </div>
                     </div>
+                    <div class="popup_container" id="DeleteSectionPopUp" style="display: none;">
+                        <div class="popup">
+                          <div class="popup_header">
+                            <p class="pop_title">Confirm Delete</p>
+                            <span class="close_icon" id="closePopup" onclick="hideDeletePopUp()">&times;</span>
+                          </div>
+                          <div class="pop_body">
+                            <p>Do You Want to Delete section ?</p>
+                            <div class="delete">
+                              <a href="" id="deleteSectionButton"><button class="btn_danger">Delete Section</button></a>
+                            </div>
+                          </div>
+            
+                        </div>
+                      </div>
                 <% }) %>
             <% } %>
         </div>
@@ -259,6 +281,7 @@ function calculateupdateTotalAmount() {
         <div class="container center_title">
             Subject
         </div>
+        
         <div class="card_container">
             <% if (sub) { %>
                 <% sub.forEach(function(item) { %>
@@ -377,12 +400,13 @@ function calculateupdateTotalAmount() {
             </div>
         <%} %>
       
-        <div class="popup_container" id="popup_section" style="display: none;">
+        <div class="popup_container fade-up" id="popup_section" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Add Section</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_section()">&times;</span>
                 </div>
+
                 <div class="pop_body">
                     <form action="/admin/class_info/class_list/submit_section/<%- title %>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
@@ -423,6 +447,7 @@ function calculateupdateTotalAmount() {
                     <p class="pop_title">Add Subject</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_subject()">&times;</span>
                 </div>
+                
                 <div class="pop_body">
                     <form action="/admin/class_info/class_list/submit_subject/<%- title %>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
@@ -555,3 +580,21 @@ function calculateupdateTotalAmount() {
     </div>
 </div>
 
+<style>
+    .popup_container.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>

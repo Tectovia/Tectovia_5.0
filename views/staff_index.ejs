@@ -1,9 +1,151 @@
+<link rel="stylesheet" href="/css/staff_information.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
-        <%- include('partials/staff/navigation_bar.ejs') %>
+        <%- include('partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
 
     <div class="window_container">
-        <h1><%=staffdata[0].staff_name%></h1>
+        <div class="container center_title">
+           
+        </div>
+
+        <div>
+            <div class="staff_main_container">
+
+                <div class="staff_details">
+
+                    <div class="staff_name_img_id">
+
+                        
+                        <div class="staff_name">
+                            <h3>
+                                <%=staffdata[0].staff_name%>
+                            </h3>
+                        </div>
+
+
+                        <div class="staff_id">
+                            <h3>ID:<%=staffdata[0].staff_id%>
+                            </h3>
+                        </div>
+                        <div>
+
+                            <img src="/uploads/staff_info/<%-staffdata[0].staff_id%>/<%- staffdata[0].staff_profile_img %>" alt="" />
+
+                        </div>
+                    </div>
+
+                    <div class="staff_main_details"></div>
+                    <div class="staff_name_details">
+                        <div class="staff_name_details_1">
+                            <h1>Basic Details</h1>
+                            <h3>Gender <span class="staff_colon">:</span> <span class="staff_basic_details">
+                                    <%=staffdata[0].staff_gender%>
+                                </span></h3>
+                            <h3>Date Of Birth<span class="staff_colon_1">:</span> <span
+                                    class="staff_basic_details"></span>
+                                <%=staffdata[0].staff_dob%></span>
+                            </h3>
+                            <h3>Staff Mobile<span class="staff_colon_2">:</span> <span
+                                    class="staff_basic_details"></span>
+                                <%=staffdata[0].staff_mobile%></span>
+                            </h3>
+                            <h3>Qualification<span class="staff_colon_3">:</span> <span
+                                    class="staff_basic_details"></span>
+                                <%=staffdata[0].staff_qualifiaction%></span>
+                            </h3>
+                            <h3>Blood <span class="staff_colon_7">:</span><span class="staff_basic_details_2">
+                                <%=staffdata[0].staff_blood%>
+                            </span></h3>
+                            <h3>Exprience<span class="staff_colon_4">:</span> <span class="staff_basic_details"></span>
+                                <%=staffdata[0].staff_experience%></span>
+                            </h3>
+                            <h3>Staff Marrital<span class="staff_colon_5">:</span> <span
+                                    class="staff_basic_details"></span>
+                                <%=staffdata[0].staff_marrital%></span>
+                            </h3>
+
+
+                           
+                        </div>
+                    </div>
+                    <div class="staff_main_details_2"></div>
+
+
+                    <div class="staff_emails">
+                        <div class="staff_emails_1">
+                            <h1>Address</h1>
+                            
+                            <h3>Aadhar Number<span class="staff_colon_8">:</span><span
+                                    class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_aadhar_no%></span>
+                            </h3>
+                            <h3>Pan<span class="staff_colon_9">:</span><span class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_pan%></span>
+                            </h3>
+                            <h3>Official Mail id<span class="staff_colon_10">:</span><span
+                                    class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_off_mail%></span>
+                            </h3>
+                            <h3>Personal Mail id<span class="staff_colon_11">:</span><span
+                                    class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_per_mail%></span>
+                            </h3>
+                            <h3>Permantent Address<span class="staff_colon_12">:</span><span
+                                    class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_per_address%></span>
+                            </h3>
+                            <h3>Tempory Address<span class="staff_colon_13">:</span><span
+                                    class="staff_basic_details_2"></span>
+                                <%=staffdata[0].staff_temp_address%></span>
+                            </h3>
+                            <h3>Nationality<span class="staff_colon_6">:</span> <span
+                                class="staff_basic_details"></span>
+                            <%=staffdata[0].staff_nationality%></span>
+                        </h3>
+
+
+                        </div>
+                    </div>
+                    <div class="staff_main_details_3"></div>
+                    <div class="staff_details_3">
+                        <div class="staff_details_31">
+                            <h1>Personal Details</h1>
+                            <div>
+                                <h3>Father's Name<span class="staff_colon_14">:</span><span
+                                        class="staff_basic_details_3">
+                                        <%=staffdata[0].staff_father%>
+                                    </span></h3>
+                                <h3>Mother's Name<span class="staff_colon_15">:</span><span
+                                        class="staff_basic_details_3">
+                                        <%=staffdata[0].staff_mother%>
+                                    </span></h3>
+                                    <h3>Bank Branch<span class="staff_colon_19">:</span><span class="staff_basic_details_3">
+                                        <%=staffdata[0].staff_bank_branch%>
+                                    </span></h3>
+                                <h3>Disability<span class="staff_colon_20">:</span><span class="staff_basic_details_3">
+                                        <%=staffdata[0].staff_disability%>
+                                    </span></h3>
+                                
+                               
+                            </div>
+                            <div class="side">
+                                <h3>Account IFSC Code<span class="staff_colon_21">:</span><span
+                                    class="staff_basic_details_3">
+                                    <%=staffdata[0].staff_account_ifsc%>
+                                </span></h3>
+                            <h3>Website 1<span class="staff_colon_22">:</span><span class="staff_basic_details_3">
+                                    <%=staffdata[0].staff_social_media1%>
+                                </span></h3>
+                            <h3>Website 2<span class="staff_colon_23">:</span><span class="staff_basic_details_3">
+                                    <%=staffdata[0].staff_social_media2%>
+                                </span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

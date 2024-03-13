@@ -4,13 +4,11 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const schedule = require("node-schedule");
 const { format, eachDayOfInterval } = require("date-fns");
-const fast2sms = require('fast-two-sms')
-
 const staff_model = require("../../models/admin/staff_information_model");
 const class_model = require("../../models/admin/section_model");
 const subject_model = require("../../models/admin/subject_model");
 const student_model = require("../../models/admin/student_model");
-
+const {noOfCirculars}=require('../universal_controller/notificationFunction')
 
 
 var db = mongoose.connection;
@@ -69,8 +67,10 @@ exports.assignment=async (req,res)=>{
           }
         }
       ]);
+
+      let circularNotification = await noOfCirculars(staffdata[0].staff_id)
       
-        res.render('staff/assignment',{staffdata,subject});
+        res.render('staff/assignment',{staffdata,subject,circularNotification});
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +88,8 @@ exports.assignment_list=async(req,res)=>{
     const staffdata = await staff_model.find({ _id:id },{ staff_id: 1, staff_name: 1, });
     const assign=await assign_model.find({sub:params.sub,sec:params.sec,staff_id:params.id});
     console.log(assign);
-     res.render('staff/assignment_list',{staffdata,item:params,assign});
+    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+     res.render('staff/assignment_list',{staffdata,item:params,assign,circularNotification});
    
   } catch (error) {
     console.log('assignment_list',error);
@@ -172,16 +173,38 @@ exports.viewlist=async (req,res)=>{
       'sub':1,
       'desc':1,
       'due':1,
+      'assign.batch':1,
       'assign.assignment': 1,
       'assign.name': 1,
       'assign.rollno': 1,
     }
   }
 ])
+let circularNotification = await noOfCirculars(staffdata[0].staff_id)
 console.log(list[0]);
-res.render('staff/assign_student_list',{staffdata,list:list[0],params},)
+res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularNotification})
 }
 
+exports.ViewAssign=async(req,res)=>{
+try {
+  var {id,class_name,staff,rollno}=req.params;
+  var assign_model=mongoose.model(class_name+'_assign');
+  const assignment=await assign_model.findById(id,{source:1});
+  let circularNotification = await noOfCirculars(staff);
+  var textcontent;
+  const staffdata = await staff_model.find({ 'staff_id':staff },{ staff_id: 1, staff_name: 1, });
+   assignment.source.forEach(element => {
+    if(element[rollno])
+      textcontent=element[rollno];
+   });
+  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata})
+} catch (error) {
+  console.log(error);
+  res.redirect('/');
+}
+
+   
+}
 
 
 // var options = {

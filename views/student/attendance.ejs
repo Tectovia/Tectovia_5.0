@@ -2,7 +2,7 @@
   <%if(role==="student"){%>
 
     <div class="window_navbar">
-        <%- include('../partials//student/navigation_bar.ejs') %>
+      <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
      </div>
      
      <%}else{%>
@@ -20,7 +20,7 @@
             
             <div>
                 <label for="date_selector">Pick A Date</label>
-                <input id="date_selector" type="date" name="goto"/ style="color: black;">
+                <input id="date_selector" type="date" name="goto" style="color: black;">
               </div>
 
               <h1>Date : <%=datetext%></h1>
@@ -48,12 +48,12 @@
             <% if(ack[i]!='null'){%>
                 <div class="todo_buttons">
                     
-                        <%if(student_attend[i]==1){%>
-                            <h3 class="done">P</h3>
-                            
-                        <%}else{%>
-                            <h3 class="pending_btn">A</h3>
-                        <%}%>
+                  <%if(student_attend[i]==1){%>
+                    <h3 class="done">P</h3>
+                    
+                <%}else{%>
+                    <h3 class="pending_btn">A</h3>
+                <%}%>
                   
                   </div>
                 <%}else{%>
