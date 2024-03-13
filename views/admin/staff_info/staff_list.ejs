@@ -29,6 +29,7 @@
     <%- include('../../partials/admin/navigation_bar.ejs') %>
   </div>
   <div class="window_container" id="window_container">
+    
     <div class="container center_title">
       <%= page_title %>
       <div class="float_right">
@@ -63,7 +64,7 @@
 
       <div class="todo_buttons">
         <div class="todo_edit">
-          <a href="/admin/staff_info/staff_list/view/<%=item._id%>" target="_blank"><button class="btn_warning">View</button></a>
+          <a href="/admin/staff_info/staff_list/view/<%=item._id%>"><button class="btn_warning">View</button></a>
         </div>
         <div class="todo_delete">
           <button class="btn_danger" onclick="showDeleteStaffPopUp(`<%=item._id%>`)">Delete</button>

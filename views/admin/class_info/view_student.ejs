@@ -26,8 +26,13 @@
         <div class="container center_title">
             <%- title %> - <%- sec %>
             <div class="float_left">
+                <a href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"> <button class="back_btn">Go Back</button></a>
+             </div>
+
+            <div class="left">
                <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>
+
             <div class="float_right">
                 <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="btn_danger">Delete</button></a>
             </div>
