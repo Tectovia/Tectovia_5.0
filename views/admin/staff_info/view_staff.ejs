@@ -69,7 +69,7 @@
             <div class="staff_main_details_3"></div>
             <div class="staff_details_3">
                 <div class="staff_details_31">
-            <h1>Account Details</h1>
+            <h1>Personal Details</h1>
          <div>   <h3>Father's Name<span class="staff_colon_14">:</span><span class="staff_basic_details_3"><%=data.staff_father%></span></h3>
             <h3>Mother's Name<span class="staff_colon_15">:</span><span class="staff_basic_details_3"><%=data.staff_mother%></span></h3>
            
@@ -96,20 +96,27 @@
       <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
           <div class="form_inputs">
               <div class="form_div text_input">
-                  <p>ID</p>
+                  <p>Staff ID</p>
                   <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
                  
               </div>
               
               <div class="form_div text_input">
-                  <p>Name</p>
+                  <p>Staff Name</p>
                   <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>"">
       
               </div>
               <div class="form_div file_input">
                   <label for="satff_profile">Profile Photo</label>
                   <input class="input" type="file" id="staff_profile" name="staff_profile" >
-                 
+              </div>
+              <div class="form_div select_input">
+                <label class="select_label" for="staff_experience">staff designation</label>
+                <select name="staff_designation" id="staff_designation" >
+                    <option value="<%=data.staff_designation%>"><%=data.staff_designation%></option>
+                    <option value="teaching">teaching</option>
+                    <option value="non-teaching">non-teaching</option>
+                </select>
               </div>
               <div class="form_div text_input">
                   <input class="input" type="text" id="staff_father_name" name="staff_father" value="<%=data.staff_father%>">
@@ -212,11 +219,11 @@
                   <label for="staff_per_mail">Personal Mail</label>
               </div>
               <div class="form_div text_input">
-                  <textarea name="staff_per_address" id="staff_per_address" cols="30" rows="10" draggable="false" value="<%=data.staff_per_address%>"></textarea>
+                  <textarea name="staff_per_address" id="staff_per_address" cols="30" rows="10" draggable="false"><%=data.staff_per_address%></textarea>
                   <label for="staff_per_address">Permanent Address</label>
               </div>
               <div class="form_div text_input">
-                  <textarea name="staff_temp_address" id="staff_temp_address" cols="30" rows="10" draggable="false" value="<%=data.staff_temp_address%>"></textarea>
+                  <textarea name="staff_temp_address" id="staff_temp_address" cols="30" rows="10" draggable="false"><%=data.staff_temp_address%></textarea>
                   <label for="staff_temp_address">Tempory Address</label>
               </div>
               <div class="form_div select_input">
@@ -264,10 +271,11 @@
                   <input class="input" type="text" id=" staff_social_media2" name=" staff_social_media2" value="<%=data.staff_social_media2%>" >
                   <label for=" staff_social_media2">Website</label>
               </div>
+              <div class="form_submit form_div_span">
+                <input type="submit" value="Save & Next">
+            </div>  
           </div>
-          <div class="form_submit">
-              <input type="submit" value="Save & Next">
-          </div>    
+           
      
       </form>
 </div>
@@ -307,173 +315,173 @@
                     
                             </div>
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_sslc_mark" name="staff_sslc_mark" >
+                                <input type="number" class="input" id="staff_sslc_mark" name="staff_sslc_mark" value="<%=data.staff_sslc_mark%>" >
                                 <label for="staff_sslc_mark">SSLC Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_sslc_school" name="staff_sslc_school" >
+                                <input type="text" class="input" id="staff_sslc_school" name="staff_sslc_school" value="<%=data.staff_sslc_school%>" >
                                 <label for="staff_sslc_school">SSLC School</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_sslc_per" name="staff_sslc_per" >
+                                <input type="number" class="input" id="staff_sslc_per" name="staff_sslc_per" value="<%=data.staff_sslc_per%>" >
                                 <label for="staff_sslc_per">SSLC Percentage</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_sslc_marksheet" name="staff_sslc_marksheet" >
+                                <input type="file" class="input" id="staff_sslc_marksheet" name="staff_sslc_marksheet" value="<%=data.staff_sslc_marksheet%>">
                                 <label for="staff_sslc_marksheet">SSLC Marksheet</label>
                             </div>
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_hsc_mark" name="staff_hsc_mark" >
+                                <input type="number" class="input" id="staff_hsc_mark" name="staff_hsc_mark" value="<%=data.staff_hsc_mark%>" >
                                 <label for="staff_hsc_mark">HSC Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_hsc_school" name="staff_hsc_school" >
+                                <input type="text" class="input" id="staff_hsc_school" name="staff_hsc_school" value="<%=data.staff_hsc_school%>">
                                 <label for="staff_hsc_school">HSC School</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_hsc_per" name="staff_hsc_per" >
+                                <input type="number" class="input" id="staff_hsc_per" name="staff_hsc_per" value="<%=data.staff_hsc_per%>">
                                 <label for="staff_hsc_per">HSC Percentage</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_hsc_marksheet" name="staff_hsc_marksheet" >
+                                <input type="file" class="input" id="staff_hsc_marksheet" name="staff_hsc_marksheet" value="<%=data.staff_hsc_marksheet%>">
                                 <label for="staff_hsc_marksheet">HSC Marksheet</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_ug_mark" name="staff_ug_mark" >
+                                <input type="number" class="input" id="staff_ug_mark" name="staff_ug_mark" value="<%=data.staff_ug_mark%>">
                                 <label for="staff_ug_mark">UG Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_ug_per" name="staff_ug_per" >
+                                <input type="number" class="input" id="staff_ug_per" name="staff_ug_per" value="<%=data.staff_ug_per%>">
                                 <label for="staff_ug_per">UG Percentage</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_ug_college" name="staff_ug_college" >
+                                <input type="text" class="input" id="staff_ug_college" name="staff_ug_college" value="<%=data.staff_ug_college%>">
                                 <label for="staff_ug_college">UG College</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_ug_marksheet" name="staff_ug_marksheet" >
+                                <input type="file" class="input" id="staff_ug_marksheet" name="staff_ug_marksheet" value="<%=data.staff_ug_marksheet%>">
                                 <label for="staff_ug_marksheet">UG MarksheeT</label>
                             </div>
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_pg_mark" name="staff_pg_mark" >
+                                <input type="number" class="input" id="staff_pg_mark" name="staff_pg_mark" value="<%=data.staff_pg_mark%>">
                                 <label for="staff_pg_mark">PG Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_pg_per" name="staff_pg_per" >
+                                <input type="number" class="input" id="staff_pg_per" name="staff_pg_per" value="<%=data.staff_ug_per%>">
                                 <label for="staff_pg_per">UG Percentage</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_pg_college" name="staff_pg_college" >
+                                <input type="text" class="input" id="staff_pg_college" name="staff_pg_college" value="<%=data.staff_pg_college%>">
                                 <label for="staff_pg_college">PG College</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_pg_marksheet" name="staff_pg_marksheet" >
+                                <input type="file" class="input" id="staff_pg_marksheet" name="staff_pg_marksheet" value="<%=data.staff_pg_marksheet%>">
                                 <label for="staff_pg_marksheet">PG Marksheet</label>
                             </div>
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_bed" name="staff_bed" >
+                                <input type="text" class="input" id="staff_bed" name="staff_bed" value="<%=data.staff_bed%>" >
                                 <label for="staff_bed">B.Ed</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_bed_mark" name="staff_bed_mark" >
+                                <input type="number" class="input" id="staff_bed_mark" name="staff_bed_mark" value="<%=data.staff_bed_mark%>">
                                 <label for="staff_bed_mark">B.Ed Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_bed_college" name="staff_bed_college" >
+                                <input type="text" class="input" id="staff_bed_college" name="staff_bed_college" value="<%=data.staff_bed_college%>">
                                 <label for="staff_bed_college">B.Ed College</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_bed_marksheet" name="staff_bed_marksheet" >
+                                <input type="file" class="input" id="staff_bed_marksheet" name="staff_bed_marksheet" value="<%=data.staff_bed_marksheet%>">
                                 <label for="staff_bed_marksheet">B.Ed Marksheet</label>
                             </div>
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_med" name="staff_med" >
+                                <input type="text" class="input" id="staff_med" name="staff_med" value="<%=data.staff_med%>">
                                 <label for="staff_med">M.Ed</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_med_mark" name="staff_med_mark" >
+                                <input type="number" class="input" id="staff_med_mark" name="staff_med_mark" value="<%=data.staff_med_mark%>">
                                 <label for="staff_med_mark">M.Ed Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_med_college" name="staff_med_college" >
+                                <input type="text" class="input" id="staff_med_college" name="staff_med_college" value="<%=data.staff_med_college%>">
                                 <label for="staff_med_college">M.Ed College</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="file" class="input" id="staff_med_marksheet" name="staff_med_marksheet" >
+                                <input type="file" class="input" id="staff_med_marksheet" name="staff_med_marksheet" value="<%=data.staff_med_marksheet%>">
                                 <label for="staff_med_marksheet">M.Ed Marksheet</label>
                             </div>
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_mpill" name="staff_mpill" >
+                                <input type="text" class="input" id="staff_mpill" name="staff_mpill" value="<%=data.staff_mpill%>">
                                 <label for="staff_mpill">M.Pill</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="number" class="input" id="staff_mpill_mark" name="staff_mpill_mark" >
+                                <input type="number" class="input" id="staff_mpill_mark" name="staff_mpill_mark" value="<%=data.staff_mpill_mark%>">
                                 <label for="staff_mpill_mark">M.Pill Mark</label>
                             </div>
                         
                             <div class="form_div text_input">
-                                <input type="text" class="input" id="staff_mpill_university" name="staff_mpill_university" >
+                                <input type="text" class="input" id="staff_mpill_university" name="staff_mpill_university" value="<%=data.staff_mpill_university%>">
                                 <label for="staff_mpill_university">M.Pill University</label>
                             </div>
             
                             
                                     <div class="form_div text_input">
-                                    <input type="file" class="input" id="staff_mpill_marksheet" name="staff_mpill_marksheet" >
+                                    <input type="file" class="input" id="staff_mpill_marksheet" name="staff_mpill_marksheet" value="<%=data.staff_mpill_marksheet%>">
                                     <label for="staff_mpill_marksheet">M.Pill Marksheet</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="text" class="input" id="staff_phd" name="staff_phd" >
+                                    <input type="text" class="input" id="staff_phd" name="staff_phd" value="<%=data.staff_mpill_university%>">
                                     <label for="staff_phd">M.Pill University</label>
                                 </div>
                             
                                 <div class="form_div text_input">
-                                    <input type="text" class="input" id="staff_add_pg1" name="staff_add_pg1" >
+                                    <input type="text" class="input" id="staff_add_pg1" name="staff_add_pg1" value="<%=data.staff_add_pg1%>">
                                     <label for="staff_add_pg1">Additional PG</label>
                                 </div>
                             
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="staff_add_pg1_mark" name="staff_add_pg1_mark" >
-                                    <label for="staff_add_pg1_mark">Add PG Mark</label>
+                                    <input type="number" class="input" id="staff_add_pg1_mark" name="staff_add_pg1_mark" value="<%=data.staff_hsc_mark%>">
+                                    <label for="staff_add_pg1_mark">PG Mark</label>
                                 </div>
                 
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="staff_add_pg1_per" name="staff_add_pg1_per" >
-                                    <label for="staff_add_pg1_per"> Add PG Percentange</label>
+                                    <input type="number" class="input" id="staff_add_pg1_per" name="staff_add_pg1_per" value="<%=data.staff_add_pg1_per%>">
+                                    <label for="staff_add_pg1_per">PG Percentange</label>
                                 </div>
                             
                                 <div class="form_div text_input">
-                                    <input type="text" class="input" id="staff_add_pg1_college" name="staff_add_pg1_college" >
-                                    <label for="staff_add_pg1_college">Add PG College</label>
+                                    <input type="text" class="input" id="staff_add_pg1_college" name="staff_add_pg1_college" value="<%=data.staff_add_pg1_college%>" >
+                                    <label for="staff_add_pg1_college">PG College</label>
                                 </div>
                             
                                 <div class="form_div text_input">
-                                    <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" >
-                                    <label for="staff_pg_marksheet">Add PG Marksheet</label>
+                                    <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" value="<%=data.staff_add_pg1_mark%>">
+                                    <label for="staff_pg_marksheet">PG Marksheet</label>
                                 </div>
-                            </div>
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
+                                <div class="form_submit form_div_span">
+                                    <input type="submit">
+                                </div> 
+                            </div>   
                         </form>
                         
                     </div>
@@ -493,8 +501,8 @@
             <div class="acheivement_value">
         <div>
             <h1>Achievement Info</h1>
-            <h3>Achievement <span class="staff_colon_26">:</span></h3>
-            <h3>Description <span class="staff_colon_27">:</span></h3>
+            <h3>Achievement <span class="staff_colon_26"></span>:<span class="staff_basic_details_4"><%=data.staff_achievement%></span></h3>
+            <h3>Image <span class="staff_colon_27"></span>:<span class="staff_basic_details_4"><%=data. staff_achievement_img1%></span></h3>
             <div class="float">
                 <a href="/admin/staff_info/staff_list/achievement_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
             </div></div>
@@ -510,18 +518,18 @@
                     <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
                             <div class="form_div text_input">
-                               <textarea name="staff_achievement" id="staff_achievement" cols="30" rows="10"></textarea>
+                               <textarea name="staff_achievement" id="staff_achievement" cols="30" rows="10"><%=data.staff_achievement%></textarea>
                                 <label for="staff_achievement">Enter Your Achivements</label>
                             </div>
-                            <div class="form_div file_input">
+                            <div class="form_div file_input" >
                                 <label for="staff_achievement_img1">Achivement </label>
-                                <input class="input" type="file" id="staff_achievement_img1" name="staff_achievement_img1">
+                                <input class="input" type="file" id="staff_achievement_img1" name="staff_achievement_img1" value="<%=data.staff_achievement_img1%>">
                             </div>
-                          
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div> 
                         </div>
-                        <div class="form_submit">
-                            <input type="submit">
-                        </div>    
+                           
                     </form>
                     
                 </div>
@@ -531,7 +539,7 @@
          <br>
          <div>
         <div class="float">
-   <div class="view_document">       <a href="/admin/staff_info/staff_list/view_document/<%=data.id%>" id="toggleButton"><button>View Documents</button></a></div>
+   <div class="view_document"><a href="/admin/staff_info/staff_list/view_document/<%=data.id%>" id="toggleButton"><button>View Documents</button></a></div>
         </div>
         <%if(document=='display'){%>
             <div class="popup" id="popup">
@@ -557,6 +565,42 @@
                         <div>
                             <h2>income certificate</h2>
                                 <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_income_img %>" alt="image">
+                        </div>
+                        <% if(document.staff_disability_img!=''){ %>
+                        <div>
+                            <h2>Disability certificate</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_disability_img %>" alt="image">
+                        </div>
+                        <% } %>
+                        <% if(document.staff_experience_img!=''){ %>
+                            <div>
+                                <h2>Experience certificate</h2>
+                                    <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_experience_img %>" alt="image">
+                            </div>
+                        <% } %>
+                        <div>
+                            <h2>SSLC Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_sslc_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>HSC Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_hsc_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>UG Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_ug_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>PG Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_pg_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>B.Ed Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_bed_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>M.Pill Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_mpill_marksheet %>" alt="image">
                         </div>
                         <div>
                             <h2>Passbook</h2>

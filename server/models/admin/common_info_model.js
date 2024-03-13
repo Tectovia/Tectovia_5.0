@@ -38,6 +38,12 @@ const common_info_schema = new mongoose.Schema({
 
     medium_of_education: {
         type: String
+    },
+    annual_report_year:{
+        type:String
+    },
+    annual_report_pdf:{
+        type:String
     }
 });
 
