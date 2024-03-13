@@ -52,6 +52,7 @@ router.get("/staff/assignment/:id/", assignment.assignment);
 router.get("/staff/assignment_list/:id/:class/:sec/:sub", assignment.assignment_list);
 router.post("/staff/new_assignment/:id/:class/:sec/:sub",assignment.new_assignment);
 router.get("/staff/assignment/viewlist/:id/:class/:sec/:assign_id",assignment.viewlist);
+router.get("/staff/assignment/view/:staff/:id/:class_name/:rollno",assignment.ViewAssign);
 
 //-------------------mark entry and marksheet generation---------------------------
 
