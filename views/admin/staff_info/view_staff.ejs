@@ -1,165 +1,70 @@
 <link rel="stylesheet" href="/css/staff_information.css">
 <div class="window">
     <div class="window_navbar">
-        <%- include('../../partials/admin/navigation_bar.ejs') %>
+      <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
-
+    
     <div class="window_container ">
-
-        <div class="container center_title">
-            <!-- <div class="float_right staff_edit_button">
+      
+      <div class="container center_title">
+        <!-- <div class="float_right staff_edit_button">
           <a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
         </div> -->
         </div>
-
+      
         <div>
             <div class="staff_main_container">
-
+               
                 <div class="staff_details">
-
-                    <div class="staff_name_img_id">
-
-                        <div class="float_right staff_edit_button">
-                            <a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>"
-                                id="toggleButton"><button class="edit_btn">Edit</button></a>
-                        </div>
-                        <div class="staff_name">
-                            <h3>
-                                <%=data.staff_name%>
-                            </h3>
-                        </div>
-
-
-                        <div class="staff_id">
-                            <h3>ID:<%=data.staff_id%>
-                            </h3>
-                        </div>
-                        <div>
-
-                            <img src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt="" />
-
-                        </div>
-                    </div>
-
-                    <div class="staff_main_details"></div>
-                    <div class="staff_name_details">
-                        <div class="staff_name_details_1">
-                            <h1>Basic Details</h1>
-                            <h3>Gender <span class="staff_colon">:</span> <span class="staff_basic_details">
-                                    <%=data.staff_gender%>
-                                </span></h3>
-                            <h3>Date Of Birth<span class="staff_colon_1">:</span> <span
-                                    class="staff_basic_details"></span>
-                                <%=data.staff_dob%></span>
-                            </h3>
-                            <h3>Staff Mobile<span class="staff_colon_2">:</span> <span
-                                    class="staff_basic_details"></span>
-                                <%=data.staff_mobile%></span>
-                            </h3>
-                            <h3>Qualification<span class="staff_colon_3">:</span> <span
-                                    class="staff_basic_details"></span>
-                                <%=data.staff_qualifiaction%></span>
-                            </h3>
-
-                            <h3>Exprience<span class="staff_colon_4">:</span> <span class="staff_basic_details"></span>
-                                <%=data.staff_experience%></span>
-                            </h3>
-                            <h3>Staff Marrital<span class="staff_colon_5">:</span> <span
-                                    class="staff_basic_details"></span>
-                                <%=data.staff_marrital%></span>
-                            </h3>
-
-
-                            <h3>Nationality<span class="staff_colon_6">:</span> <span
-                                    class="staff_basic_details"></span>
-                                <%=data.staff_nationality%></span>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="staff_main_details_2"></div>
-
-
-                    <div class="staff_emails">
-                        <div class="staff_emails_1">
-                            <h1>Address</h1>
-                            <h3>Blood <span class="staff_colon_7">:</span><span class="staff_basic_details_2">
-                                    <%=data.staff_blood%>
-                                </span></h3>
-                            <h3>Aadhar Number<span class="staff_colon_8">:</span><span
-                                    class="staff_basic_details_2"></span>
-                                <%=data.staff_aadhar_no%></span>
-                            </h3>
-                            <h3>Pan<span class="staff_colon_9">:</span><span class="staff_basic_details_2"></span>
-                                <%=data.staff_pan%></span>
-                            </h3>
-                            <h3>Official Mail id<span class="staff_colon_10">:</span><span
-                                    class="staff_basic_details_2"></span>
-                                <%=data.staff_off_mail%></span>
-                            </h3>
-                            <h3>Personal Mail id<span class="staff_colon_11">:</span><span
-                                    class="staff_basic_details_2"></span>
-                                <%=data.staff_per_mail%></span>
-                            </h3>
-                            <h3>Permantent Address<span class="staff_colon_12">:</span><span
-                                    class="staff_basic_details_2"></span>
-                                <%=data.staff_per_address%></span>
-                            </h3>
-                            <h3>Tempory Address<span class="staff_colon_13">:</span><span
-                                    class="staff_basic_details_2"></span>
-                                <%=data.staff_temp_address%></span>
-                            </h3>
-
-
-                        </div>
-                    </div>
-                    <div class="staff_main_details_3"></div>
-                    <div class="staff_details_3">
-                        <div class="staff_details_31">
-                            <h1>Account Details</h1>
-                            <div>
-                                <h3>Father's Name<span class="staff_colon_14">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_father%>
-                                    </span></h3>
-                                <h3>Mother's Name<span class="staff_colon_15">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_mother%>
-                                    </span></h3>
-
-                                <h3>Account Number<span class="staff_colon_16">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_account_no%>
-                                    </span></h3>
-                                <h3>Accountholder Name<span class="staff_colon_17">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_accountholder_name%>
-                                    </span></h3>
-                                <h3>Staff Bank Name<span class="staff_colon_18">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_bank_name%>
-                                    </span></h3>
-                            </div>
-                            <div class="side">
-                                <h3>Bank Branch<span class="staff_colon_19">:</span><span class="staff_basic_details_3">
-                                        <%=data.staff_bank_branch%>
-                                    </span></h3>
-                                <h3>Disability<span class="staff_colon_20">:</span><span class="staff_basic_details_3">
-                                        <%=data.staff_disability%>
-                                    </span></h3>
-                                <h3>Account IFSC Code<span class="staff_colon_21">:</span><span
-                                        class="staff_basic_details_3">
-                                        <%=data.staff_account_ifsc%>
-                                    </span></h3>
-                                <h3>Website 1<span class="staff_colon_22">:</span><span class="staff_basic_details_3">
-                                        <%=data.staff_social_media1%>
-                                    </span></h3>
-                                <h3>Website 2<span class="staff_colon_23">:</span><span class="staff_basic_details_3">
-                                        <%=data.staff_social_media2%>
-                                    </span></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   
+                  <div class="staff_name_img_id"> 
+                  
+                    <div class="float_right staff_edit_button">
+                        <a href="/admin/staff_info/staff_list/personal_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
+                      </div>  
+       <div class="staff_name">  <h3><%=data.staff_name%></h3></div>
+     
+      
+       <div class="staff_id">        <h3>ID:<%=data.staff_id%></h3></div>
+       <div >
+                     
+        <img
+        src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt=""/>
+        
+       </div></div>
+       
+       <div class="staff_main_details"></div>
+        <div class="staff_name_details">
+            <div class="staff_name_details_1">
+                <h1>Basic Details</h1>
+            <h3>Gender <span class="staff_colon">:</span> <span class="staff_basic_details"><%=data.staff_gender%></span></h3>
+            <h3>Date Of Birth<span class="staff_colon_1">:</span> <span class="staff_basic_details"></span><%=data.staff_dob%></span></h3>
+            <h3>Staff Mobile<span class="staff_colon_2">:</span> <span class="staff_basic_details"></span><%=data.staff_mobile%></span></h3>
+            <h3>Qualification<span class="staff_colon_3">:</span> <span class="staff_basic_details"></span><%=data.staff_qualifiaction%></span></h3>
+           
+            <h3>Exprience<span class="staff_colon_4">:</span> <span class="staff_basic_details"></span><%=data.staff_experience%></span></h3>
+            <h3>Staff Marrital<span class="staff_colon_5">:</span> <span class="staff_basic_details"></span><%=data.staff_marrital%></span></h3>
+           
+            
+            <h3>Nationality<span class="staff_colon_6">:</span> <span class="staff_basic_details"></span><%=data.staff_nationality%></span></h3>
+        </div>
+        </div>
+        <div class="staff_main_details_2"></div>
+        
+            
+            <div class="staff_emails">
+                <div class="staff_emails_1">
+                    <h1>Address</h1>
+                <h3>Blood <span class="staff_colon_7">:</span><span class="staff_basic_details_2"><%=data.staff_blood%></span></h3>
+                <h3>Aadhar Number<span class="staff_colon_8">:</span><span class="staff_basic_details_2"></span><%=data.staff_aadhar_no%></span></h3>
+                <h3>Pan<span class="staff_colon_9">:</span><span class="staff_basic_details_2"></span><%=data.staff_pan%></span></h3>
+            <h3>Official Mail id<span class="staff_colon_10">:</span><span class="staff_basic_details_2"></span><%=data.staff_off_mail%></span></h3>
+            <h3>Personal Mail id<span class="staff_colon_11">:</span><span class="staff_basic_details_2"></span><%=data.staff_per_mail%></span></h3>
+            <h3>Permantent Address<span class="staff_colon_12">:</span><span class="staff_basic_details_2"></span><%=data.staff_per_address%></span></h3>
+            <h3>Tempory Address<span class="staff_colon_13">:</span><span class="staff_basic_details_2"></span><%=data.staff_temp_address%></span></h3>
+          
+           
+         </div>
             </div>
             <div class="staff_main_details_3"></div>
             <div class="staff_details_3">
@@ -374,27 +279,36 @@
      
       </form>
 </div>
-</div>
-<% } %>
 
-        <% if(personal=="display" ){%>
+</div>
+<%}%>
+<!----------------------------staff education------------------------>
+    <div>
+        
+        <div class="education_info">
+            <div class="education_details">
+      
+            <h1 >Education Info</h1>
+            <h3> SSLC Mark<span class="staff_colon_24">:</span><span class="staff_basic_details_4"><%=data.staff_sslc_mark%></span></h3>
+            <h3> SSLC school<span class="staff_colon_25">:</span><span class="staff_basic_details_4"><%=data.staff_sslc_school%></span></h3>
+            <div class="float">
+                <a href="/admin/staff_info/staff_list/education_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
+           </div></div>
+       </div>
+        <%if(education=='display'){%>
             <div class="popup" id="popup">
                 <div class="popup_header">
-                    <p class="pop_title">Staff Personal Details</p>
-                    <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon"
-                            id="closePopup">&times;</span></a>
+                    <p class="pop_title">Education Details</p>
+                    <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
                 </div>
                 <div class="pop_body">
-                    <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post"
-                        enctype="multipart/form-data" class="form">
+                    <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
                         <div class="form_inputs">
                             <div class="form_div text_input">
                                 <p>ID</p>
-                                <input class="input" type="text" id="staff_id" name="staff_id"
-                                    value="<%=data.staff_id%>" readonly>
-
+                                <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
+                            
                             </div>
-
                             <div class="form_div text_input">
                                 <p>Name</p>
                                 <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>">
@@ -617,6 +531,7 @@
                         </div>
                            
                     </form>
+                    
                 </div>
                 </div>
     
