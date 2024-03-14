@@ -39,12 +39,14 @@ const common_info_schema = new mongoose.Schema({
     medium_of_education: {
         type: String
     },
-    annual_report_year:{
-        type:String
-    },
-    annual_report_pdf:{
-        type:String
-    }
+    annual_report:[{
+        annual_report_year:{
+            type:Number,
+        },
+        annual_report_pdf:{
+            type:String,
+        }
+    }]
 });
 
 const common_info = mongoose.model('common_info', common_info_schema);
