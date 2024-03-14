@@ -161,8 +161,221 @@
                     </div>
                 </div>
             </div>
+            <div class="staff_main_details_3"></div>
+            <div class="staff_details_3">
+                <div class="staff_details_31">
+            <h1>Personal Details</h1>
+         <div>   <h3>Father's Name<span class="staff_colon_14">:</span><span class="staff_basic_details_3"><%=data.staff_father%></span></h3>
+            <h3>Mother's Name<span class="staff_colon_15">:</span><span class="staff_basic_details_3"><%=data.staff_mother%></span></h3>
+           
+            <h3>Account Number<span class="staff_colon_16">:</span><span class="staff_basic_details_3"><%=data.staff_account_no%></span></h3>
+            <h3>Accountholder Name<span class="staff_colon_17">:</span><span class="staff_basic_details_3"><%=data.staff_accountholder_name%></span></h3>
+            <h3>Staff Bank Name<span class="staff_colon_18">:</span><span class="staff_basic_details_3"><%=data.staff_bank_name%></span></h3></div>
+           <div class="side"> <h3>Bank Branch<span class="staff_colon_19">:</span><span class="staff_basic_details_3"><%=data.staff_bank_branch%></span></h3>
+            <h3>Disability<span class="staff_colon_20">:</span><span class="staff_basic_details_3"><%=data.staff_disability%></span></h3>
+            <h3>Account IFSC Code<span class="staff_colon_21">:</span><span class="staff_basic_details_3"><%=data.staff_account_ifsc%></span></h3>
+            <h3>Website 1<span class="staff_colon_22">:</span><span class="staff_basic_details_3"><%=data.staff_social_media1%></span></h3>
+            <h3>Website 2<span class="staff_colon_23">:</span><span class="staff_basic_details_3"><%=data.staff_social_media2%></span></h3></div>
+        </div></div>
+        </div></div>
 
         </div>
+        
+<% if(personal=="display"){%>
+<div class="popup" id="popup">
+  <div class="popup_header">
+      <p class="pop_title">Staff Personal Details</p>
+      <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
+  </div>
+  <div class="pop_body">
+      <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
+          <div class="form_inputs">
+              <div class="form_div text_input">
+                  <p>Staff ID</p>
+                  <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
+                 
+              </div>
+              
+              <div class="form_div text_input">
+                  <p>Staff Name</p>
+                  <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>"">
+      
+              </div>
+              <div class="form_div file_input">
+                  <label for="satff_profile">Profile Photo</label>
+                  <input class="input" type="file" id="staff_profile" name="staff_profile" >
+              </div>
+              <div class="form_div select_input">
+                <label class="select_label" for="staff_experience">staff designation</label>
+                <select name="staff_designation" id="staff_designation" >
+                    <option value="<%=data.staff_designation%>"><%=data.staff_designation%></option>
+                    <option value="teaching">teaching</option>
+                    <option value="non-teaching">non-teaching</option>
+                </select>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_father_name" name="staff_father" value="<%=data.staff_father%>">
+                  <label for="staff_father_name">Father's Name</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_mother" name="staff_mother" value="<%=data.staff_mother%>" >
+                  <label for="staff_mother">Mother's Name</label>
+              </div>
+              <div class="form_div select_input">
+                  <label class="select_label" for="staff_marital_status">Marital Status</label>
+                  <select name="staff_marrital" id="staff_marital_status">
+                      <option value="<%=data.staff_marrital%>"><%=data.staff_marrital%></option>
+                      <option value="Married">Married</option>
+                      <option value="Unmarried">Unmarried</option>
+                  </select>
+              </div>
+              <div class="form_div select_input">
+                  <label class="select_label" for="staff_gender">Gender</label>
+                  <select name="staff_gender" id="staff_gender" >
+                      <option value="<%=data.staff_gender%>"><%=data.staff_gender%></option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Trans_Gender">Others</option>
+                      
+                  </select>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="satff_qualification" name="staff_qualifiaction" value="<%=data.staff_qualifiaction%>">
+                  <label for="satff_qualification">Qualification</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="satff_blood_group" name="staff_blood" value="<%=data.staff_blood%>">
+                  <label for="satff_blood_group">Blood Group</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="date" id="satff_dob" name="staff_dob" value="<%=data.staff_dob%>" required>
+                  <label for="satff_dob">Date of Birth</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id="satff_aadhar_number" name="staff_aadhar_no" value="<%=data.staff_aadhar_no%>">
+                  <label for="satff_aadhar_number">Aadhar Number</label>
+              </div>
+              <div class="form_div file_input">
+                  <label for="staff_aadhar_photo">Aadhar Photo</label>
+                  <input class="input" type="file" id="staff_aadhar_photo" name="staff_aadhar_img" value="<%=data.staff_aadhar_img%>">
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id=" staff_voter_id" name="staff_voter_id" value="<%=data.staff_voter_id%>">
+                  <label for=" staff_voter_id">Voter ID</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_pan" name="staff_pan" value="<%=data.staff_pan%>" >
+                  <label for="staff_pan">Pan Number</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="file" id="staff_community_img" name="staff_community_img" value="<%=data.staff_community_img%>">
+                  <label for="staff_community_img">Community Certificate</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="file" id="staff_community_img" name="staff_income_img" value="<%=data.staff_income_img%>">
+                  <label for="staff_income_img">Income Certificate</label>
+              </div>
+              <div class="form_div select_input">
+                  <label class="select_label" for="staff_nationality">Nationality</label>
+                  <select name="staff_nationality" id="staff_nationality" >
+                      <option value="<%=data.staff_nationality%>"><%=data.staff_nationality%></option>
+                      <option value="indian">Indian</option>
+                      <option value="others">Others</option>
+               
+                  </select>
+              </div>
+              <div class="form_div select_input">
+                  <label class="select_label" for="staff_disability">Disability</label>
+                  <select name="staff_disability" id="staff_disability" >
+                      <option value="<%=data.staff_disability%>"><%=data.staff_disability%></option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+               
+                  </select>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="file" id="staff_disability_img" name="staff_disability_img" value="<%=data.staff_disability_img%>" >
+                  <label for="staff_disability_img">Disability Certificate</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id="staff_mobile" name="staff_mobile" value="<%=data.staff_mobile%>">
+                  <label for="staff_mobile">Mobile Number</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id="staff_whatsapp" name="staff_whatsapp" value="<%=data.staff_whatsapp%>">
+                  <label for="staff_whatsapp">Whatsapp Number</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="email" id="staff_off_mail" name="staff_off_mail" value="<%=data.staff_off_mail%>">
+                  <label for="staff_off_mail">Official Mail</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="email" id="staff_per_mail" name="staff_per_mail" value="<%=data.staff_per_mail%>">
+                  <label for="staff_per_mail">Personal Mail</label>
+              </div>
+              <div class="form_div text_input">
+                  <textarea name="staff_per_address" id="staff_per_address" cols="30" rows="10" draggable="false"><%=data.staff_per_address%></textarea>
+                  <label for="staff_per_address">Permanent Address</label>
+              </div>
+              <div class="form_div text_input">
+                  <textarea name="staff_temp_address" id="staff_temp_address" cols="30" rows="10" draggable="false"><%=data.staff_temp_address%></textarea>
+                  <label for="staff_temp_address">Tempory Address</label>
+              </div>
+              <div class="form_div select_input">
+                  <label class="select_label" for="staff_experience">Experience</label>
+                  <select name="staff_experience" id="staff_experience" value="<%=data.staff_experience%>">
+                      <option value="<%=data.staff_experience%>"><%=data.staff_experience%></option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+               
+                  </select>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="file" id="staff_experience_img" name="staff_experience_img" value="<%=data.staff_experience%>">
+                  <label for="staff_experience_img">Experience Certificate</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id="staff_account_no" name="staff_account_no" value="<%=data.staff_account_no%>" >
+                  <label for="staff_account_no">Bank Account Number</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_accountholder_name" name="staff_accountholder_name" value="<%=data.staff_accountholder_name%>">
+                  <label for="staff_accountholder_name">Bank Account Holder Name</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_bank_name" name="staff_bank_name" value="<%=data.staff_bank_name%>">
+                  <label for="staff_bank_name">Bank Name</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id="staff_bank_branch" name="staff_bank_branch" value="<%=data.staff_bank_branch%>">
+                  <label for="staff_bank_branch">Bank Branch Name</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="number" id="staff_account_ifsc" name="staff_account_ifsc" value="<%=data.staff_account_ifsc%>">
+                  <label for="staff_account_ifsc">Bank IFSC Number</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="file" id="staff_account_passbook" name="staff_account_passbook" value="<%=data.staff_account_passbook%>">
+                  <label for="staff_account_passbook">Bank Passbook Image</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id=" staff_social_media1" name=" staff_social_media1" value="<%=data.staff_social_media1%>">
+                  <label for=" staff_social_media1">Website</label>
+              </div>
+              <div class="form_div text_input">
+                  <input class="input" type="text" id=" staff_social_media2" name=" staff_social_media2" value="<%=data.staff_social_media2%>" >
+                  <label for=" staff_social_media2">Website</label>
+              </div>
+              <div class="form_submit form_div_span">
+                <input type="submit" value="Save & Next">
+            </div>  
+          </div>
+           
+     
+      </form>
+</div>
+</div>
+<% } %>
 
         <% if(personal=="display" ){%>
             <div class="popup" id="popup">
@@ -184,565 +397,306 @@
 
                             <div class="form_div text_input">
                                 <p>Name</p>
-                                <input class="input" type="text" id="staff_name" name="staff_name" readonly
-                                    value="<%=data.staff_name%>"">
-      
-              </div>
-              <div class=" form_div file_input">
-                                <label for="satff_profile">Profile Photo</label>
-                                <input class="input" type="file" id="staff_profile" name="staff_profile">
+                                <input class="input" type="text" id="staff_name" name="staff_name" readonly value="<%=data.staff_name%>">
+                    
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_sslc_mark" name="staff_sslc_mark" value="<%=data.staff_sslc_mark%>" >
+                                <label for="staff_sslc_mark">SSLC Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_sslc_school" name="staff_sslc_school" value="<%=data.staff_sslc_school%>" >
+                                <label for="staff_sslc_school">SSLC School</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_sslc_per" name="staff_sslc_per" value="<%=data.staff_sslc_per%>" >
+                                <label for="staff_sslc_per">SSLC Percentage</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_sslc_marksheet" name="staff_sslc_marksheet" value="<%=data.staff_sslc_marksheet%>">
+                                <label for="staff_sslc_marksheet">SSLC Marksheet</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_hsc_mark" name="staff_hsc_mark" value="<%=data.staff_hsc_mark%>" >
+                                <label for="staff_hsc_mark">HSC Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_hsc_school" name="staff_hsc_school" value="<%=data.staff_hsc_school%>">
+                                <label for="staff_hsc_school">HSC School</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_hsc_per" name="staff_hsc_per" value="<%=data.staff_hsc_per%>">
+                                <label for="staff_hsc_per">HSC Percentage</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_hsc_marksheet" name="staff_hsc_marksheet" value="<%=data.staff_hsc_marksheet%>">
+                                <label for="staff_hsc_marksheet">HSC Marksheet</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_ug_mark" name="staff_ug_mark" value="<%=data.staff_ug_mark%>">
+                                <label for="staff_ug_mark">UG Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_ug_per" name="staff_ug_per" value="<%=data.staff_ug_per%>">
+                                <label for="staff_ug_per">UG Percentage</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_ug_college" name="staff_ug_college" value="<%=data.staff_ug_college%>">
+                                <label for="staff_ug_college">UG College</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_ug_marksheet" name="staff_ug_marksheet" value="<%=data.staff_ug_marksheet%>">
+                                <label for="staff_ug_marksheet">UG MarksheeT</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_pg_mark" name="staff_pg_mark" value="<%=data.staff_pg_mark%>">
+                                <label for="staff_pg_mark">PG Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_pg_per" name="staff_pg_per" value="<%=data.staff_ug_per%>">
+                                <label for="staff_pg_per">UG Percentage</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_pg_college" name="staff_pg_college" value="<%=data.staff_pg_college%>">
+                                <label for="staff_pg_college">PG College</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_pg_marksheet" name="staff_pg_marksheet" value="<%=data.staff_pg_marksheet%>">
+                                <label for="staff_pg_marksheet">PG Marksheet</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_bed" name="staff_bed" value="<%=data.staff_bed%>" >
+                                <label for="staff_bed">B.Ed</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_bed_mark" name="staff_bed_mark" value="<%=data.staff_bed_mark%>">
+                                <label for="staff_bed_mark">B.Ed Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_bed_college" name="staff_bed_college" value="<%=data.staff_bed_college%>">
+                                <label for="staff_bed_college">B.Ed College</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_bed_marksheet" name="staff_bed_marksheet" value="<%=data.staff_bed_marksheet%>">
+                                <label for="staff_bed_marksheet">B.Ed Marksheet</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_med" name="staff_med" value="<%=data.staff_med%>">
+                                <label for="staff_med">M.Ed</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_med_mark" name="staff_med_mark" value="<%=data.staff_med_mark%>">
+                                <label for="staff_med_mark">M.Ed Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_med_college" name="staff_med_college" value="<%=data.staff_med_college%>">
+                                <label for="staff_med_college">M.Ed College</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="staff_med_marksheet" name="staff_med_marksheet" value="<%=data.staff_med_marksheet%>">
+                                <label for="staff_med_marksheet">M.Ed Marksheet</label>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_mpill" name="staff_mpill" value="<%=data.staff_mpill%>">
+                                <label for="staff_mpill">M.Pill</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="number" class="input" id="staff_mpill_mark" name="staff_mpill_mark" value="<%=data.staff_mpill_mark%>">
+                                <label for="staff_mpill_mark">M.Pill Mark</label>
+                            </div>
+                        
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="staff_mpill_university" name="staff_mpill_university" value="<%=data.staff_mpill_university%>">
+                                <label for="staff_mpill_university">M.Pill University</label>
+                            </div>
+            
+                            
+                                    <div class="form_div text_input">
+                                    <input type="file" class="input" id="staff_mpill_marksheet" name="staff_mpill_marksheet" value="<%=data.staff_mpill_marksheet%>">
+                                    <label for="staff_mpill_marksheet">M.Pill Marksheet</label>
+                                </div>
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="staff_phd" name="staff_phd" value="<%=data.staff_mpill_university%>">
+                                    <label for="staff_phd">M.Pill University</label>
+                                </div>
+                            
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="staff_add_pg1" name="staff_add_pg1" value="<%=data.staff_add_pg1%>">
+                                    <label for="staff_add_pg1">Additional PG</label>
+                                </div>
+                            
+                                <div class="form_div text_input">
+                                    <input type="number" class="input" id="staff_add_pg1_mark" name="staff_add_pg1_mark" value="<%=data.staff_hsc_mark%>">
+                                    <label for="staff_add_pg1_mark">PG Mark</label>
+                                </div>
+                
+                                <div class="form_div text_input">
+                                    <input type="number" class="input" id="staff_add_pg1_per" name="staff_add_pg1_per" value="<%=data.staff_add_pg1_per%>">
+                                    <label for="staff_add_pg1_per">PG Percentange</label>
+                                </div>
+                            
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="staff_add_pg1_college" name="staff_add_pg1_college" value="<%=data.staff_add_pg1_college%>" >
+                                    <label for="staff_add_pg1_college">PG College</label>
+                                </div>
+                            
+                                <div class="form_div text_input">
+                                    <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" value="<%=data.staff_add_pg1_mark%>">
+                                    <label for="staff_pg_marksheet">PG Marksheet</label>
+                                </div>
+                                <div class="form_submit form_div_span">
+                                    <input type="submit">
+                                </div> 
+                            </div>   
+                        </form>
+                        
+                    </div>
+                
+                </div>
 
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_father_name" name="staff_father"
-                                    value="<%=data.staff_father%>">
-                                <label for="staff_father_name">Father's Name</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_mother" name="staff_mother"
-                                    value="<%=data.staff_mother%>">
-                                <label for="staff_mother">Mother's Name</label>
-                            </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="staff_marital_status">Marital Status</label>
-                                <select name="staff_marrital" id="staff_marital_status">
-                                    <option value="<%=data.staff_marrital%>">
-                                        <%=data.staff_marrital%>
-                                    </option>
-                                    <option value="Married">Married</option>
-                                    <option value="Unmarried">Unmarried</option>
-                                </select>
-                            </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="staff_gender">Gender</label>
-                                <select name="staff_gender" id="staff_gender">
-                                    <option value="<%=data.staff_gender%>">
-                                        <%=data.staff_gender%>
-                                    </option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Trans_Gender">Others</option>
+        <%}%>
 
-                                </select>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="satff_qualification" name="staff_qualifiaction"
-                                    value="<%=data.staff_qualifiaction%>">
-                                <label for="satff_qualification">Qualification</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="satff_blood_group" name="staff_blood"
-                                    value="<%=data.staff_blood%>">
-                                <label for="satff_blood_group">Blood Group</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="date" id="satff_dob" name="staff_dob"
-                                    value="<%=data.staff_dob%>" required>
-                                <label for="satff_dob">Date of Birth</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id="satff_aadhar_number" name="staff_aadhar_no"
-                                    value="<%=data.staff_aadhar_no%>">
-                                <label for="satff_aadhar_number">Aadhar Number</label>
-                            </div>
-                            <div class="form_div file_input">
-                                <label for="staff_aadhar_photo">Aadhar Photo</label>
-                                <input class="input" type="file" id="staff_aadhar_photo" name="staff_aadhar_img"
-                                    value="<%=data.staff_aadhar_img%>">
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id=" staff_voter_id" name="staff_voter_id"
-                                    value="<%=data.staff_voter_id%>">
-                                <label for=" staff_voter_id">Voter ID</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_pan" name="staff_pan"
-                                    value="<%=data.staff_pan%>">
-                                <label for="staff_pan">Pan Number</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="file" id="staff_community_img" name="staff_community_img"
-                                    value="<%=data.staff_community_img%>">
-                                <label for="staff_community_img">Community Certificate</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="file" id="staff_community_img" name="staff_income_img"
-                                    value="<%=data.staff_income_img%>">
-                                <label for="staff_income_img">Income Certificate</label>
-                            </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="staff_nationality">Nationality</label>
-                                <select name="staff_nationality" id="staff_nationality">
-                                    <option value="<%=data.staff_nationality%>">
-                                        <%=data.staff_nationality%>
-                                    </option>
-                                    <option value="indian">Indian</option>
-                                    <option value="others">Others</option>
 
-                                </select>
-                            </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="staff_disability">Disability</label>
-                                <select name="staff_disability" id="staff_disability">
-                                    <option value="<%=data.staff_disability%>">
-                                        <%=data.staff_disability%>
-                                    </option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+    
 
-                                </select>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="file" id="staff_disability_img" name="staff_disability_img"
-                                    value="<%=data.staff_disability_img%>">
-                                <label for="staff_disability_img">Disability Certificate</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id="staff_mobile" name="staff_mobile"
-                                    value="<%=data.staff_mobile%>">
-                                <label for="staff_mobile">Mobile Number</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id="staff_whatsapp" name="staff_whatsapp"
-                                    value="<%=data.staff_whatsapp%>">
-                                <label for="staff_whatsapp">Whatsapp Number</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="email" id="staff_off_mail" name="staff_off_mail"
-                                    value="<%=data.staff_off_mail%>">
-                                <label for="staff_off_mail">Official Mail</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="email" id="staff_per_mail" name="staff_per_mail"
-                                    value="<%=data.staff_per_mail%>">
-                                <label for="staff_per_mail">Personal Mail</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <textarea name="staff_per_address" id="staff_per_address" cols="30" rows="10"
-                                    draggable="false" value="<%=data.staff_per_address%>"></textarea>
-                                <label for="staff_per_address">Permanent Address</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <textarea name="staff_temp_address" id="staff_temp_address" cols="30" rows="10"
-                                    draggable="false" value="<%=data.staff_temp_address%>"></textarea>
-                                <label for="staff_temp_address">Tempory Address</label>
-                            </div>
-                            <div class="form_div select_input">
-                                <label class="select_label" for="staff_experience">Experience</label>
-                                <select name="staff_experience" id="staff_experience"
-                                    value="<%=data.staff_experience%>">
-                                    <option value="<%=data.staff_experience%>">
-                                        <%=data.staff_experience%>
-                                    </option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
 
-                                </select>
-                            </div>
+    </div>
+<!----------------------------staff achievement------------------------>
+    <div>
+        <div class="acheivement_box">
+            <div class="acheivement_value">
+        <div>
+            <h1>Achievement Info</h1>
+            <h3>Achievement <span class="staff_colon_26"></span>:<span class="staff_basic_details_4"><%=data.staff_achievement%></span></h3>
+            <h3>Image <span class="staff_colon_27"></span>:<span class="staff_basic_details_4"><%=data. staff_achievement_img1%></span></h3>
+            <div class="float">
+                <a href="/admin/staff_info/staff_list/achievement_edit/<%=data.id%>" id="toggleButton"><button>Edit</button></a>
+            </div></div>
+        </div></div>
+        <%if(achievement=='display'){%>
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Achievement Details</p>
+                    <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
+                </div>
+                
+                <div class="pop_body">
+                    <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
                             <div class="form_div text_input">
-                                <input class="input" type="file" id="staff_experience_img" name="staff_experience_img"
-                                    value="<%=data.staff_experience%>">
-                                <label for="staff_experience_img">Experience Certificate</label>
+                               <textarea name="staff_achievement" id="staff_achievement" cols="30" rows="10"><%=data.staff_achievement%></textarea>
+                                <label for="staff_achievement">Enter Your Achivements</label>
                             </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id="staff_account_no" name="staff_account_no"
-                                    value="<%=data.staff_account_no%>">
-                                <label for="staff_account_no">Bank Account Number</label>
+                            <div class="form_div file_input" >
+                                <label for="staff_achievement_img1">Achivement </label>
+                                <input class="input" type="file" id="staff_achievement_img1" name="staff_achievement_img1" value="<%=data.staff_achievement_img1%>">
                             </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_accountholder_name"
-                                    name="staff_accountholder_name" value="<%=data.staff_accountholder_name%>">
-                                <label for="staff_accountholder_name">Bank Account Holder Name</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_bank_name" name="staff_bank_name"
-                                    value="<%=data.staff_bank_name%>">
-                                <label for="staff_bank_name">Bank Name</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id="staff_bank_branch" name="staff_bank_branch"
-                                    value="<%=data.staff_bank_branch%>">
-                                <label for="staff_bank_branch">Bank Branch Name</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="number" id="staff_account_ifsc" name="staff_account_ifsc"
-                                    value="<%=data.staff_account_ifsc%>">
-                                <label for="staff_account_ifsc">Bank IFSC Number</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="file" id="staff_account_passbook"
-                                    name="staff_account_passbook" value="<%=data.staff_account_passbook%>">
-                                <label for="staff_account_passbook">Bank Passbook Image</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id=" staff_social_media1" name=" staff_social_media1"
-                                    value="<%=data.staff_social_media1%>">
-                                <label for=" staff_social_media1">Website</label>
-                            </div>
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id=" staff_social_media2" name=" staff_social_media2"
-                                    value="<%=data.staff_social_media2%>">
-                                <label for=" staff_social_media2">Website</label>
-                            </div>
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div> 
                         </div>
-                        <div class="form_submit">
-                            <input type="submit" value="Save & Next">
-                        </div>
-
+                           
                     </form>
                 </div>
-
+                </div>
+    
+        <%}%>
+         <br>
+         <div>
+        <div class="float">
+   <div class="view_document"><a href="/admin/staff_info/staff_list/view_document/<%=data.id%>" id="toggleButton"><button>View Documents</button></a></div>
+        </div>
+        <%if(document=='display'){%>
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Documents</p>
+                    <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
+                </div>
+                
+                    <div style="display: grid;  grid-template-columns: repeat(2,400px);" class="pop_body">
+                        
+                        <div>
+                            <h2>Profile picture</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>Aadhar certificate</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_aadhar_img %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>Community certificate</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_community_img %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>income certificate</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_income_img %>" alt="image">
+                        </div>
+                        <% if(document.staff_disability_img!=''){ %>
+                        <div>
+                            <h2>Disability certificate</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_disability_img %>" alt="image">
+                        </div>
+                        <% } %>
+                        <% if(document.staff_experience_img!=''){ %>
+                            <div>
+                                <h2>Experience certificate</h2>
+                                    <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_experience_img %>" alt="image">
+                            </div>
+                        <% } %>
+                        <div>
+                            <h2>SSLC Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_sslc_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>HSC Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_hsc_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>UG Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_ug_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>PG Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_pg_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>B.Ed Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_bed_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>M.Pill Marksheet</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_mpill_marksheet %>" alt="image">
+                        </div>
+                        <div>
+                            <h2>Passbook</h2>
+                                <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_account_passbook %>" alt="image">
+                        </div>
+                    </div>
             </div>
-            <%}%>
-                <!----------------------------staff education------------------------>
-                <div>
-
-                    <div class="education_info">
-                        <div class="education_details">
-
-                            <h1>Education Info</h1>
-                            <h3> SSLC Mark<span class="staff_colon_24">:</span><span class="staff_basic_details_4">
-                                    <%=data.staff_sslc_mark%>
-                                </span></h3>
-                            <h3> SSLC school<span class="staff_colon_25">:</span><span class="staff_basic_details_4">
-                                    <%=data.staff_sslc_school%>
-                                </span></h3>
-                            <div class="float">
-                                <a href="/admin/staff_info/staff_list/education_edit/<%=data.id%>"
-                                    id="toggleButton"><button class="edit_btn">Edit</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <%if(education=='display'){%>
-                        <div class="popup" id="popup">
-                            <div class="popup_header">
-                                <p class="pop_title">Education Details</p>
-                                <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon"
-                                        id="closePopup">&times;</span></a>
-                            </div>
-                            <div class="pop_body">
-                                <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>"
-                                    method="post" enctype="multipart/form-data" class="form">
-                                    <div class="form_inputs">
-                                        <div class="form_div text_input">
-                                            <p>ID</p>
-                                            <input class="input" type="text" id="staff_id" name="staff_id"
-                                                value="<%=data.staff_id%>" readonly>
-
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <p>Name</p>
-                                            <input class="input" type="text" id="staff_name" name="staff_name" readonly
-                                                value="<%=data.staff_name%>">
-
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_sslc_mark"
-                                                name="staff_sslc_mark">
-                                            <label for="staff_sslc_mark">SSLC Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_sslc_school"
-                                                name="staff_sslc_school">
-                                            <label for="staff_sslc_school">SSLC School</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_sslc_per"
-                                                name="staff_sslc_per">
-                                            <label for="staff_sslc_per">SSLC Percentage</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_sslc_marksheet"
-                                                name="staff_sslc_marksheet">
-                                            <label for="staff_sslc_marksheet">SSLC Marksheet</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_hsc_mark"
-                                                name="staff_hsc_mark">
-                                            <label for="staff_hsc_mark">HSC Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_hsc_school"
-                                                name="staff_hsc_school">
-                                            <label for="staff_hsc_school">HSC School</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_hsc_per" name="staff_hsc_per">
-                                            <label for="staff_hsc_per">HSC Percentage</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_hsc_marksheet"
-                                                name="staff_hsc_marksheet">
-                                            <label for="staff_hsc_marksheet">HSC Marksheet</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_ug_mark" name="staff_ug_mark">
-                                            <label for="staff_ug_mark">UG Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_ug_per" name="staff_ug_per">
-                                            <label for="staff_ug_per">UG Percentage</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_ug_college"
-                                                name="staff_ug_college">
-                                            <label for="staff_ug_college">UG College</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_ug_marksheet"
-                                                name="staff_ug_marksheet">
-                                            <label for="staff_ug_marksheet">UG MarksheeT</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_pg_mark" name="staff_pg_mark">
-                                            <label for="staff_pg_mark">PG Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_pg_per" name="staff_pg_per">
-                                            <label for="staff_pg_per">UG Percentage</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_pg_college"
-                                                name="staff_pg_college">
-                                            <label for="staff_pg_college">PG College</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_pg_marksheet"
-                                                name="staff_pg_marksheet">
-                                            <label for="staff_pg_marksheet">PG Marksheet</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_bed" name="staff_bed">
-                                            <label for="staff_bed">B.Ed</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_bed_mark"
-                                                name="staff_bed_mark">
-                                            <label for="staff_bed_mark">B.Ed Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_bed_college"
-                                                name="staff_bed_college">
-                                            <label for="staff_bed_college">B.Ed College</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_bed_marksheet"
-                                                name="staff_bed_marksheet">
-                                            <label for="staff_bed_marksheet">B.Ed Marksheet</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_med" name="staff_med">
-                                            <label for="staff_med">M.Ed</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_med_mark"
-                                                name="staff_med_mark">
-                                            <label for="staff_med_mark">M.Ed Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_med_college"
-                                                name="staff_med_college">
-                                            <label for="staff_med_college">M.Ed College</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_med_marksheet"
-                                                name="staff_med_marksheet">
-                                            <label for="staff_med_marksheet">M.Ed Marksheet</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_mpill" name="staff_mpill">
-                                            <label for="staff_mpill">M.Pill</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_mpill_mark"
-                                                name="staff_mpill_mark">
-                                            <label for="staff_mpill_mark">M.Pill Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_mpill_university"
-                                                name="staff_mpill_university">
-                                            <label for="staff_mpill_university">M.Pill University</label>
-                                        </div>
-
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_mpill_marksheet"
-                                                name="staff_mpill_marksheet">
-                                            <label for="staff_mpill_marksheet">M.Pill Marksheet</label>
-                                        </div>
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_phd" name="staff_phd">
-                                            <label for="staff_phd">M.Pill University</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_add_pg1" name="staff_add_pg1">
-                                            <label for="staff_add_pg1">Additional PG</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_add_pg1_mark"
-                                                name="staff_add_pg1_mark">
-                                            <label for="staff_add_pg1_mark">Add PG Mark</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="number" class="input" id="staff_add_pg1_per"
-                                                name="staff_add_pg1_per">
-                                            <label for="staff_add_pg1_per"> Add PG Percentange</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="text" class="input" id="staff_add_pg1_college"
-                                                name="staff_add_pg1_college">
-                                            <label for="staff_add_pg1_college">Add PG College</label>
-                                        </div>
-
-                                        <div class="form_div text_input">
-                                            <input type="file" class="input" id="staff_pg_marksheet"
-                                                name="staff_add_pg_marksheet">
-                                            <label for="staff_pg_marksheet">Add PG Marksheet</label>
-                                        </div>
-                                    </div>
-                                    <div class="form_submit">
-                                        <input type="submit">
-                                    </div>
-                                </form>
-
-                            </div>
-
-                        </div>
-
-                        <%}%>
-
-
-
-
-
-                </div>
-                <!----------------------------staff achievement------------------------>
-                <div>
-                    <div class="acheivement_box">
-                        <div class="acheivement_value">
-                            <div>
-                                <h1>Achievement Info</h1>
-                                <h3>Achievement <span class="staff_colon_26">:</span></h3>
-                                <h3>Description <span class="staff_colon_27">:</span></h3>
-                                <div class="float">
-                                    <a href="/admin/staff_info/staff_list/achievement_edit/<%=data.id%>"
-                                        id="toggleButton"><button class="edit_btn">Edit</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%if(achievement=='display'){%>
-                        <div class="popup" id="popup">
-                            <div class="popup_header">
-                                <p class="pop_title">Achievement Details</p>
-                                <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon"
-                                        id="closePopup">&times;</span></a>
-                            </div>
-
-                            <div class="pop_body">
-                                <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>"
-                                    method="post" enctype="multipart/form-data" class="form">
-                                    <div class="form_inputs">
-                                        <div class="form_div text_input">
-                                            <textarea name="staff_achievement" id="staff_achievement" cols="30"
-                                                rows="10"></textarea>
-                                            <label for="staff_achievement">Enter Your Achivements</label>
-                                        </div>
-                                        <div class="form_div file_input">
-                                            <label for="staff_achievement_img1">Achivement </label>
-                                            <input class="input" type="file" id="staff_achievement_img1"
-                                                name="staff_achievement_img1">
-                                        </div>
-
-                                    </div>
-                                    <div class="form_submit">
-                                        <input type="submit">
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-
-                        <%}%>
-                            <br>
-                            <div>
-                                <div class="float">
-                                    <div class="view_document"> <a
-                                            href="/admin/staff_info/staff_list/view_document/<%=data.id%>"
-                                            id="toggleButton"><button class="view_btn">View Documents</button></a></div>
-                                </div>
-                                <%if(document=='display'){%>
-                                    <div class="popup" id="popup">
-                                        <div class="popup_header">
-                                            <p class="pop_title">Documents</p>
-                                            <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span
-                                                    class="close_icon" id="closePopup">&times;</span></a>
-                                        </div>
-
-                                        <div style="display: grid;  grid-template-columns: repeat(2,400px);"
-                                            class="pop_body">
-
-                                            <div>
-                                                <h2>Profile picture</h2>
-                                                <img style="height:300px;width:300px;"
-                                                    src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>"
-                                                    alt="image">
-                                            </div>
-                                            <div>
-                                                <h2>Aadhar certificate</h2>
-                                                <img style="height:300px;width:300px;"
-                                                    src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_aadhar_img %>"
-                                                    alt="image">
-                                            </div>
-                                            <div>
-                                                <h2>Community certificate</h2>
-                                                <img style="height:300px;width:300px;"
-                                                    src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_community_img %>"
-                                                    alt="image">
-                                            </div>
-                                            <div>
-                                                <h2>income certificate</h2>
-                                                <img style="height:300px;width:300px;"
-                                                    src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_income_img %>"
-                                                    alt="image">
-                                            </div>
-                                            <div>
-                                                <h2>Passbook</h2>
-                                                <img style="height:300px;width:300px;"
-                                                    src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_account_passbook %>"
-                                                    alt="image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <%}%>
-                            </div>
-
-
-
-                </div>
+       <%}%>
     </div>
+     
+    
+    
+    </div>
+</div>
