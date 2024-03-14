@@ -197,13 +197,23 @@ try {
     if(element[rollno])
       textcontent=element[rollno];
    });
-  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata})
+  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata,id,class_name})
 } catch (error) {
   console.log(error);
   res.redirect('/');
 }
 
    
+}
+
+exports.submit_mark=async(req,res)=>{
+  var {id,class_name,rollno,staff}=req.params
+  
+  var assign_model=mongoose.model(class_name+"_test");
+ var result= await assign_model.findOneAndUpdate({'rollno':rollno,'assignment.ref_id':id},{$set:{'assignment.$.mark':req.body.mark}})
+  console.log(result);
+  res.redirect(`/staff/assignment/viewlist/${staff}/${class_name+"_batch"}/${result['section']}/${id}`)
+
 }
 
 
