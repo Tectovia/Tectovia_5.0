@@ -114,8 +114,8 @@
 
 .basic_details {
   margin-left: 5%;
-  height: 300px;
-  width: 87%;
+  height: 250px;
+  width: 90%;
   font-weight: 700;
   background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -171,4 +171,30 @@
 .student_main_name h1{
   font-size: 25px;
   margin-left: 70px;
+
+ 
+}
+.student_main_name:hover{
+  transform: scale(1.02);
+}
+.student_main_id{
+  background:var(--bg-color);
+  margin-left: 800px;
+  margin-top: -76px;
+  padding: 20px;
+  border-radius: 30px;
+  width: 350px;
+  border:  solid gainsboro;
+  transform: scale(1);
+   
+  transition: transform 0.3s ease;
+}
+.student_main_id h1{
+  font-size: 20px;
+  margin-left: 50px;
+
+ 
+}
+.student_main_id:hover{
+  transform: scale(1.02);
 }
