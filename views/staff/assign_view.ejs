@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/card.css">
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+      <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+    </div>
+  
+    <div class="window_container">
+        <div class="popup_container" id="popup_subject">
+            <div class="popup" id="popup">
+               <div id="content">
+               
+               </div>
+
+               <div class="pop_body">
+                  <form action="/staff/assignment/submit_mark/<%= id %>/<%= class_name %>/<%= rollno %>/<%= staffdata[0]._id %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_div text_input">
+                              <input type="text" class="input" id="title" name="mark" required>
+                              <label for="mark">Mark</label>
+                        </div>
+                        <div class="form_div text_input">
+                           <input class="input" type="text" id="Remarks" name="Remarks" required>
+                           <label for="Remarks">Remarks</label>
+                       </div>
+                     <div class="form_submit">
+                        <input type="submit">
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+    </div>  
+  </div>
+
+<script>
+    var textcontent='<%-textcontent%>';
+    console.log(textcontent);
+    
+    document.getElementById('content').innerHTML=textcontent;
+</script>

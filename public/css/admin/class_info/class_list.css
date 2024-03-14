@@ -1,95 +1,95 @@
 @import url(../../root.css);
 
 .ag-courses_box {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 50px 0;
-  }
-  
-  .ag-courses_item {
-    flex: 0 0 calc(33.33333% - 30px);
-    margin: 0 15px 30px;
-    overflow: hidden;
-    border-radius: 28px;
-  }
-  
-  .ag-courses-item_link {
-    display: block;
-    padding: 30px 20px;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    position: relative;
-    text-decoration: none;
-    text-align: center;
-  }
-  
-  .ag-courses-item_title,
-  .ag-courses-item_date-box {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  .ag-courses-item_link:hover .ag-courses-item_title,
-  .ag-courses-item_link:hover .ag-courses-item_date-box {
-    opacity: 1;
-  }
-  
-  .ag-courses-item_link:hover,
-  .ag-courses-item_link:hover .ag-courses-item_date {
-    text-decoration: none;
-    color: #000000;
-  }
-  
-  .ag-courses-item_link:hover .ag-courses-item_bg {
-    transform: scale(10);
-  }
-  
-  .ag-courses-item_title {
-    min-height: 87px;
-    margin: 0 0 15px;
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 3rem;
-    font-weight: 800;
-    font-family: Cursive;
-    color: #fff;
-    z-index: 2;
-    position: relative;
-  }
-  
-  .ag-courses-item_date-box {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #000000;
-    z-index: 2;
-    position: relative;
-  }
-  
-  .ag-courses-item_date {
-    font-weight: bold;
-    color: #f9b234;
-    transition: color 0.5s ease;
-  }
-  
-  .ag-courses-item_bg {
-    height: 128px;
-    width: 128px;
-    background-color: #ff5733;
-    z-index: 1;
-    position: absolute;
-    top: -75px;
-    right: -75px;
-    border-radius: 50%;
-    transition: all 0.5s ease;
-  }
-  
-  .ag-courses_item .ag-courses-item_bg {
-    background-color:  var(--primary-color);
-  }
-  /* .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 50px 0;
+}
+
+.ag-courses_item {
+  flex: 0 0 calc(33.33333% - 30px);
+  margin: 0 15px 30px;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.ag-courses-item_link {
+  display: block;
+  padding: 30px 20px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+}
+
+.ag-courses-item_title,
+.ag-courses-item_date-box {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.ag-courses-item_link:hover .ag-courses-item_title,
+.ag-courses-item_link:hover .ag-courses-item_date-box {
+  opacity: 1;
+}
+
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_date {
+  text-decoration: none;
+  color: #000000;
+}
+
+.ag-courses-item_link:hover .ag-courses-item_bg {
+  transform: scale(10);
+}
+
+.ag-courses-item_title {
+  min-height: 87px;
+  margin: 0 0 15px;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: Cursive;
+  color: var(--text-color);
+  z-index: 2;
+  position: relative;
+}
+
+.ag-courses-item_date-box {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  z-index: 2;
+  position: relative;
+}
+
+.ag-courses-item_date {
+  font-weight: bold;
+  color: #f9b234;
+  transition: color 0.5s ease;
+}
+
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  background-color: #ff5733;
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.ag-courses_item .ag-courses-item_bg {
+  background-color: var(--primary-color);
+}
+/* .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
     background-color: #ffcc00;
   }
   .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
@@ -119,3 +119,24 @@
   .ag-courses_item:nth-child(12n) .ag-courses-item_bg {
     background-color: #ff99cc;
   } */
+
+.martenrty_head {
+  text-align: center;
+}
+
+.mark_inputs {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.mart_btn {
+  margin-top: 3%;
+  margin-left: 45%;
+}
+
+.input_mark {
+  padding: 5px;
+  border: 1px solid var(--primary-color);
+  color: var(--text-color);
+  background: var(--box-color);
+}

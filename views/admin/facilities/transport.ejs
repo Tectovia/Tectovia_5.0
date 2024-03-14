@@ -49,7 +49,7 @@
         
         </div>
         <div class="add_students">
-            <button onclick="show()">Add transports</button>
+            <button onclick="show()" class="add_btn">Add transports</button>
         </div>
         
         <div class="pop_body">
@@ -71,7 +71,7 @@
                             <label >Route:</label>
                             <input type="text" name="route" class="input-data" required>
                         </div>
-                        <div class="form_div file_input">
+                        <div class="form_div file_input input-roll">
                             <label >Roll no1:</label>
                             <select id="" name="roll_no1" class="input-data" onchange="UpdateRoll(this.value)">
                                 <option value="default" class="input-data">choose a roll no</option>
@@ -82,13 +82,13 @@
                         </div>
 
                         
-                        <div class="form_div file_input">
-                            <label >select alternate driver:</label>
-                            <input type="text" id="driName" name="Alterdriver">
+                        <div class="form_div file_input input-rollalter">
+                            <label class="name-driver">select alternate driver:</label>
+                            <input type="text" id="driName" name="Alterdriver" class="input-driver">
                            
                         </div>
                         
-                        <div class="form_dive file_input">
+                        <div class="form_dive file_input input-roll">
                             <label >Roll no2:</label>
                             <select id="" name="roll_no2" class="input-data" onchange="UpdateRoll2(this.value)">
                                 <option value="default" class="input-data">choose a roll no</option>
@@ -100,8 +100,8 @@
                        
 
                         <div class="form_div file_input">
-                            <label >select driver:</label>
-                            <input type="text" id="drName" name="Driver" class="input-data">
+                            <label class="input-dataa">select driver:</label>
+                            <input type="text" id="drName" name="Driver" class="input-dataa">
                            
                         </div>
                                     
@@ -133,33 +133,34 @@
 })
 
 function UpdateRoll(optionValue) {
-              console.log(optionValue);
-             
-            <% for (var i = 0; i < nonteach.length; i++) { %>
-                if ('<%= nonteach[i].staff_id %>' == optionValue) {
-                    console.log('<%= nonteach[i].staff_name %>');
-                    var ffrrr = '<%= nonteach[i].staff_name %>';
-                    console.log(typeof(ffrrr));
-                    alternate_driver.value = ffrrr;
+            console.log(optionValue);
+             var nonteach='<%-JSON.stringify(nonteach)%>';
+             nonteach=JSON.parse(nonteach);
+             for (var i = 0; i <nonteach.length; i++) { 
+                if ( nonteach[i].staff_id == optionValue) {
+                    
+                    var staff_name =  nonteach[i].staff_name ;
+                  
+                    alternate_driver.value = staff_name;
                     //  // Assuming feesInput is defined elsewhere
                 }
-            <% } %>
+             } 
        
     }
 
 function UpdateRoll2(optionValue) {
-              console.log(optionValue);
-             
-            <% for (var i = 0; i < nonteach.length; i++) { %>
-                if ('<%= nonteach[i].staff_id %>' == optionValue) {
-                    console.log('<%= nonteach[i].staff_name %>');
-                    var ffrrr = '<%= nonteach[i].staff_name %>';
-                    console.log(typeof(ffrrr));
-                    drivername.value = ffrrr;
+    console.log(optionValue);
+             var nonteach='<%-JSON.stringify(nonteach)%>';
+             nonteach=JSON.parse(nonteach);
+             for (var i = 0; i <nonteach.length; i++) { 
+                if ( nonteach[i].staff_id == optionValue) {
+                    
+                    var staff_name =  nonteach[i].staff_name ;
+                   
+                    drivername.value = staff_name;
                     //  // Assuming feesInput is defined elsewhere
                 }
-            <% } %>
-       
+             } 
     }
 
         </script>

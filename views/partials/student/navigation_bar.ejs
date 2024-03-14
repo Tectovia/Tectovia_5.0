@@ -1,5 +1,5 @@
 <!-- side_menu -->
-<aside id="sidebar" class="hide">
+<aside id="sidebar">
   <a href="/" class="brand" target="_blank">
     <i class="bx bxs-smile"></i>
     <span class="text">ABCD Higher Secondary School</span>
@@ -7,18 +7,14 @@
 
   <ul class="side_menu top">
     <li class="active">
-      <a
-        href="/student_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>"
-      >
+      <a href="/student_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>">
         <i class="bx bxs-dashboard"></i>
         <span class="text">Info</span>
       </a>
     </li>
     <li>
-      <a
-        href="/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today"
-      >
-      <i class='bx bx-line-chart'></i>
+      <a href="/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today">
+        <i class='bx bx-line-chart'></i>
 
         <span class="text">Attendance</span>
       </a>
@@ -27,49 +23,41 @@
 
 
 
-    
+
     <li>
       <a href="/student/bonafide/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
-        <i class='bx bxs-paper-plane' ></i>
+        <i class='bx bxs-paper-plane'></i>
         <span class="text">Bonafide</span>
       </a>
     </li>
 
     <li>
-      <a
-        href="/student/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
-      >
-      <i class='bx bxs-doughnut-chart' ></i>
+      <a href="/student/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+        <i class='bx bxs-doughnut-chart'></i>
         <span class="text">Assignment</span>
       </a>
     </li>
     <li>
-      <a
-        href="/student/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
-      >
-      <i class='bx bx-table' ></i>
+      <a href="/student/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+        <i class='bx bx-table'></i>
         <span class="text">Time Table</span>
       </a>
     </li>
     <li>
-      <a
-        href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"
-      >
-      <i class='bx bxs-bookmarks'></i>
+      <a href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>">
+        <i class='bx bxs-bookmarks'></i>
         <span class="text">Diary</span>
       </a>
     </li>
     <li>
-      <a href="/student/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
-      >
+      <a href="/student/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
         <i class='bx bxs-badge-dollar'></i>
         <span class="text">Fees</span>
       </a>
     </li>
     <li>
-      <a href="/student/forumclass/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
-      >
-      <i class='bx bxs-extension'></i>
+      <a href="/student/forumclass/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+        <i class='bx bxs-extension'></i>
         <span class="text">Class & Forum</span>
       </a>
     </li>
@@ -78,15 +66,16 @@
         <i class='bx bx-calendar'></i>
         <span class="text">Academic calendar</span>
       </a>
-  </li>
-    <li>
+    </li>
+    <!-- <li>
+   
       <a
         href="/student/quiz/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
       >
       <i class='bx bxl-redux'></i>
         <span class="text">Quiz</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>">
         <i class='bx bxs-book-add'></i>
@@ -139,7 +128,8 @@
     <div class="notification">
       <a href="#" class="notification-icon">
         <i class="bx bxs-bell"></i>
-        <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%- notification.noOfNotifications %></span></a>
+        <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%-
+              notification.noOfNotifications %></span></a>
     </div>
 
     <a href="#" class="profile">
@@ -147,4 +137,3 @@
     </a>
   </nav>
 </section>
-

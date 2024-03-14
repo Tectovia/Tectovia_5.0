@@ -3,136 +3,139 @@
 
     <div class="window_navbar">
       <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
-     </div>
-     
-     <%}else{%>
-      
+    </div>
+
+    <%}else{%>
+
       <div class="window_navbar">
         <%- include('../partials/parent/navigation_bar.ejs') %>
       </div>
 
       <%}%>
-    <div class="window_container">
-        <div class="table_container">
+        <div class="window_container">
+          <div class="table_container">
             <div class="table_header">
-                <h1 class="title">Attendance</h1>
+              <h1 class="title">Attendance</h1>
             </div>
-            
-            <div>
-                <label for="date_selector">Pick A Date</label>
-                <input id="date_selector" type="date" name="goto" style="color: black;">
-              </div>
 
-              <h1>Date : <%=datetext%></h1>
-        </div>
-        <br>
-        
-      <% if(dayorder!='null'){%>
-          <% periods.forEach((item,i)=>{%> <% if(item.sub!='null'){%>
-          <div class="container_todo">
-            <div class="todo_profile hour">
-              <h1><%=i+1%></h1>
+            <div>
+              <label for="date_selector">Pick A Date</label>
+              <input id="date_selector" type="date" name="goto" style="color: black;">
             </div>
-            <div class="todo_content">
-              <div class="todo_row">
-                <h3>Subject : <%=item.sub%></h3>
-              
-              </div>
-              <div class="todo_row">
-                <h3>Staff : <%=item.staff_name%></h3>
-              
-              </div>
-              
-              
-            </div>
-            <% if(ack[i]!='null'){%>
-                <div class="todo_buttons">
-                    
-                        <%if(student_attend[i]==1){%>
-                            <h3 class="done">P</h3>
-                            
-                        <%}else{%>
-                            <h3 class="pending_btn">A</h3>
-                        <%}%>
-                  
+
+            <h1>Date : <%=datetext%>
+            </h1>
+          </div>
+          <br>
+
+          <% if(dayorder!='null' ){%>
+            <% periods.forEach((item,i)=>{%> <% if(item.sub!='null' ){%>
+                <div class="container_todo">
+                  <div class="todo_profile hour">
+                    <h1>
+                      <%=i+1%>
+                    </h1>
                   </div>
-                <%}else{%>
+                  <div class="todo_content">
+                    <div class="todo_row">
+                      <h3>Subject : <%=item.sub%>
+                      </h3>
+
+                    </div>
+                    <div class="todo_row">
+                      <h3>Staff : <%=item.staff_name%>
+                      </h3>
+
+                    </div>
+
+
+                  </div>
+                  <% if(ack[i]!='null' ){%>
                     <div class="todo_buttons">
+
+                      <%if(student_attend[i]==1){%>
+                        <h3 class="done">P</h3>
+
+                        <%}else{%>
+                          <h3 class="pending_btn">A</h3>
+                          <%}%>
+
+                    </div>
+                    <%}else{%>
+                      <div class="todo_buttons">
                         <h3 class="null">N</h3>
                       </div>
-                <%}%>
-          </div>
-          <br />
-          <%}%> 
-          <%})}else{%>
-            <div class="table_container">
-                <div class="table_header">
-                    <h1 class="title holiday">Holiday</h1>
+                      <%}%>
                 </div>
-            </div>    
-            <%}%>
-    </div>
-</div>        
+                <br />
+                <%}%>
+                  <%})}else{%>
+                    <div class="table_container">
+                      <div class="table_header">
+                        <h1 class="title holiday">Holiday</h1>
+                      </div>
+                    </div>
+                    <%}%>
+        </div>
+</div>
 
 
 <style>
-    .holiday{
-        color: rgb(235, 28, 28);
-        font-size: 20px;
-    }
-    .done {
-      background-color: green;
-      }
-      .pending_btn {
-          background-color: rgb(245, 8, 39);
-        }
-      .null {
-          background-color: rgb(81, 80, 80);
-        }
-        .hour h1 {
-          color: var(--primary-color);
-          font-size: 25px;
-          font-weight: bolder;
-        }
-    .todo_buttons{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      
-    
-    }
-    .todo_buttons h3{
-       
-        margin: 0;
-       padding:20px 40px;
-       font-size: 20px;
-       border-radius: 10px;
-      color: white;
-    }
-        
-    
-       
+  .holiday {
+    color: rgb(235, 28, 28);
+    font-size: 20px;
+  }
 
+  .done {
+    background-color: green;
+  }
+
+  .pending_btn {
+    background-color: rgb(245, 8, 39);
+  }
+
+  .null {
+    background-color: rgb(81, 80, 80);
+  }
+
+  .hour h1 {
+    color: var(--primary-color);
+    font-size: 25px;
+    font-weight: bolder;
+  }
+
+  .todo_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+
+  .todo_buttons h3 {
+
+    margin: 0;
+    padding: 20px 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    color: white;
+  }
 </style>
 
 <script>
-    const currentDate = new Date();
-    const maxDate = currentDate.toISOString().slice(0, 10);
-    const date_selector = document.getElementById("date_selector");
-    date_selector.setAttribute("max", maxDate);
-    date_selector.addEventListener("change", () => {
-      date = date_selector.value;
-      datepart = date.split("-");
-      if (datepart.length === 3) {
-        const day = datepart[2];
-        const month = datepart[1];
-        const year = datepart[0];
-        formated_date = `${day}-${month}-${year}`;
-        window.location.href =`/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/${formated_date}`;
-      }
-    });
-  </script>
-
-
-
-
+  const currentDate = new Date();
+  const maxDate = currentDate.toISOString().slice(0, 10);
+  const date_selector = document.getElementById("date_selector");
+  date_selector.setAttribute("max", maxDate);
+  date_selector.addEventListener("change", () => {
+    date = date_selector.value;
+    datepart = date.split("-");
+    if (datepart.length === 3) {
+      const day = datepart[2];
+      const month = datepart[1];
+      const year = datepart[0];
+      formated_date = `${day}-${month}-${year}`;
+      window.location.href = `/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/${formated_date}`;
+    }
+  });
+</script>

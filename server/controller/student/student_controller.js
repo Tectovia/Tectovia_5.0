@@ -28,12 +28,14 @@ exports.student_index = async (req, res) => {
     var [title,batch,sec]=cls.split('_');
 
     title+='_'+batch;
-    
+
+   
+   console.log(title);
+   console.log(id);
     const selected = mongoose.model(title);
     var student=await selected.findOne({rollno:id});
     console.log(student);
 
-console.log(student);
     // this is to find no of notifications added by purushothaman @ 28/2 4.25pm
     let notification = await noOfNotificationsForStudents(student['rollno'],student.id)
     //----------------------------------------------------------------------------------

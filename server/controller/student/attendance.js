@@ -49,6 +49,7 @@ exports.attendance= async (req,res)=>{
     var section=section_map[sec];
 
    const student=await selected.findOne({rollno:id});
+   let notification = await noOfNotificationsForStudents(student.rollno,student.id)
    const acad_data = await db.collection("academic_calendar").findOne({ year: year });
    var dayorder=acad_data[datetext].dayorder
    if (dayorder !='null') {
@@ -56,15 +57,16 @@ exports.attendance= async (req,res)=>{
       const time_table=await class_model.findOne({id:title,section_name:sec},{time_table:1});
       // fetch Specific day
       const periods=time_table.time_table[`day${dayorder}`];
-     
+     console.log(datetext);
       const common=  await attend_model.findOne({ [datetext]: { $exists: true } });
 
       // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
-      let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+   
       //----------------------------------------------------------------------------------
-
+  console.log(common);
      if(common!=null){
        const student_attend=common[datetext][section][id]
+       console.log("student", student_attend);
        const ack=common[datetext][section].ack
       
       res.render('student/attendance',{student,student_attend,periods,dayorder,ack,datetext,role,notification})

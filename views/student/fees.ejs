@@ -3,90 +3,114 @@
         <div class="window_navbar">
             <%- include('../partials//student/navigation_bar.ejs') %>
         </div>
-    <%}else{%>
+        <%}else{%>
             <div class="window_navbar">
-            <%- include('../partials/parent/navigation_bar.ejs') %>
+                <%- include('../partials/parent/navigation_bar.ejs') %>
             </div>
-    <%}%>
-    
-    <div class="window_container">
-      <!-- css/table.css -->
-      <% if(typeof fees !='undefined' && fees !=null){%>
-        <div class="table_container">
-            <div class="table_header">
-                <div class="center_title">
-                    Fees Table
-                </div>
-                <center><h1 class="title">I - MID TERM</h1></center>
-            </div>
-            <% var total=0 %>
-            <table class="table">
-                <tr class="header">
-                    <th>Title</th>
-                    <th>Amount</th>
-                </tr>
-               
-               <% fees.I_mid_term.forEach((item)=>{%>
-                <tr>
-                   <td> <%= item.fees_title %></td>
-                   <td> <%= item.fees_amount %></td>
-                   <%  total +=parseFloat(item.fees_amount)%>
-                </tr>
-                <%}) %>
-                <tr class="header">
-                    <th>Total</th>
-                    <th><%=total %></th>
-                </tr> 
-               
-            </table>
-        </div>
+            <%}%>
 
-        <div class="table_container">
-            <div class="table_header">
-                <center><h1 class="title">II - MID TERM</h1></center>
-            </div>
-            <% var total=0 %>
-            <table class="table">
-                <tr class="header">
-                    <th>Title</th>
-                    <th>Amount</th>
-                </tr>
-               <% fees.II_mid_term.forEach((item)=>{%>
-                <tr>
-                   <td> <%= item.fees_title %></td>
-                   <td> <%= item.fees_amount %></td>
-                   <%  total +=parseFloat(item.fees_amount)%>
-                </tr>
-                <%}) %>
-                <tr class="header">
-                    <th>Total</th>
-                    <th><%=total %></th>
-                </tr>
-            </table>
-        </div>
-        <div class="table_container">
-            <div class="table_header">
-                <center><h1 class="title">III - MID TERM</h1></center>
-            </div>
-            <% var total=0 %>
-            <table class="table">
-                <tr class="header">
-                    <th>Title</th>
-                    <th>Amount</th>
-                </tr>
-               <% fees.III_mid_term.forEach((item)=>{%>
-                <tr>
-                   <td> <%= item.fees_title %></td>
-                   <td> <%= item.fees_amount %></td>
-                   <%  total +=parseFloat(item.fees_amount)%>
-                </tr>
-                <%}) %>
-                <tr class="header">
-                    <th>Total</th>
-                    <th><%=total %></th>
-                </tr>
-            </table>
-        </div>
-        <%} %>
-    </div>
+                <div class="window_container">
+                    <!-- css/table.css -->
+                    <% if(typeof fees !='undefined' && fees !=null){%>
+                        <div class="table_container">
+                            <div class="table_header">
+                                <div class="center_title">
+                                    Fees Table
+                                </div>
+                                <center>
+                                    <h1 class="title">I - MID TERM</h1>
+                                </center>
+                            </div>
+                            <% var total=0 %>
+                                <table class="table">
+                                    <tr class="header">
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                    </tr>
+
+                                    <% fees.I_mid_term.forEach((item)=>{%>
+                                        <tr>
+                                            <td>
+                                                <%= item.fees_title %>
+                                            </td>
+                                            <td>
+                                                <%= item.fees_amount %>
+                                            </td>
+                                            <% total +=parseFloat(item.fees_amount)%>
+                                        </tr>
+                                        <%}) %>
+                                            <tr class="header">
+                                                <th>Total</th>
+                                                <th>
+                                                    <%=total %>
+                                                </th>
+                                            </tr>
+
+                                </table>
+                        </div>
+
+                        <div class="table_container">
+                            <div class="table_header">
+                                <center>
+                                    <h1 class="title">II - MID TERM</h1>
+                                </center>
+                            </div>
+                            <% var total=0 %>
+                                <table class="table">
+                                    <tr class="header">
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <% fees.II_mid_term.forEach((item)=>{%>
+                                        <tr>
+                                            <td>
+                                                <%= item.fees_title %>
+                                            </td>
+                                            <td>
+                                                <%= item.fees_amount %>
+                                            </td>
+                                            <% total +=parseFloat(item.fees_amount)%>
+                                        </tr>
+                                        <%}) %>
+                                            <tr class="header">
+                                                <th>Total</th>
+                                                <th>
+                                                    <%=total %>
+                                                </th>
+                                            </tr>
+                                </table>
+                        </div>
+                        <div class="table_container">
+                            <div class="table_header">
+                                <center>
+                                    <h1 class="title">III - MID TERM</h1>
+                                </center>
+                            </div>
+                            <% var total=0 %>
+                                <table class="table">
+                                    <tr class="header">
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <% fees.III_mid_term.forEach((item)=>{%>
+                                        <tr>
+                                            <td>
+                                                <%= item.fees_title %>
+                                            </td>
+                                            <td>
+                                                <%= item.fees_amount %>
+                                            </td>
+                                            <% total +=parseFloat(item.fees_amount)%>
+                                        </tr>
+                                        <%}) %>
+                                            <tr class="header">
+                                                <th>Total</th>
+                                                <th>
+                                                    <%=total %>
+                                                </th>
+                                            </tr>
+                                </table>
+                        </div>
+                        <%} %>
+                </div>
 </div>

@@ -1,66 +1,56 @@
-<% function formatDate(date) {
-    const formattedDate = new Date(date);
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return formattedDate.toLocaleDateString('en-GB', options);
-} %>
+<% function formatDate(date) { const formattedDate=new Date(date); const options={ day: '2-digit' , month: '2-digit' ,
+    year: 'numeric' }; return formattedDate.toLocaleDateString('en-GB', options); } %>
 
-<% function formatTime(date) {
-    const formattedTime = new Date(date);
-    const hours = formattedTime.getHours() % 12 || 12;
-    const minutes = formattedTime.getMinutes();
-    const ampm = formattedTime.getHours() >= 12 ? 'PM' : 'AM';
+    <% function formatTime(date) { const formattedTime=new Date(date); const hours=formattedTime.getHours() % 12 || 12;
+        const minutes=formattedTime.getMinutes(); const ampm=formattedTime.getHours()>= 12 ? 'PM' : 'AM';
 
-    return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
-} %>
+        return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+        } %>
 
-<div class="window" id="window_layout">
-    <%if(role==="student"){%>
-        <div class="window_navbar">
-            <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
-         </div>
-    <%}else{%>
-        
-        <div class="window_navbar">
-            <%- include('../partials/parent/navigation_bar.ejs') %>
+        <div class="window" id="window_layout">
+            <%if(role==="student"){%>
+                <div class="window_navbar">
+                    <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
+                </div>
+                <%}else{%>
+
+                    <div class="window_navbar">
+                        <%- include('../partials/parent/navigation_bar.ejs') %>
+                    </div>
+                    <%}%>
+                        <div class="window_container">
+                            <%if(datas){%>
+                                <%datas.map((item)=>{%>
+                                    <div class="circular_container" id="<%- item._id %>">
+                                        <div class="circular_header">
+                                            <div class="circular_info">
+                                                <div class="from">From : <%- item.from %> </div>
+                                                <div class="time">Date : <%- formatDate(item.date) %> </div>
+                                                <div class="time">Time : <%- formatTime(item.date) %> </div>
+                                            </div>
+                                        </div>
+                                        <div class="circular_title">
+                                            <div class="title"><%- item.title %></div>
+                                        </div>
+                                        <div class="circular_message">
+                                            <div class="message">
+                                                <p><%- item.message %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%})%>
+                                        <%}%>
+                        </div>
         </div>
-    <%}%>
-    <div class="window_container">
-        <%datas.map((item)=>{%> 
-            <div class="circular_container" id="<%- item._id %>">
-                <div class="circular_header">
-                    <div class="circular_info">
-                        <div class="from">From : <%- item.from %> </div>
-                        <div class="time">Date : <%- formatDate(item.date) %> </div>
-                        <div class="time">Time : <%- formatTime(item.date) %> </div>
-                    </div>
-                </div>
-                <div class="circular_title">
-                    <div class="title"><%- item.title %></div>
-                </div>
-                <div class="circular_message">
-                    <div class="message">
-                        <p><%- item.message %></p>
-                    </div>
-                </div>
-            </div>
-        <%})%>
-            <!-- <%datas.map((item)=>{%> 
-                <label>date and time:</label><p><%=item.date%></p>
-                <label>message:</label><p><%=item.message%></p>
-            <%})%> -->
-    </div>
-</div>
-<script>
-function hideCircular(id){
-    document.getElementById(id).style.display='none';
-}
+        <script>
+            function hideCircular(id) {
+                document.getElementById(id).style.display = 'none';
+            }
 
-function hideSeenCircularContainer(){
-        document.getElementById('seenCircularContainer').style.display='none';
-}
-function showPopUp(){
-    document.getElementById('seenCircularContainer').style.display='flex';
-}
-</script>
-
-
+            function hideSeenCircularContainer() {
+                document.getElementById('seenCircularContainer').style.display = 'none';
+            }
+            function showPopUp() {
+                document.getElementById('seenCircularContainer').style.display = 'flex';
+            }
+        </script>
