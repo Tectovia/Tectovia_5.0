@@ -6,10 +6,11 @@
     margin-top: 80px;
     display: grid;
     border-radius: 10px 10px 0 0;
-    width: 102%;
+    width: 100%;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
-    margin-left: 0px;
+    margin-left: 10px;
+
     
    
     
@@ -196,8 +197,8 @@
   .education_info{
    margin-top:0px;
    background-color:var(--bg-color);
-   
-    height: 300px;
+   margin-left: 10px;
+  width: 100%;
     height: 500px;
    display: flex;
    border-radius: 0 0 10px 10px;
@@ -209,11 +210,11 @@
    
     width: 550px;
     padding: 30px;
-    margin-left: 20px;
-    border-radius: 20px;
+    
+    border-radius: 10px;
     margin-top:10px;
     height: 300px;
-    margin-left: 80px;
+    margin-left: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
   .education_details h3{
@@ -225,7 +226,7 @@
   .acheivement_box{
     margin-top:-28px;
   
-    
+    margin-left: -30px;
      height: 100px;
   display: flex;
  
@@ -237,10 +238,10 @@
     width: 550px;
     padding: 30px;
     
-    border-radius: 20px;
-    margin-top:-460px;
+    border-radius: 10px;
+    margin-top:-463px;
     height: 300px;
-    margin-left: 700px;
+    margin-left: 680px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
   .acheivement_value h1{
@@ -355,7 +356,7 @@
 }
 .side{
   margin-left: 600px;
-  margin-top: -165px;
+  margin-top: -210px;
 }
 .staff_colon_24{
   margin-left: 50px;

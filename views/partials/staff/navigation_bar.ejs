@@ -6,57 +6,45 @@
 
     <ul class="side_menu top">
         <li class="active">
-            <a href="/staff_index/<%=staffdata[0].staff_id%>">
-                <i class='bx bxs-dashboard'></i>
+            <a href="/staff_index/<%=staffdata[0].staff_id%>" title="Home">
+                <i class='bx bxs-dashboard' ></i>
                 <span class="text">Home</span>
             </a>
         </li>
         <li>
-            <a href="/staff/attendance/<%=staffdata[0]._id%>/today">
-                <i class="bx bxs-shopping-bag-alt"></i>
-                <span class="text">Attendance</span>
-            </a>
-        </li>
-        <li>
-            <a href="/staff/assignment/<%=staffdata[0]._id%>">
-                <i class='bx bxs-doughnut-chart'></i>
+            <a href="/staff/assignment/<%=staffdata[0]._id%>" title="Assignment">
+                <i class='bx bxs-doughnut-chart' ></i>
                 <span class="text">Assignment</span>
             </a>
         </li>
         <li>
-            <a href="/staff/time_table/<%=staffdata[0]._id%>">
-                <i class='bx bx-table'></i>
+            <a href="/staff/time_table/<%=staffdata[0]._id%>" title="Time Table">
+                <i class='bx bxs-message-dots' ></i>
                 <span class="text">Time Table</span>
             </a>
         </li>
         <li>
-            <a href="/staff/forum/<%=staffdata[0]._id%>">
-                <i class='bx bxs-extension'></i>
+            <a href="/staff/forum/<%=staffdata[0]._id%>" title="Forum & Classes ">
+                <i class='bx bxs-extension' ></i>
                 <span class="text">Forum & Classes</span>
             </a>
         </li>
         <li>
-            <a href="/staff/inbox/<%=staffdata[0]._id%>">
-                <i class='bx bxs-group'></i>
-                <span class="text">Circullar </span>
+            <a href="/staff/inbox/<%=staffdata[0]._id%>" title="Circullar">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Circullar</span>
             </a>
         </li>
         <li>
-            <a href="/staff/instructions/<%=staffdata[0]._id%>">
-                <i class='bx bx-podcast'></i>
+            <a href="/staff/instructions/<%=staffdata[0]._id%>" title="Instuctions">
+                <i class='bx bxs-group' ></i>
                 <span class="text">Instuctions</span>
             </a>
         </li>
         <li>
-            <a href="/staff/markentry/<%=staffdata[0]._id%>">
-                <i class='bx bx-book-bookmark'></i>
+            <a href="/staff/markentry/<%=staffdata[0]._id%>" title="Mark Entry">
+                <i class='bx bxs-group' ></i>
                 <span class="text">Mark Entry</span>
-            </a>
-        </li>
-        <li>
-            <a href="/staff/academic_calendar/<%=staffdata[0]._id%>">
-                <i class='bx bx-calendar'></i>
-                <span class="text">Academic calendar</span>
             </a>
         </li>
     </ul>
@@ -64,8 +52,8 @@
     <ul class="side_menu">
 
         <li>
-            <a href="/logout" class="logout">
-                <i class='bx bxs-log-out-circle'></i>
+            <a href="/logout" class="logout" title="Logout">
+                <i class='bx bxs-log-out-circle' ></i>
                 <span class="text">Logout</span>
             </a>
         </li>
@@ -75,33 +63,33 @@
 <!-- top_menu -->
 <section id="top_menu">
     <nav>
-        <i class='bx bx-menu'></i>
+        <i class='bx bx-menu' title="back" ></i>
 
-        <a href="#" class="nav-link">Staff Dashboard</a>
+        <a href="#" title="Staff Dashboard" class="nav-link">Staff Dashboard</a>
 
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Search...">
-                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                <button type="submit" class="search-btn" title="search"><i class='bx bx-search' ></i></button>
             </div>
         </form>
 
-        <input type="checkbox" id="switch-mode" hidden>
-        <label for="switch-mode" class="switch-mode"></label>
+        <input type="checkbox" id="switch-mode" hidden >
+        <label for="switch-mode" class="switch-mode" title="switch mode"></label>
 
         <div class="notification">
-            <a href="#" class="notification-icon">
-                <i class="bx bxs-bell"></i>
-                <span class="num"> <%- circularNotification.length %></span>
+            <a href="#" class="notification-icon" title="notifications">
+              <i class="bx bxs-bell"></i>
+              <span class="num">8</span>
             </a>
             <div class="dropdown">
-                <% circularNotification.map((item)=>{ %>
-                    <a href="/staff/inbox/<%=staffdata[0]._id%>" class="dropdown-item"><%- item.title %></a>
-                    <% }) %>
+              <a href="#" class="dropdown-item">Notification 1</a>
+              <a href="#" class="dropdown-item">Notification 2</a>
+              <a href="#" class="dropdown-item">Notification 3</a>
             </div>
         </div>
 
-        <a href="#" class="profile">
+        <a href="#" class="profile" title="profile">
             <img src="/img/download.jpg">
         </a>
     </nav>
