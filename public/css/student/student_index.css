@@ -8,8 +8,8 @@
   position: relative;
   display: grid;
   height: 120vh;
-  width: 94%;
-  margin-left: 2.5%;
+  width: 99%;
+  margin-left: 2%;
   margin-bottom: 4%;
   margin-top: 2%;
   background:var(--bg-color);
@@ -41,7 +41,7 @@
 }
 .user_id {
   margin-top: 20%;
-  margin-left: 10%;
+  margin-left: 9%;
   height: 280px;
   width: 500px;
   background: var(--bg-color);
@@ -73,10 +73,10 @@
 }
 
 .user_contact {
-  margin-left: 7%;
-  margin-top: 20%;
+  margin-left: 12%;
+  margin-top: 20.09%;
   height: 280px;
-  width: 500px;
+  width: 490px;
   background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
