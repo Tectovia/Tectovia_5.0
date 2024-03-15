@@ -16,22 +16,16 @@ exports.staff_inbox= async (req,res,next)=>{
  
     // used to show circular notification for staff edited by purushothaman @ 27/2
     let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    let circular = circularNotification.allCirculars
+     // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    let unSeenCirculars = circularNotification.map((item)=>{return item._id})
     //----------------------------------------------------------------------
-
-
-   const data =await circular_model.find({})
-
-//    console.log(data);
-
-   const circular = data.filter((item)=>{
-    return ([staffdata[0].staff_id] in item.staffs && item.staffs[staffdata[0].staff_id]===false)
-   })
-
     res.render('staff/staff_inbox',{
         circularNotification,
-        staffdata:staffdata,
-        circular:circular,
-        staff_id:id
+        staffdata,
+        circular,
+        unSeenCirculars
     })
 }
 

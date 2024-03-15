@@ -117,7 +117,7 @@
                         </div>
                        
                     </div>
-                    <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button>Ok verified</button></a>
+                    <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button>verified</button></a>
                     <button onclick="toggleDetails('<%= index %>')" class="mark_popup_button">back</button>
                 </div>
             </div>
@@ -129,6 +129,7 @@
         </div>
     </div>
 </div>
+
 <script>
     function toggleDetails(index) {
         var details = document.getElementById('details_' + index);

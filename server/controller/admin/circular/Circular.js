@@ -2,7 +2,8 @@ const staff_data_model=require('../../../models/admin/staff_information_model')
 const class_data=require('../../../models/admin/section_model');
 const mongoose = require('mongoose');
 const { getDate, getMonth, getYear, getTime } = require('date-fns');
-const circular_model=require('../../../models/admin/circular_model')
+const circular_model=require('../../../models/admin/circular_model');
+const commonInfoModel = require('../../../models/admin/common_info_model')
 const {classes_map} =require("../../universal_controller/class_map");
 let lastVisited;
 
@@ -103,7 +104,6 @@ exports.message_sent= async (req,res,next)=>{
   circular.staffs[staff]=false;
   circular.save();
   lastVisited='sent'
-
   res.redirect("/admin/circular");
  
 }
@@ -141,7 +141,7 @@ exports.message_delete=async (req,res)=>{
 exports.message_edit = async (req,res,next)=>{
 
   req.data = await circular_model.findOne({_id:req.params._id})
-  console.log(req.data);
+  // console.log(req.data);
   next()
 
 }

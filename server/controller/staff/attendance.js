@@ -44,6 +44,9 @@ exports.attendance = async (req, res) => {
   
   // used to show circular notification for staff edited by purushothaman @ 27/2
   let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+   // used to show circular notification for staff edited by purushothaman @ 14/3
+   circularNotification = circularNotification.unSeenCirculars
+   //----------------------------------------------------------------------
   //----------------------------------------------------------------------
   
   if (dayorder != "null") {
@@ -130,6 +133,9 @@ exports.attendance_link = async (req, res) => {
 
    // used to show circular notification for staff edited by purushothaman @ 27/2
    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
    //----------------------------------------------------------------------
   
    res.render("staff/attendance_list", {staffdata, stu_data,req_data,circularNotification });

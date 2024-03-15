@@ -44,3 +44,4 @@ const common_info_schema = new mongoose.Schema({
 const common_info = mongoose.model('common_info', common_info_schema);
 
 module.exports = common_info;
+

@@ -25,7 +25,7 @@
         </div>
 
         <!-- Previous Circulars -->
-        <% circular.forEach(function(item) { %>
+        <% circular.reverse().forEach(function(item) { %>
             <% if(item.delete === false) { %>
               <div class="circular_container">
                   <div class="circular_header">
@@ -35,10 +35,12 @@
                         <div class="time">Time : <%- formatTime(item.date) %> </div>
                     </div>
                     <div class="circular_buttons">
-                        <div class="delete">
-                            <!-- <a href="/staff/message_seen/<%-staffdata[0].staff_id%>/<%- item._id %>"></a> -->
-                            <button onclick="showSeenCircularContainer(`<%-staffdata[0].staff_id%>` , `<%- item._id %>`)" >mark as seen</button>
-                        </div>
+                        <%if( unSeenCirculars.includes(item._id)){%>
+                            <h1 style="color: green;">new</h1>
+                            <div class="delete">
+                                <button onclick="showSeenCircularContainer(`<%-staffdata[0].staff_id%>` , `<%- item._id %>`)" >ok</button>
+                            </div>
+                        <%}%>
                         <div class="popup_container" id="seenCircularContainer" style="display: none;">
                             <div class="popup">
                               <div class="popup_header">
@@ -46,7 +48,7 @@
                                 <span class="close_icon" id="closePopup" onclick="hideSeenCircularContainer()">&times;</span>
                               </div>
                               <div class="pop_body">
-                                <p>Do You Want to mark as seen and hide permanently?</p>
+                                <p>Do You Want to mark as seen ?</p>
                                 <div class="delete">
                                   <a href="" id="seenCircular"><button class="btn_danger">Yes</button></a>
                                   <button onclick="hideSeenCircularContainer()">No</button>

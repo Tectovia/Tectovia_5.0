@@ -33,6 +33,9 @@ router.post('/student/assignment_submission/:id/:title/:sec/:assign_id',student_
 router.get('/student/circular/:id/:title',student_dairy.student_circular)
 router.get('/student/testmarks/:id/:stdclass/:sec',student_marksheet.student_marksheet)
 router.get('/student/testMarksSeen/:_id/:batch/:testId',student_marksheet.studentTesteen)
+
+// ----------------------circular seen ---------------------------------
+router.get('/student/circularSeen/:circularId/:studentId/:batch',student_dairy.studentSeenCircular)
 //-----------------------for notification page -------------------------
 router.get("/student/notification/:_id/:batch",studentNotification)
 

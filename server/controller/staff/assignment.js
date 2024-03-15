@@ -69,6 +69,9 @@ exports.assignment=async (req,res)=>{
       ]);
 
       let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+       // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
       
         res.render('staff/assignment',{staffdata,subject,circularNotification});
     } catch (error) {
@@ -89,6 +92,9 @@ exports.assignment_list=async(req,res)=>{
     const assign=await assign_model.find({sub:params.sub,sec:params.sec,staff_id:params.id});
     console.log(assign);
     let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+     // used to show circular notification for staff edited by purushothaman @ 14/3
+     circularNotification = circularNotification.unSeenCirculars
+     //----------------------------------------------------------------------
      res.render('staff/assignment_list',{staffdata,item:params,assign,circularNotification});
    
   } catch (error) {
@@ -180,6 +186,9 @@ exports.viewlist=async (req,res)=>{
   }
 ])
 let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+ // used to show circular notification for staff edited by purushothaman @ 14/3
+ circularNotification = circularNotification.unSeenCirculars
+ //----------------------------------------------------------------------
 console.log(list[0]);
 res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularNotification})
 }

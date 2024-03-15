@@ -23,14 +23,27 @@ exports.student_dairy=async (req,res)=>{
     // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
     let notification = await noOfNotificationsForStudents(student.rollno,student.id)
     let instructions = notification.digitalDairy
+    let seenInstructions = notification.seenDigitalDairy
     //-----------------------------------------------------------------------------
 
     res.render("./student/digital_dairy",{
         student,
         instructions,
         notification,
+        seenInstructions,
         role
     })
+}
+
+exports.studentSeenCircular = async (req,res,next)=>{
+    let {circularId,studentId,batch} = req.params
+    let {_id,id} = await mongoose.model(batch).findOne({_id:studentId})
+    await mongoose.model(batch).findByIdAndUpdate({_id:studentId},{$push:{
+        seenCirculars : circularId
+    }}).then(()=>{
+        console.log('updated');
+    })
+   res.redirect(`/student/circular/${_id}/${id}`)
 }
 
 exports.instructionSeen = async (req,res) =>{

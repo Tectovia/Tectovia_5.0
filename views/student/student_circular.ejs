@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/students_test_result.css">
 <% function formatDate(date) {
     const formattedDate = new Date(date);
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -26,31 +27,49 @@
     <%}%>
     <div class="window_container">
         <%if(datas){%>
-            <%datas.map((item)=>{%> 
-                <div class="circular_container" id="<%- item._id %>">
-                    <div class="circular_header">
-                        <div class="circular_info">
-                            <div class="from">From : <%- item.from %> </div>
-                            <div class="time">Date : <%- formatDate(item.date) %> </div>
-                            <div class="time">Time : <%- formatTime(item.date) %> </div>
-                        </div>
+            <%datas.reverse().map((item)=>{%> 
+               <div class="container_marks box"> 
+                    <div class="main_date">
+                        title:<h1> <%- item.title %> </h1>
                     </div>
-                    <div class="circular_title">
-                        <div class="title"><%- item.title %></div>
+                    <div class="main_date">
+                        date<h1><%- formatDate(item.date) %> </h1>
                     </div>
-                    <div class="circular_message">
-                        <div class="message">
-                            <p><%- item.message %></p>
-                        </div>
+                    <div class="main_date">
+                        time<h1><%- formatTime(item.date) %> </h1>
                     </div>
+                    <button onclick="showCircular(`<%- item._id %>`)" class="mark_button">show</button >
+                        <%if(!student.seenCirculars.includes(item._id)){%>
+                            <div class="main_date">
+                                <br>
+                                <h1 style="color: green;">new</h1>
+                            </div>
+                        <%}%>
+                </div> 
+                <div class="blurred-background" name="<%- item._id %>"></div>  <!-- Blurred background -->
+                <div class="marks_popup" id="<%- item._id %>" style="display: none;">
+                    <span class="close_icon" id="closePopup" onclick="hideCircular(`<%- item._id %>`)">&times;</span>                            
+                            <div class="main_marks_popup_container">
+                                <div class="mark_popup_maxmarks">From : <%- item.from %> </div>
+                                <div class="mark_popup_minmarks">Date : <%- formatDate(item.date) %> </div>
+                                <div class="mark_popup_minmarks">Time : <%- formatTime(item.date) %> </div>
+                                <div class="mark_popup_minmarks"><%- item.message %></div>
+                                <%if(!student.seenCirculars.includes(item._id)){%>
+                                    <a href="/student/circularSeen/<%- item._id %>/<%- student._id %>/<%- student.id %>"><button>ok</button></a>
+                                <%}%>
+                            </div>
+                           
                 </div>
             <%})%>
+        <%}else{%>
+            <h1>No circular</h1>
         <%}%>
     </div>
 </div>
 <script>
 function hideCircular(id){
     document.getElementById(id).style.display='none';
+    document.getElementsByName(id)[0].style.display = 'none';
 }
 
 function hideSeenCircularContainer(){
@@ -59,6 +78,9 @@ function hideSeenCircularContainer(){
 function showPopUp(){
     document.getElementById('seenCircularContainer').style.display='flex';
 }
+
+function showCircular(id){
+    document.getElementById(id).style.display="flex"
+    document.getElementsByName(id)[0].style.display = 'block'
+}
 </script>
-
-

@@ -18,6 +18,9 @@ exports.instruction=async (req,res,next)=>{
 
       // used to show circular notification for staff edited by purushothaman @ 27/2
       let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+       // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
       //----------------------------------------------------------------------
 
     let temp=[]

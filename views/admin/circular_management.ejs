@@ -66,7 +66,7 @@
       </div>
 
       <!-- Previous Circulars -->
-      <% sent_circular.forEach(function(item) { %>
+      <% sent_circular.reverse().forEach(function(item) { %>
         <% if(item.delete === false) { %>
           <div class="circular_container">
               <div class="circular_header">

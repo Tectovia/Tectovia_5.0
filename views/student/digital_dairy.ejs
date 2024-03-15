@@ -13,7 +13,7 @@
         <div class="digital_dairy">
             <div>
                 <br>
-                <%instructions.map((item)=>{%>
+                <%instructions.reverse().map((item)=>{%>
                 <div class="container_todo" id="<%=item.date%>">
                     <input type="checkbox" class="hide_diary" value="<%=item.date%>">
                     <span>Date and Time:</span><span><%=item.date%></span><br>
@@ -21,7 +21,10 @@
                     <span>subjects:</span><span><%=item.subjects%></span><br><br>
                     <h5>instruction</h5>
                     <p><%=item.message%></p>
-                    <a href="/student/digitalDairy/seen/<%- student._id %>/<%- student.id %>/<%- item._id %>"><button>seen</button></a>
+                    <%if(!seenInstructions.includes(item._id)){%>
+                        <h1 style="color: green;" >unseen</h1>
+                        <a href="/student/digitalDairy/seen/<%- student._id %>/<%- student.id %>/<%- item._id %>"><button>ok</button></a>
+                    <%}%>
                 </div>
                 <br>
                 <%})%>
