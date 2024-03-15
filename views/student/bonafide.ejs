@@ -22,20 +22,16 @@
     <%if(role==="student"){%>
 
       <div class="window_navbar">
-          <%- include('../partials//student/navigation_bar.ejs') %>
+          <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
        </div>
-    <%}else{%>
-      <div class="window_navbar">
-        <%- include('../partials/parent/navigation_bar.ejs') %>
-      </div>
     <%}%>
     
     <div class="window_container">
         <div class="container center_title">
             <div class="float_left">
-                <a href="/student_index/101/2023-2024_batch_A" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+                <a href="/student_index/<%=student.rollno %>/<%= student.id %>" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+                <div class="float_right">
             </div>
-            <div class="float_right">
                 <button onclick="display_popup_bono()">Add Bonafide</button>
             </div>
         </div>
@@ -86,13 +82,13 @@
               <div class="row">
                 <h3>Bonafide Description: <%= bonafide.bonafide_des %></h3>
               </div>
-              
-              <% if(bonafide.approval == true) { %>
-                <button class="btn_success printButton hidden" onclick="redirectToPrint()">print</button>
-                <% }else{ %>
-                  <h4>Not Approved</h4>
-                  <% } %>
-               
+              <% if (bonafide.approval == true) { %>
+                <button class="btn_success printButton hidden" onclick="redirectToPrint()">Print</button>
+              <% } else if (bonafide.cancel == true) { %>
+                <button class="btn_danger printButton hidden" onclick="reject()">Reject</button>
+              <% } else { %>
+                <h4>Not approved</h4>
+              <% } %>
             </div>
           </div>
         <% }) %>

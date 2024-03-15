@@ -1,6 +1,3 @@
-
-
-
 <link rel="stylesheet" href="/css/time_table.css">
 
 <div class="window">
@@ -17,39 +14,47 @@
                 <%= staffdata[0].time_table.day2[0].sub%>
             </tr>
         </table> -->
-        
-        <table class="table">
-            <tr class="row">
 
-                <th class="header">D/H</th>
-                <%for(let i=1;i<=dayhour.hr;i++){%>
-                  <th class="header"><%=i%></th>
-                  <%}%>
-            </tr>
-         
-            <%for(let i=1;i<=dayhour.day;i++){%>
-              <tr>
-                  <th class="header1"><%=i%></th> 
-                  <%for(let j=0;j< dayhour.hr;j++){%>
-                    <td>
-                      <% let disp=true; %>
-                   <%staffdata.forEach((item)=>{%>
-                    <% if (item.time_table['day' + i][j].sub !== 'null') { %>
-                         <p><%=item.time_table['day' + i][j].sub%></p>
-                         <p><%=item.time_table['day' + i][j].class%>-<%=item.time_table['day' + i][j].sec%></p>
-                         
-                          <% disp=false; %>
-                     <%}%>
-                     
-                    <%})%>
-                    <% if(disp){%>
-                      <p>None</p>
-                      <%}%>
-                    </td>
-                    <%}%>
-                </tr>
-                <%}%>
-               
+                    <table class="table">
+                        <tr class="row">
+
+                            <th class="header">D/H</th>
+                            <%for(let i=1;i<=dayhour.hr;i++){%>
+                                <th class="header">
+                                    <%=i%>
+                                </th>
+                                <%}%>
+                        </tr>
+
+                        <%for(let i=1;i<=dayhour.day;i++){%>
+                            <tr>
+                                <th class="header1">
+                                    <%=i%>
+                                </th>
+                                <%for(let j=0;j< dayhour.hr;j++){%>
+                                    <td>
+                                        <% let disp=true; %>
+                                            <%staffdata.forEach((item)=>{%>
+                                                <% if (item.time_table['day' + i][j].sub !=='null' ) { %>
+                                                    <p>
+                                                        <%=item.time_table['day' + i][j].sub%>
+                                                    </p>
+                                                    <p>
+                                                        <%=item.time_table['day' + i][j].class%>-
+                                                            <%=item.time_table['day' + i][j].sec%>
+                                                    </p>
+
+                                                    <% disp=false; %>
+                                                        <%}%>
+
+                                                            <%})%>
+                                                                <% if(disp){%>
+                                                                    <p>None</p>
+                                                                    <%}%>
+                                    </td>
+                                    <%}%>
+                            </tr>
+                            <%}%>
 
 
             </table>

@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../../css/instructions.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="../../css/instructions.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <div class="staff">
     <div class="staff_navbar">
@@ -91,6 +91,7 @@
             <div class="span"></div>
         </div>    
     </div>
+  </div>
 </div>
 
 
@@ -98,79 +99,62 @@
 
 </div>
 <style>
-    .hidden{
-        display: none;
-        width: fit-content;
-        
-    }
-    .show{
-        display: block;
-    }
-    .form{
-       position: absolute;
-       margin-left: 20%;
-       margin-top: 3%;
-    }
-    
+  .hidden {
+    display: none;
+    width: fit-content;
+  }
 
+  .show {
+    display: block;
+  }
+
+  .form {
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 3%;
+  }
 </style>
+
 <script>
-    
-document.getElementById('historyButton').addEventListener('click', function() {
-  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelector('.history_button').addEventListener('click', function() {
-    const historyElement = document.querySelector('.history');
-    if (!historyElement) {
-        console.log('History element not found');
-        return;
-    }
-
-    // Adjust the buffer size here (ensure it matches your design requirements)
-    const buffer = 10; // Adjust this value as needed
-    const offsetTop = historyElement.getBoundingClientRect().top + window.pageYOffset - buffer;
-
-    console.log('Scrolling to:', offsetTop, 'with buffer:', buffer);
-
-    window.scrollTo({
-        top:540,
-        behavior: 'smooth'
+  document
+    .getElementById("historyButton")
+    .addEventListener("click", function () {
+      document
+        .getElementById("historySection")
+        .scrollIntoView({ behavior: "smooth" });
     });
-});
-    const select_all=(x)=>{
-    let ele= document.getElementsByClassName(x.value)
-        for(i=0;i<=ele.length;i++)
-        {
-            if(ele[i]!=undefined){
-                ele[i].checked=x.checked
-                
-            } 
-        }
-    }
 
-    const select_student=(element)=>{
-        
-        document.getElementById(element.value)
-        .classList
-        .add("show")
-        select_all(element)   
-    }
+  document
+    .querySelector(".history_button")
+    .addEventListener("click", function () {
+      const historyElement = document.querySelector(".history");
+      if (!historyElement) {
+        console.log("History element not found");
+        return;
+      }
 
-    function showOldInstructions(id){
-        document.getElementById(id).classList.toggle("show")
-    }
+      // Adjust the buffer size here (ensure it matches your design requirements)
+      const buffer = 10; // Adjust this value as needed
+      const offsetTop =
+        historyElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        buffer;
 
+      console.log("Scrolling to:", offsetTop, "with buffer:", buffer);
 
-    const ele=document.querySelectorAll('span')
-    for( let i=0;i<ele.length;i++)
-    {
-        ele[i].addEventListener("click",()=>{
-            document
-            .getElementById(ele[i].getAttribute('data-fid'))
-            .classList
-            .toggle('show')
-        })
+      window.scrollTo({
+        top: 540,
+        behavior: "smooth",
+      });
+    });
+
+  const select_all = (x) => {
+    let ele = document.getElementsByClassName(x.value);
+    for (i = 0; i <= ele.length; i++) {
+      if (ele[i] != undefined) {
+        ele[i].checked = x.checked;
+      }
     }
+  }
 </script>
 </html>
