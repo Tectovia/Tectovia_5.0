@@ -17,6 +17,7 @@ const student_classforum=require("../controller/student/class_forum");
 
 const validator=require("../controller/universal_controller/validator");
 const calendar=require("../controller/student/academic_calendar");
+// const bonafide=require("../controller/student/bonafide");
 
 
 
@@ -46,6 +47,10 @@ router.get('/student/circular/:id/:title',student_dairy.student_circular);
 router.get('/student/testmarks/:id/:stdclass/:sec',student_marksheet.student_marksheet);
 router.get('/student/fees/:id/:title/:sec', student_fees.fees);
 router.get('/student/forumclass/:id/:title/:sec',student_classforum.classforum);
+router.get('/student/bonafide/:id/:title/:sec/',bonafide.bono);
+router.post('/student/bonafide/submit/:id/:title/:sec/',bonafide.bonafids);
+router.get('/student/bonafide_certificate/:id/:title/:sec',bonafide.certificate);
+router.get('/student/student_index/:id/:title/:sec/',bonafide.back);
 
 
 module.exports = router;
