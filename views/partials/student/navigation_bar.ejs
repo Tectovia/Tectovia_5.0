@@ -8,15 +8,15 @@
   <ul class="side_menu top">
     <li class="active">
       <a
-        href="/student_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>"
+        href="/student_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>" title="Info"
       >
-        <i class="bx bxs-dashboard"></i>
+        <i class="bx bxs-dashboard" ></i>
         <span class="text">Info</span>
       </a>
     </li>
     <li>
       <a
-        href="/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today"
+        href="/student/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today" title="Attendance"
       >
       <i class='bx bx-line-chart'></i>
 
@@ -29,7 +29,7 @@
 
     
     <li>
-      <a href="/student/bonafide/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+      <a href="/student/bonafide/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Bonafide">
         <i class='bx bxs-paper-plane' ></i>
         <span class="text">Bonafide</span>
       </a>
@@ -37,7 +37,7 @@
 
     <li>
       <a
-        href="/student/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+        href="/student/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Assignment"
       >
       <i class='bx bxs-doughnut-chart' ></i>
         <span class="text">Assignment</span>
@@ -45,7 +45,7 @@
     </li>
     <li>
       <a
-        href="/student/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+        href="/student/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Time Table"
       >
       <i class='bx bx-table' ></i>
         <span class="text">Time Table</span>
@@ -53,28 +53,28 @@
     </li>
     <li>
       <a
-        href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"
+        href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>" title="Diary"
       >
       <i class='bx bxs-bookmarks'></i>
         <span class="text">Diary</span>
       </a>
     </li>
     <li>
-      <a href="/student/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+      <a href="/student/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Fees"
       >
         <i class='bx bxs-badge-dollar'></i>
         <span class="text">Fees</span>
       </a>
     </li>
     <li>
-      <a href="/student/forumclass/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+      <a href="/student/forumclass/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Class & Forum"
       >
       <i class='bx bxs-extension'></i>
         <span class="text">Class & Forum</span>
       </a>
     </li>
     <li>
-      <a href="/student/academic_calendar/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">
+      <a href="/student/academic_calendar/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Academic calendar"> 
         <i class='bx bx-calendar'></i>
         <span class="text">Academic calendar</span>
       </a>
@@ -89,19 +89,19 @@
       </a>
     </li> -->
     <li>
-      <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>">
+      <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>" title="Test Results">
         <i class='bx bxs-book-add'></i>
         <span class="text">Test Results</span>
       </a>
     </li>
     <li>
-      <a href="/student/circular/<%=student._id%>/<%=student.id%>">
+      <a href="/student/circular/<%=student._id%>/<%=student.id%>" title="Circular">
         <i class="bx bxs-group"></i>
         <span class="text">Circular</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="#" title="Public Forum">
         <i class='bx bx-world'></i>
         <span class="text">Public Forum</span>
       </a>
@@ -110,7 +110,7 @@
 
   <ul class="side_menu">
     <li>
-      <a href="/logout" class="logout">
+      <a href="/logout" class="logout" title="Logout">
         <i class="bx bxs-log-out-circle"></i>
         <span class="text">Logout</span>
       </a>
@@ -121,29 +121,29 @@
 <!-- top_menu -->
 <section id="top_menu">
   <nav>
-    <i class="bx bx-menu"></i>
+    <i class="bx bx-menu" title="back"></i>
 
-    <a href="#" class="nav-link">Student Dashboard</a>
+    <a href="#" title="Student Dashboard" class="nav-link">Student Dashboard</a>
 
     <form action="#">
       <div class="form-input">
         <input type="search" placeholder="Search..." />
-        <button type="submit" class="search-btn">
+        <button type="submit" title="search" class="search-btn">
           <i class="bx bx-search"></i>
         </button>
       </div>
     </form>
 
     <input type="checkbox" id="switch-mode" hidden />
-    <label for="switch-mode" class="switch-mode"></label>
+    <label for="switch-mode" class="switch-mode" title="switch mode"></label>
 
     <div class="notification">
-      <a href="#" class="notification-icon">
+      <a href="#" class="notification-icon" title="notifications">
         <i class="bx bxs-bell"></i>
         <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%- notification.noOfNotifications %></span></a>
     </div>
 
-    <a href="#" class="profile">
+    <a href="#" class="profile"  title="profile">
       <img src="/img/download.jpg" />
     </a>
   </nav>

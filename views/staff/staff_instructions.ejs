@@ -54,7 +54,7 @@
              <div  class="subjects_box">   <span data-fid="subjects"><h1>subjects</h1></span></div>
              <div class="subjects_box_dropdown">  <div id="subjects"  class="hidden">
                     <input type="checkbox" value="subjects" class="selectall" onclick="select_all(this)" class="">
-                    <label style="color: rgb(0, 0, 0);" class="subject_labels" >select all</label><br>
+                    <label style="color: rgb(0, 0, 0);" class="subject_labels_selectall" >select all</label><br>
                    <div class="subject_input_value">
                     <%subjects.map((item)=>{%>
                         <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label class="subject_labels" style="color: rgb(0, 0, 0);"><%=item%></label><br>
@@ -77,16 +77,18 @@
             <div class="oldInstructions hidden old_history " id="oldInstructions">
                 <!-- Reverse the order of oldMessage array -->
                 <% oldMessage.reverse().map((item) => { %>
+                 
                     <div class="history_messages">
                         <h1><%= item.message %></h1>
                     </div>
                     <div class="history_delete_button">
                         <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
-                            <button class="history_dropdown_button">delete</button>
+                            <button class="history_dropdown_button ">delete</button>
                         </a>
                     </div>
                 <% }) %>
             </div>
+            <div class="span"></div>
         </div>    
     </div>
 </div>
