@@ -1,127 +1,91 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bonafide Certificate</title>
-  <!-- Include html2pdf library -->
-  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-  <style>
-    /* Add your CSS styles here */
-    .space {
-      word-spacing: 0.1cm;
-    }
-  </style>
-
-<script>
-
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   // Automatically generate and download PDF when the page loads
-  //   generatePDF();
-  // });
-
-  // function generatePDF() {
-  //   var element = document.getElementById('window_layout'); // Replace 'window_layout' with the ID of the container you want to convert to PDF
-
-  //   html2pdf(element, {
-  //     margin: 10,
-  //     filename: 'bonafide_certificate.pdf',
-  //     image: { type: 'jpeg', quality: 0.98 },
-  //     html2canvas: { scale: 2 },
-  //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  //   }).then(function(pdf) {
-  //     // Open the PDF in a new window
-  //     var blobUrl = URL.createObjectURL(pdf.output('blob'));
-  //     window.open(blobUrl, '_blank');
-  //   });
-  // }
-
-  // function redirectToPrint() {
-  //   // Redirect to the print page or perform your print logic
-  //   window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
-  // }
-  document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('pdfButton').addEventListener('click', function() {
-        generatePDF();
-      });
-    });
-
-    function generatePDF() {
-      var element = document.getElementById('window_layout'); // Replace 'window_layout' with the ID of the container you want to convert to PDF
-
-      html2pdf(element, {
-        margin: 10,
-        filename: 'bonafide_certificate.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      }).then(function(pdf) {
-        // Open the PDF in a new window
-        var blobUrl = URL.createObjectURL(pdf.output('blob'));
-        window.open(blobUrl, '_blank');
-      });
-    }
+<style>
+    .info {
+            margin-top: 20%; 
+            margin-left: 20%;
+            font-size: 200%;
+            font-style: bold;
+            word-spacing: 0.3cm;
+   } 
+   .print-button{
+      position: absolute;
+      top: 15%;
+      left: 50%;
+   }
+.close{
+  position: absolute;
+  bottom: 450px;
   
-</script>
 
-</head>
-<body>
-  <div class="window" id="window_layout">
-    <% if(role === "student") { %>
-    <div class="window_navbar">
-      <% include('../partials//student/navigation_bar.ejs',{notification}) %>
+}
+         @media print {
+            .print-button {
+                display: none;
+            }
+            .close{
+              display: none;
+             
+            }
+
+          } 
+          h1{
+            text-align: center;
+          }
+              
+          
+    </style>
+     <div></div>
+    <div class="info">
+      <div class="window_container"> 
+        <div class="popup_container">
+          <div class="popup" id="popup">
+            <div class="popup_header">
+              <p class="pop_title">Bonafide certificate</p>
+            </div>
+      
+      <button onclick="closeTab()" class="close">Close</button>
+        <h1>Bonafide certificate</h1>
+        <p>This is to certify that MR./MRS <b><%= student.name %></b>, S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
+          with Roll Number <b><%= student.rollno %></b>  is a student of year <b><%= student.id %></b> section of the student <b><%= student.section %></b> 
+          <br>studying in (school/college) <b><%= common[0].school_name %>.</b>
+        </p>
+        <br>
+        <p>-------------------                        ----------------------------        ------------------</p>
+        <p>Signature of the principal/Dean        University/College/School Address             Date</p>
+    
+      </div>    
     </div>
-    <% } else { %>
-    <div class="window_navbar">
-      <% include('../partials/parent/navigation_bar.ejs',{notification}) %>
     </div>
-    <% } %>
-    <div class="float_left">
-      <a href="/student_index/<%=student.rollno %>/<%= student.id %>" id="toggleButton"><button class="btn_warning">Go Back</button></a>
     </div>
-    <div class="window_container">  
-      <div class="container center_title">
-        BONAFIDE CERTIFICATE
-        <!-- <button onclick="generatePDF()">Download PDF</button> -->
-        <button id="pdfButton">Download PDF</button>
       </div>
-      <div class="popup_container">
-        <div class="popup" id="popup">
-          <div class="popup_header">
-            <span class="close_icon" id="closePopup"></span>
-          </div>
-          <div class="popup_header">
-            <p class="pop_title">Bonafide certificate</p>
-          </div>
-          <form id="myPdf">
-            <pre>
-              <p class="space">This is to certify that MR./MRS <b><%= student.name %></b>, S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
-                with Roll Number <b><%= student.rollno %></b>  is a student of year <b><%= student.id %></b> section of the student <b><%= student.section %></b> 
-                <br>studying in (school/college) <b><%= common[0].school_name %>.</b>
-              </p><br>
-              -------------------                        ----------------------------        ------------------                  
-              <br> Signature of the principal/Dean        University/College/School Address             Date     
-            </pre>
-          </form>                                                       
-        </div>  
-      </div>
-    </div>
-  </div>
-<!--   
-  <script>
-    function generatePDF() {
-      var element = document.getElementById('window_layout');
-      html2pdf(element, {
-        margin: 10,
-        filename: 'bonafide_certificate.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      }).then(function(pdf) {
-        // Open the PDF in a new tab
-        var blobUrl = URL.createObjectURL(pdf.output('blob'));
-        window.open(blobUrl, '_blank');
-      });
-    }
-  </script> -->
-</body>
-</html>
+    <button class="print-button" onclick="printPage()">Print</button>
+    <div id="pdfContainer"></div>
+    <script>
+        function printPage() {
+            window.print();
+        }
+
+        async function generatePDF() {
+            const pdfContainer = document.getElementById("pdfContainer");
+            pdfContainer.innerHTML = "<p>Generating PDF...</p>";
+
+            // Hide print button during PDF generation
+            const printButton = document.querySelector(".print-button");
+            printButton.style.display = "none";
+
+            // HTML content to be converted to PDF
+            const htmlContent = document.querySelector(".info").innerHTML;
+
+            // Generating PDF
+            const pdf = new jsPDF();
+            pdf.text(htmlContent, 10, 10);
+            pdf.save("Document.pdf");
+
+            // Show print button after PDF generation
+            printButton.style.display = "block";
+
+            pdfContainer.innerHTML = ""; // Clear the container
+        }
+        function closeTab() {
+            window.close();
+        }
+    </script>
