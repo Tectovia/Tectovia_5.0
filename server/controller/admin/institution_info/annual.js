@@ -14,43 +14,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.annual_report = async (req, res) => {  
-  res.render("admin/institution_info/annual_report",{ page_title: "Annual Report" });    
+  const commoninfo= await common_info_model.find();
+  console.log("Common information",commoninfo);
+
+  res.render("admin/institution_info/annual_report",{ page_title: "Annual Report",commoninfo});    
 };
-// exports.submit_annual_report=async(req,res)=>{
-//   try{
-//     let imageUploadFile;
-//     let uploadPath;
-//     let newImageName;
-//     const annual_report_year = req.body.annual_report_year;
-//     console.log(annual_report_year);
-//     const commoninfo = await common_info_model.findOne();
-//     console.log("Common information", commoninfo);
-//     const updatedCommonInfo = await common_info_model.findOneAndUpdate({}, { annual_report_year: annual_report_year });
-//     console.log("Updated common information", updatedCommonInfo);
-
-//     if(!req.files || Object.keys(req.files).length === 0){
-//       console.log('No Files where uploaded.');
-//       }
-//       else {
-//         imageUploadFile = req.files.annual_report_pdf;
-//         const currentYear = new Date().getFullYear();
-//         newImageName = currentYear + imageUploadFile.name;
-//         var path =require("path").resolve("./") +"/public/uploads/common_info";
-//     if (!fs.existsSync(path)) {
-//        fs.mkdirSync(path);
-//      }
-//   var uploadpath =  require("path").resolve("./")+"/public/uploads/common_info/";
-//   if (req.files) {
-//     if (req.files.annual_report_pdf)
-//        image_saver(req.files.annual_report_pdf,"annual", uploadpath);
-//   }
-//  } 
-//  res.render("admin/institution_info/annual_report",{ page_title: "Annual Report" });
-//   }catch (error){
-//     console.log("Internal Erroor",error);
-//   }
-// };
-
 exports.submit_annual_report = async (req, res) => {
   try {
     let imageUploadFile;
