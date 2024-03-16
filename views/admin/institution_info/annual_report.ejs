@@ -22,31 +22,29 @@
             <div class="float_right">
                 <button onclick="display_popup_add()">Add</button>
             </div>
-            
         </div>
-        <% if (commoninfo) { %> 
-            <% commoninfo.forEach(function(item) { %>
+        <% if (annualReports && annualReports.length > 0) { %>
+            <% annualReports.forEach(function(doc) { %>
+              <% doc.forEach(function(report) { %>
                 <div class="container_todo">
-                <div class="">
-                  <div class="todo_row">
-                    <h3>Annual Report Year : <%-item.annual_report_year%></h3>
+                  <div class="todo_content">
+                    <div class="todo_row">
+                      <h3>Annual Report year: <%= report.annual_report_year %></h3>
+                    </div>
                   </div>
-                <div class="todo_row">
-                    <h3>PDF :<%-item.annual_report%></h3>
-                  </div>
-                </div>
-                <div class="todo_buttons">
-                  <div class="todo_edit">
-                    <a href="/uploads/common_info/<%- item.annual_report %>"><button class="btn_warning">View</button></a>
-                  </div>
-                  <div class="todo_delete">
-                    <button class="btn_danger" onclick="showDeleteStaffPopUp(`<%=item._id%>`)">Delete</button>
+                  <div class="todo_buttons">
+                    <div class="todo_edit">
+                      <a href="/uploads/common_info/<%= report.annual_report_pdf %>">
+                        <button class="view_btn">View</button>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <br/>
-              <% }) %> <% } %>
-            </div>
+              <% }) %>
+            <% }) %>
+          <% } else { %>
+            <p>No annual reports available</p>
+          <% } %>
     <div class="popup_container" id="popup_add" style="display: none;">
         <div class="popup" id="popup">
             <div class="popup_header">
