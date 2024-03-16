@@ -13,12 +13,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.admin_index = async (req, res) => {
-if(req.session.id){
-  
-
-}
-
-  common_info_model.find( function(err, docs) {
+common_info_model.find( function(err, docs) {
     if (err) {
         console.log(err);
         // Handle the error

@@ -1,102 +1,119 @@
 <div class="window" id="window_layout">
-    <div class="window_navbar">
-        <%- include('../../partials/admin/navigation_bar.ejs') %>
+  <div class="window_navbar">
+    <%- include('../../partials/admin/navigation_bar.ejs') %>
+  </div>
+
+  <div class="window_container">
+    <div class="container">
+      <div class="float_right">
+        <a
+          href="/admin/class_info/class_list/view_section/<%= data.id %>/<%= data.title %>/<%= data.sec %>"
+          id="toggleButton"
+          ><button class="back_btn">Back</button></a
+        >
+      </div>
+      <table class="table">
+        <tr class="row">
+          <th class="header">D/H</th>
+          <%for(let i=1;i<=dayhour.hr;i++){%>
+          <th class="header"><%=i%></th>
+          <%}%>
+        </tr>
+
+        <%for(let i=1;i<=dayhour.day;i++){%>
+        <tr>
+          <th class="header"><%=i%></th>
+          <%for(let j=0;j< dayhour.hr;j++){%>
+          <td>
+            <% let disp=true; %> <%classdata.forEach((item)=>{%> <% if
+            (item.time_table['day' + i][j].sub !== 'null') { %>
+            <p><%=item.time_table['day' + i][j].sub%></p>
+            <p>
+              <%=item.time_table['day' +
+              i][j].staff_name%>-<%=item.time_table['day' + i][j].staff_id%>
+            </p>
+            <a
+              href="/admin/class_info/class_list/view_section/delete_day/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>/<%=item.time_table['day' + i][j].sub%>/<%=item.time_table['day' + i][j].staff_name%>/<%=item.time_table['day' + i][j].staff_id%>"
+            >
+              <button>Remove</button>
+            </a>
+            <% disp=false; %> <%}%> <%})%> <% if(disp){%>
+            <a
+              href="/admin/class_info/class_list/view_section/add_form/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>"
+            >
+              <button class="add_btn">Add</button>
+            </a>
+            <%}%>
+          </td>
+          <%}%>
+        </tr>
+        <%}%>
+      </table>
     </div>
 
-    <div class="window_container">
-      <div class="container">
-          <div class="float_right">
-            <a href="/admin/class_info/class_list/view_section/<%= data.id %>/<%= data.title %>/<%= data.sec %>" id="toggleButton"><button class="btn_warning">Go Back</button></a>
-           </div>
-            <table class="table">
-            <tr class="row">
-
-                <th class="header">D/H</th>
-                <%for(let i=1;i<=dayhour.hr;i++){%>
-                  <th class="header"><%=i%></th>
-                  <%}%>
-            </tr>
-
-            <%for(let i=1;i<=dayhour.day;i++){%>
-              <tr>
-                  <th class="header"><%=i%></th> 
-                  <%for(let j=0;j< dayhour.hr;j++){%>
-                    <td>
-                      <% let disp=true; %>
-                   <%classdata.forEach((item)=>{%>
-                    <% if (item.time_table['day' + i][j].sub !== 'null') { %>
-                         <p><%=item.time_table['day' + i][j].sub%></p>
-                         <p><%=item.time_table['day' + i][j].staff_name%>-<%=item.time_table['day' + i][j].staff_id%></p>
-                         <a href="/admin/class_info/class_list/view_section/delete_day/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>/<%=item.time_table['day' + i][j].sub%>/<%=item.time_table['day' + i][j].staff_name%>/<%=item.time_table['day' + i][j].staff_id%>">
-                          <button>Remove</button>
-                        </a>
-                          <% disp=false; %>
-                     <%}%>
-                     
-                    <%})%>
-                    <% if(disp){%>
-                      <a href="/admin/class_info/class_list/view_section/add_form/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>">
-                        <button>Add</button>
-                      </a>
-                      <%}%>
-                    </td>
-                    <%}%>
-                </tr>
-                <%}%>
-            </table>
+    <%if(form=='display'){%>
+    <div class="popup_container" id="popup_section">
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">
+            Subject Mapping - Day : <%=data.spcf_day%> Hour
+            :<%=parseInt(data.spcf_hr)+1%>
+          </p>
+          <a
+            href="/admin/class_info/class_list/view_section/time_table/<%=data.id %>/<%=data.title %>/<%= data.sec %>"
+            ><span class="close_icon" id="closePopup">&times;</span></a
+          >
         </div>
-        
-      <%if(form=='display'){%>
-        <div class="popup_container" id="popup_section">
-          <div class="popup" id="popup">
-              <div class="popup_header">
-                  <p class="pop_title">Subject Mapping - Day : <%=data.spcf_day%> Hour :<%=parseInt(data.spcf_hr)+1%> </p>
-                  <a href="/admin/class_info/class_list/view_section/time_table/<%=data.id %>/<%=data.title %>/<%= data.sec %>"><span class="close_icon" id="closePopup">&times;</span></a>
+        <div class="pop_body">
+          <form
+            action="/admin/class_info/class_list/view_section/form_sub/<%=data.id%>/<%=data.title%>/<%=data.sec%>/<%=data.spcf_day%>/<%=data.spcf_hr%>"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+          >
+            <div class="form_inputs">
+              <div class="form_div select_input">
+                <label class="select_label" for="section_incharge"
+                  >Subject</label
+                >
+                <select name="subject" id="section_incharge" required>
+                  <option value="">Select an option</option>
+                  <% if (subdata) { %> <% subdata.forEach(function(item) { %>
+                  <option
+                    value="<%= item.subject_name
+                                    %>"
+                  >
+                    <%= item.subject_name %> - <%= item.subject_code %>
+                  </option>
+                  <% }) %> <% } %>
+                </select>
               </div>
-              <div class="pop_body">
 
-                  <form action="/admin/class_info/class_list/view_section/form_sub/<%=data.id%>/<%=data.title%>/<%=data.sec%>/<%=data.spcf_day%>/<%=data.spcf_hr%>" method="post" enctype="multipart/form-data" class="form">
-                      <div class="form_inputs">
-
-                        <div class="form_div select_input">
-                          <label class="select_label" for="section_incharge">Subject</label>
-                          <select name="subject" id="section_incharge" required>
-                              <option value="" >Select an option</option>
-                              <% if (subdata) { %>
-                                <% subdata.forEach(function(item) { %>
-                                    <option value="<%= item.subject_name
-                                    %>"><%= item.subject_name
-                                      %> - <%= item.subject_code
-                                      %></option>
-                                <% }) %>
-                            <% } %>
-                          </select>
-                        </div>
-
-                        <div class="form_div select_input">
-                            <label class="select_label" for="section_incharge">Staff Name</label>
-                            <select name="staff" id="section_incharge"required >
-                                <option value="" >Select an option</option>
-                                <% if (staffdata) { %>
-                                  <% staffdata.forEach(function(item) { %>
-                                      <option value="<%=item._id %>|<%=item.staff_name %>|<%=item.staff_id%>"><%= item.staff_name
-                                        %> - <%= item.staff_id
-
-                                        %></option>
-                                  <% }) %>
-                              <% } %>
-                            </select>
-                        </div>
-                      </div>
-                      
-                      <div class="form_submit">
-                          <input type="submit">
-                      </div>    
-                  </form>
+              <div class="form_div select_input">
+                <label class="select_label" for="section_incharge"
+                  >Staff Name</label
+                >
+                <select name="staff" id="section_incharge" required>
+                  <option value="">Select an option</option>
+                  <% if (staffdata) { %> <% staffdata.forEach(function(item) {
+                  %>
+                  <option
+                    value="<%=item._id %>|<%=item.staff_name %>|<%=item.staff_id%>"
+                  >
+                    <%= item.staff_name %> - <%= item.staff_id %>
+                  </option>
+                  <% }) %> <% } %>
+                </select>
               </div>
-          </div>
+            </div>
+
+            <div class="form_submit">
+              <input type="submit" />
+            </div>
+          </form>
         </div>
-      <%}%>
-
+      </div>
     </div>
+    <%}%>
+  </div>
 </div>
