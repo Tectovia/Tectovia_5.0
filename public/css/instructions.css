@@ -27,6 +27,7 @@
     background-color: var(--danger-color-light);
     transition: .6s;
     color: #000;
+    z-index: 1000;
   
     
 }
@@ -53,9 +54,9 @@
 
 .reciever_dropdown {
     /* Other styles */
-    margin-left: -600px;
+    margin-left: -620px;
     margin-top: 0px;
-    width: 200px;
+    width: 250px;
     background-color: rgba(108, 253, 255, 0.759); /* Adjust transparency as needed */
     border-radius: 10px;
     transition: max-height 0.3s ease-out;
@@ -63,8 +64,9 @@
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Adjust shadow as needed */
     color: #000;
-    
+    z-index: 1001; 
 }
+
 .reciever_input{
     padding: 6px;
   
@@ -74,7 +76,7 @@
 }
 
 .form {
-    position:fixed;
+   
     background-color: rgb(148, 229, 249);
     background-size: cover;
     border: solid var( --box-color);
@@ -82,7 +84,7 @@
     width: 1000px;
     height: 500px;
     border-radius: 20px;
-  
+  z-index: 1;
     transition: transform 0.3s ease-in-out; /* Adding smooth hover animation */
 }
 
@@ -117,7 +119,7 @@
 }
 
 .subjects_box_dropdown {
-    margin-left: -530px;
+    margin-left: -500px;
     background-color: rgba(108, 253, 255, 0.759);  /* Adjust transparency as needed */
     width: 200px;
     color: #000;
@@ -132,17 +134,18 @@
     margin-top: 0px;
     margin-left: 20px;
     color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .subject_values{
     padding: 10px;
 }
 .reciever_input_value{
-    margin-top: -20px;
+    margin-top: 0px;
+    z-index: 1000;
     
 }
 .subject_input_value{
-    margin-top: 5px;
+    margin-top: 20px;
    
    
 }
@@ -206,14 +209,16 @@ label {
 }
 .subject_labels_selectall{
     margin-top: 10px;
+   
   
 }
 .recievers_label{
-    margin-top: -17px;
+    margin-top: -10px;
  
 }
 .recievers_label_selectall{
     margin-top: 10px;
+   
 }
 .submitbox:hover {
   transform: translateY(-2px);
@@ -222,7 +227,7 @@ label {
 
 .subjects_box {
     margin-top: -60px;
-    margin-left: -510px;
+    margin-left: -480px;
     width: 150px;
     height: 50px;
     padding: 10px 40px;
@@ -241,8 +246,9 @@ label {
 }
 .history {
     margin-left: 300px;
-    z-index: 1000;
+    z-index: -1;
     color: #000;
+  
 }
 
 .instructions_main {
@@ -251,19 +257,20 @@ label {
 }
 
 .history_dropdown {
-    margin-top: 430px;
+  
+    margin-top: 450px;
     width: 410px;
-    z-index: 1000;
-    margin-left: 650px;
+     
+    margin-left: 600px;
     border-radius: 10px;
-    position: relative; /* Ensure positioning context */
+  position: absolute;
 }
 
 .history_messages {
     background: rgba(224, 231, 230, 0.1);
     box-shadow: 0 8px 32px 0 rgba(7, 106, 100, 0.37);
     padding: 30px;
-    margin-top: 30px;
+    
     margin-bottom: 20px; /* Adjust based on actual spacing needs */
     border-radius: 10px;
     width: 950px; /* Ensure this fits within its parent container */
@@ -292,7 +299,7 @@ label {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     width: 1000px;
-    margin-left: -620px;
+    margin-left: -600px;
     margin-top: 20px;
     /* Remove fixed height */
     height: auto;
@@ -303,7 +310,7 @@ label {
     height: 40px;
     margin-left: 800px;
     margin-top: -150px;
-    z-index: 1000;
+    z-index: -1;
     border-radius: 10px;
 
 }
