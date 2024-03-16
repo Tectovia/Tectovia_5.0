@@ -39,6 +39,10 @@
     box-shadow: 0 0 20px var(--danger-color-dark);
 }
 
+.recievers_box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--danger-color-dark);
+}
 
 
 
@@ -114,11 +118,6 @@
     color: #000;
 }
 
-
-.sub_instruction{
-    margin-left: 200px;
-    font-size: 15px;
-}
 .subjects_box_dropdown {
     margin-left: -500px;
     background-color: rgba(108, 253, 255, 0.759);  /* Adjust transparency as needed */
@@ -173,6 +172,7 @@
 .reciever_select{
     margin-left: -10px;
 }
+
 .submitbox {
     padding: 10px 40px;
     outline: none;
@@ -221,9 +221,10 @@ label {
    
 }
 .submitbox:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--success-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--success-color-dark);
 }
+
 .subjects_box {
     margin-top: -60px;
     margin-left: -480px;
@@ -240,8 +241,8 @@ label {
 }
 
 .subjects_box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--danger-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--danger-color-dark);
 }
 .history {
     margin-left: 300px;
@@ -353,11 +354,11 @@ label {
 }
 
 @media screen and (max-width: 725px) {
-    .history_button{
-        margin-left: -800px;
-    }
-    .instructions_main{
-        margin-top: 140px;
-    }
-  
+  .history_button {
+    margin-left: -800px;
+  }
+
+  .instructions_main {
+    margin-top: 140px;
+  }
 }

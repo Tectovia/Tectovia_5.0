@@ -1,5 +1,5 @@
 <!-- side_menu -->
-<aside id="sidebar" class="hide">
+<aside id="sidebar">
   <a href="/" class="brand" target="_blank">
     <i class="bx bxs-smile"></i>
     <span class="text">ABCD Higher Secondary School</span>
@@ -27,7 +27,7 @@
 
 
 
-    
+
     <li>
       <a href="/student/bonafide/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Bonafide">
         <i class='bx bxs-paper-plane' ></i>
@@ -140,7 +140,8 @@
     <div class="notification">
       <a href="#" class="notification-icon" title="notifications">
         <i class="bx bxs-bell"></i>
-        <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%- notification.noOfNotifications %></span></a>
+        <a href="/student/notification/<%=student._id%>/<%=student.id%>"><span class="num" id="noOfNotifications"><%-
+              notification.noOfNotifications %></span></a>
     </div>
 
     <a href="#" class="profile"  title="profile">
@@ -148,4 +149,3 @@
     </a>
   </nav>
 </section>
-

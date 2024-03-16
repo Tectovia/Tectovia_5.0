@@ -26,21 +26,29 @@ exports.boo=async (req,res)=>{
 }
 
 exports.bonafide_approval = async (req,res)=>{
-  var ids= req.body.id;
-  var title = req.body.title;
-   console.log(ids);
+  var id= req.params.id;
  
  
-   var change = await bonafide.findOneAndUpdate({ id: ids,bonafide_title:title }, { $set: { approval: true } }, { new: true });
+   var change = await bonafide.findByIdAndUpdate(id,{$set:{'approval':true}},{new:true});
  
    if(change) {
-       console.log("Document updated");
-       res.redirect('/admin/bonafide_admin')
-   } else {
-       console.log("No document found with the given id");
-   }
+    console.log("Document updated");
+    res.redirect('/admin/bonafide_admin')
+} else {
+    console.log("No document found with the given id");
+}
   }
+exports.bonafide_cancel=async (req,res)=>{
+  var id=req.params.id;
+  var cancel=await bonafide.findByIdAndUpdate(id,{$set:{'cancel':true}},{new:true});
 
+  if(cancel) {
+    console.log("Document updated");
+    res.redirect('/admin/bonafide_admin')
+} else {
+    console.log("No document found with the given id");
+}
+}
 
 
 // exports.deleteBonafid = async (req, res) => {
