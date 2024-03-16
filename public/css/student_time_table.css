@@ -1,8 +1,8 @@
 /* Table */
 .table {
-    margin-top: 30px;
-    width: 90%;
-    
+    margin-top: -20px;
+    width: 80%;
+  
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
@@ -69,6 +69,7 @@
   height: 70px; /* Adjust the height as needed */
 }
 .timetable_heading h1 {
-    margin-left: 400px;
+    margin-left: 00px;
     font-size: 40px;
+    margin-top: -30px;
 }

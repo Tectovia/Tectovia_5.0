@@ -173,6 +173,7 @@ exports.viewlist=async (req,res)=>{
       'sub':1,
       'desc':1,
       'due':1,
+      'assign.batch':1,
       'assign.assignment': 1,
       'assign.name': 1,
       'assign.rollno': 1,
@@ -184,6 +185,36 @@ console.log(list[0]);
 res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularNotification})
 }
 
+exports.ViewAssign=async(req,res)=>{
+try {
+  var {id,class_name,staff,rollno}=req.params;
+  var assign_model=mongoose.model(class_name+'_assign');
+  const assignment=await assign_model.findById(id,{source:1});
+  let circularNotification = await noOfCirculars(staff);
+  var textcontent;
+  const staffdata = await staff_model.find({ 'staff_id':staff },{ staff_id: 1, staff_name: 1, });
+   assignment.source.forEach(element => {
+    if(element[rollno])
+      textcontent=element[rollno];
+   });
+  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata,id,class_name})
+} catch (error) {
+  console.log(error);
+  res.redirect('/');
+}
+
+   
+}
+
+exports.submit_mark=async(req,res)=>{
+  var {id,class_name,rollno,staff}=req.params
+  
+  var assign_model=mongoose.model(class_name+"_test");
+ var result= await assign_model.findOneAndUpdate({'rollno':rollno,'assignment.ref_id':id},{$set:{'assignment.$.mark':req.body.mark}})
+  console.log(result);
+  res.redirect(`/staff/assignment/viewlist/${staff}/${class_name+"_batch"}/${result['section']}/${id}`)
+
+}
 
 
 // var options = {

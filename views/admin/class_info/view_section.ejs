@@ -33,11 +33,11 @@
         <div class="container center_title">
             <%- name %> - <%= section_doc.section_name %>
             <div class="float_left">
-                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><button class="back_btn">Back</button></a>
             </div>
             <div class="float_right">
-                <button class="btn_success" onclick="display_popup_add_student()">Add Student</button>
-                <button class="btn_warning" onclick="display_popup_edit_section()">Edit Section</button>
+                <button class="add_btn" onclick="display_popup_add_student()">Add Student</button>
+                <button class="edit_btn" onclick="display_popup_edit_section()">Edit Section</button>
             </div>
         </div>
 
@@ -72,7 +72,7 @@
             </div>
 
             <div class="table_header">
-                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="btn_success">Edit Time Table</button></a>
+                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="edit_btn">Edit Time Table</button></a>
             </div>
             <table class="table">
                 <tr class="row">
@@ -133,8 +133,8 @@
                         <td><%= item.dob %></td>
                         <td><%= item.gender %></td>
                         <td><%= item.blood_group %></td>
-                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" ><button class="btn_success">View</button></a></td>
-                        <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="btn_danger">Delete</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" ><button class="view_btn">View</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="delete_btn">Delete</button></a></td>
                     </tr>
                     <% }) %>
                 </table>

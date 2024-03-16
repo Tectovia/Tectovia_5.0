@@ -1,92 +1,107 @@
 .in{
     content: "";
-    margin-left: 330px;
+    margin-left: 400px;
     margin-top: 20px;
     font-size: 60px;
     font-weight: 600;
+    color: #000;
 }
-.underline-three {
-    position: relative;
-    font-size: 60px;
-    }
+.in h1{
+    font-size: 50px;
+    margin-left: -80px;
+    font-weight: 600;
+     color: #000;
+}
 
-    .underline-three::after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    font-size: 60px;
-    background-color: #0d2243;
-    }
 .recievers_box {
     margin-top: -60px;
-    margin-left: -670px;
-    border:  solid;
+    margin-left: -570px;
+    border:  none;
     width: 150px;
     height: 50px;
-    border-radius: 30px;
+    font-weight: 300;
+    border-radius: 10px;
     padding: 10px 40px;
     outline: none;
     cursor: pointer;
     background-color: var(--danger-color-light);
     transition: .6s;
+    color: #000;
   
     
+}
+.recieversbox h1{
+    font-weight: 500;
 }
 .recievers_box:hover{
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--danger-color-dark);
 }
 
+.recievers_box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--danger-color-dark);
+}
 
 
 
 .recievers_box h1{
     font-size: 15px;
    margin-left: -5px;
+   color: #000;
 }
 
 .reciever_dropdown {
     /* Other styles */
-    margin-left: -700px;
+    margin-left: -600px;
     margin-top: 0px;
     width: 200px;
-    background-color: rgba(255, 255, 255, 0.5); /* Adjust transparency as needed */
+    background-color: rgba(108, 253, 255, 0.759); /* Adjust transparency as needed */
     border-radius: 10px;
     transition: max-height 0.3s ease-out;
     backdrop-filter: blur(10px); /* Adds a blur effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Adjust shadow as needed */
+    color: #000;
+    
+}
+.reciever_input{
+    padding: 6px;
+  
+}
+.recievers_select{
+    margin-left: -40px;
 }
 
 .form {
     position:fixed;
-    background: url(../img/back55.jpg);
+    background-color: rgb(148, 229, 249);
     background-size: cover;
-    border: solid;
-   
+    border: solid var( --box-color);
+    color: #000;
     width: 1000px;
     height: 500px;
     border-radius: 20px;
-    box-shadow: -5px 2px 18px 3px rgb(233, 199, 185);
+  
     transition: transform 0.3s ease-in-out; /* Adding smooth hover animation */
 }
 
 .form:hover {
-    transform: scale(1.05); /* Scale up on hover */
+    transform: scale(1.003); /* Scale up on hover */
 }
 
 .textarea{
     width: 700px;
     height: 200px;
     margin-top: 100px;
-    margin-left: -630px;
-    border-radius: 30px;
+    margin-left: -540px;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     padding: 10px;
+    resize: none;
+    color: #000;
+    border: solid rgb(0, 221, 255);
+   
  
 }
 
@@ -97,18 +112,15 @@
     margin-left: 0px;
     margin-top: 0px;
     font-size: 15px;
+    font-weight: 500;
+    color: #000;
 }
 
-
-.sub_instruction{
-    margin-left: 200px;
-    font-size: 15px;
-}
 .subjects_box_dropdown {
-    margin-left: -630px;
-    background-color: rgba(255, 255, 255, 0.5); /* Adjust transparency as needed */
+    margin-left: -530px;
+    background-color: rgba(108, 253, 255, 0.759);  /* Adjust transparency as needed */
     width: 200px;
-   
+    color: #000;
     border-radius: 10px;
     transition: max-height 0.3s ease-out;
     backdrop-filter: blur(10px); /* Adds a blur effect */
@@ -118,15 +130,46 @@
 
 .students_value{
     margin-top: 0px;
-    margin-left: 30px;
+    margin-left: 20px;
+    color: #000;
+    margin-bottom: 20px;
 }
+.subject_values{
+    padding: 10px;
+}
+.reciever_input_value{
+    margin-top: -20px;
+    
+}
+.subject_input_value{
+    margin-top: 5px;
+   
+   
+}
+.subject_input_value input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
 .selectall{
     margin-top: 10px;
     margin-left: 30px;
+    color: #000;
+}
+.selectall label{
+    color: #000;
 }
 .subjects_box_dropdown_hidden{
     margin-left: 30px;
+    
+
 }
+.subjects_box_dropdown_hidden label{
+    margin-top: 25px;
+}
+.reciever_select{
+    margin-left: -10px;
+}
+
 .submitbox {
     padding: 10px 40px;
     outline: none;
@@ -135,111 +178,180 @@
     height: 50px;
     margin-top: 10px;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     cursor: pointer;
     background-color: var(--success-color-light);
     transition: .6s;
+    margin-left: 50px;
+    color: #000;
+}
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    vertical-align: middle; /* Align checkboxes vertically */
+    margin-right: 5px; /* Add some space between checkbox and label */
 }
 
-.submitbox:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--success-color-dark);
+label {
+
+    font-size: 17px; /* Adjust label font size */
+    vertical-align: middle; /* Align labels vertically */
+    display: inline-block; /* Ensure labels are displayed as blocks */
+    line-height: 20px; /* Set line-height to match checkbox height */
 }
+.subject_labels{
+    margin-top: 0px;
+  
+}
+.subject_labels_selectall{
+    margin-top: 10px;
+  
+}
+.recievers_label{
+    margin-top: -17px;
+ 
+}
+.recievers_label_selectall{
+    margin-top: 10px;
+}
+.submitbox:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--success-color-dark);
+}
+
 .subjects_box {
     margin-top: -60px;
-    margin-left: -610px;
+    margin-left: -510px;
     width: 150px;
     height: 50px;
     padding: 10px 40px;
     outline: none;
-    border: solid;
-    border-radius: 30px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     background-color: var(--danger-color-light);
     transition: .6s;
+    color: #000;
 }
 
 .subjects_box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--danger-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--danger-color-dark);
 }
-.history{
-   
-margin-left: 300px;
+.history {
+    margin-left: 300px;
     z-index: 1000;
+    color: #000;
 }
-.instructions_main{
+
+.instructions_main {
     margin-top: 30px;
     margin-left: -200px;
 }
-.history_dropdown{
-   margin-top: 430px;
-   
-    width:410px;
-    height: 61px;
+
+.history_dropdown {
+    margin-top: 430px;
+    width: 410px;
     z-index: 1000;
     margin-left: 650px;
     border-radius: 10px;
-
+    position: relative; /* Ensure positioning context */
 }
+
+.history_messages {
+    background: rgba(224, 231, 230, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(7, 106, 100, 0.37);
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px; /* Adjust based on actual spacing needs */
+    border-radius: 10px;
+    width: 950px; /* Ensure this fits within its parent container */
+    display: flex;
+    justify-content: space-between; /* Align content and button on opposite ends */
+    align-items: center; /* Center items vertically */
+}
+
 .history_button {
+    color: #000;
     width: 810px; 
     margin-left: -500px;
-    margin-top:140px;
+    margin-top: 140px;
+    background-color: var( --success-color-light);
 }
-.history_values{
-    background: rgba( 255, 255, 255, 0.1 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 11px );
-    -webkit-backdrop-filter: blur( 11px );
+.history_button h3,i{
+    color: #000;
+}
+
+
+.history_values {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(255, 255, 255, 0.18);
     width: 1000px;
     margin-left: -620px;
-    
+    margin-top: 20px;
+    /* Remove fixed height */
+    height: auto;
 }
-.history_dropdown_button{
+
+.history_dropdown_button {
     width: 0px; 
     height: 40px;
     margin-left: 800px;
-    margin-top: -80px;
+    margin-top: -150px;
     z-index: 1000;
-    border-radius: 30px;
-   
-}
-.old_history{
-    padding: 20px;
-    display: flex;
+    border-radius: 10px;
 
 }
-.history_messages{
+
+.old_history {
+    padding: 20px;
+    display: flex;
+}
+
+.history_messages {
     background: rgba(224, 231, 230, 0.1);
     box-shadow: 0 8px 32px 0 rgba(7, 106, 100, 0.37);
-    /* backdrop-filter: blur( 11px );
-    -webkit-backdrop-filter: blur( 11px ); */
-    height: 80px;
+    height: auto; /* Ensure dynamic height */
     padding: 30px;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 150px;
     border-radius: 10px;
     width: 950px;
+    display: flex;
 }
-.old_history button{
-    margin-top: -150px;
+
+.old_history button {
+    margin-top: -190px;
 }
-.history_delete_button{
-    margin-top: -50px;
+
+
+.history_delete_button {
+    margin-top: -200px;
     z-index: 1000;
+    
+   
 }
-.history_messages h1{
+
+.history_messages h1 {
     width: 750px;
-    height: 300px;
+    /* Remove fixed height */
 }
+.span{
+    background-color: transparent;
+    height: 5px;
+}
+
 @media screen and (max-width: 725px) {
-    .history_button{
-        margin-left: -800px;
-    }
-    .instructions_main{
-        margin-top: 140px;
-    }
-  
+  .history_button {
+    margin-left: -800px;
+  }
+
+  .instructions_main {
+    margin-top: 140px;
+  }
 }

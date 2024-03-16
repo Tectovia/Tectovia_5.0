@@ -90,8 +90,8 @@ const bonafide=require('../controller/admin/bonafide_admin/bonafide');
     router.post('/admin/institution_info/annual_report',admin_annual_report.submit_annual_report);
 //---------------------------------------------bonafide-------------------//
 router.get('/admin/bonafide_admin',bonafide.boo);
-router.post('/bonafide_approval',bonafide.bonafide_approval);
-
+router.get('/admin/bonafide/approval/:id',bonafide.bonafide_approval);
+router.get('/admin/bonafide/cancel/:id',bonafide.bonafide_cancel);
 
 
 
