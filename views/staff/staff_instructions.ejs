@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="../../css/instructions.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="../../css/instructions.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="staff">
-    <div class="staff_navbar">
+<div class="window" id="window_layout">
+    <div class="window_navbar">
         <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
+  
 <div class="instructions_main">
     <div class="form">
         <div class="in"><h1>INSTRUCTION</h1>  </div>
@@ -66,7 +67,10 @@
 
             </div>
     </form>
-</div></div>
+
+</div>
+
+<div class="history_part">
 <div class="history_dropdown">
     <div class="history">
         <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
@@ -92,6 +96,8 @@
         </div>    
     </div>
   </div>
+        </div>    
+    </div></div>
 </div>
 
 
@@ -99,62 +105,84 @@
 
 </div>
 <style>
-  .hidden {
-    display: none;
-    width: fit-content;
-  }
-
-  .show {
-    display: block;
-  }
-
-  .form {
-    position: absolute;
-    margin-left: 20%;
-    margin-top: 3%;
-  }
-</style>
-
-<script>
-  document
-    .getElementById("historyButton")
-    .addEventListener("click", function () {
-      document
-        .getElementById("historySection")
-        .scrollIntoView({ behavior: "smooth" });
-    });
-
-  document
-    .querySelector(".history_button")
-    .addEventListener("click", function () {
-      const historyElement = document.querySelector(".history");
-      if (!historyElement) {
-        console.log("History element not found");
-        return;
-      }
-
-      // Adjust the buffer size here (ensure it matches your design requirements)
-      const buffer = 10; // Adjust this value as needed
-      const offsetTop =
-        historyElement.getBoundingClientRect().top +
-        window.pageYOffset -
-        buffer;
-
-      console.log("Scrolling to:", offsetTop, "with buffer:", buffer);
-
-      window.scrollTo({
-        top: 540,
-        behavior: "smooth",
-      });
-    });
-
-  const select_all = (x) => {
-    let ele = document.getElementsByClassName(x.value);
-    for (i = 0; i <= ele.length; i++) {
-      if (ele[i] != undefined) {
-        ele[i].checked = x.checked;
-      }
+    .hidden{
+        display: none;
+        width: fit-content;
+        
     }
-  }
+    .show{
+        display: block;
+    }
+    .form{
+       position: absolute;
+       margin-left: 20%;
+       margin-top: 3%;
+    }
+  
+
+</style>
+<script>
+    
+document.getElementById('historyButton').addEventListener('click', function() {
+  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth' });
+});
+
+
+document.querySelector('.history_button').addEventListener('click', function() {
+    const historyElement = document.querySelector('.history');
+    if (!historyElement) {
+        console.log('History element not found');
+        return;
+    }
+
+    // Adjust the buffer size here (ensure it matches your design requirements)
+    const buffer = 10; // Adjust this value as needed
+    const offsetTop = historyElement.getBoundingClientRect().top + window.pageYOffset - buffer;
+
+    console.log('Scrolling to:', offsetTop, 'with buffer:', buffer);
+
+    window.scrollTo({
+        top:540,
+        behavior: 'smooth'
+    });
+});
+    const select_all=(x)=>{
+    let ele= document.getElementsByClassName(x.value)
+        for(i=0;i<=ele.length;i++)
+        {
+            if(ele[i]!=undefined){
+                ele[i].checked=x.checked
+                
+            } 
+        }
+    }
+
+    const select_student=(element)=>{
+        
+        document.getElementById(element.value)
+        .classList
+        .add("show")
+        select_all(element)  
+
+    }
+
+    function showOldInstructions(id){
+        document.getElementById(id).classList.toggle("show")
+    }
+
+
+    const ele=document.querySelectorAll('span')
+    for( let i=0;i<ele.length;i++)
+    {
+        ele[i].addEventListener("click",()=>{
+            document
+            .getElementById(ele[i].getAttribute('data-fid'))
+            .classList
+            .toggle('show')  
+        })
+    };
+    
+
+
 </script>
 </html>
