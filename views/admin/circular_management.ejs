@@ -75,7 +75,17 @@
                   <div class="time">Date : <%- formatDate(item.date) %> </div>
                   <div class="time">Time : <%- formatTime(item.date) %> </div>
                 </div>
-                
+                <div class="form_div">
+                  <div class="dropdown" data-control="checkbox-dropdown">
+                    <div class="dropdown-label" id="StaffRecievers"></div>
+                    <div class="dropdown-list">
+                      <%Object.keys(item.staffs).forEach(function(i) { %>                  
+                          <label class="dropdown-option"><%- i %> - <%if(item.staffs[i]===true){%><label>Read</label><%}else{%>Deliverd<%}%></label>
+                      <% }) %>
+                    </div>
+                  </div>
+                </div>
+    
                 <div class="circular_buttons">
                   <div class="edit">
                       <a href="/admin/circular/edit_circular/<%= item._id %>"   id="toggleButton">
@@ -84,6 +94,18 @@
                   </div>
                   <div class="delete">
                       <button class="btn_danger" onclick="display_delete_circular(`<%- item._id %>`)">Delete</button>
+                  </div>
+                </div>
+
+                 
+                <div class="form_div">
+                  <div class="dropdown" data-control="checkbox-dropdown">
+                    <div class="dropdown-label" id="ClassRecievers"></div>
+                    <div class="dropdown-list">
+                      <% class_info.forEach(function(i) { %>                  
+                          <label class="dropdown-option"><%if(item.classes.includes(i.batch)){%> <label><%- i.class %></label> <%}%></label>
+                      <% }) %>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -119,6 +141,8 @@
           <% } %>
       <% }) %>
 
+      <!-- New Circular -->
+
           <div class="popup_container" id="popup_add" style="display: none;">
             <div class="popup">
               <div class="popup_header">
@@ -142,10 +166,8 @@
                     <div class="form_div">
                       <div class="dropdown" data-control="checkbox-dropdown">
                         <label for="circular_discription">Teaching Staff</label>
-                        <div class="dropdown-label">Select Options</div>
+                        <div class="dropdown-label withCheckBox">Select Options</div>
                         <div class="dropdown-list">
-                         
-
                             <% staff_data.forEach(function(item) { %>
                               <% if(item.staff_designation == 'teaching') { %>
                                 <label class="dropdown-option"><input type="checkbox" value="<%- item.staff_id %>" name="staff"><%- item.staff_id %></label>
@@ -320,8 +342,12 @@ var CheckboxDropdown = function(el) {
   this.$label = this.$el.find('.dropdown-label');
   this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
   this.$inputs = this.$el.find('[type="checkbox"]');
-  
+  this.$StaffRecievers = this.$el.find("#StaffRecievers")
+  this.$ClassRecievers = this.$el.find("#ClassRecievers")
   this.onCheckBox();
+
+  this.$StaffRecievers.html("Staff recievers")
+  this.$ClassRecievers.html("class recievers")
   
   this.$label.on('click', function(e) {
     e.preventDefault();
