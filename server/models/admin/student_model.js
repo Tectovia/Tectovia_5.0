@@ -33,6 +33,9 @@ const student_master = new mongoose.Schema({
     gender: {
         type: String
     },
+    residence:{
+        type:String
+    },
     blood_group: {
         type: String
     },

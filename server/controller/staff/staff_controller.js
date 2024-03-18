@@ -17,7 +17,7 @@ exports.staff_index = async (req, res) => {
     var id=req.params.id;
 
         try{
-        const data= await staff_model.find({'staff_id':id},{staff_id:1,staff_name:1,class_incharge:1})
+        const data= await staff_model.find({'staff_id':id},{})
 
         req.session.obj_id= data[0]._id.toString();
 

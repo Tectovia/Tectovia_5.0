@@ -123,7 +123,7 @@ exports.login_submission = async (req, res) => {
 };
 
 // adding user data
-//adduser()
+// adduser()
 function adduser() {
   var user = "admin";
   var password = "123";

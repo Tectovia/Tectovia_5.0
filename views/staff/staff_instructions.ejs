@@ -1,15 +1,18 @@
 <link rel="stylesheet" href="../../css/instructions.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="staff">
-    <div class="staff_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
-
+  
 <div class="instructions_main">
-
     <div class="form">
+<<<<<<< HEAD
     <header class="in">  <span class="underline-three">DIGITAL</span> DAIRY </header>
+=======
+        <div class="in"><h1>INSTRUCTION</h1>  </div>
+>>>>>>> origin
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
         <label for="instruction" class="sub_instruction"></label><br>
         <textarea type="text" id="instruction" class="textbox textarea" name="instruction"></textarea><br><input type="submit" class="submitbox " value="Send"><br><br>
@@ -20,17 +23,17 @@
      <div class="reciever_dropdown"> <div class="hidden  " id="classes">
 
             <!-- select all -->
-            <input type="checkbox" class="selectall" value="all_students" onclick="select_all(this)"><label>select all</label>
+       <div class="reciever_select">     <input type="checkbox" class="selectall" value="all_students" onclick="select_all(this)"><label style="color: rgb(0, 0, 0); margin-left: 5px;" class="recievers_label_selectall">select all</label></div>
             
-
+<div class="reciever_input_value">
             <br>
                 <%classes.map((item)=>{%>
-                    <input type="checkbox" 
+                <div class="reciever_input"></div>    <input type="checkbox" 
                     value="<%= item.class %><%= item.section %>"
                     onclick="select_student(this)"
                     class="all_students students_value"
                     >
-                    <label><%= item.class %>  <%= item.section %></label><br>
+                    <label style="color: rgb(0, 0, 0);" class="recievers_label"><%= item.class %>  <%= item.section %></label><br>
 
                     <div id="<%= item.class %><%= item.section %>" class="hidden students_value">
 
@@ -46,7 +49,7 @@
                         <%})%>
                     </div>
                 <%})%> 
-                    
+</div> 
                 </div> </div>  
             </div>
 
@@ -56,10 +59,11 @@
              <div  class="subjects_box">   <span data-fid="subjects"><h1>subjects</h1></span></div>
              <div class="subjects_box_dropdown">  <div id="subjects"  class="hidden">
                     <input type="checkbox" value="subjects" class="selectall" onclick="select_all(this)" class="">
-                    <label>select all</label><br>
+                    <label style="color: rgb(0, 0, 0);" class="subject_labels_selectall" >select all</label><br>
+                   <div class="subject_input_value">
                     <%subjects.map((item)=>{%>
-                        <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label><%=item%></label><br>
-                    <%})%>
+                        <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label class="subject_labels" style="color: rgb(0, 0, 0);"><%=item%></label><br>
+                    <%})%></div>
                 </div>
                
             </div>
@@ -70,38 +74,7 @@
 
 </div>
 
-
-
-<%if(lastVisited==='sent'){%>
-    <div class="popup_container" id="messageSentContainer" >
-      <div class="popup">
-        <div class="popup_header">
-          <p class="pop_title">Message sent</p>
-              <span class="close_icon" id="closePopup" onclick="hideMessageContainer()">&times;</span>
-        </div>
-        <div class="pop_body">
-          <div style="text-align: center;">
-              <img src="/img/admin/bx-check.svg" ><br>
-              <h1>Message sent</h1>
-          </div>
-          
-        </div>
-      </div>
-    </div> 
-<%}%>
-
-<div>
-    <button value="oldInstructions" onclick="showOldInstructions(this.value)">past messages</button>
-    <div class="oldInstructions hidden" id="oldInstructions">
-        <% oldMessage.map((item)=>{%>
-            <h1><%= item.message%></h1>
-            <a href="/staff/deleteInstructions/<%=item._id%>/<%=staffdata[0]._id%>"><button>delete message</button></a>
-        <%})%>
-    </div>
-    
-</div>
-
-</div></div>
+<div class="history_part">
 <div class="history_dropdown">
     <div class="history">
         <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
@@ -112,27 +85,29 @@
             <div class="oldInstructions hidden old_history " id="oldInstructions">
                 <!-- Reverse the order of oldMessage array -->
                 <% oldMessage.reverse().map((item) => { %>
+                 
                     <div class="history_messages">
                         <h1><%= item.message %></h1>
                     </div>
                     <div class="history_delete_button">
                         <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
-                            <button class="history_dropdown_button">delete</button>
+                            <button class="history_dropdown_button ">delete</button>
                         </a>
                     </div>
                 <% }) %>
             </div>
+            <div class="span"></div>
         </div>    
     </div>
+  </div>
+        </div>    
+    </div></div>
 </div>
 
 
 
 
 </div>
-
- 
- 
 <style>
     .hidden{
         display: none;
@@ -147,7 +122,7 @@
        margin-left: 20%;
        margin-top: 3%;
     }
-    
+  
 
 </style>
 <script>
@@ -155,6 +130,7 @@
 document.getElementById('historyButton').addEventListener('click', function() {
   document.getElementById('historySection').scrollIntoView({ behavior: 'smooth' });
 });
+
 
 document.querySelector('.history_button').addEventListener('click', function() {
     const historyElement = document.querySelector('.history');
@@ -190,7 +166,8 @@ document.querySelector('.history_button').addEventListener('click', function() {
         document.getElementById(element.value)
         .classList
         .add("show")
-        select_all(element)   
+        select_all(element)  
+
     }
 
     function showOldInstructions(id){
@@ -205,10 +182,11 @@ document.querySelector('.history_button').addEventListener('click', function() {
             document
             .getElementById(ele[i].getAttribute('data-fid'))
             .classList
-            .toggle('show')
+            .toggle('show')  
         })
-    }
-    function hideMessageContainer(){
-        document.getElementById('messageSentContainer').style.display='none'
-    }
+    };
+    
+
+
 </script>
+</html>

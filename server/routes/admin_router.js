@@ -88,16 +88,18 @@ const {yearlyUpdate} = require('../controller/universal_controller/notificationF
     router.get('/admin/institution_info/achievements/form_achievements' ,admin_achievement.form_achievements);
     router.post('/admin/institution_info/achievements/submit_achievements' ,admin_achievement.submit_achievements);
 
+        //----------- Annual report -----------
+
+    router.get('/admin/institution_info/annual_report',admin_annual_report.annual_report);
+    router.post('/admin/institution_info/annual_report',admin_annual_report.submit_annual_report);
 //---------------------------------------------bonafide-------------------//
 router.get('/admin/bonafide_admin',bonafide.boo);
-router.post('/bonafide_approval',bonafide.bonafide_approval);
-
+router.get('/admin/bonafide/approval/:id',bonafide.bonafide_approval);
+router.get('/admin/bonafide/cancel/:id',bonafide.bonafide_cancel);
 
 
 
 // router.get('/admin/bonafide/bonafide_certificate',bonafide.certificate);
-    //----------- Annual report -----------
-   // router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
 
 
     //------------ Others -----------------
@@ -169,6 +171,8 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     
     // ---------------view parent details------------------------------------
     router.get("/admin/viewParent/:_id/:batch",view_student.view_parent)
+    router.get("/admin/viewParent/parent_documents/:_id/:id",view_student.parent_document_view)
+    router.get("/admin/viewParent/parentdoc_view/:_id/:id",view_student.view_parent)
     router.post("/admin/viewStudent/editStudentParent/:_id/:batch",view_student.edit_parent)
    
 

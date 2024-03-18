@@ -165,6 +165,7 @@ exports.staff_personal = async (req, res) => {
   // file path
   var path =require("path").resolve("./") +"/public/uploads/staff_info/" +staff_rollno;
   var Object = req.body;
+  console.log("Staff details",Object);
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
@@ -469,10 +470,7 @@ exports.personal_edit_submission = async (req, res) => {
   var staff_id = req.params.id;
   var staff_rollno = req.body.staff_id;
   // file path
-  var path =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno;
+  var path =require("path").resolve("./") +"/public/uploads/staff_info/" +  staff_rollno;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);

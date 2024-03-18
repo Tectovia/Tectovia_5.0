@@ -43,16 +43,16 @@ exports.time_table = async (req, res) => {
     catch(e) {
         console.log('problem');
     }
-    var datetext = format(date, "dd-MM-yyyy");
-    const acad_data = await db.collection("academic_calendar").findOne({ year: year });
-    const dayorder=acad_data[datetext].dayorder;
+    // var datetext = format(date, "dd-MM-yyyy");
+    // const acad_data = await db.collection("academic_calendar").findOne({ year: year });
+    // const dayorder=acad_data[datetext].dayorder;
 
-    staff_model.find({'_id':id},{time_table:1,staff_id:1,staff_name:1}).then((data)=>{
-        console.log(data);
-        res.render('staff/time_table',{staffdata:data,dayhour,dayorder});
-      })
-     .catch(()=>{
-        console.log("problem");
-     })
+    // staff_model.find({'_id':id},{time_table:1,staff_id:1,staff_name:1}).then((data)=>{
+    //     console.log(data);
+    //     res.render('staff/time_table',{staffdata:data,dayhour,dayorder});
+    //   })
+    //  .catch(()=>{
+    //     console.log("problem");
+    //  })
 
 };

@@ -1,29 +1,24 @@
 <link rel="stylesheet" href="/css/admin/circular/circular.css">
 
-<% function formatDate(date) {
-    const formattedDate = new Date(date);
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return formattedDate.toLocaleDateString('en-GB', options);
-} %>
+<% function formatDate(date) { const formattedDate=new Date(date); const options={ day: '2-digit' , month: '2-digit' ,
+    year: 'numeric' }; return formattedDate.toLocaleDateString('en-GB', options); } %>
 
-<% function formatTime(date) {
-    const formattedTime = new Date(date);
-    const hours = formattedTime.getHours() % 12 || 12;
-    const minutes = formattedTime.getMinutes();
-    const ampm = formattedTime.getHours() >= 12 ? 'PM' : 'AM';
+    <% function formatTime(date) { const formattedTime=new Date(date); const hours=formattedTime.getHours() % 12 || 12;
+        const minutes=formattedTime.getMinutes(); const ampm=formattedTime.getHours()>= 12 ? 'PM' : 'AM';
 
-    return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
-} %>
+        return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+        } %>
 
-<div class="window" id="window_layout">
-    <div class="window_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
-    </div>
-    <div class="window_container">
-        <div class="container center_title">
-            Inbox
-        </div>
+        <div class="window" id="window_layout">
+            <div class="window_navbar">
+                <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+            </div>
+            <div class="window_container">
+                <div class="container center_title">
+                    Inbox
+                </div>
 
+<<<<<<< HEAD
         <!-- Previous Circulars -->
         <% circular.reverse().forEach(function(item) { %>
             <% if(item.delete === false) { %>
@@ -52,35 +47,67 @@
                                 <div class="delete">
                                   <a href="" id="seenCircular"><button class="btn_danger">Yes</button></a>
                                   <button onclick="hideSeenCircularContainer()">No</button>
+=======
+                <!-- Previous Circulars -->
+                <% circular.forEach(function(item) { %>
+                    <% if(item.delete===false) { %>
+                        <div class="circular_container">
+                            <div class="circular_header">
+                                <div class="circular_info">
+                                    <div class="from">From : <%- item.from %> </div>
+                                    <div class="time">Date : <%- formatDate(item.date) %> </div>
+                                    <div class="time">Time : <%- formatTime(item.date) %> </div>
                                 </div>
-                              </div>
-                        
+                                <div class="circular_buttons">
+                                    <div class="delete">
+                                        <!-- <a href="/staff/message_seen/<%-staffdata[0].staff_id%>/<%- item._id %>"></a> -->
+                                        <button
+                                            onclick="showSeenCircularContainer(`<%-staffdata[0].staff_id%>` , `<%- item._id %>`)">mark
+                                            as seen</button>
+                                    </div>
+                                    <div class="popup_container" id="seenCircularContainer" style="display: none;">
+                                        <div class="popup">
+                                            <div class="popup_header">
+                                                <p class="pop_title">Confirm Delete</p>
+                                                <span class="close_icon" id="closePopup"
+                                                    onclick="hideSeenCircularContainer()">&times;</span>
+                                            </div>
+                                            <div class="pop_body">
+                                                <p>Do You Want to mark as seen and hide permanently?</p>
+                                                <div class="delete">
+                                                    <a href="" id="seenCircular"><button
+                                                            class="delete_btn">Yes</button></a>
+                                                    <button onclick="hideSeenCircularContainer()" class="add_btn">No</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="circular_title">
+                                <div class="title"><%- item.title %></div>
+                            </div>
+
+                            <div class="circular_message">
+                                <div class="message">
+                                    <p><%- item.message %></p>
+>>>>>>> origin
+                                </div>
                             </div>
                         </div>
-                    </div>
-                  </div>
+                        <% } %>
+                            <% }) %>
+            </div>
 
-                  <div class="circular_title">
-                      <div class="title"><%- item.title %></div>
-                  </div>
-
-                  <div class="circular_message">
-                      <div class="message">
-                          <p><%- item.message %></p>
-                      </div>
-                  </div>
-              </div>
-              <% } %>
-          <% }) %>
-    </div>
-
-</div>
-<script>
-    function showSeenCircularContainer(staffId,circularId){
-        document.getElementById('seenCircularContainer').style.display='flex';
-        document.getElementById('seenCircular').href=`/staff/message_seen/${staffId}/${circularId}`
-    }
-    function hideSeenCircularContainer(){
-        document.getElementById('seenCircularContainer').style.display='none';
-    }
-</script>
+        </div>
+        <script>
+            function showSeenCircularContainer(staffId, circularId) {
+                document.getElementById('seenCircularContainer').style.display = 'flex';
+                document.getElementById('seenCircular').href = `/staff/message_seen/${staffId}/${circularId}`
+            }
+            function hideSeenCircularContainer() {
+                document.getElementById('seenCircularContainer').style.display = 'none';
+            }
+        </script>

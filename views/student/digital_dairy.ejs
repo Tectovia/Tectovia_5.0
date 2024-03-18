@@ -3,12 +3,13 @@
         <div class="window_navbar">
             <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
         </div>
-    <%}else{%>
+        <%}else{%>
             <div class="window_navbar">
-            <%- include('../partials/parent/navigation_bar.ejs') %>
+                <%- include('../partials/parent/navigation_bar.ejs') %>
             </div>
-    <%}%>
+            <%}%>
 
+<<<<<<< HEAD
     <div class="window_container">
         <div class="digital_dairy">
             <div>
@@ -25,32 +26,58 @@
                         <h1 style="color: green;" >unseen</h1>
                         <a href="/student/digitalDairy/seen/<%- student._id %>/<%- student.id %>/<%- item._id %>"><button>ok</button></a>
                     <%}%>
+=======
+                <div class="window_container">
+                    <div class="digital_dairy">
+                        <div>
+                            <br>
+                            <%instructions.map((item)=>{%>
+                                <div class="container_todo" id="<%=item.date%>">
+                                    <input type="checkbox" class="hide_diary" value="<%=item.date%>">
+                                    <span>Date and Time:</span><span>
+                                        <%=item.date%>
+                                    </span><br>
+                                    <span>from:</span><span>
+                                        <%=item.from%>
+                                    </span><br>
+                                    <span>subjects:</span><span>
+                                        <%=item.subjects%>
+                                    </span><br><br>
+                                    <h5>instruction</h5>
+                                    <p>
+                                        <%=item.message%>
+                                    </p>
+                                    <a
+                                        href="/student/digitalDairy/seen/<%- student._id %>/<%- student.id %>/<%- item._id %>"><button
+                                            class="view_btn">seen</button></a>
+                                </div>
+                                <br>
+                                <%})%>
+                        </div>
+                    </div>
+>>>>>>> origin
                 </div>
-                <br>
-                <%})%>
-            </div>
-        </div>
-    </div>
 </div>
 
 <style>
-    .hide_diary{
+    .hide_diary {
         display: none;
     }
-    .show{
-          display: block;
+
+    .show {
+        display: block;
     }
-    .digital_dairy{
+
+    .digital_dairy {
         margin-left: 18%;
     }
 </style>
 <script>
-document.getElementById('select_delete').addEventListener('click',()=>{
-    const checkboxes=document.querySelectorAll('checkbox')
-    for(let i=0;i<checkboxes.length;i++)
-    {
-        console.log(checkboxes[i]);
-    }
-    console.log();
-})
+    document.getElementById('select_delete').addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('checkbox')
+        for (let i = 0; i < checkboxes.length; i++) {
+            console.log(checkboxes[i]);
+        }
+        console.log();
+    })
 </script>
