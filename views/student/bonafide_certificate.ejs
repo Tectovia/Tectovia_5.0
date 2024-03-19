@@ -8,8 +8,9 @@
    } 
    .print-button{
       position: absolute;
-      top: 15%;
+      bottom: 170%;
       left: 50%;
+      
    }
 .close{
   position: absolute;
@@ -41,7 +42,7 @@
             <div class="popup_header">
               <p class="pop_title">Bonafide certificate</p>
             </div>
-      
+      <button class="print-button" onclick="printPage()">Print</button>
       <button onclick="closeTab()" class="close">Close</button>
         <h1>Bonafide certificate</h1>
         <p>This is to certify that MR./MRS <b><%= student.name %></b>, S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
@@ -57,7 +58,7 @@
     </div>
     </div>
       </div>
-    <button class="print-button" onclick="printPage()">Print</button>
+    
     <div id="pdfContainer"></div>
     <script>
         function printPage() {
