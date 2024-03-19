@@ -46,7 +46,7 @@ exports.submit_student_basic = async (req, res) => {
    // console.log("datas here : ",req.body);
 
     try {
-        
+        var student_rollno=req.body.student_rollno.trim();
         const StudentModel =await mongoose.model(title);
         const TestModel=mongoose.model(batch+"_test");
         const salt = 10;
@@ -54,13 +54,13 @@ exports.submit_student_basic = async (req, res) => {
 
        const data= [
             {
-            user_id: req.body.student_rollno,
+            user_id: student_rollno,
 
             password: hashedPassword,
             role: title+"_"+section
            },
            {
-            user_id: req.body.student_rollno+"_p",
+            user_id: student_rollno+"_p",
 
             password: hashedPassword,
             role: title+"_"+section+"_parent"
@@ -76,12 +76,12 @@ exports.submit_student_basic = async (req, res) => {
                     id: title,
                     name: req.body.student_name,
                     gender: req.body.gender,
-                    rollno: req.body.student_rollno,
+                    rollno: student_rollno,
                     section: section,
                 });
 
                 const student_test_detais=new TestModel({
-                    rollno:req.body.student_rollno,
+                    rollno:student_rollno,
                     batch:batch,
                     section: section,
                     test_marks:[],
@@ -273,17 +273,20 @@ exports.view_student = async (req, res) => {
     let studentDetails = req.data;
     let edit=false;
     console.log("params");
-    console.log(req.params);
+    console.log(title,sec,id);
     console.log("data");
     console.log(req.data);
-    
+      class_model
+        .find({ id: title, section_name:sec })
+        .then((section_doc) => {
+          console.log(section_doc);
+          });
     if(studentDetails !== undefined){
         edit=true
     }
 
     const {obj_id} =  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
 
-   
 
     if (!selectedModel) {
         console.log("Invalid title");
@@ -299,7 +302,7 @@ exports.view_student = async (req, res) => {
                 console.log(err);
                 return res.status(500).send("Error retrieving student document");
             } else {
-                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password,edit,studentDetails });
+                res.render("admin/class_info/view_student", { class_model,title, sec, id, student_doc, hash_student_password,edit,studentDetails});
             }
         });
     })

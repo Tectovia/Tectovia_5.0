@@ -163,19 +163,13 @@ exports.staff_personal = async (req, res) => {
   var staff_id = req.params.id;
   var staff_rollno = req.body.staff_id;
   // file path
-  var path =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno;
+  var path =require("path").resolve("./") +"/public/uploads/staff_info/" +staff_rollno;
   var Object = req.body;
+  console.log("Staff details",Object);
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
-  var uploadpath =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno +
-    "/"; 
+  var uploadpath =  require("path").resolve("./") +"/public/uploads/staff_info/" +staff_rollno +  "/"; 
   //  image saver
   if (req.files) {
     if (req.files.staff_community_img)
@@ -476,10 +470,7 @@ exports.personal_edit_submission = async (req, res) => {
   var staff_id = req.params.id;
   var staff_rollno = req.body.staff_id;
   // file path
-  var path =
-    require("path").resolve("./") +
-    "/public/uploads/staff_info/" +
-    staff_rollno;
+  var path =require("path").resolve("./") +"/public/uploads/staff_info/" +  staff_rollno;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
