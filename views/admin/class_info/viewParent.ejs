@@ -72,7 +72,7 @@
 
       
 
-    <div id="parent_edit" class="parent_edit" style="display: none;">  
+    <div id="parent_edit" class="parent_edit Edit-Parent-Personal-Details" style="display: none;">  
     <div class="popup parent_edit_form" id="popup">
       <div class="popup_header">
           <p class="pop_title">Edit Parent Personal Details</p>
@@ -184,14 +184,22 @@
             
       
                 </div>
-                 
+                
               </div>
-              <div class="form_submit">
-                  <input type="submit" value="Save & Next">
-              </div>    
-         
+              <div class="admin-edit-parent-submit">
+                <div class="admin-edit-parent-btns">
+                <div class="form_submit">
+                <input type="submit" value="Save & Next">
+               </div>
+                </div> 
+              </div>
+              
           </form>
-    </div></div>
+          <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+
+    </div>
+    
+</div>
    
     </div>
    
@@ -208,6 +216,69 @@
                 document.getElementById('parent_edit').style.display='none';
         })
     </script>
+    <style>
+        .Edit-Parent-Personal-Details{
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -7%;
+    margin-left: 77%;
+}
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -10%;
+  
+}
+.admin-edit-parent-btns{
+    width: 60%;
+}
+.admin-edit-parent-submit{
+    margin-left: 30%;
+}
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+
+    
+</script>
 
 
 

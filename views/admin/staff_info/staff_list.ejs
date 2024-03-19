@@ -91,7 +91,7 @@
     </div>
 
 
-    <div class="popup_container" id="add_staff" style="display: none;">
+    <div class="popup_container staff-info-list-details" id="add_staff" style="display: none;">
       <div class="popup">
         <div class="popup_header">
           <p class="pop_title">Add New Staff</p>
@@ -158,4 +158,20 @@
   align-items: center;
 }
 
+.staff-info-list-details {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>

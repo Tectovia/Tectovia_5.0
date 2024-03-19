@@ -27,7 +27,7 @@
         </div>
 
 
-        <div class="popup_container" id="popup_add" style="display: none;">
+        <div class="popup_container admin-Achievements-page" id="popup_add" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title"><%= page_title %></p>
@@ -67,4 +67,22 @@
     </div>
 </div>
 
-
+<style>
+    .admin-Achievements-page{
+        margin-top: 6%;
+        margin-left: 5%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    } 
+</style>
