@@ -26,11 +26,11 @@
         <div class="container center_title">
             <%- title %> - <%- sec %>
             <div class="float_left">
-               <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
+               <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="view_btn">Parent Details</button></a>
             </div>
             <div class="float_right">
-                <button class="btn_warning"><a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>">Delete</a></button>
-               </div>
+                <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="delete_btn">Delete</button></a>
+            </div>
         </div>
 
         <div class="student_section">
@@ -124,7 +124,7 @@
             <br>
             <div class="edit_section">
                 <a href="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>">
-                    <button class="btn_success edit_section_btn">Edit student personal details</button>
+                    <button class="edit_btn edit_section_btn">Edit student personal details</button>
                 </a>
             </div>
             <br>

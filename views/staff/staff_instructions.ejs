@@ -1,15 +1,13 @@
-<link rel="stylesheet" href="../../css/instructions.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="../../css/instructions.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <div class="staff">
     <div class="staff_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+        <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
-
 <div class="instructions_main">
-
     <div class="form">
-    <header class="in">  <span class="underline-three">INSTR</span>UCTION </header>
+        <div class="in"><h1>INSTRUCTION</h1>  </div>
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
         <label for="instruction" class="sub_instruction"></label><br>
         <textarea type="text" id="instruction" class="textbox textarea" name="instruction"></textarea><br><input type="submit" class="submitbox " value="Send"><br><br>
@@ -20,17 +18,17 @@
      <div class="reciever_dropdown"> <div class="hidden  " id="classes">
 
             <!-- select all -->
-            <input type="checkbox" class="selectall" value="all_students" onclick="select_all(this)"><label>select all</label>
+       <div class="reciever_select">     <input type="checkbox" class="selectall" value="all_students" onclick="select_all(this)"><label style="color: rgb(0, 0, 0); margin-left: 5px;" class="recievers_label_selectall">select all</label></div>
             
-
+<div class="reciever_input_value">
             <br>
                 <%classes.map((item)=>{%>
-                    <input type="checkbox" 
+                <div class="reciever_input"></div>    <input type="checkbox" 
                     value="<%= item.class %><%= item.section %>"
                     onclick="select_student(this)"
                     class="all_students students_value"
                     >
-                    <label><%= item.class %>  <%= item.section %></label><br>
+                    <label style="color: rgb(0, 0, 0);" class="recievers_label"><%= item.class %>  <%= item.section %></label><br>
 
                     <div id="<%= item.class %><%= item.section %>" class="hidden students_value">
 
@@ -46,7 +44,7 @@
                         <%})%>
                     </div>
                 <%})%> 
-                    
+</div> 
                 </div> </div>  
             </div>
 
@@ -56,10 +54,11 @@
              <div  class="subjects_box">   <span data-fid="subjects"><h1>subjects</h1></span></div>
              <div class="subjects_box_dropdown">  <div id="subjects"  class="hidden">
                     <input type="checkbox" value="subjects" class="selectall" onclick="select_all(this)" class="">
-                    <label>select all</label><br>
+                    <label style="color: rgb(0, 0, 0);" class="subject_labels" >select all</label><br>
+                   <div class="subject_input_value">
                     <%subjects.map((item)=>{%>
-                        <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label><%=item%></label><br>
-                    <%})%>
+                        <input type="checkbox" class="subjects subjects_box_dropdown_hidden" name="subjects" value="<%=item%>"><label class="subject_labels" style="color: rgb(0, 0, 0);"><%=item%></label><br>
+                    <%})%></div>
                 </div>
                
             </div>
@@ -67,148 +66,94 @@
 
             </div>
     </form>
-
-</div>
-
-
-
-<%if(lastVisited==='sent'){%>
-    <div class="popup_container" id="messageSentContainer" >
-      <div class="popup">
-        <div class="popup_header">
-          <p class="pop_title">Message sent</p>
-              <span class="close_icon" id="closePopup" onclick="hideMessageContainer()">&times;</span>
-        </div>
-        <div class="pop_body">
-          <div style="text-align: center;">
-              <img src="/img/admin/bx-check.svg" ><br>
-              <h1>Message sent</h1>
-          </div>
-          
-        </div>
-      </div>
-    </div> 
-<%}%>
-
-<div>
-    <button value="oldInstructions" onclick="showOldInstructions(this.value)">past messages</button>
-    <div class="oldInstructions hidden" id="oldInstructions">
-        <% oldMessage.map((item)=>{%>
-            <h1><%= item.message%></h1>
-            <a href="/staff/deleteInstructions/<%=item._id%>/<%=staffdata[0]._id%>"><button>delete message</button></a>
-        <%})%>
-    </div>
-    
-</div>
-
 </div></div>
 <div class="history_dropdown">
-    <div class="history">
-        <button class="history_button"  id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
-            <div><h3>History</h3></div> 
-            <div><i class="fa fa-history"></i></div>
-        </button>
-        <div class="history_values" id="historySection"> 
-            <div class="oldInstructions hidden old_history " id="oldInstructions">
-                <!-- Reverse the order of oldMessage array -->
-                <% oldMessage.reverse().map((item) => { %>
-                    <div class="history_messages">
-                        <h1><%= item.message %></h1>
-                    </div>
-                    <div class="history_delete_button">
-                        <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
-                            <button class="history_dropdown_button">delete</button>
-                        </a>
-                    </div>
-                <% }) %>
-            </div>
-        </div>    
+  <div class="history">
+    <button class="history_button add_btn" id="historyButton" value="oldInstructions" onclick="showOldInstructions(this.value)">
+      <div>
+        <h3>History</h3>
+      </div>
+      <div><i class="fa fa-history"></i></div>
+    </button>
+    <div class="history_values" id="historySection">
+      <div class="oldInstructions hidden old_history" id="oldInstructions">
+        <% oldMessage.reverse().map((item)=> { %>
+          <div class="history_messages">
+            <h1>
+              <%= item.message %>
+            </h1>
+          </div>
+          <div class="history_delete_button">
+            <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">
+              <button class="history_dropdown_button delete_btn">delete</button>
+            </a>
+          </div>
+          <% }) %>
+      </div>
     </div>
+  </div>
 </div>
 
 
 
 
 </div>
-
- 
- 
 <style>
-    .hidden{
-        display: none;
-        width: fit-content;
-        
-    }
-    .show{
-        display: block;
-    }
-    .form{
-       position: absolute;
-       margin-left: 20%;
-       margin-top: 3%;
-    }
-    
+  .hidden {
+    display: none;
+    width: fit-content;
+  }
 
+  .show {
+    display: block;
+  }
+
+  .form {
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 3%;
+  }
 </style>
+
 <script>
-    
-document.getElementById('historyButton').addEventListener('click', function() {
-  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelector('.history_button').addEventListener('click', function() {
-    const historyElement = document.querySelector('.history');
-    if (!historyElement) {
-        console.log('History element not found');
-        return;
-    }
-
-    // Adjust the buffer size here (ensure it matches your design requirements)
-    const buffer = 10; // Adjust this value as needed
-    const offsetTop = historyElement.getBoundingClientRect().top + window.pageYOffset - buffer;
-
-    console.log('Scrolling to:', offsetTop, 'with buffer:', buffer);
-
-    window.scrollTo({
-        top:540,
-        behavior: 'smooth'
+  document
+    .getElementById("historyButton")
+    .addEventListener("click", function () {
+      document
+        .getElementById("historySection")
+        .scrollIntoView({ behavior: "smooth" });
     });
-});
-    const select_all=(x)=>{
-    let ele= document.getElementsByClassName(x.value)
-        for(i=0;i<=ele.length;i++)
-        {
-            if(ele[i]!=undefined){
-                ele[i].checked=x.checked
-                
-            } 
-        }
-    }
 
-    const select_student=(element)=>{
-        
-        document.getElementById(element.value)
-        .classList
-        .add("show")
-        select_all(element)   
-    }
+  document
+    .querySelector(".history_button")
+    .addEventListener("click", function () {
+      const historyElement = document.querySelector(".history");
+      if (!historyElement) {
+        console.log("History element not found");
+        return;
+      }
 
-    function showOldInstructions(id){
-        document.getElementById(id).classList.toggle("show")
-    }
+      // Adjust the buffer size here (ensure it matches your design requirements)
+      const buffer = 10; // Adjust this value as needed
+      const offsetTop =
+        historyElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        buffer;
 
+      console.log("Scrolling to:", offsetTop, "with buffer:", buffer);
 
-    const ele=document.querySelectorAll('span')
-    for( let i=0;i<ele.length;i++)
-    {
-        ele[i].addEventListener("click",()=>{
-            document
-            .getElementById(ele[i].getAttribute('data-fid'))
-            .classList
-            .toggle('show')
-        })
-    }
-    function hideMessageContainer(){
-        document.getElementById('messageSentContainer').style.display='none'
+      window.scrollTo({
+        top: 540,
+        behavior: "smooth",
+      });
+    });
+
+  const select_all = (x) => {
+    let ele = document.getElementsByClassName(x.value);
+    for (i = 0; i <= ele.length; i++) {
+      if (ele[i] != undefined) {
+        ele[i].checked = x.checked;
+      }
     }
 </script>
+</html>

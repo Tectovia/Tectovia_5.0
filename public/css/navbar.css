@@ -8,6 +8,10 @@
   --bg-color-orange: #ffe0d3;
 }
 
+/* .active {
+  background: red;
+} */
+
 /* SIDEBAR */
 #sidebar {
   position: fixed;
@@ -21,6 +25,7 @@
   transition: 0.3s ease;
   overflow-x: hidden;
   scrollbar-width: none;
+  transition: 0.3s ease;
 }
 
 #sidebar::--webkit-scrollbar {

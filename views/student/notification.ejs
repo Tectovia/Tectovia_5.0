@@ -4,13 +4,19 @@
     </div>
     <div class="window_container">
         <%if(notification.circular!==null){%>
-            <a href="/student/circular/<%=student._id%>/<%=student.id%>"><div>new circular</div></a>
-        <%}%>
-        <%notification.newTest.map((item)=>{%>
-           <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>new <%- item.testtitle %></div></a>
-        <%})%>
-        <%notification.digitalDairy.map((item)=>{%>
-            <a href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>instruction from <%- item.from %></div></a>
-        <%})%>
+            <a href="/student/circular/<%=student._id%>/<%=student.id%>">
+                <div>new circular</div>
+            </a>
+            <%}%>
+                <%notification.newTest.map((item)=>{%>
+                    <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>">
+                        <div>new <%- item.testtitle %></div>
+                    </a>
+                    <%})%>
+                        <%notification.digitalDairy.map((item)=>{%>
+                            <a href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>">
+                                <div>instruction from <%- item.from %></div>
+                            </a>
+                            <%})%>
     </div>
 </div>
