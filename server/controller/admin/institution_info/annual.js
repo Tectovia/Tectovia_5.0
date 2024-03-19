@@ -21,7 +21,23 @@ exports.annual_report = async (req, res) => {
   console.log(annualReports);
   res.render("admin/institution_info/annual_report", { page_title: "Annual Report", annualReports });    
 };
+exports.delete_annual_report=async(req,res)=>{
+  try {
 
+    const reportId = req.params.id;
+    await common_info_model.findByIdAndDelete(reportId);
+
+    const commoninfo = await common_info_model.find({}, { annual_report: 1 });
+
+  const annualReports = commoninfo.map(info => info.annual_report);
+  console.log(annualReports);
+
+    res.render('admin/institution_info/annual_report',{ page_title: "Annual Report",annualReports });
+  } catch (error) {
+    console.error('Error deleting annual report:', error);
+    res.status(500).send('Internal Server Error');
+  }
+}
 
 exports.submit_annual_report = async (req, res) => {
   try {

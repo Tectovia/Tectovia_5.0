@@ -88,19 +88,11 @@ const bonafide=require('../controller/admin/bonafide_admin/bonafide');
 
     router.get('/admin/institution_info/annual_report',admin_annual_report.annual_report);
     router.post('/admin/institution_info/annual_report',admin_annual_report.submit_annual_report);
+    router.get('/admin/institution_info/annual_report/delete_annual/:_id',admin_annual_report.delete_annual_report);
 //---------------------------------------------bonafide-------------------//
 router.get('/admin/bonafide_admin',bonafide.boo);
 router.get('/admin/bonafide/approval/:id',bonafide.bonafide_approval);
 router.get('/admin/bonafide/cancel/:id',bonafide.bonafide_cancel);
-
-
-
-// router.get('/admin/bonafide/bonafide_certificate',bonafide.certificate);
-
-
-    //------------ Others -----------------
-    //router.get('/admin/institution_info/others' , admin_others.others);
-
 
 
 //--------------------  staff_info  -------------------------------
@@ -149,7 +141,8 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //view section and subject
     router.get('/admin/class_info/class_list/view_section/:id/:title/:section/' ,admin_class.view_section);
     router.get('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject);
-    
+    router.post('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject_syllabus);
+    router.get('/admin/class_info/class_list/view_subject/delete_syllabus/:id/:title',admin_class.delete_subject_syllabus);
     //delete section and subject
     router.get('/admin/class_info/class_list/delete_section/:id/:title/:section', admin_class.delete_section);
     router.get('/admin/class_info/class_list/delete_subject/:id/:title', admin_class.delete_subject);
