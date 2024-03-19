@@ -14,13 +14,14 @@
 
     function redirectToPrint() {
     // Redirect to the print page or perform your print logic
-    window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    // window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    var url = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    window.open(url, '_blank');
   }
     </script>
 
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
-
       <div class="window_navbar">
           <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
        </div>
