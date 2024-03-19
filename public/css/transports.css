@@ -1,10 +1,17 @@
 .hostel_addstudent_button{
     margin-left: 1050px;
 }            
-.hostel_form{
-    margin-top: -100px;
-    margin-left: 350px;
+.Transport_form{
+    margin-top: -10%;
+    margin-left: 17%;
+    justify-content: center;
+    align-items: center;
 }
+/* .Transport_form {
+    position: fixed;
+    margin-top: -450px;
+    margin-left: 350px;
+} */
 .gender_option{
     display: flex;
     margin-left: 30px;
@@ -23,13 +30,14 @@ font-size: 30px;
    margin-top: 1rem; */
     
 
-.tablee{
+.transports-tablee{
     margin-left: 21%;
     border-collapse: collapse;
     width: auto;
     height: 100px;
     box-shadow: 0 0 20px var(--primary-color);
     margin-top: 5%;
+    margin-bottom: 1%;
     
 }
 .Transport_bus{
@@ -38,9 +46,11 @@ font-size: 30px;
     font-size: 150%;
 }
 
-.add_students{
+.add-Transports{
+    display:fixed;
+    
     margin-top: -15%;
-    margin-left: 78%;
+    margin-left: 80%;
 
 }
 .input-data{
@@ -56,8 +66,12 @@ font-size: 30px;
     margin-left: 12rem;
 }
 .input-dataa{
-    
+    color: black;
     margin-top: -30%;
+}
+.input-data-driver{
+    margin-top: -33%;
+    color: black;
 }
 .input-roll{
     margin-top: 15%;
@@ -74,4 +88,43 @@ font-size: 30px;
 }
 .data-input-roll{
     background-color: red;
+}
+.headerr{
+    background-color: var( --primary-color);
+}
+.display_transport .transports-tablee {
+    border-collapse: collapse;
+    
+    transition: transform 0.3s ease-in;
+}
+.transports-tablee:hover{
+    transform:scale(1.02);
+}
+.file_input .input-select-drivers{
+    margin-top: -50%;
+}
+.input-rollalter{
+    margin-top: -25%;
+}
+.input-route{
+    margin-top: -36%;
+    
+    height: 30%;
+}
+.select-rollno{
+    margin-top: -80%;
+}
+.input-select-rollno{
+    margin-top: -35%;
+    color: black;
+}
+.Transport_form{
+    justify-content: center;
+    align-items: center;
+}
+.transport-submit-form{
+    margin-left: 35%;
+}
+.transport-submit-form-btns{
+    width: 50%;
 }

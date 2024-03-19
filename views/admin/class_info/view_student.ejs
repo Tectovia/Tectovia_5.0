@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="student_section">
+        <div class="student_section" style="z-index: 10;">
             <div class="student_section_title">
                 <h1 class="section_title">Basic Information</h1>
             </div>
@@ -65,7 +65,7 @@
             </div> -->
         </div>
 
-        <div class="student_section">
+        <div class="student_section" style="z-index: 10;">
             <div class="student_section_title">
                 <h1 class="section_title">Personal Information</h1>
             </div>
@@ -235,7 +235,7 @@
 <!-- Student Edit Form 2 -->
 
 <%if(edit !== false){%>
-        <div class="popup_container" id="popup_edit_student_details" style="display: flex;">
+        <div class="popup_container admin-edit-from" id="popup_edit_student_details" style="display: flex;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Student Details</p>
@@ -390,15 +390,89 @@
                                     </div>
                                 </div>
                             </div> 
-
-                                               
+                             <div class="view-edit-form-submit">
+                                <div class="admin-edit-btn">
+                                <div class="form_submit">
+                                     <input type="submit">
+                               </div>
+                                </div>
+                             </div>                 
                         </div>
 
-                        <div class="form_submit">
-                            <input type="submit">
-                        </div>    
+                           
                     </form>
-                </div>        
+                </div> 
+                <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>       
             </div>
         </div>
 <%}%>
+
+<style>
+    .view-edit-form-submit{
+        margin-left: 80%;
+        
+    
+    }
+    .admin-edit-btn{
+        width: 250%;
+        
+    }
+    .admin-edit-from{
+        margin-top: 20%;
+        margin-left: 5%;
+
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -15%;
+    margin-left: 77%;
+}
+
+
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -10%;
+  
+}
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+
+    
+</script>
