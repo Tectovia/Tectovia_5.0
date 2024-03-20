@@ -86,6 +86,7 @@ exports.message_sent= async (req,res,next)=>{
     "staffs" : {},
     "classes":classes
   });
+
   if(classes){
   if(Array.isArray(classes)){
   classes.map(async (item)=>{
@@ -96,12 +97,13 @@ exports.message_sent= async (req,res,next)=>{
   }
   }
   
-
+  if(staff){
   Array.isArray(staff)?
   staff.map((item)=>{
     circular.staffs[item]=false;
   }):
   circular.staffs[staff]=false;
+}
   circular.save();
   lastVisited='sent'
   res.redirect("/admin/circular");
@@ -179,6 +181,4 @@ exports.message_editSubmission = async (req,res)=>{
  res.redirect("/admin/circular");
 
 } 
-
-console.log(lastVisited);
 

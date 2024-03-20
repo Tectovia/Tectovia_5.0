@@ -21,6 +21,7 @@ exports.staff_inbox= async (req,res,next)=>{
     circularNotification = circularNotification.unSeenCirculars
     let unSeenCirculars = circularNotification.map((item)=>{return item._id})
     //----------------------------------------------------------------------
+    
     res.render('staff/staff_inbox',{
         circularNotification,
         staffdata,
@@ -31,14 +32,20 @@ exports.staff_inbox= async (req,res,next)=>{
 
 exports.message_seen = async (req,res,next)=>{
     const {id,_id}=req.params
+    const staffdata=await staff.find({_id:id})
+    let newCircular=await circular_model.findOne({_id:_id})
+     // used to show circular notification for staff edited by purushothaman @ 27/2
+     let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+     let circular = circularNotification.allCirculars
+     circularNotification = circularNotification.unSeenCirculars
+     //----------------------------------------------------------------------------
+    newCircular.staffs[staffdata[0].staff_id]=true
+    await circular_model.findByIdAndUpdate({_id:_id},newCircular)
 
-    const staffdata=await staff.findOne({staff_id:id})
-   
-    const new_circular=await circular_model.findOne({_id:_id})
-
-    new_circular.staffs[staffdata.staff_id]=true
-
-    await circular_model.findByIdAndUpdate({_id:_id},new_circular)
-
-    res.redirect(`/staff/inbox/${staffdata._id}`)
+    res.render('staff/staffCircularSeen',{
+        circularNotification,
+        staffdata,
+        circular,
+        newCircular
+    })
 }

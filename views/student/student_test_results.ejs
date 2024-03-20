@@ -4,7 +4,6 @@
         <div class="window_navbar">
             <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
         </div>
-<<<<<<< HEAD
     <% } else { %>
         <div class="window_navbar">
             <%- include('../partials/parent/navigation_bar.ejs') %>
@@ -121,11 +120,6 @@
                     <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button>verified</button></a>
                     <button onclick="toggleDetails('<%= index %>')" class="mark_popup_button">back</button>
                 </div>
-=======
-        <% } else { %>
-            <div class="window_navbar">
-                <%- include('../partials/parent/navigation_bar.ejs') %>
->>>>>>> origin
             </div>
             <% } %>
 
