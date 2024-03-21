@@ -20,7 +20,7 @@ common_info_model.find( function(err, docs) {
       } else {
        
         // Render the ejs template and pass the data
-        res.render('admin_index', { docs });
+        res.redirect('/admin/institution_info/common_info');
       }
   });
 };
