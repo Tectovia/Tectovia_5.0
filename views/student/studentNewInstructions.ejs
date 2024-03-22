@@ -14,7 +14,7 @@
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
         <div class="window_navbar">
-            <%- inlude('../partials/student/navigation_bar.ejs',{notification}) %>
+            <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
          </div>
     <%}else{%>
         
@@ -23,21 +23,11 @@
         </div>
     <%}%>
     <div class="window_container">
-        
-            <a href="/student/circular/<%- student._id %>/<%- student.id %>"><button>Back</button></a>
-        
-        <div class="float_right">
-            <h1><%- formatDate(newCircular.date) %> </h1>
-        </div>
-        <div class="float_left">
-            <h1><%- formatTime(newCircular.date) %> </h1>
-        </div>
         <div class="container center_title">
-             <%- newCircular.title %>
+            New Instruction
         </div>
-        <div>
-            From: <%- newCircular.from %> <br> <br>
-            <%- newCircular.message %>
+        <div class="float_right">
+            <h1><%- formatDate(newInstruction.date) %> </h1>
         </div>
     </div>
 </div>

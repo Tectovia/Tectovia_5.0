@@ -62,11 +62,14 @@ exports.instructionSeen = async (req,res) =>{
     let {_id,batch,instructionId} = req.params;
     let student = await mongoose.model(batch).findById(_id)
     let {recievers} = await message_model.findById({_id:instructionId},{recievers:1})
-
+    const role=req.originalUrl.toString().split('/')[1]
     recievers[student.rollno]=false
-    console.log(recievers);
-    await message_model.findByIdAndUpdate({_id:instructionId},{recievers})
-    res.redirect(`/student/dairy/${student._id}/${student.id}/${student.section}`);
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    //console.log(recievers);
+    let newInstruction = await message_model.findByIdAndUpdate({_id:instructionId},{recievers},{new:true})
+
+    res.render('./student/studentNewInstructions',{student,role,notification,newInstruction})
 }
 
 

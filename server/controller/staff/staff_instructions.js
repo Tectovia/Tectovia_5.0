@@ -91,17 +91,8 @@ exports.instruction_send=async (req,res,next)=>{
     const staff_instruction=req.body.instruction;
     const recievers=req.body.recievers;
     const subjects=req.body.subjects;
-
-    console.log(req.body);
-    
-    
-    let objdate1= new Date()
-    let date=objdate1.getDate()+'-'+(objdate1.getMonth()+1)+'-'+objdate1.getFullYear()+" "+objdate1.getHours()+":"+objdate1.getMinutes()+":"+
-    objdate1.getSeconds()+":"+objdate1.getMilliseconds()
-  
   const new_instruction= new instruction({
     "from":staff.staff_id,
-    "date":date,
     "message":staff_instruction,
     "recievers":{
       default:true
