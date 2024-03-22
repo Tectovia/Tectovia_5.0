@@ -102,7 +102,7 @@ exports.delete_student = async (req, res) => {
         console.log(newDocumentData);
 
         // Assuming mongoose and HostelModel are properly imported
-        const MasterStudent = mongoose.model(req.params.batch );
+        const MasterStudent = mongoose.model(req.params.batch+"_batch" );
 
         // Update the residence field to null in the master database
 
