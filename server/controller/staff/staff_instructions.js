@@ -111,9 +111,8 @@ else {
 }
   
   new_instruction.save()
+  lastVisited='sent';
   res.redirect(`/staff/instructions/${staff._id}`);
-
-   // res.send("sucess")
 }
 
 
