@@ -15,7 +15,10 @@ const circular_model= new mongoose.Schema({
 
     "message":String,
 
-    "staffs":{},
+    "staffs":{
+        type:Object,
+        default:{}
+    },
 
     "classes":Array,
 

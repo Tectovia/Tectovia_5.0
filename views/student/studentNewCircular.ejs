@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/css/students_test_result.css">
+<% function formatDate(date) {
+    const formattedDate = new Date(date);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return formattedDate.toLocaleDateString('en-GB', options);
+} %>
+
+    <% function formatTime(date) { const formattedTime=new Date(date); const hours=formattedTime.getHours() % 12 || 12;
+        const minutes=formattedTime.getMinutes(); const ampm=formattedTime.getHours()>= 12 ? 'PM' : 'AM';
+
+        return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+        } %>
+
+<div class="window" id="window_layout">
+    <%if(role==="student"){%>
+        <div class="window_navbar">
+            <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
+         </div>
+    <%}else{%>
+        
+        <div class="window_navbar">
+            <%- include('../partials/parent/navigation_bar.ejs') %>
+        </div>
+    <%}%>
+    <div class="window_container">
+        
+            <a href="/student/circular/<%- student._id %>/<%- student.id %>"><button>Back</button></a>
+        
+        <div class="float_right">
+            <h1><%- formatDate(newCircular.date) %> </h1>
+        </div>
+        <div class="float_left">
+            <h1><%- formatTime(newCircular.date) %> </h1>
+        </div>
+        <div class="container center_title">
+             <%- newCircular.title %>
+        </div>
+        <div>
+            From: <%- newCircular.from %> <br> <br>
+            <%- newCircular.message %>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,15 @@
         var element = document.getElementById("popup");
         element.style.display = "flex";
     }
+
+    function showYearlyUpdatePopUp(){
+        document.getElementById('yearlyCircularUpadatePopUp').style.display = 'flex'
+        document.getElementById('update').href = "/admin/yearlyUpdate"
+    }
+
+    function hideYearlyCircularUpadatePopUp(){
+        document.getElementById('yearlyCircularUpadatePopUp').style.display = 'none'
+    }
     
 </script>
 
@@ -26,10 +35,15 @@
             <div class="float_right">
                 <button onclick="display_popup()" class="edit_btn">Edit</button>
             </div>
+            <div class="float_left">
+                <button onclick="showYearlyUpdatePopUp()">Yearly Update</button>
+            </div>
+            
         </div>
         
         <% if(item !== null) { %>
             <div class="home_container">
+                
                 <div class="center">
                     <div class="row logo">
                         <img src="/uploads/instition_info/common_info/<%- item.school_logo %>" alt="<%= item.school_logo %>">
@@ -217,9 +231,19 @@
                 </div>
             </div>
         <% } %>
-
-        
-             
+        <div class="popup_container" id="yearlyCircularUpadatePopUp" style="display: none;">
+            <div class="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Disclaimer</p>
+                <span class="close_icon" id="closePopup"  onclick="hideYearlyCircularUpadatePopUp()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    if you upadte all the circulars you sent before and the instructions sent by stafss will be disappeared permanently do you want to update
+                    <br>
+                    <a id="update" href=""><button>Update</button></a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
