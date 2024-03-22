@@ -8,10 +8,11 @@
   
 <div class="instructions_main">
     <div class="form">
-        <div class="in"><h1>INSTRUCTION</h1>  </div>
+    <header class="in"> DAIRY</header>
     <form action='/staff/instructions_send/<%=staffdata[0]._id%>' method="POST">
         <label for="instruction" class="sub_instruction"></label><br>
-        <textarea type="text" id="instruction" class="textbox textarea" name="instruction"></textarea><br><input type="submit" class="submitbox " value="Send"><br><br>
+        <textarea type="text" id="instruction" class="textbox textarea" name="instruction" required></textarea><br>
+        <input type="submit" class="submitbox " value="Send"><br><br>
         <div style="display: flex;">
         <div>
        <div class="recievers_box"> <span  id="recievers" data-fid="classes" class="recieversbox " ><h1>recievers</h1></span></div>
@@ -64,10 +65,24 @@
                
             </div>
             </div>
-
             </div>
     </form>
-
+    <%if(lastVisited === 'sent' ){%>
+        <div class="popup_container" id="messageSentContainer">
+            <div class="popup">
+              <div class="popup_header">
+                <p class="pop_title">Message sent</p>
+                <span class="close_icon" id="closePopup" onclick="hideMessageContainer()">&times;</span>
+              </div>
+              <div class="pop_body">
+                <div style="text-align: center">
+                  <img src="/img/admin/bx-check.svg" /><br />
+                  <h1>Message sent</h1>
+                </div>
+              </div>
+            </div>
+        </div>    
+    <%}%>
 </div>
 
 <div class="history_part">
@@ -182,7 +197,9 @@ document.querySelector('.history_button').addEventListener('click', function() {
         })
     };
     
-
+    function hideMessageContainer() {
+    document.getElementById("messageSentContainer").style.display = "none";
+    }
 
 </script>
 </html>

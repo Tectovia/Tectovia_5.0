@@ -13,16 +13,18 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.admin_index = async (req, res) => {
-common_info_model.find( function(err, docs) {
-    if (err) {
-        console.log(err);
-        // Handle the error
-      } else {
+
+  // common_info_model.find( function(err, docs) {
+  //   if (err) {
+  //       console.log(err);
+  //       // Handle the error
+  //     } else {
        
-        // Render the ejs template and pass the data
-        res.redirect('/admin/institution_info/common_info');
-      }
-  });
+  //       // Render the ejs template and pass the data
+  //       res.render('admin_index', { docs });
+  //     }
+  // });
+  res.redirect('/admin/institution_info/common_info')
 };
 
 // exports.staff_index = async (req, res) => {

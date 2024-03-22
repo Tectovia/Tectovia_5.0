@@ -22,6 +22,9 @@ exports.staff_index = async (req, res) => {
         req.session.obj_id= data[0]._id.toString();
 
         let circularNotification = await noOfCirculars(id)
+         // used to show circular notification for staff edited by purushothaman @ 14/3
+        circularNotification = circularNotification.unSeenCirculars
+        //----------------------------------------------------------------------
 
         res.render('staff_index',{'staffdata':data,circularNotification});
 

@@ -23,25 +23,53 @@ exports.student_dairy=async (req,res)=>{
     // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
     let notification = await noOfNotificationsForStudents(student.rollno,student.id)
     let instructions = notification.digitalDairy
+    let seenInstructions = notification.seenDigitalDairy
     //-----------------------------------------------------------------------------
 
     res.render("./student/digital_dairy",{
         student,
         instructions,
         notification,
+        seenInstructions,
         role
     })
 }
+
+
+exports.studentSeenCircular = async (req,res,next)=>{
+    let {circularId,studentId,batch} = req.params
+    const role=req.originalUrl.toString().split('/')[1]
+    let student = await mongoose.model(batch).findOne({_id:studentId})
+    
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    const datas = notification.circular
+
+    
+
+    let newCircular = await mongoose.model('circular').findById(circularId)
+    await mongoose.model(batch).findByIdAndUpdate({_id:studentId},{$push:{
+        seenCirculars : circularId
+    }}).then(()=>{
+        console.log('updated');
+    })
+    res.render('./student/studentNewCircular',{student,role,datas,notification,newCircular})
+}
+
+
 
 exports.instructionSeen = async (req,res) =>{
     let {_id,batch,instructionId} = req.params;
     let student = await mongoose.model(batch).findById(_id)
     let {recievers} = await message_model.findById({_id:instructionId},{recievers:1})
-
+    const role=req.originalUrl.toString().split('/')[1]
     recievers[student.rollno]=false
-    console.log(recievers);
-    await message_model.findByIdAndUpdate({_id:instructionId},{recievers})
-    res.redirect(`/student/dairy/${student._id}/${student.id}/${student.section}`);
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    //console.log(recievers);
+    let newInstruction = await message_model.findByIdAndUpdate({_id:instructionId},{recievers},{new:true})
+
+    res.render('./student/studentNewInstructions',{student,role,notification,newInstruction})
 }
 
 

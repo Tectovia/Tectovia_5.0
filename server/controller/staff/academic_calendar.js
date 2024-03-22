@@ -19,6 +19,9 @@ exports.academic_calendar = async (req, res) => {
   const id=req.params.id;
   const staffdata=await staff_model.find({_id:id},{})
   let circularNotification = await noOfCirculars(staffdata[0].staff_id);
+   // used to show circular notification for staff edited by purushothaman @ 14/3
+   circularNotification = circularNotification.unSeenCirculars
+   //----------------------------------------------------------------------
       res.render("staff/academic_calendar",{circularNotification,staffdata});
     // });
 };

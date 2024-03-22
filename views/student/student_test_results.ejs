@@ -4,12 +4,11 @@
         <div class="window_navbar">
             <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
         </div>
-        <% } else { %>
-            <div class="window_navbar">
-                <%- include('../partials/parent/navigation_bar.ejs') %>
-            </div>
-            <% } %>
-
+    <% } else { %>
+        <div class="window_navbar">
+            <%- include('../partials/parent/navigation_bar.ejs') %>
+        </div>
+    <% } %>
                 <div class="window_container">
                     <div class="test_conatiner_main">
                         <div class="test_result_heading">
@@ -144,13 +143,12 @@
                                     </div>
                                 </div>
                                 <% }) %>
-                                    <% } else{%>
-                                        <h1>No Test Assigned</h1>
-                                        <%}%>
+                            <% } %>
 
                     </div>
                 </div>
 </div>
+
 <script>
     function toggleDetails(index) {
         var details = document.getElementById('details_' + index);
