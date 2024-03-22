@@ -203,11 +203,10 @@
 
   <div class="window_container">
     <div class="container center_title">
-      <%- name %>
-      <div class="float_left">
-        <a href="/admin/class_info/class_list" id="toggleButton"
-          ><button class="back_btn">Back</button></a
-        >
+       <%- name %>
+     <div class="float_left">
+                <a href="/admin/class_info/class_list" id="toggleButton" class="back_btn"><i class='bx bx-arrow-back'></i></a>
+         </div>
       </div>
       <div class="float_right">
         <button onclick="display_popup_section()" class="add_btn">
@@ -217,7 +216,8 @@
           Add Subject
         </button>
       </div>
-    </div>
+ 
+
 
     <div class="table_container">
       <div class="table_header">
@@ -257,6 +257,7 @@
           <div class="row">
             <h3>Room Number : <%= item.room_number %></h3>
           </div>
+
         </div>
 
         <div class="card_buttons">
@@ -712,6 +713,7 @@
     <% } %>
   </div>
 </div>
+
 
 <style>
   .popup_container.fade-up {
