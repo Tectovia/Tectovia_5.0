@@ -27,17 +27,17 @@
             <%- title %> - <%- sec %>
             <div class="float_left">
 
-                <a href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"><i class='bx bx-arrow-back'></i></a>
+                <a class="back_btn" href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"><i class='bx bx-arrow-back'></i></a>
 
              </div>
 
-            <div class="left">
+            <div class="float_right">
                <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>
 
-            <div class="float_right">
+            <!-- <div class="float_right">
                 <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="delete_btn">Delete</button></a>
-            </div>
+            </div> -->
         </div>
 
         <div class="student_section" style="z-index: 10;">
