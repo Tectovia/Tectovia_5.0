@@ -23,8 +23,12 @@
         </div>
     <%}%>
     <div class="window_container">
+        <div class="container center_title">
+            Circulars
+        </div>
         <%if(datas){%>
             <%datas.reverse().map((item)=>{%> 
+            <a href="/student/circularSeen/<%- item._id %>/<%- student._id %>/<%- student.id %>">
                <div class="container_marks box"> 
                     <div class="main_date">
                         title:<h1> <%- item.title %> </h1>
@@ -35,29 +39,14 @@
                     <div class="main_date">
                         time<h1><%- formatTime(item.date) %> </h1>
                     </div>
-                    <button onclick="showCircular(`<%- item._id %>`)" class="mark_button">
                         <%if(!student.seenCirculars.includes(item._id)){%>
                             <div class="main_date">
                                 <br>
                                 <h1 style="color: green;">new</h1>
                             </div>
                         <%}%>
-                    show</button >
                 </div> 
-                <div class="blurred-background" name="<%- item._id %>"></div>  <!-- Blurred background -->
-                <div class="marks_popup" id="<%- item._id %>" style="display: none;">
-                    <span class="close_icon" id="closePopup" onclick="hideCircular(`<%- item._id %>`)">&times;</span>                            
-                            <div class="main_marks_popup_container">
-                                <div class="mark_popup_maxmarks">From : <%- item.from %> </div>
-                                <div class="mark_popup_minmarks">Date : <%- formatDate(item.date) %> </div>
-                                <div class="mark_popup_minmarks">Time : <%- formatTime(item.date) %> </div>
-                                <div class="mark_popup_minmarks"><%- item.message %></div>
-                                <%if(!student.seenCirculars.includes(item._id)){%>
-                                    <a href="/student/circularSeen/<%- item._id %>/<%- student._id %>/<%- student.id %>"><button>ok</button></a>
-                                <%}%>
-                            </div>
-                           
-                </div>
+            </a>
             <%})%>
         <%}else{%>
             <h1>No circular</h1>

@@ -77,7 +77,7 @@
                 </div>
                 <div class="form_div">
                     <div class="dropdown"  data-control="checkbox-dropdown">
-                              <div class="dropdown-label" id="recievedStaffs">Select Options</div>
+                              <div class="dropdown-label" data-id="RecievedStaffs"></div>
                               <div class="dropdown-list">
                                 <%Object.keys(item.staffs).map((i)=>{%>
                                      <label for=""><%- i %></label><%if(item.staffs[i]===false){%>-Delivered<br><%}else{%>-Read<br><%}%>                                 
@@ -87,7 +87,7 @@
                 </div>  
                 <div class="form_div">
                   <div class="dropdown"  data-control="checkbox-dropdown">
-                            <div class="dropdown-label" id="recivedClasses">Select Options</div>
+                            <div class="dropdown-label" data-id="RecievedClass"></div>
                             <div class="dropdown-list">
                               <%item.classes.map((i)=>{%>
                                    <%class_info.map((j)=>{%>
@@ -325,6 +325,7 @@
 
    
 <script>
+
 (function($) {
   var CheckboxDropdown = function(el) {
     var _this = this;
@@ -332,14 +333,15 @@
     this.areAllChecked = false;
     this.$el = $(el);
     this.$label = this.$el.find('.dropdown-label');
-    this.$recivedClasses = this.$el.find('#recivedClasses')
-    this.$recivedStaffs = this.$el.find('#recievedStaffs')
     this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
     this.$inputs = this.$el.find('[type="checkbox"]');
     
+    let $recievedClasses = $('[data-id="RecievedClass"]');
+    let $recievedStaffs = $('[data-id = "RecievedStaffs"]')
+    $recievedStaffs.html('Recieved Staffs')
+    $recievedClasses.html('Recieved classes')
     this.onCheckBox();
-    this.$recivedClasses.html('Recieved Classes')
-    this.$recivedStaffs.html('Recieved Staffs')
+    
     this.$label.on('click', function(e) {
       e.preventDefault();
       _this.toggleOpen();

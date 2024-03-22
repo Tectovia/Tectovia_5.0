@@ -35,16 +35,28 @@ exports.student_dairy=async (req,res)=>{
     })
 }
 
+
 exports.studentSeenCircular = async (req,res,next)=>{
     let {circularId,studentId,batch} = req.params
-    let {_id,id} = await mongoose.model(batch).findOne({_id:studentId})
+    const role=req.originalUrl.toString().split('/')[1]
+    let student = await mongoose.model(batch).findOne({_id:studentId})
+    
+    // this is to find no of notifications added by purushothaman @ 29/2 7.34 am
+    let notification = await noOfNotificationsForStudents(student.rollno,student.id)
+    const datas = notification.circular
+
+    
+
+    let newCircular = await mongoose.model('circular').findById(circularId)
     await mongoose.model(batch).findByIdAndUpdate({_id:studentId},{$push:{
         seenCirculars : circularId
     }}).then(()=>{
         console.log('updated');
     })
-   res.redirect(`/student/circular/${_id}/${id}`)
+    res.render('./student/studentNewCircular',{student,role,datas,notification,newCircular})
 }
+
+
 
 exports.instructionSeen = async (req,res) =>{
     let {_id,batch,instructionId} = req.params;
