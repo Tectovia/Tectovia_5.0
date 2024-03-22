@@ -506,62 +506,24 @@ exports.view_subject_syllabus = async (req, res) => {
 };
 
 exports.delete_subject_syllabus = async (req, res) => {
-  const id = req.params.id;
-  const title = req.params.title;
-  var name=title.split('_')[0];
-  name=classes_map[name];
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: "Invalid ObjectId" });
-  }
-
   try {
-    const submodel = await subject_model.find(_id);
-    console.log("subject model:",submodel);
-    const deleted = await subject_model.findByIdAndDelete();
-    if (!deleted) {
-      console.log("Cannot Delete");
+    const subjectId = req.params.subjectId;
+    const syllabusId = req.params.syllabusId;
+
+    const subject = await subject_model.findById(subjectId);
+
+    if (!subject) {
+      return res.status(404).send("Subject not found");
     }
-    var subject_syllabus=deleted['subject_syllabus'];
-    var classes = await class_model.find({id:title},{time_table:1,section_name:1,id:1});
-    classes.forEach( async (sect)=>{
-     var section=sect.section_name;
-      for (let i = 1; i <= dayhour.day; i++) {
-        for (let j = 0; j < dayhour.hr; j++) {
-         
-          if (sect.time_table["day" + i][j].sub != "null"&&sect.time_table['day'+i][j].sub==subject) {
-            var staff_id = sect.time_table["day" + i][j].staff_id;
-            var editdata= await staff_model.findOneAndUpdate( {staff_id:staff_id},
-              {
-                $set: {
-                  [`time_table.day${i}.${j}.sub`]: "null",
-                  [`time_table.day${i}.${j}.class`]: "null",
-                  [`time_table.day${i}.${j}.sec`]: "null",
-                },
-              }
-              )
-             var class_edit= await class_model.findOneAndUpdate({id:title,section_name:section},{
-              $set:{
-                [`time_table.day${i}.${j}.sub`]: "null",
-                [`time_table.day${i}.${j}.staff_name`]: "null",
-                [`time_table.day${i}.${j}.staff_id`]: "null",
-              }
-             });
-             console.log("document",class_edit);
-            }
-          }
-        }
-    })
 
+    subject.syllabus.pull({ _id: syllabusId });
 
-    
-
-    res.redirect("/admin/class_info/class_list/" + title);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Internal server error" });
+    await subject.save();
+    res.status(200).send("Syllabus deleted successfully");
+  } catch (error) {
+    console.log("Error deleting syllabus:", error);
+    res.status(500).send("Internal Server Error");
   }
-
 };
 
 exports.delete_subject = async (req, res) => {

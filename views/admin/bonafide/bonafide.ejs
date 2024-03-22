@@ -14,7 +14,6 @@ if (cardToRemove) {
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    // Loop through all cards on the page
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(function(card) {
@@ -37,8 +36,6 @@ if (cardToRemove) {
        showPrintButton(card);
      }
 
-      
-    // Store the state in the card's data attribute
      card.setAttribute("data-print-button-visible", printButtonVisible === "true" ? "false" : "true");
    }
    function send(id){
@@ -71,44 +68,7 @@ if (cardToRemove) {
       <%- include('../../partials/admin/navigation_bar.ejs') %>
   </div>
 
-  <!-- <div class="card_container">
-    <% bonafide_data.forEach(function(bonafide) { %>
-      <div class="card">
-        <div class="card_content">
-          <div class="row">
-            <h3>Student id: <%= bonafide.id %></h3>
-          </div>
-          <div class="row">
-            <h3>Student Class: <%= bonafide.class %></h3>
-          </div>
-          <div class="row">
-            <h3>Student Section: <%= bonafide.section %></h3>
-          </div>
-          <div class="row">
-            <h3>Bonafide Title: <%= bonafide.bonafide_title %></h3>
-          </div>
-          <div class="row">
-            <h3>Bonafide Description: <%= bonafide.bonafide_des %></h3>
-          </div>
-          <button class="approvalButton" onclick="showConfirmation(this)">Approval Button</button>
-          <button class="approvedButton" onclick="showAlert()">Approved Button</button>
-        </div>
-      </div>
-    <% }) %>
-  </div>
-</div>
-   -->
-
-  <!-- <div class="window_container">
-    <div class="container center_title">
-        <div class="float_left">
-            <a href="/admin_index/" id="toggleButton"><button class="btn_warning">Go Back</button></a>
-        </div> -->
-
         <div class="card_container">
-        
-            
-              <!-- Start of the form for each bonafide item -->
               <h1>student Bonafide</h1>
                   <table border="1" class="table">
                   
@@ -135,13 +95,8 @@ if (cardToRemove) {
                           <%}%>
                   <% }) %>
               </table>
-                    
-                    <!-- Removed the inline onclick handler for the approval button to separate concerns -->
-                    <!-- Consider handling the approval click using JavaScript separately -->
                   </div>
                 </div>
-         
-              <!-- End of the form for this bonafide item -->
           </div>
         </div>
         

@@ -142,7 +142,7 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     router.get('/admin/class_info/class_list/view_section/:id/:title/:section/' ,admin_class.view_section);
     router.get('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject);
     router.post('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject_syllabus);
-    router.get('/admin/class_info/class_list/view_subject/delete_syllabus/:id/:title',admin_class.delete_subject_syllabus);
+    router.get('/admin/class_info/class_list/view_subject/delete_syllabus/:_id/:title',admin_class.delete_subject_syllabus);
     //delete section and subject
     router.get('/admin/class_info/class_list/delete_section/:id/:title/:section', admin_class.delete_section);
     router.get('/admin/class_info/class_list/delete_subject/:id/:title', admin_class.delete_subject);

@@ -28,7 +28,6 @@
             <%- name %>
             <div class="float_right">
                 <button onclick="display_popup_add()">Add Syllabus</button>
-                <button onclick="display_popup_add_syllabus()">Add Study meterial</button>
             </div>
             <div class="float_left">
                 <a href="/admin/class_info/class_list" id="toggleButton"><button class="back_btn">Back</button></a>
@@ -50,11 +49,6 @@
                   <div class="todo_edit">
                     <a href="/uploads/subject_info/<%= syllabus.subject_syllabus_pdf %>">
                       <button class="view_btn">View Syllabus</button>
-                    </a>
-                  </div>
-                  <div class="todo_edit">
-                    <a href="/admin/class_info/class_list/view_subject/delete_syllabus/<%= item._id %>/<%=title %>">
-                      <button class="view_btn">Delete</button>
                     </a>
                   </div>
                 </div>
