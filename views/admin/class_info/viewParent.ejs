@@ -14,7 +14,7 @@
         <div class="container center_title">
             
             <div class="float_right">
-                <a href="#" onclick="display_popup()"><button>Edit</button></a>
+                <a href="#" onclick="display_popup()"><button class="edit_btn">Edit</button></a>
             </div>
             
         </div>
@@ -30,8 +30,8 @@
         <div class="father_details">
             <h4>Fathers Name<span class="parent_colon">:</span><span class="parent_details"><%=data.father_name%></span></h4>
             <h4>Father Aadhar<span class="parent_colon1">:</span><span class="parent_details"><%=data.father_aadhar%></span></h4>
-            <h4>Father occupation<span class="parent_colon2">:</span><span class="parent_details"></span><%=data. father_occupation%></span></h4>
-            <h4>Father_voter<span class="parent_colon3">:</span><span class="parent_details"></span><%=data.  father_voter %></span></h4>
+            <h4>Father occupation<span class="parent_colon2">:</span><span class="parent_details"></span><%=data.father_occupation%></span></h4>
+            <h4>Father_voter<span class="parent_colon3">:</span><span class="parent_details"></span><%=data.father_voter %></span></h4>
             <h4>Father Number <span class="parent_colon8">:</span> <span class="parent_details1"><%=data.parent_phone1%></span></h4>
             <h4>Parent Whatsapp<span class="parent_colon10">:</span><span class="parent_details"><%=data.parent_whatsapp%></span></h4>
         </div>
@@ -44,37 +44,49 @@
             <h4> Parent Alter<span class="parent_colon11">:</span><span class="parent_details"><%=data.parent_alter%></span></h4>
         </div>
     </div>
-       
-      
-
-        
-        
-      
-       
-   
-      
         <div class="guardian_other_details">
             <span class="guardian">    <h1>Guardian Details</h1></span>
             <div class="guardian_container">
-                <div>
+                <div class="left_side_guardian">
                     <h4>Guardian Name <span class="parent_colon8">:</span><span class="parent_details"><%=data.guardian_name%></span></h4>
-                    <h4>Guradian Address <span class="parent_colon12">:</span><span class="parent_details"><%=data.guradian_address%></span></h4>
+                    <h4>Guradian Address <span class="parent_colon12">:</span><span class="parent_details"><%=data.guardian_address%></span></h4>
                     <h4>Guradian Alter <span class="parent_colon13">:</span><span class="parent_details"><%=data.guardian_alter%></h4></span>
                 </div>
-                <div>
+                <div class="side_guardian">
                     <h4>Guradian Whatsapp <span class="parent_colon14">:</span><span class="parent_details"><%=data.guardian_whatsapp%></span></h4>
                     <h4>Guardian Number 1 <span class="parent_colon15">:</span><span class="parent_details"><%=data.guardian_phone1%></span></h4>
                     <h4> Guardian Number 2<span class="parent_colon16">:</span><span class="parent_details"><%=data.guardian_phone2%></span><h4></h4>
                 </div>
             </div>
         </div>
-    <div class="parent_documents"> <a href=""><button>view documents</button></a></div>
+    <div class="parent_documents"> <a href="/admin/viewParent/parent_documents/<%= data._id%>/<%= data.id %>"><button>view documents</button></a></div>
  </div>
+ <%if(document=='display'){%>
+    <div class="popup" id="popup">
+        <div class="popup_header">
+            <p class="pop_title">Documents</p>
+            <a href="/admin/viewParent/parentdoc_view/<%= data._id%>/<%= data.id %>"><span class="close_icon" id="closePopup">&times;</span></a>
+        </div>
+        
+            <div style="display: grid;  grid-template-columns: repeat(2,400px);" class="pop_body">
+                
+                <div>
+                    <h2>Father's Image</h2>
+                        <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt="image">
+                </div>
+                <div>
+                    <h2>Profile picture</h2>
+                        <img style="height:300px;width:300px;" src="/uploads/staff_info/<%-data.staff_id%>/<%- data.staff_profile_img %>" alt="image">
+                </div>
+            </div>
+    </div>
+<%}%>
+
 </div>
 
       
 
-    <div id="parent_edit" class="parent_edit" style="display: none;">  
+    <div id="parent_edit" class="parent_edit Edit-Parent-Personal-Details" style="display: none;">  
     <div class="popup parent_edit_form" id="popup">
       <div class="popup_header">
           <p class="pop_title">Edit Parent Personal Details</p>
@@ -125,7 +137,7 @@
                   
                   <div class="form_div text_input">
                     <p>Mother's aadhar</p>
-                    <input class="input" type="text" name="mother_aadhar"  value="<%=data. mother_aadhar%>">
+                    <input class="input" type="text" name="mother_aadhar"  value="<%=data.mother_aadhar%>">
         
                 </div>
                 <div class="form_div text_input">
@@ -165,7 +177,7 @@
                 </div>
                 <div class="form_div text_input">
                     <p>Guardian Address</p>
-                    <input class="input" type="text"  name="guradian_address" value="<%=data.guradian_address%>">
+                    <input class="input" type="text"  name="guradian_address" value="<%=data.guardian_address%>">
         
                 </div>
                 <div class="form_div text_input">
@@ -183,18 +195,31 @@
                   <input class="input" type="file"   >
                  
               </div>
-            
       
                 </div>
-                 
+                
               </div>
-              <div class="form_submit">
-                  <input type="submit" value="Save & Next">
-              </div>    
-         
+              <div class="admin-edit-parent-submit">
+                <div class="admin-edit-parent-btns">
+                <div class="form_submit">
+                <input type="submit" value="Save & Next">
+               </div>
+                </div> 
+              </div>
+              
           </form>
-    </div></div>
+<<<<<<< HEAD
+    </div>
+
+</div>
+=======
+          <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+
+    </div>
+    
+</div>
    
+>>>>>>> Ranjith
     </div>
    
     <script>
@@ -210,6 +235,69 @@
                 document.getElementById('parent_edit').style.display='none';
         })
     </script>
+    <style>
+        .Edit-Parent-Personal-Details{
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -7%;
+    margin-left: 77%;
+}
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -10%;
+  
+}
+.admin-edit-parent-btns{
+    width: 60%;
+}
+.admin-edit-parent-submit{
+    margin-left: 30%;
+}
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+
+    
+</script>
 
 
 

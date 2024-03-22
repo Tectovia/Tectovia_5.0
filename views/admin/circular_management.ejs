@@ -119,7 +119,7 @@
           <% } %>
       <% }) %>
 
-          <div class="popup_container" id="popup_add" style="display: none;">
+          <div class="popup_container admin-circular-form" id="popup_add" style="display: none;">
             <div class="popup">
               <div class="popup_header">
                 <p class="pop_title">Compose Circular</p>
@@ -162,7 +162,7 @@
                         <div class="dropdown-label">Select Options</div>
                         <div class="dropdown-list">
                         <% staff_data.forEach(function(item) { %>
-                          <% if(item.staff_designation == 'non-teaching') { %>
+                          <% if(item.staff_designation == 'teaching') { %>
                             <label class="dropdown-option"><input type="checkbox" value="<%- item.staff_id %>" name="staff"><%- item.staff_id %></label>
                           <% } %>
                         <% }) %>
@@ -201,7 +201,7 @@
 
 
       <%if(show===true){%>
-        <div class="popup_container" id="popup_edit" style="display: flex;">
+        <div class="popup_container admin-circular-form" id="popup_edit" style="display: flex;">
           <div class="popup">
             <div class="popup_header">
               <p class="pop_title">Edit Circular</p>
@@ -408,5 +408,22 @@ function hideMessageContainer(){
   document.getElementById('messageSentContainer').style.display='none'
 }
 </script>
+<style>
+  .admin-circular-form{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
 

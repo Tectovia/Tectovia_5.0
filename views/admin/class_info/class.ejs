@@ -1,81 +1,81 @@
-<link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="/css/card.css" />
 
 <script>
-    function displayDeletePopUp(id,title,sectionName) {
-      var element = document.getElementById("DeleteSectionPopUp");
-      element.style.display = "flex";
-      document.getElementById('deleteSectionButton').href=`/admin/class_info/class_list/delete_section/${id}/${title}/${sectionName}`
-
+  function displayDeletePopUp(id, title, sectionName) {
+    var element = document.getElementById("DeleteSectionPopUp");
+    element.style.display = "flex";
+    document.getElementById(
+      "deleteSectionButton"
+    ).href = `/admin/class_info/class_list/delete_section/${id}/${title}/${sectionName}`;
   }
-function hide_popup_section() {
+  function hide_popup_section() {
     var element = document.getElementById("popup_section");
     element.style.display = "none";
-}
+  }
 
-function display_popup_section() {
+  function display_popup_section() {
     var element = document.getElementById("popup_section");
     element.style.display = "flex";
-}
+  }
 
-function hide_popup_subject() {
+  function hide_popup_subject() {
     var element = document.getElementById("popup_subject");
     element.style.display = "none";
-}
+  }
 
-function display_popup_subject() {
+  function display_popup_subject() {
     var element = document.getElementById("popup_subject");
     element.style.display = "flex";
-}
+  }
 
-function hide_popup_add_fees() {
+  function hide_popup_add_fees() {
     var element = document.getElementById("popup_add_fees");
     element.style.display = "none";
-}
+  }
 
-function display_popup_add_fees() {
+  function display_popup_add_fees() {
     var element = document.getElementById("popup_add_fees");
     element.style.display = "flex";
-    
-}
+  }
 
-function hide_popup_update_fees() {
+  function hide_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
     element.style.display = "none";
-}
+  }
 
-function display_popup_update_fees() {
+  function display_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
     element.style.display = "flex";
     calculateupdateTotalAmount();
-}
+  }
 
-function addFees() {
+  function addFees() {
     // Clone the existing set of inputs
-    var clonedInputs = document.getElementById('addfees').cloneNode(true);
+    var clonedInputs = document.getElementById("addfees").cloneNode(true);
 
     // Clear values in the cloned inputs
-    var inputs = clonedInputs.querySelectorAll('input, select');
+    var inputs = clonedInputs.querySelectorAll("input, select");
     inputs.forEach(function (input) {
-        input.value = '';
+      input.value = "";
     });
 
     // Append the cloned inputs to the container
-    document.getElementById('feesInputs').appendChild(clonedInputs);
+    document.getElementById("feesInputs").appendChild(clonedInputs);
 
     // Recalculate and display the total amount
     calculateTotalAmount();
 
     // Hide the "+" and "-" buttons after cloning
     hideAddRemoveButtons();
-}
+  }
 
-function removeLastFees() {
-    var feesInputs = document.getElementById('feesInputs');
+  function removeLastFees() {
+    var feesInputs = document.getElementById("feesInputs");
     var lastFeesSet = feesInputs.lastElementChild;
 
     // Check if there is at least one set of fees to remove
     if (lastFeesSet) {
-        feesInputs.removeChild(lastFeesSet);
+      feesInputs.removeChild(lastFeesSet);
     }
 
     // Recalculate and display the total amount
@@ -83,62 +83,62 @@ function removeLastFees() {
 
     // Hide the "+" and "-" buttons if there's only one set left
     hideAddRemoveButtons();
-}
+  }
 
-function calculateTotalAmount() {
+  function calculateTotalAmount() {
     var amounts = document.querySelectorAll('input[name="fees_amount"]');
     var totalAmount = 0;
 
     amounts.forEach(function (amountInput) {
-        totalAmount += parseFloat(amountInput.value) || 0;
+      totalAmount += parseFloat(amountInput.value) || 0;
     });
 
     // Update the total amount display
-    document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
-}
+    document.getElementById("totalAmount").textContent = totalAmount.toFixed(2);
+  }
 
-function hideAddRemoveButtons() {
-    var addFeesButton = document.querySelector('#addfees a:first-child');
-    var removeFeesButton = document.querySelector('#addfees a:last-child');
+  function hideAddRemoveButtons() {
+    var addFeesButton = document.querySelector("#addfees a:first-child");
+    var removeFeesButton = document.querySelector("#addfees a:last-child");
 
     // Hide both buttons if there's more than one set of fees
-    if (document.querySelectorAll('#feesInputs > #addfees').length > 1) {
-        addFeesButton.style.display = 'none';
-        removeFeesButton.style.display = 'none';
+    if (document.querySelectorAll("#feesInputs > #addfees").length > 1) {
+      addFeesButton.style.display = "none";
+      removeFeesButton.style.display = "none";
     } else {
-        // Show both buttons if there's only one set of fees
-        addFeesButton.style.display = 'inline-block';
-        removeFeesButton.style.display = 'inline-block';
+      // Show both buttons if there's only one set of fees
+      addFeesButton.style.display = "inline-block";
+      removeFeesButton.style.display = "inline-block";
     }
-}
+  }
 
-function updateFees(){
+  function updateFees() {
     // Clone the existing set of inputs
-     var clonedInputs = document.getElementById('addfees').cloneNode(true);
+    var clonedInputs = document.getElementById("addfees").cloneNode(true);
 
     // Clear values in the cloned inputs
-    var inputs = clonedInputs.querySelectorAll('input, select');
+    var inputs = clonedInputs.querySelectorAll("input, select");
     inputs.forEach(function (input) {
-        input.value = '';
+      input.value = "";
     });
 
     // Append the cloned inputs to the container
-    document.getElementById('feesInputs').appendChild(clonedInputs);
+    document.getElementById("feesInputs").appendChild(clonedInputs);
 
     // Recalculate and display the total amount
     calculateTotalAmount();
 
     // Hide the "+" and "-" buttons after cloning
     hideAddRemoveButtons();
-}
+  }
 
-function removeLastupdateFees(){
-    var feesInputs = document.getElementById('feesInputs');
+  function removeLastupdateFees() {
+    var feesInputs = document.getElementById("feesInputs");
     var lastFeesSet = feesInputs.lastElementChild;
 
     // Check if there is at least one set of fees to remove
     if (lastFeesSet) {
-        feesInputs.removeChild(lastFeesSet);
+      feesInputs.removeChild(lastFeesSet);
     }
 
     // Recalculate and display the total amount
@@ -146,455 +146,590 @@ function removeLastupdateFees(){
 
     // Hide the "+" and "-" buttons if there's only one set left
     hideAddRemoveButtons();
-}
+  }
 
-function updateaddFees() {
+  function updateaddFees() {
     // Clone the existing set of inputs
-    var clonedInputs = document.querySelector('#updatefees .fees_set').cloneNode(true);
+    var clonedInputs = document
+      .querySelector("#updatefees .fees_set")
+      .cloneNode(true);
 
     // Clear values in the cloned inputs
-    var inputs = clonedInputs.querySelectorAll('input, select');
+    var inputs = clonedInputs.querySelectorAll("input, select");
     inputs.forEach(function (input) {
-        input.value = '';
+      input.value = "";
     });
 
     // Append the cloned inputs to the container
-    document.getElementById('updatefees').appendChild(clonedInputs);
+    document.getElementById("updatefees").appendChild(clonedInputs);
 
     // Recalculate and display the total amount
     calculateupdateTotalAmount();
-}
+  }
 
-function removeupdateLastFees() {
-    var feesInputs = document.getElementById('updatefees');
+  function removeupdateLastFees() {
+    var feesInputs = document.getElementById("updatefees");
     var lastFeesSet = feesInputs.lastElementChild;
 
     // Check if there is at least one set of fees to remove
     if (lastFeesSet && feesInputs.children.length > 1) {
-        feesInputs.removeChild(lastFeesSet);
+      feesInputs.removeChild(lastFeesSet);
     }
 
     // Recalculate and display the total amount
     calculateupdateTotalAmount();
-}
+  }
 
-function calculateupdateTotalAmount() {
-    var amounts = document.querySelectorAll('#updateFeesForm input[name^="fees_amount"]');
+  function calculateupdateTotalAmount() {
+    var amounts = document.querySelectorAll(
+      '#updateFeesForm input[name^="fees_amount"]'
+    );
     var totalAmount = 0;
 
     amounts.forEach(function (amountInput) {
-        totalAmount += parseFloat(amountInput.value) || 0;
+      totalAmount += parseFloat(amountInput.value) || 0;
     });
 
     // Update the total amount display
-    document.getElementById('updateTotalAmount').textContent = totalAmount.toFixed(2);
-}
-
+    document.getElementById("updateTotalAmount").textContent =
+      totalAmount.toFixed(2);
+  }
 </script>
 
 <div class="window" id="window_layout">
-    <div class="window_navbar">
-        <%- include('../../partials/admin/navigation_bar.ejs') %>
-    </div>
+  <div class="window_navbar">
+    <%- include('../../partials/admin/navigation_bar.ejs') %>
+  </div>
 
-    <div class="window_container">
-        <div class="container center_title">
-            <%- name %>
-            <div class="float_left">
+  <div class="window_container">
+    <div class="container center_title">
+      <%- name %>
+     <div class="float_left">
                 <a href="/admin/class_info/class_list" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
             </div>
-            <div class="float_right">
-                <button onclick="display_popup_section()">Add Section</button>
-                <button onclick="display_popup_subject()">Add Subject</button>
+      </div>
+      <div class="float_right">
+        <button onclick="display_popup_section()" class="add_btn">
+          Add Section
+        </button>
+        <button onclick="display_popup_subject()" class="add_btn">
+          Add Subject
+        </button>
+      </div>
+    </div>
+
+
+    <div class="table_container">
+      <div class="table_header">
+        <h1 class="title">Class Strength</h1>
+      </div>
+      <table class="table">
+        <tr class="header">
+          <th>Boys</th>
+          <th>Girls</th>
+          <th>Others</th>
+          <th>Total</th>
+        </tr>
+        <tr class="row">
+          <td><%= no_boys %></td>
+          <td><%= no_girls %></td>
+          <td><%= no_others %></td>
+          <td><%= no_total %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container center_title">Sections</div>
+
+    <div class="card_container">
+      <% if (sec) { %> <% sec.forEach(function(item) { %>
+      <div class="section_card">
+        <div class="card_content">
+          <div class="row">
+            <h3>Section : <%= item.section_name %></h3>
+          </div>
+          <div class="row">
+            <h3>
+              Staff Incharge : <%= item.section_incharge_name %> - <%=
+              item.section_incharge_id %>
+            </h3>
+          </div>
+          <div class="row">
+            <h3>Room Number : <%= item.room_number %></h3>
+          </div>
+
+        </div>
+
+        <div class="card_buttons">
+          <div class="">
+            <a
+              href="/admin/class_info/class_list/view_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"
+              ><button class="view_btn">View</button></a
+            >
+          </div>
+          <div class="todo_delete">
+            <!-- <a href="/admin/class_info/class_list/delete_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"></a> -->
+            <button
+              class="delete_btn"
+              onclick="displayDeletePopUp(`<%= item._id %>`,`<%= title %>`,`<%= item.section_name %>`)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="popup_container"
+        id="DeleteSectionPopUp"
+        style="display: none"
+      >
+        <div class="popup">
+          <div class="popup_header">
+            <p class="pop_title">Confirm Delete</p>
+            <span class="close_icon" id="closePopup" onclick="hideDeletePopUp()"
+              >&times;</span
+            >
+          </div>
+          <div class="pop_body">
+            <p>Do You Want to Delete section ?</p>
+            <div class="delete">
+              <a href="" id="deleteSectionButton"
+                ><button class="delete_btn">Delete Section</button></a
+              >
             </div>
+          </div>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+
+    <div class="container center_title">Subject</div>
+
+    <% if (sub) { %>
+    <div class="card_container">
+      <% sub.forEach(function(item) { %>
+      <div class="card">
+        <div class="card_content">
+          <div class="row">
+            <h3>Subject Name : <%= item.subject_name %></h3>
+          </div>
+          <div class="row">
+            <h3>Subject Code : <%= item.subject_code %></h3>
+          </div>
+          <div class="row">
+            <h3>Subject Medium : <%= item.subject_medium %></h3>
+          </div>
         </div>
 
-        <div class="table_container">
-            <div class="table_header">
-                <h1 class="title">Class Strength</h1>
+        <div class="card_buttons">
+          <div class="">
+            <a
+              href="/admin/class_info/class_list/view_subject/<%= item._id %>/<%= title %>"
+              ><button class="view_btn">View</button></a
+            >
+          </div>
+          <div class="todo_delete">
+            <a
+              href="/admin/class_info/class_list/delete_subject/<%= item._id %>/<%= title %>"
+              ><button class="delete_btn">Delete</button></a
+            >
+          </div>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+
+    <div class="container center_title">Fees Table</div>
+
+    <div class="container center_title">
+      <%if(typeof fees !='undefined' ){%> <% if(fees==null){%>
+      <button onclick="display_popup_add_fees()" class="add_btn">
+        Add Fees
+      </button>
+      <%}else{%>
+      <button onclick="display_popup_update_fees()" class="add_btn">
+        Update Fees
+      </button>
+      <% }}%>
+    </div>
+
+    <% if(typeof fees !='undefined' && fees !=null){%>
+    <div class="table_container">
+      <div class="table_header">
+        <center>
+          <h1 class="title">I - MID TERM</h1>
+        </center>
+      </div>
+      <% var total=0 %>
+      <table class="table">
+        <tr class="header">
+          <th>Title</th>
+          <th>Amount</th>
+        </tr>
+
+        <% fees.I_mid_term.forEach((item)=>{%>
+        <tr>
+          <td><%= item.fees_title %></td>
+          <td><%= item.fees_amount %></td>
+          <% total +=parseFloat(item.fees_amount)%>
+        </tr>
+        <%}) %>
+        <tr class="header">
+          <th>Total</th>
+          <th><%=total %></th>
+        </tr>
+      </table>
+    </div>
+
+    <div class="table_container">
+      <div class="table_header">
+        <center>
+          <h1 class="title">II - MID TERM</h1>
+        </center>
+      </div>
+      <% var total=0 %>
+      <table class="table">
+        <tr class="header">
+          <th>Title</th>
+          <th>Amount</th>
+        </tr>
+        <% fees.II_mid_term.forEach((item)=>{%>
+        <tr>
+          <td><%= item.fees_title %></td>
+          <td><%= item.fees_amount %></td>
+          <% total +=parseFloat(item.fees_amount)%>
+        </tr>
+        <%}) %>
+        <tr class="header">
+          <th>Total</th>
+          <th><%=total %></th>
+        </tr>
+      </table>
+    </div>
+
+    <div class="table_container">
+      <div class="table_header">
+        <center>
+          <h1 class="title">III - MID TERM</h1>
+        </center>
+      </div>
+      <% var total=0 %>
+      <table class="table">
+        <tr class="header">
+          <th>Title</th>
+          <th>Amount</th>
+        </tr>
+        <% fees.III_mid_term.forEach((item)=>{%>
+        <tr>
+          <td><%= item.fees_title %></td>
+          <td><%= item.fees_amount %></td>
+          <% total +=parseFloat(item.fees_amount)%>
+        </tr>
+        <%}) %>
+        <tr class="header">
+          <th>Total</th>
+          <th><%=total %></th>
+        </tr>
+      </table>
+    </div>
+    <%} %>
+
+    <div
+      class="popup_container fade-up"
+      id="popup_section"
+      style="display: none"
+    >
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">Add Section</p>
+          <span
+            class="close_icon"
+            id="closePopup"
+            onclick="hide_popup_section()"
+            >&times;</span
+          >
+        </div>
+
+        <div class="pop_body">
+          <form
+            action="/admin/class_info/class_list/submit_section/<%- title %>"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+          >
+            <div class="form_inputs">
+              <div class="form_div text_input">
+                <input
+                  type="text"
+                  class="input"
+                  id="section_name"
+                  name="section_name"
+                  required
+                />
+                <label for="section_name">Section Name</label>
+              </div>
+
+              <div class="form_div text_input">
+                <input
+                  type="text"
+                  class="input"
+                  id="room_number"
+                  name="room_number"
+                  required
+                />
+                <label for="room_number">Room Number</label>
+              </div>
+
+              <div class="form_div select_input form_div_span">
+                <label class="select_label" for="section_incharge"
+                  >Section Incharge</label
+                >
+                <select name="section_incharge" id="section_incharge" required>
+                  <option value=""></option>
+                  <% if (staff) { %> <% staff.forEach(function(item) { %>
+                  <option value="<%= item.staff_id %>">
+                    <%= item.staff_name %> - <%= item.staff_id %>
+                  </option>
+                  <% }) %> <% } %>
+                </select>
+              </div>
+
+              <div class="form_submit form_div_span">
+                <input type="submit" />
+              </div>
             </div>
-            <table class="table">
-                <tr class="header">
-                    <th>Boys</th>
-                    <th>Girls</th>
-                    <th>Others</th>
-                    <th>Total</th>
-                </tr>
-                <tr class="row">
-                    <td><%= no_boys %></td>
-                    <td><%= no_girls %></td>
-                    <td><%= no_others %></td>
-                    <td><%= no_total %></td>
-                </tr>
-            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup_container" id="popup_subject" style="display: none">
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">Add Subject</p>
+          <span
+            class="close_icon"
+            id="closePopup"
+            onclick="hide_popup_subject()"
+            >&times;</span
+          >
         </div>
 
-        <div class="container center_title">
-            Sections
-        </div>
+        <div class="pop_body">
+          <form
+            action="/admin/class_info/class_list/submit_subject/<%- title %>"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+          >
+            <div class="form_inputs">
+              <div class="form_div text_input">
+                <input
+                  type="text"
+                  class="input"
+                  id="subject_name"
+                  name="subject_name"
+                  required
+                />
+                <label for="subject_name">Subject Name</label>
+              </div>
 
-        <div class="card_container">
-            <% if (sec) { %>
-                <% sec.forEach(function(item) { %>
-                    <div class="card">
-                        <div class="card_content">
-                            <div class="row">
-                                <h3>Section : <%= item.section_name %></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Staff Incharge : <%= item.section_incharge_name %> - <%= item.section_incharge_id %></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Room Number : <%= item.room_number %></h3>
-                            </div>
-                        </div>
-                        
-                        <div class="card_buttons">
-                            <div class="">
-                                <a href="/admin/class_info/class_list/view_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"><button class="btn_success">View</button></a>
-                            </div>
-                            <div class="todo_delete">
-                                <!-- <a href="/admin/class_info/class_list/delete_section/<%= item._id %>/<%= title %>/<%= item.section_name %>"></a> -->
-                                <button class="btn_danger" onclick="displayDeletePopUp(`<%= item._id %>`,`<%= title %>`,`<%= item.section_name %>`)">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup_container" id="DeleteSectionPopUp" style="display: none;">
-                        <div class="popup">
-                          <div class="popup_header">
-                            <p class="pop_title">Confirm Delete</p>
-                            <span class="close_icon" id="closePopup" onclick="hideDeletePopUp()">&times;</span>
-                          </div>
-                          <div class="pop_body">
-                            <p>Do You Want to Delete section ?</p>
-                            <div class="delete">
-                              <a href="" id="deleteSectionButton"><button class="btn_danger">Delete Section</button></a>
-                            </div>
-                          </div>
-            
-                        </div>
-                      </div>
-                <% }) %>
-            <% } %>
-        </div>
+              <div class="form_div text_input">
+                <input
+                  type="text"
+                  class="input"
+                  id="subject_code"
+                  name="subject_code"
+                  required
+                />
+                <label for="subject_code">Subject Code</label>
+              </div>
 
-        <div class="container center_title">
-            Subject
+              <div class="form_div select_input form_div_span">
+                <label class="select_label" for="subject_medium"
+                  >Subject Medium</label
+                >
+                <select name="subject_medium" id="subject_medium" required>
+                  <option value=""></option>
+                  <option value="Tamil">Tamil</option>
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi</option>
+                </select>
+              </div>
+              <div class="form_submit form_div_span">
+                <input type="submit" />
+              </div>
+            </div>
+          </form>
         </div>
-        
-        <div class="card_container">
-            <% if (sub) { %>
-                <% sub.forEach(function(item) { %>
-                    <div class="card">
-                        <div class="card_content">
-                            <div class="row">
-                                <h3>Subject Name : <%= item.subject_name %></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Subject Code : <%= item.subject_code %></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Subject Medium : <%= item.subject_medium %></h3>
-                            </div>
-                        </div>
-    
-                        <div class="card_buttons">
-                            <div class="">
-                                <a href="/admin/class_info/class_list/view_subject/<%= item._id %>/<%= title %>"><button class="btn_success">View</button></a>
-                            </div>
-                            <div class="todo_delete">
-                                <a href="/admin/class_info/class_list/delete_subject/<%= item._id %>/<%= title %>"><button class="btn_danger">Delete</button></a>
-                            </div>
-                        </div>
-                    </div>
-                <% }) %>
-            <% } %>
-        </div>
-        
-        <div class="container center_title">
-            Fees Table
-        </div>
+      </div>
+    </div>
 
-        <div class="container center_title">
-            <%if(typeof fees !='undefined'){%>
-                <% if(fees==null){%>
-                    <button onclick="display_popup_add_fees()">Add Fees</button>
-                 <%}else{%>
-                     <button onclick="display_popup_update_fees()">Update Fees</button>
-            <% }}%>
+    <div class="popup_container" id="popup_add_fees" style="display: none">
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">Add Fees</p>
+          <span
+            class="close_icon"
+            id="closePopup"
+            onclick="hide_popup_add_fees()"
+            >&times;</span
+          >
         </div>
-
-        <% if(typeof fees !='undefined' && fees !=null){%>
-            <div class="table_container">
-                <div class="table_header">
-                    <center><h1 class="title">I - MID TERM</h1></center>
+        <div class="pop_body">
+          <form
+            action="/admin/class_info/class_list/submit_fees/<%- title %>"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+            id="feesForm"
+          >
+            <div class="form_inputs" id="feesInputs">
+              <div id="addfees">
+                <div class="form_div select_input">
+                  <label class="select_label" for="fees_term">Term</label>
+                  <select name="fees_term" required>
+                    <option value=""></option>
+                    <option value="I_mid_term">First Mid Term</option>
+                    <option value="II_mid_term">Second Mid Term</option>
+                    <option value="III_mid_term">Third Mid Term</option>
+                  </select>
                 </div>
-                <% var total=0 %>
-                <table class="table">
-                    <tr class="header">
-                        <th>Title</th>
-                        <th>Amount</th>
-                    </tr>
-                
-                <% fees.I_mid_term.forEach((item)=>{%>
-                    <tr>
-                    <td> <%= item.fees_title %></td>
-                    <td> <%= item.fees_amount %></td>
-                    <%  total +=parseFloat(item.fees_amount)%>
-                    </tr>
-                    <%}) %>
-                    <tr class="header">
-                        <th>Total</th>
-                        <th><%=total %></th>
-                    </tr> 
-                
-                </table>
-            </div>
-
-            <div class="table_container">
-                <div class="table_header">
-                    <center><h1 class="title">II - MID TERM</h1></center>
+                <div class="form_div text_input">
+                  <input
+                    type="text"
+                    class="input"
+                    id="fees_title"
+                    name="fees_title"
+                    required
+                  />
+                  <label for="fees_title">Fees Title</label>
                 </div>
-                <% var total=0 %>
-                <table class="table">
-                    <tr class="header">
-                        <th>Title</th>
-                        <th>Amount</th>
-                    </tr>
-                <% fees.II_mid_term.forEach((item)=>{%>
-                    <tr>
-                    <td> <%= item.fees_title %></td>
-                    <td> <%= item.fees_amount %></td>
-                    <%  total +=parseFloat(item.fees_amount)%>
-                    </tr>
-                    <%}) %>
-                    <tr class="header">
-                        <th>Total</th>
-                        <th><%=total %></th>
-                    </tr>
-                </table>
-            </div>
-            
-            <div class="table_container">
-                <div class="table_header">
-                    <center><h1 class="title">III - MID TERM</h1></center>
+                <div class="form_div text_input">
+                  <input
+                    type="number"
+                    class="input"
+                    id="fees_amount"
+                    name="fees_amount"
+                    required
+                    oninput="calculateTotalAmount()"
+                  />
+                  <label for="fees_amount">Amount</label>
                 </div>
-                <% var total=0 %>
-                <table class="table">
-                    <tr class="header">
-                        <th>Title</th>
-                        <th>Amount</th>
-                    </tr>
-                <% fees.III_mid_term.forEach((item)=>{%>
-                    <tr>
-                    <td> <%= item.fees_title %></td>
-                    <td> <%= item.fees_amount %></td>
-                    <%  total +=parseFloat(item.fees_amount)%>
-                    </tr>
-                    <%}) %>
-                    <tr class="header">
-                        <th>Total</th>
-                        <th><%=total %></th>
-                    </tr>
-                </table>
-            </div>
-        <%} %>
-      
-        <div class="popup_container fade-up" id="popup_section" style="display: none;">
-            <div class="popup" id="popup">
-                <div class="popup_header">
-                    <p class="pop_title">Add Section</p>
-                    <span class="close_icon" id="closePopup" onclick="hide_popup_section()">&times;</span>
+                <div class="button-container">
+                  <a onclick="addFees()"> <button>+</button></a>
+                  <a onclick="removeLastFees()"><button>-</button></a>
                 </div>
-
-                <div class="pop_body">
-                    <form action="/admin/class_info/class_list/submit_section/<%- title %>" method="post" enctype="multipart/form-data" class="form">
-                        <div class="form_inputs">
-                            <div class="form_div text_input">
-                                <input type="text" class="input" id="section_name" name="section_name" required>
-                                <label for="section_name">Section Name</label>
-                            </div>
-
-                            <div class="form_div text_input">
-                                <input type="text" class="input" id="room_number" name="room_number" required>
-                                <label for="room_number">Room Number</label>
-                            </div>
-
-                            <div class="form_div select_input form_div_span">
-                                <label class="select_label" for="section_incharge">Section Incharge</label>
-                                <select name="section_incharge" id="section_incharge" required>
-                                    <option value=""></option>
-                                    <% if (staff) { %>
-                                        <% staff.forEach(function(item) { %>
-                                            <option value="<%= item.staff_id %>"><%= item.staff_name %> - <%= item.staff_id %></option>
-                                        <% }) %>
-                                    <% } %>
-                                </select>
-                            </div>
-                                 
-                            <div class="form_submit form_div_span">
-                                <input type="submit">
-                            </div>     
-                        </div>  
-                    </form>
-                </div>        
+              </div>
             </div>
+            <div id="totalAmountDisplay">
+              Total Amount: <span id="totalAmount">0</span>
+            </div>
+            <div class="form_submit form_div_span">
+              <input type="submit" />
+            </div>
+          </form>
         </div>
+      </div>
+    </div>
 
-        <div class="popup_container" id="popup_subject" style="display: none;">
-            <div class="popup" id="popup">
-                <div class="popup_header">
-                    <p class="pop_title">Add Subject</p>
-                    <span class="close_icon" id="closePopup" onclick="hide_popup_subject()">&times;</span>
-                </div>
-                
-                <div class="pop_body">
-                    <form action="/admin/class_info/class_list/submit_subject/<%- title %>" method="post" enctype="multipart/form-data" class="form">
-                        <div class="form_inputs">
-                            <div class="form_div text_input">
-                                <input type="text" class="input" id="subject_name" name="subject_name" required>
-                                <label for="subject_name">Subject Name</label>
-                            </div>
-
-                            <div class="form_div text_input">
-                                <input type="text" class="input" id="subject_code" name="subject_code" required>
-                                <label for="subject_code">Subject Code</label>
-                            </div>
-                            
-                            <div class="form_div select_input form_div_span">
-                                <label class="select_label" for="subject_medium">Subject Medium</label>
-                                <select name="subject_medium" id="subject_medium" required>
-                                    <option value=""></option>
-                                    <option value="Tamil">Tamil</option>
-                                    <option value="English">English</option>
-                                    <option value="Hindi">Hindi</option>
-                                </select>
-                            </div>
-                            <div class="form_submit form_div_span">
-                                <input type="submit">
-                            </div>  
-                        </div>
-                    </form>
-                </div>        
-            </div>
+    <% if(fees!=null)%> <% { %>
+    <div class="popup_container" id="popup_update_fees" style="display: none">
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">Update Fees</p>
+          <span
+            class="close_icon"
+            id="closePopup"
+            onclick="hide_popup_update_fees()"
+            >&times;</span
+          >
         </div>
-
-
-        <div class="popup_container" id="popup_add_fees" style="display: none;">
-            <div class="popup" id="popup">
-                <div class="popup_header">
-                    <p class="pop_title">Add Fees</p>
-                    <span class="close_icon" id="closePopup" onclick="hide_popup_add_fees()">&times;</span>
+        <div class="pop_body">
+          <form
+            action="/admin/class_info/class_list/submit_update_fees/<%- title %>"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+            id="updateFeesForm"
+          >
+            <div class="form_inputs" id="feesInputs">
+              <div id="updatefees">
+                <% var len=0 %> <% len=feesobj['fees_term'].length %> <% for
+                (let i=0; i < len; i++) { %>
+                <div class="fees_set">
+                  <div class="form_div select_input">
+                    <label class="select_label" for="fees_term">Term</label>
+                    <select name="fees_term" required>
+                      <option value="<%= feesobj['fees_term'][i] %>" selected>
+                        <%= feesobj['fees_term'][i] %>
+                      </option>
+                      <option value="I_mid_term">First Mid Term</option>
+                      <option value="II_mid_term">Second Mid Term</option>
+                      <option value="III_mid_term">Third Mid Term</option>
+                    </select>
+                  </div>
+                  <div class="form_div text_input">
+                    <input
+                      type="text"
+                      class="input"
+                      id="fees_title"
+                      name="fees_title"
+                      value="<%= feesobj['fees_title'][i] %>"
+                      required
+                    />
+                    <label for="fees_title">Fees Title</label>
+                  </div>
+                  <div class="form_div text_input">
+                    <input
+                      type="number"
+                      class="input"
+                      id="fees_amount"
+                      name="fees_amount"
+                      value="<%= feesobj['fees_amount'][i] %>"
+                      required
+                      oninput="calculateupdateTotalAmount()"
+                    />
+                    <label for="fees_amount">Amount</label>
+                  </div>
                 </div>
-                <div class="pop_body">
-                    <form action="/admin/class_info/class_list/submit_fees/<%- title %>" method="post" enctype="multipart/form-data" class="form" id="feesForm">
-                        <div class="form_inputs" id="feesInputs">
-                            <div id="addfees">
-                                <div class="form_div select_input">
-                                    <label class="select_label" for="fees_term">Term</label>
-                                    <select name="fees_term" required>
-                                        <option value=""></option>
-                                        <option value="I_mid_term">First Mid Term</option>
-                                        <option value="II_mid_term">Second Mid Term</option>
-                                        <option value="III_mid_term">Third Mid Term</option>
-                                    </select>
-                                </div>
-                                <div class="form_div text_input">
-                                    <input type="text" class="input" id="fees_title" name="fees_title" required>
-                                    <label for="fees_title">Fees Title</label>
-                                </div>
-                                <div class="form_div text_input">
-                                    <input type="number" class="input" id="fees_amount" name="fees_amount" required oninput="calculateTotalAmount()">
-                                    <label for="fees_amount">Amount</label>
-                                </div>
-                                <div class="button-container">
-                                    <a onclick="addFees()"> <button>+</button></a>
-                                    <a onclick="removeLastFees()"><button>-</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="totalAmountDisplay">
-                            Total Amount: <span id="totalAmount">0</span>
-                        </div>
-                        <div class="form_submit form_div_span">
-                            <input type="submit">
-                        </div>
-                    </form>
-                </div>
+                <% } %>
+              </div>
             </div>
+            <div id="updateTotalAmountDisplay">
+              Total Amount: <span id="updateTotalAmount">0</span>
+            </div>
+            <div class="button-container">
+              <button type="button" onclick="updateaddFees()">+</button>
+              <button type="button" onclick="removeupdateLastFees()">-</button>
+            </div>
+            <div class="form_submit">
+              <input type="submit" />
+            </div>
+          </form>
         </div>
-
-       <% if(fees!=null)%>
-       <% { %>
-       <div class="popup_container" id="popup_update_fees" style="display: none;"> 
-        <div class="popup" id="popup">
-            <div class="popup_header">
-                <p class="pop_title">Update Fees</p>
-                <span class="close_icon" id="closePopup" onclick="hide_popup_update_fees()">&times;</span>
-            </div>
-            <div class="pop_body">
-                <form action="/admin/class_info/class_list/submit_update_fees/<%- title %>" method="post" enctype="multipart/form-data" class="form" id="updateFeesForm">
-                    <div class="form_inputs" id="feesInputs">
-                        <div id="updatefees">
-                            <% var len=0 %>
-                            <% len = feesobj['fees_term'].length %>
-                            <% for (let i = 0; i < len; i++) { %>
-                                <div class="fees_set">
-                                    <div class="form_div select_input">
-                                        <label class="select_label" for="fees_term">Term</label>
-                                        <select name="fees_term" required>
-                                            <option value="<%= feesobj['fees_term'][i] %>" selected><%= feesobj['fees_term'][i] %></option>
-                                            <option value="I_mid_term">First Mid Term</option>
-                                            <option value="II_mid_term">Second Mid Term</option>
-                                            <option value="III_mid_term">Third Mid Term</option>
-                                        </select>
-                                    </div>
-                                    <div class="form_div text_input">
-                                        <input type="text" class="input" id="fees_title" name="fees_title" value="<%= feesobj['fees_title'][i] %>" required>
-                                        <label for="fees_title">Fees Title</label>
-                                    </div>
-                                    <div class="form_div text_input">
-                                        <input type="number" class="input" id="fees_amount" name="fees_amount" value="<%= feesobj['fees_amount'][i] %>" required oninput="calculateupdateTotalAmount()">
-                                        <label for="fees_amount">Amount</label>
-                                    </div>
-                                </div>
-                            <% } %>
-                        </div> 
-                    </div>
-                    <div id="updateTotalAmountDisplay">
-                        Total Amount: <span id="updateTotalAmount">0</span>
-                    </div>
-                    <div class="button-container">
-                        <button type="button" onclick="updateaddFees()">+</button>
-                        <button type="button" onclick="removeupdateLastFees()">-</button>
-                    </div>
-                    <div class="form_submit">
-                        <input type="submit">
-                    </div>
-                </form>
-            </div>
-        </div>
+      </div>
     </div>
     <% } %>
-
-    </div>
+  </div>
 </div>
 
 <style>
-    .popup_container.fade-up {
+  .popup_container.fade-up {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s ease-in-out forwards;
-}
+  }
 
-@keyframes fadeInUp {
+  @keyframes fadeInUp {
     0% {
-        opacity: 0;
-        transform: translateY(20px);
+      opacity: 0;
+      transform: translateY(20px);
     }
+
     100% {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
 </style>

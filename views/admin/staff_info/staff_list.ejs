@@ -1,26 +1,23 @@
-
 <script>
-
   function hide_popup_add() {
     var element = document.getElementById("add_staff");
     element.style.display = "none";
-      
   }
-  
+
   function display_popup_add() {
-      var element = document.getElementById("add_staff");
-      element.style.display = "flex";
+    var element = document.getElementById("add_staff");
+    element.style.display = "flex";
   }
 
-  function showDeleteStaffPopUp(stafId){
-      var element = document.getElementById("DeleteStaffPopUp");
-      element.style.display = "flex";
-      var deleteStaff = document.getElementById("deleteStaff");
-      deleteStaff.href = `/admin/staff_info/staff_list/delete/${stafId}`;
+  function showDeleteStaffPopUp(stafId) {
+    var element = document.getElementById("DeleteStaffPopUp");
+    element.style.display = "flex";
+    var deleteStaff = document.getElementById("deleteStaff");
+    deleteStaff.href = `/admin/staff_info/staff_list/delete/${stafId}`;
   }
 
-  function hideDeleteStaffPopUp(){
-    document.getElementById("DeleteStaffPopUp").style.display='none';
+  function hideDeleteStaffPopUp() {
+    document.getElementById("DeleteStaffPopUp").style.display = "none";
   }
 </script>
 
@@ -33,18 +30,20 @@
     <div class="container center_title">
       <%= page_title %>
       <div class="float_right">
-        <button onclick="display_popup_add()">Add</button>
+        <button onclick="display_popup_add()" class="add_btn">Add</button>
       </div>
     </div>
-<!-- showing staff list -->
+    <!-- showing staff list -->
     <% if (data) { %> <% data.forEach(function(item) { %>
-      <div class="container_todo">
-        <div class="img_contain">
-            <div class="todo_profile staff_profile">
-
-            <img src="/uploads/staff_info/<%-item.staff_id%>/<%- item.staff_profile_img %>" alt=""/>
-          </div>
-          </div>
+    <div class="container_todo">
+      <div class="img_contain">
+        <div class="todo_profile staff_profile">
+          <img
+            src="/uploads/staff_info/<%-item.staff_id%>/<%- item.staff_profile_img %>"
+            alt=""
+          />
+        </div>
+      </div>
       <div class="todo_content">
         <div class="todo_row">
           <h3>Name : <%-item.staff_name%></h3>
@@ -59,73 +58,113 @@
         <div class="todo_row">
           <h3>Email ID :<%-item.staff_off_mail%></h3>
         </div>
-       
       </div>
 
       <div class="todo_buttons">
         <div class="todo_edit">
-          <a href="/admin/staff_info/staff_list/view/<%=item._id%>"><button class="btn_warning">View</button></a>
+          <a
+            href="/admin/staff_info/staff_list/view/<%=item._id%>"
+            target=""
+            ><button class="view_btn">View</button></a
+          >
         </div>
         <div class="todo_delete">
-          <button class="btn_danger" onclick="showDeleteStaffPopUp(`<%=item._id%>`)">Delete</button>
+          <button
+            class="delete_btn"
+            onclick="showDeleteStaffPopUp(`<%=item._id%>`)"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
     <br />
     <% }) %> <% } %>
     <div>
-      <div class="popup_container" id="DeleteStaffPopUp" style="display: none;">
+      <div class="popup_container" id="DeleteStaffPopUp" style="display: none">
         <div class="popup">
           <div class="popup_header">
             <p class="pop_title">Disclaimer</p>
-            <span class="close_icon" id="closePopup" onclick="hideDeleteStaffPopUp()">&times;</span>
+            <span
+              class="close_icon"
+              id="closePopup"
+              onclick="hideDeleteStaffPopUp()"
+              >&times;</span
+            >
           </div>
           <div class="pop_body">
             <p>Do You Want to Delete?,You cannot retain the data</p>
             <div class="delete">
-              <a href="" id="deleteStaff"><button class="btn_danger">Delete Staff</button></a>
+              <a href="" id="deleteStaff"
+                ><button class="btn_danger">Delete Staff</button></a
+              >
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-
-    <div class="popup_container" id="add_staff" style="display: none;">
+    <div class="popup_container" id="add_staff" style="display: none">
       <div class="popup">
         <div class="popup_header">
           <p class="pop_title">Add New Staff</p>
-          <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+          <span class="close_icon" id="closePopup" onclick="hide_popup_add()"
+            >&times;</span
+          >
         </div>
 
         <div class="pop_body">
-          <form action="/admin/staff_info/new_staff" method="post" enctype="multipart/form-data" class="form">
+          <form
+            action="/admin/staff_info/new_staff"
+            method="post"
+            enctype="multipart/form-data"
+            class="form"
+          >
             <div class="form_inputs">
-                <div class="form_div text_input">
-                    <input class="input" type="text" id="staff_id" name="staff_id" required>
-                    <label for="staff_id">Staff ID</label>
-                </div>
+              <div class="form_div text_input">
+                <input
+                  class="input"
+                  type="text"
+                  id="staff_id"
+                  name="staff_id"
+                  required
+                />
+                <label for="staff_id">Staff ID</label>
+              </div>
 
-                <div class="form_div text_input">
-                    <input class="input" type="text" id="staff_name" name="staff_name" required>
-                    <label for="staff_name">Staff Name</label>
-                </div>
+              <div class="form_div text_input">
+                <input
+                  class="input"
+                  type="text"
+                  id="staff_name"
+                  name="staff_name"
+                  required
+                />
+                <label for="staff_name">Staff Name</label>
+              </div>
 
-                <div class="form_div text_input">
-                    <input class="input" type="text" id="staff_pass" name="staff_pass" required>
-                    <label for="staff_pass">Staff Password</label>
-                </div>
+              <div class="form_div text_input">
+                <input
+                  class="input"
+                  type="text"
+                  id="staff_pass"
+                  name="staff_pass"
+                  required
+                />
+                <label for="staff_pass">Staff Password</label>
+              </div>
 
-                <div class="form_div select_input">
-                  <label class="select_label" for="staff_experience">staff designation</label>
-                  <select name="staff_designation" id="staff_designation" >
-                      <option value=""></option>
-                      <option value="teaching">teaching</option>
-                      <option value="non-teaching">non-teaching</option>
-                  </select>
-                </div>
-                <!-- <div class="form_div select_input">
+              <div class="form_div select_input">
+                <label class="select_label" for="staff_experience"
+                  >staff designation</label
+                >
+                <select name="staff_designation" id="staff_designation">
+                  <option value=""></option>
+                  <option value="teaching">teaching</option>
+                  <option value="non-teaching">non-teaching</option>
+                </select>
+              </div>
+              <!-- <div class="form_div select_input">
                   <label class="select_label" for="staff_designation"> Gender </label>
                   <select name="gender" id="staff_designation" >
                       <option value=""></option>
@@ -135,15 +174,32 @@
                   </select>
                 </div> -->
               <div class="form_submit form_div_span">
-                <input type="submit">
-              </div> 
+                <input type="submit" />
+              </div>
             </div>
           </form>
         </div>
       </div>
     </div>
+  </div>
 
+  <style>
+    .staff_profile {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--primary-color);
+    }
+    .img_contain {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </div>
+<<<<<<< HEAD
+=======
 
 <style>
   .staff_profile{
@@ -159,4 +215,21 @@
   align-items: center;
 }
 
+.staff-info-list-details {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
+>>>>>>> Ranjith

@@ -24,7 +24,7 @@
         <div class="container center_title">
             School Info
             <div class="float_right">
-                <button onclick="display_popup()">Edit</button>
+                <button onclick="display_popup()" class="edit_btn">Edit</button>
             </div>
         </div>
         
@@ -50,7 +50,7 @@
         <% } %>
         
         <% if(item == null) { %>
-            <div class="popup_container" id="popup" style="display: none;">
+            <div class="popup_container admin-common-info-details" id="popup" style="display: none;">
                 <div class="popup">
                     <div class="popup_header">
                         <p class="pop_title">Add - <%= page_title %></p>
@@ -108,7 +108,7 @@
                                     </select>
                                 </div>
                                 
-                                <div class="form_div select_input">
+                                <div class="form_div select_input Medium-of-Education">
                                     <label class="select_label" for="medium_of_education">Medium of Education</label>
                                     <select name="medium_of_education" id="medium_of_education" required>
                                         <option value=""></option>
@@ -117,19 +117,25 @@
                                         <option value="Hindi">Hindi</option>
                                     </select>
                                 </div>
+                                <div class="common-info-form-submits">
+                                    <div class="common-info-btn">
+                                    <div class="form_submit">
+                                        <input type="submit">
+                                   </div> 
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form_submit">
-                                <input type="submit">
-                            </div>    
+                               
                         </form>
                         
                     </div>
+                    
                 </div>
             </div>
         <% } %>
 
         <% if(item !== null) { %>
-            <div class="popup_container" id="popup" style="display: none;">
+            <div class="popup_container admin-common-info-details" id="popup" style="display: none;">
                 <div class="popup">
                     <div class="popup_header">
                         <p class="pop_title">Edit - School Information</p>
@@ -187,7 +193,7 @@
                                     </select>
                                 </div>
                                 
-                                <div class="form_div select_input">
+                                <div class="form_div select_input medium-of-educations-label">
                                     <label class="select_label" for="medium_of_education">Medium of Education</label>
                                     <select name="medium_of_education" id="medium_of_education">
                                         <option value="<%- item.medium_of_education %>"><%- item.medium_of_education %></option>
@@ -196,14 +202,18 @@
                                         <option value="Hindi">Hindi</option>
                                     </select>
                                 </div>
+                                <div class="common-info-form-submit">
+                                    <div class="common-info-btn">
                                 <div class="form_submit form_div_span">
                                     <input type="submit">
+                                </div>
+                                </div>
                                 </div>  
-                            </div>
-                              
+                            </div>    
                         </form>
                         
                     </div>
+                    <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
                 </div>
             </div>
         <% } %>
@@ -212,3 +222,79 @@
              
     </div>
 </div>
+
+<style>
+    .admin-common-info-details{
+        margin-top: 6%;
+        margin-left: 5%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -8%;
+    margin-left: 77%;
+}
+
+
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -100%;
+  
+}
+.common-info-btn{
+    width: 60%;
+}
+.common-info-form-submit{
+    margin-top: 30%;
+    margin-left: -70%;
+}
+.common-info-form-submits{
+    margin-top: 30%;
+    margin-left: -70%;
+}
+.Medium-of-Education{
+    margin-top: -30%;
+}
+.medium-of-educations-label{
+    margin-top: -30%;
+}
+
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+</script>
