@@ -14,6 +14,10 @@
     element.style.display = "flex";
     var deleteStaff = document.getElementById("deleteStaff");
     deleteStaff.href = `/admin/staff_info/staff_list/delete/${stafId}`;
+    window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
   }
 
   function hideDeleteStaffPopUp() {
@@ -104,7 +108,7 @@
       </div>
     </div>
 
-    <div class="popup_container" id="add_staff" style="display: none">
+    <div class="popup_container  staff-info-list-details" id="add_staff" style="display: none">
       <div class="popup">
         <div class="popup_header">
           <p class="pop_title">Add New Staff</p>
@@ -196,6 +200,23 @@
       justify-content: center;
       align-items: center;
     }
+
+.staff-info-list-details {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
   </style>
 </div>
 <<<<<<< HEAD

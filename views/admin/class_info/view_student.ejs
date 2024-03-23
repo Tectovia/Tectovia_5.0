@@ -23,19 +23,21 @@
     </div>
 
     <div class="window_container container_lr">
-        <div class="container center_title">
+        <div class="container center_title" style="gap: 30%; margin-left: 15%;">
+            
             <%- title %> - <%- sec %>
-            <div class="float_left">
-                <a href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"> <button class="back_btn"> Back</button></a>
+        
+            <div class="float_left" >
+                <a href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>" style="margin-left: -185%;"> <button class="back_btn"> Back</button></a>
              </div>
 
-            <div class="left">
+            <div class="left" style="margin-left: -0%;">
                <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>
-
+<!-- 
             <div class="float_right">
                 <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="delete_btn">Delete</button></a>
-            </div>
+            </div> -->
         </div>
 
         <div class="student_section" style="z-index: 10;">

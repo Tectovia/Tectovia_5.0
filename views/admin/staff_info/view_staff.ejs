@@ -87,14 +87,14 @@
         </div>
         
 <% if(personal=="display"){%>
-<div class="popup staff-personal-input-details" id="popup">
+<div class="popup staff-personal-input-detailsss" id="popup">
   <div class="popup_header">
       <p class="pop_title">Staff Personal Details</p>
       <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
   </div>
   <div class="pop_body">
       <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
-          <div class="form_inputs">
+          <div class="form_inputs admin-staff-personal-input">
               <div class="form_div text_input">
                   <p>Staff ID</p>
                   <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
@@ -190,7 +190,7 @@
                   </select>
               </div>
               <div class="form_div select_input">
-                  <label class="select_label" for="staff_disability">Disability</label>
+                  <label class="select_label admin-disability-label" for="staff_disability">Disability</label>
                   <select name="staff_disability" id="staff_disability" >
                       <option value="<%=data.staff_disability%>"><%=data.staff_disability%></option>
                       <option value="yes">Yes</option>
@@ -263,7 +263,7 @@
                   <input class="input" type="file" id="staff_account_passbook" name="staff_account_passbook" value="<%=data.staff_account_passbook%>">
                   <label for="staff_account_passbook">Bank Passbook Image</label>
               </div>
-              <div class="form_div text_input">
+              <div class="form_div text_input Website-input-details-staff1">
                   <input class="input" type="text" id=" staff_social_media1" name=" staff_social_media1" value="<%=data.staff_social_media1%>">
                   <label for=" staff_social_media1">Website</label>
               </div>
@@ -279,7 +279,7 @@
           </div>
       </form>
 </div>
-<button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+<button id="scrollToTopBtn" style="margin-top: -9%;"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
 </div>
 <%}%>
 <!----------------------------staff education------------------------>
@@ -296,14 +296,14 @@
            </div></div>
        </div>
         <%if(education=='display'){%>
-            <div class="popup" id="popup">
+            <div class="popup Education_Info_Education_Details" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Education Details</p>
                     <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
                 </div>
                 <div class="pop_body">
                     <form action="/admin/staff_info/staff_list/personal_edit_submission/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
-                        <div class="form_inputs">
+                        <div class="form_inputs admin-staff-personal-input">
                             <div class="form_div text_input">
                                 <p>ID</p>
                                 <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
@@ -474,18 +474,21 @@
                                     <label for="staff_add_pg1_college">PG College</label>
                                 </div>
                             
-                                <div class="form_div text_input">
+                                <div class="form_div text_input" >
                                     <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" value="<%=data.staff_add_pg1_mark%>">
                                     <label for="staff_pg_marksheet">PG Marksheet</label>
                                 </div>
-                                <div class="form_submit form_div_span">
+                                <div class="admin-staff-form-submit-input">
+                                <div class="form_submit form_div_span staff-form-save">
                                     <input type="submit">
+                                </div>
                                 </div> 
                             </div>   
                         </form>
                         
                     </div>
-                
+                    <button id="scrollToTopBtn" style="margin-top: -13%;"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+
                 </div>
 
         <%}%>
@@ -508,7 +511,7 @@
             </div></div>
         </div></div>
         <%if(achievement=='display'){%>
-            <div class="popup" id="popup">
+            <div class="popup Achievement_Details_form" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Achievement Details</p>
                     <a href="/admin/staff_info/staff_list/view/<%=data._id%>"><span class="close_icon" id="closePopup">&times;</span></a>
@@ -617,12 +620,39 @@
 </div>
   
 <style>
-    .staff-personal-input-details{
-       z-index: 10;
-        margin-left: 5%;
+    .staff-personal-input-detailsss{
+        z-index: 10;
+        margin-left: 10%;
+        margin-top: -80%;
         opacity: 0;
         transform: translateY(20px);
         animation: fadeInUp 0.5s ease-in-out forwards;
+        width: 60%;
+        
+    }
+
+    .Education_Info_Education_Details{
+
+     opacity: 0;
+     transform: translateY(20px);
+     animation: fadeInUp 0.5s ease-in-out forwards;
+     margin-top: -110%;
+     margin-left: 10%;
+     z-index: 10;
+     width: 44.4%;
+}
+.Achievement_Details_form{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+    margin-top: -120%;
+    margin-left: 10%;
+    z-index: 10;
+}
+
+
+    .admin-staff-personal-input{
+        grid-template-columns: 50% 50%;
     }
     @keyframes fadeInUp {
     0% {
@@ -657,12 +687,28 @@
     margin-top: -1%;
 }
 .staff-form-save-next{
-    margin-top: 20%;
-    margin-left: -50%;
+    margin-top: 2%;
+    margin-left: 60%;
 }
 .Website-input-details-staff{
-    margin-top: -20%;
+    
+    
+    height: 50%;
 }
+.staff-form-save{
+    margin-top: 4%;
+    margin-left: 40%;
+    width: 0%;
+}
+
+.admin-staff-form-submit-input{
+    
+    width: 70%;
+    margin-left: 50%;
+}
+/* .admin-disability-label{
+    
+*/
 </style>
 
 <script>

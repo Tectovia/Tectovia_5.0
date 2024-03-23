@@ -61,7 +61,7 @@
     </div>
 </div>
 <% if (typeof class_data !== 'undefined') { %>
-    <div class="pop_body">
+    <div class="pop_body ">
         <div id="formContainer" class="popup hostel_form" style="display:block;">
             <span class="close_icon" id="closePopup">&times;</span> <br><br>
             <form id="studentForm" action="/admin/hostel/addstudents" method="post">
@@ -110,7 +110,7 @@
 
 
     <!--  --------------------------------------------------- -->
-    <div class="pop_body">
+    <div class="pop_body ">
         <div id="formContainer" class="popup hostel_form" style="display: none;">
             <span class="close_icon" id="closePopup">&times;</span> <br><br>
             <form id="studentForm" action="/admin/hostel/addstudents" method="post">
@@ -151,7 +151,7 @@
     </div>
     <!-- ------------------for edit---------------------- -->
     <div class="pop_body">
-        <div id="formContainer1" class="popup hostel_form" style="display: none;">
+        <div id="formContainer1" class="popup hostel_form edit-hostel-page" style="display: none;">
             <span class="close_icon" id="closePopup1" style="color: red;">&times;</span>
             <br><br>
             <form id="studentForm" action="/admin/hostel/edithostel" method="post">
@@ -268,3 +268,24 @@ window.addEventListener('load', adjustFormPosition);
 
 
 </script>
+<style>
+    .hostel-students-form-admins{
+        margin-top: -1%;
+        margin-left: 2%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>

@@ -122,7 +122,7 @@ common_info_model.find( function(err, docs) {
 // };
 
 
-//attendance_graph
+// attendance_graph
 
 
 
