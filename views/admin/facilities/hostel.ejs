@@ -182,6 +182,22 @@
             </form>
         </div>
     </div>
+
+    <div class="popup_container" id="delete_student_container" >
+        <div class="popup">
+          <div class="popup_header">
+            <p class="pop_title">Confirm Delete</p>
+            <span class="close_icon" id="closePopup" onclick="hideStudentDelete()">&times;</span>
+          </div>
+          <div class="pop_body">
+            <p>Do You Want to Delete?</p>
+            <div class="delete">
+              <a href="" id="archive_circular"><button class="view_btn">Archive</button></a>
+              <a href="" id="delete_circular"><button class="delete">Delete Permanent</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
    
 
         <script>
@@ -217,6 +233,10 @@ function adjustFormPosition() {
     var contentHeight = document.querySelector('.display_students').offsetHeight;
     var form = document.querySelector('.hostel_form');
     form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
+}
+
+function hideStudentDelete(){
+    document.getElementById('delete_student_container').style.display = 'none'
 }
 
 window.addEventListener('load', adjustFormPosition);

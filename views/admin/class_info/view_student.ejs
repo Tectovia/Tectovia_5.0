@@ -24,7 +24,7 @@
 
     <div class="window_container container_lr">
         <div class="container center_title">
-            <%- title %> - <%- sec %>
+            <%- classes_map[title.split("_batch")[0]] %> - <%- sec %>
             <div class="float_left">
 
                 <a class="back_btn" href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"><i class='bx bx-arrow-back'></i></a>
@@ -65,6 +65,12 @@
                      <button class="btn_success edit_student_btn">Edit student basic information</button>
                 </a>             
             </div> -->
+        </div>
+        <br>
+        <div class="float_right" style="width: fit-content;">
+            <a href="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>">
+                <button class="edit_btn edit_section_btn">Edit personal details</button>
+            </a>
         </div>
 
         <div class="student_section" style="z-index: 10;">
@@ -125,11 +131,6 @@
                 </div>
             </div>
             <br>
-            <div class="edit_section">
-                <a href="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>">
-                    <button class="edit_btn edit_section_btn">Edit student personal details</button>
-                </a>
-            </div>
             <br>
         </div>
 </div>

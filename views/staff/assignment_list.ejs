@@ -17,15 +17,19 @@ function display_popup_subject() {
     <div class="window_navbar">
       <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
-  
-  
     <div class="window_container">
-        <div class="float_right">
-          
+      
+        <a class="back_btn" href="/staff/assignment/<%- staffdata[0]._id %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
+     
+        <div class="float_right"> 
             <button onclick="display_popup_subject()">Add </button>
         </div>
         <br><br>
         <br><br>
+
+        <div class="container center_title">
+          Assignments
+        </div>
        
         <% assign.forEach((items,i)=> { %>
          

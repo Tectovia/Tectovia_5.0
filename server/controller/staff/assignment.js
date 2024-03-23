@@ -8,6 +8,7 @@ const staff_model = require("../../models/admin/staff_information_model");
 const class_model = require("../../models/admin/section_model");
 const subject_model = require("../../models/admin/subject_model");
 const student_model = require("../../models/admin/student_model");
+let {classes_map} = require('../universal_controller/class_map')
 const {noOfCirculars}=require('../universal_controller/notificationFunction')
 
 
@@ -73,7 +74,7 @@ exports.assignment=async (req,res)=>{
     circularNotification = circularNotification.unSeenCirculars
     //----------------------------------------------------------------------
       
-        res.render('staff/assignment',{staffdata,subject,circularNotification});
+        res.render('staff/assignment',{staffdata,subject,circularNotification,classes_map});
     } catch (error) {
       console.log(error);
     }
