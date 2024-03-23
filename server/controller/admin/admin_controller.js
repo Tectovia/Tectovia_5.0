@@ -124,7 +124,7 @@ exports.admin_index = async (req, res) => {
 // };
 
 
-//attendance_graph
+// attendance_graph
 
 
 

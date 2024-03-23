@@ -150,14 +150,14 @@
 
         <% if(item !== null) { %>
             <div class="popup_container admin-common-info-details" id="popup" style="display: none;">
-                <div class="popup">
+                <div class="popup  ">
                     <div class="popup_header">
                         <p class="pop_title">Edit - School Information</p>
                     <span class="close_icon" id="closePopup"  onclick="hide_popup()">&times;</span>
                     </div>
                     <div class="pop_body">
                         <form action="/admin/institution_info/common_info/update_common_info" method="post" enctype="multipart/form-data" class="form">
-                            <div class="form_inputs">
+                            <div class="form_inputs admin-common-info-details-edit">
                                 <div class="form_div text_input">
                                     <input class="input" type="text" id="school_name" name="school_name" value="<%- item.school_name %>">
                                     <label for="school_name">School Name</label>
@@ -254,6 +254,7 @@
         opacity: 0;
         transform: translateY(20px);
         animation: fadeInUp 0.5s ease-in-out forwards;
+    
     }
     @keyframes fadeInUp {
     0% {
@@ -264,6 +265,9 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+.admin-common-info-details-edit{
+    grid-template-columns: 1fr 1fr;
 }
 #scrollToTopBtn {
     display: none;

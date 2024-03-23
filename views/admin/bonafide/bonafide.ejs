@@ -109,24 +109,24 @@ if (cardToRemove) {
         
             
               <!-- Start of the form for each bonafide item -->
-              <h1>student Bonafide</h1>
-                  <table border="1" class="table">
+              <h1 class="admin-bonafide-tatile">student Bonafide</h1>
+                  <table border="1" class="table table-admin-bonafide">
                   
                       <tr class="header">
-                          <th>Name</th>
+                
                           <th>Roll No</th>
-                          <th>Room Number</th>
-                          <th>Edit</th>
-          
-                           <th>Delete</th>
+                            <th>Name</th>
+                         <th>Description</th>
+                           <th>Title</th>
+                           <th colspan="2">Options</th>
                       </tr>
                       <% bonafide_data.forEach(function(bonafide) { %>
                         <%if(bonafide.approval!==true && bonafide.cancel!==true){%>
-                          
+        
                           <tr> 
                             <td><%- bonafide.id %></td>
                             <td><%- bonafide.name %></td>
-                            <td><%- bonafide.section %></td>
+                             <!-- <td><%- bonafide.section %></td> -->
                             <td><%- bonafide.bonafide_title%></td>
                             <td><%- bonafide.bonafide_des %></td>
                             <td><button><a href="/admin/bonafide/approval/<%=bonafide._id%>">Approve</a></button></td>
@@ -145,3 +145,26 @@ if (cardToRemove) {
           </div>
         </div>
         
+<style>
+  .table-admin-bonafide{
+    margin-top: 70%;
+   
+    box-shadow: 0 0 20px var(--primary-color);
+  
+    border-collapse: collapse;
+    width: auto;
+  
+    
+   
+  }
+  .admin-bonafide-tatile{
+    margin-top: 30%;
+    margin-left: 180%;
+    height: 2%;
+    width: 100%;
+   
+    font-size: 1.8rem;
+  }
+
+  
+</style>        

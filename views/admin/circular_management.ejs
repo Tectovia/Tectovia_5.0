@@ -130,7 +130,7 @@
               </div>
             </div>
 
-                <div class="popup_container" id="popup_add" style="display: none">
+                <div class="popup_container admin-Compose-Circular-form" id="popup_add" style="display: none">
                   <div class="popup">
                     <div class="popup_header">
                       <p class="pop_title">Compose Circular</p>
@@ -207,7 +207,7 @@
                 </div>
 
                 <%if(show===true){%>
-                  <div class="popup_container" id="popup_edit" style="display: flex">
+                  <div class="popup_container admin-edit-Circular-form" id="popup_edit" style="display: flex">
                     <div class="popup">
                       <div class="popup_header">
                         <p class="pop_title">Edit Circular</p>
@@ -427,3 +427,28 @@ function hideMessageContainer() {
   document.getElementById("messageSentContainer").style.display = "none";
 }
 </script>
+<style>
+  .admin-Compose-Circular-form{
+        
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-edit-Circular-form{
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+</style>
