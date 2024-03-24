@@ -192,7 +192,6 @@ let circularNotification = await noOfCirculars(staffdata[0].staff_id)
  // used to show circular notification for staff edited by purushothaman @ 14/3
  circularNotification = circularNotification.unSeenCirculars
  //----------------------------------------------------------------------
-console.log(list[0]);
 res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularNotification})
 }
 
@@ -210,7 +209,8 @@ try {
 
   var textcontent;
   const staffdata = await staff_model.find({ 'staff_id':staff },{ staff_id: 1, staff_name: 1, });
-   assignment.source.forEach(element => {
+
+  assignment.source.forEach(element => {
     if(element[rollno])
       textcontent=element[rollno];
    });
