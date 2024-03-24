@@ -62,7 +62,7 @@
     <div class="parent_documents"> <a href="/admin/viewParent/parent_documents/<%= data._id%>/<%= data.id %>"><button>view documents</button></a></div>
  </div>
  <%if(document=='display'){%>
-    <div class="popup view-Documents-parants" id="popup">
+    <div class="popup" id="popup">
         <div class="popup_header">
             <p class="pop_title">Documents</p>
             
@@ -209,13 +209,12 @@
               </div>
               
           </form>
-          
-          <button id="scrollToTopBtn" style=" width: none;"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+          <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+
     </div>
-   
+    
 </div>
    
-
     </div>
    
     <script>
@@ -250,20 +249,18 @@
     }
     
 }
-#scrollToTopBtn{
+#scrollToTopBtn {
     display: none;
     background: none;
     border: none;
     width: 10%;
-    height: 1%;
     cursor: pointer;
     margin-top: -7%;
     margin-left: 77%;
 }
 #scrollToTopBtn i {
     margin-left: 90%;
-    width: 10%;
-
+    
     margin-top: -10%;
   
 }
@@ -272,13 +269,6 @@
 }
 .admin-edit-parent-submit{
     margin-left: 30%;
-}
-.view-Documents-parants{
-    z-index: 10;
-    margin-top: -70%;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-in-out forwards; 
 }
 </style>
 <script>

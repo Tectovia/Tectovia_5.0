@@ -9,7 +9,6 @@ const common_info_model = require('../../../models/admin/common_info_model');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 //--------------------  Common_info  -------------------------------
 
 exports.common_info = async (req, res) => {  
