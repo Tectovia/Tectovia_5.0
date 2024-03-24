@@ -47,7 +47,6 @@
       <div class="window_navbar">
         <%- include('../partials/admin/navigation_bar.ejs') %>
       </div>
-
       <div class="window_container">
         <div class="container center_title">
           Circular
@@ -55,9 +54,7 @@
             <button class="add_btn" onclick="display_popup_add()">Add</button>
           </div>
         </div>
-
-        <!-- Previous Circulars -->
-        <% sent_circular.forEach(function(item) { %>
+        <% sent_circular.reverse().forEach(function(item) { %>
           <% if(item.delete===false) { %>
             <div class="circular_container">
               <div class="circular_header">
@@ -66,7 +63,6 @@
                   <div class="time">Date : <%- formatDate(item.date) %></div>
                   <div class="time">Time : <%- formatTime(item.date) %></div>
                 </div>
-
                 <div class="circular_buttons">
                   <div class="edit">
                     <a href="/admin/circular/edit_circular/<%= item._id %>" id="toggleButton">
@@ -79,6 +75,30 @@
                     </button>
                   </div>
                 </div>
+                <div class="form_div">
+                    <div class="dropdown"  data-control="checkbox-dropdown">
+                              <div class="dropdown-label" data-id="RecievedStaffs"></div>
+                              <div class="dropdown-list">
+                                <%Object.keys(item.staffs).map((i)=>{%>
+                                     <label for=""><%- i %></label><%if(item.staffs[i]===false){%>-Delivered<br><%}else{%>-Read<br><%}%>                                 
+                                <%})%>
+                              </div>   
+                    </div> 
+                </div>  
+                <div class="form_div">
+                  <div class="dropdown"  data-control="checkbox-dropdown">
+                            <div class="dropdown-label" data-id="RecievedClass"></div>
+                            <div class="dropdown-list">
+                              <%item.classes.map((i)=>{%>
+                                   <%class_info.map((j)=>{%>
+                                    <%if(j.batch===i){%>
+                                      <label><%-j.class%></label><br>
+                                    <%}%>
+                                  <%})%>                                
+                              <%})%>
+                            </div>   
+                  </div> 
+              </div>              
               </div>
 
               <div class="circular_title">
@@ -91,6 +111,8 @@
               </div>
             </div>
 
+          <% } %>
+      <% }) %>
             <!-- Confirm Delete -->
             <div class="popup_container" id="delete_circular_container" style="display: none">
               <div class="popup">
@@ -108,10 +130,7 @@
               </div>
             </div>
 
-            <% } %>
-              <% }) %>
-
-                <div class="popup_container" id="popup_add" style="display: none">
+                <div class="popup_container admin-Compose-Circular-form" id="popup_add" style="display: none">
                   <div class="popup">
                     <div class="popup_header">
                       <p class="pop_title">Compose Circular</p>
@@ -126,8 +145,7 @@
                           </div>
 
                           <div class="form_div text_input">
-                            <input type="text" class="input" id="from" name="from" % />
-                            required>
+                            <input type="text" class="input" id="from" name="from" required>
                             <label for="from">From</label>
                           </div>
 
@@ -140,8 +158,8 @@
                                   <% if(item.staff_designation=='teaching' ) { %>
                                     <label class="dropdown-option"><input type="checkbox" value="<%- item.staff_id %>"
                                         name="staff" /><%- item.staff_id %></label>
-                                    <% } %>
-                                      <% }) %>
+                                  <% } %>
+                                <% }) %>
                               </div>
                             </div>
                           </div>
@@ -189,11 +207,11 @@
                 </div>
 
                 <%if(show===true){%>
-                  <div class="popup_container" id="popup_edit" style="display: flex">
+                  <div class="popup_container admin-edit-Circular-form" id="popup_edit" style="display: flex">
                     <div class="popup">
                       <div class="popup_header">
                         <p class="pop_title">Edit Circular</p>
-                        <span class="close_icon" id="closePopup" onclick="hide_popup_edit()">&times;</span>
+                        <a href="/admin/circular"><span class="close_icon" id="closePopup" onclick="hide_popup_edit()">&times;</span></a>
                       </div>
                       <div class="pop_body">
                         <form action="/admin/circular/messageEditDone/<%= editCircular._id %>" method="post"
@@ -263,19 +281,17 @@
                                       <label class="dropdown-option"><input type="checkbox" value="<%- item.batch %>"
                                           name="classes" checked /><%- item.class %> - <%- item.batch %></label>
                                       <%}else {%>
+                                        <label class="dropdown-option"><input type="checkbox"
+                                          value="<%- item.batch %>" name="classes" /><%- item.class %> - <%-item.batch %></label>
                                         <%}%>
-                                          <label class="dropdown-option"><input type="checkbox"
-                                              value="<%- item.batch %>" name="classes" /><%- item.class %> - <%-
-                                                item.batch %></label>
-                                          <% }) %>
+                                      <% }) %>
                                 </div>
                               </div>
                             </div>
 
                             <div class="form_div textarea">
                               <label for="message">Circular Discription</label>
-                              <textarea id="desc" name="message">
-<%= editCircular.message %></textarea>
+                              <textarea id="desc" name="message"><%= editCircular.message %></textarea>
                             </div>
 
                             <div class="form_submit form_div_span">
@@ -305,100 +321,134 @@
           </div>
         </div>
         <%}%>
-    </div>
+          </div>
 
-    <script>
-      (function ($) {
-        var CheckboxDropdown = function (el) {
-          var _this = this;
-          this.isOpen = false;
-          this.areAllChecked = false;
-          this.$el = $(el);
-          this.$label = this.$el.find(".dropdown-label");
-          this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
-          this.$inputs = this.$el.find('[type="checkbox"]');
+   
+<script>
 
-          this.onCheckBox();
-
-          this.$label.on("click", function (e) {
-            e.preventDefault();
-            _this.toggleOpen();
-          });
-
-          this.$checkAll.on("click", function (e) {
-            e.preventDefault();
-            _this.onCheckAll();
-          });
-
-          this.$inputs.on("change", function (e) {
-            _this.onCheckBox();
-          });
-        };
-
-        CheckboxDropdown.prototype.onCheckBox = function () {
-          this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.updateStatus = function () {
-          var checked = this.$el.find(":checked");
-
-          this.areAllChecked = false;
-          this.$checkAll.html("Check All");
-
-          if (checked.length <= 0) {
-            this.$label.html("Select Options");
-          } else if (checked.length === 1) {
-            this.$label.html(checked.parent("label").text());
-          } else if (checked.length === this.$inputs.length) {
-            this.$label.html("All Selected");
-            this.areAllChecked = true;
-            this.$checkAll.html("Uncheck All");
-          } else {
-            this.$label.html(checked.length + " Selected");
-          }
-        };
-
-        CheckboxDropdown.prototype.onCheckAll = function (checkAll) {
-          if (!this.areAllChecked || checkAll) {
-            this.areAllChecked = true;
-            this.$checkAll.html("Uncheck All");
-            this.$inputs.prop("checked", true);
-          } else {
-            this.areAllChecked = false;
-            this.$checkAll.html("Check All");
-            this.$inputs.prop("checked", false);
-          }
-
-          this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.toggleOpen = function (forceOpen) {
-          var _this = this;
-
-          if (!this.isOpen || forceOpen) {
-            this.isOpen = true;
-            this.$el.addClass("on");
-            $(document).on("click", function (e) {
-              if (!$(e.target).closest("[data-control]").length) {
-                _this.toggleOpen();
-              }
-            });
-          } else {
-            this.isOpen = false;
-            this.$el.removeClass("on");
-            $(document).off("click");
-          }
-        };
-
-        var checkboxesDropdowns = document.querySelectorAll(
-          '[data-control="checkbox-dropdown"]'
-        );
-        for (var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
-          new CheckboxDropdown(checkboxesDropdowns[i]);
+(function($) {
+  var CheckboxDropdown = function(el) {
+    var _this = this;
+    this.isOpen = false;
+    this.areAllChecked = false;
+    this.$el = $(el);
+    this.$label = this.$el.find('.dropdown-label');
+    this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+    this.$inputs = this.$el.find('[type="checkbox"]');
+    
+    let $recievedClasses = $('[data-id="RecievedClass"]');
+    let $recievedStaffs = $('[data-id = "RecievedStaffs"]')
+    $recievedStaffs.html('Recieved Staffs')
+    $recievedClasses.html('Recieved classes')
+    this.onCheckBox();
+    
+    this.$label.on('click', function(e) {
+      e.preventDefault();
+      _this.toggleOpen();
+    });
+    
+    this.$checkAll.on('click', function(e) {
+      e.preventDefault();
+      _this.onCheckAll();
+    });
+    
+    this.$inputs.on('change', function(e) {
+      _this.onCheckBox();
+    });
+  };
+  
+  CheckboxDropdown.prototype.onCheckBox = function() {
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.updateStatus = function() {
+    var checked = this.$el.find(':checked');
+    
+    this.areAllChecked = false;
+    this.$checkAll.html('Check All');
+    
+    if(checked.length <= 0) {
+      this.$label.html('Select Options');
+    }
+    else if(checked.length === 1) {
+      this.$label.html(checked.parent('label').text());
+    }
+    else if(checked.length === this.$inputs.length) {
+      this.$label.html('All Selected');
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+    }
+    else {
+      this.$label.html(checked.length + ' Selected');
+    }
+  };
+  
+  CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+    if(!this.areAllChecked || checkAll) {
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+      this.$inputs.prop('checked', true);
+    }
+    else {
+      this.areAllChecked = false;
+      this.$checkAll.html('Check All');
+      this.$inputs.prop('checked', false);
+    }
+    
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+    var _this = this;
+    
+    if(!this.isOpen || forceOpen) {
+       this.isOpen = true;
+       this.$el.addClass('on');
+      $(document).on('click', function(e) {
+        if(!$(e.target).closest('[data-control]').length) {
+         _this.toggleOpen();
         }
-      })(jQuery);
+      });
+    }
+    else {
+      this.isOpen = false;
+      this.$el.removeClass('on');
+      $(document).off('click');
+    }
+  };
+  
+  var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+  for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+    new CheckboxDropdown(checkboxesDropdowns[i]);
+  }
+})(jQuery);
 
-      function hideMessageContainer() {
-        document.getElementById("messageSentContainer").style.display = "none";
-      }
-    </script>
+function hideMessageContainer() {
+  document.getElementById("messageSentContainer").style.display = "none";
+}
+</script>
+<style>
+  .admin-Compose-Circular-form{
+        
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-edit-Circular-form{
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+</style>

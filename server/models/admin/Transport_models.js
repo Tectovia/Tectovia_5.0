@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const transports_schema = new mongoose.Schema({
         bus_number:{
 
-            type : Number 
+            type : String
 
             },
 
@@ -34,13 +34,13 @@ const transports_schema = new mongoose.Schema({
      
         roll_no1:{
 
-            type: Number
+            type: String
 
         }, 
 
         roll_no2:{
 
-            type: Number
+            type: String
             
         }    
 

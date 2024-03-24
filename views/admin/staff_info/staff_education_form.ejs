@@ -4,14 +4,14 @@
     </div>
     <div class="window_container">
         
-        <div class="popup" id="popup">
+        <div class="popup staff-education-details" id="popup">
             <div class="popup_header">
                 <p class="pop_title">Education Details</p>
                 <a href="/admin/staff_info  "><span class="close_icon" id="closePopup">&times;</span></a>
             </div>
             <div class="pop_body">
                 <form action="/staff_education_form/<%=data._id%>" method="post" enctype="multipart/form-data" class="form">
-                    <div class="form_inputs">
+                    <div class="form_inputs education-pop">
                         <div class="form_div text_input">
                             <p>ID</p>
                             <input class="input" type="text" id="staff_id" name="staff_id" value="<%=data.staff_id%>" readonly>
@@ -184,12 +184,92 @@
                                 <input type="file" class="input" id="staff_pg_marksheet" name="staff_add_pg_marksheet" >
                                 <label for="staff_pg_marksheet">PG Marksheet</label>
                             </div>
-                        </div>
-                        <div class="form_submit">
-                            <input type="submit">
-                        </div>    
+                            <div class="form-staff-education">
+                                <div class="form_submit form-education-submit">
+                                    <div class="btnss">
+                                    <input type="submit">
+                                    </div>
+                                </div>
+                                </div>  
+                        </div>  
                 </form>
+                <i class='bx bxs-up-arrow-circle' id="scrollToTopBtn" style="font-size: 2.5rem; margin-left: 85%;" ></i>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .staff-education-details{
+        z-index: 10;
+        margin-top: 2%;
+        margin-left: 20%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -9%;
+    margin-left: 77%;
+}
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -100%;
+  
+}
+.form-education-submit{
+    margin-top: -1%; 
+    height: 10%;
+    margin-left: 80%;
+    
+}
+.education-pop{
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+.btnss{
+    width: 60%;
+    
+}
+.form-staff-education{
+    margin-top: -1%;
+    
+}
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+</script>

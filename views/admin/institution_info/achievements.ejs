@@ -25,7 +25,7 @@
                 <button onclick="display_popup_add()" class="add_btn">Add</button>
             </div>
         </div>
-        <div class="popup_container" id="popup_add" style="display: none;">
+        <div class="popup_container admin-Achievements-page" id="popup_add" style="display: none;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title"><%= page_title %></p>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="pop_body">
                     <form action="/admin/institution_info/achievements/submit_achievements" method="post" enctype="multipart/form-data" class="form">
-                        <div class="form_inputs">
+                        <div class="form_inputs admin-Achievements-page-form-inputs">
                             <div class="form_div text_input">
                                 <input type="text" class="input" id="achievement_title" name="title" required>
                                 <label for="achievement_title">Achievement Title</label>
@@ -65,4 +65,26 @@
     </div>
 </div>
 
+<style>
+    .admin-Achievements-page{
+        margin-top: 6%;
+        margin-left: 5%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    } 
 
+    .admin-Achievements-page-form-inputs{
+        grid-template-columns: 1fr 1fr;
+    }
+</style>

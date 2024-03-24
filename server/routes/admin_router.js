@@ -48,6 +48,10 @@ const forum=require('../controller/admin/forum/forum');
 //---------------------bonafide---------------------------//
 const bonafide=require('../controller/admin/bonafide_admin/bonafide');
 
+//-----------------------------yearlyUpdate-------------------------------
+
+const {yearlyUpdate} = require('../controller/universal_controller/notificationFunction')
+
 
 
 
@@ -231,6 +235,9 @@ router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
  //edit student
  router.get('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student,admin_section.view_student);
  router.post('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student_submit,admin_section.view_student);
+
+ router.get('/admin/yearlyUpdate',yearlyUpdate);
+ 
 
 module.exports = router;
     

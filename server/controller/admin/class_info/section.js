@@ -16,6 +16,7 @@ const { date } = require('date-fns/locale');
 const { log } = require('util');
 const girls_hostel_model = require('../../../models/admin/girls_hostel_model');
 const boys_hostel_model = require('../../../models/admin/boys_hostel_model');
+const {classes_map} = require('../../universal_controller/class_map')
 
 
 
@@ -281,6 +282,8 @@ exports.view_student = async (req, res) => {
         edit=true
     }
 
+
+
     let classId = await class_model.findOne({id:title,section_name:sec},{_id:1})
 
     const obj_id=  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
@@ -299,7 +302,7 @@ exports.view_student = async (req, res) => {
                 console.log(err);
                 return res.status(500).send("Error retrieving student document");
             } else {
-                res.render("admin/class_info/view_student", { title, sec, id, student_doc,edit,studentDetails,classId });
+                res.render("admin/class_info/view_student", { title, sec, id, student_doc,edit,studentDetails,classId,classes_map });
             }
         });
     }

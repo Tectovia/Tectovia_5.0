@@ -5,7 +5,7 @@
     </div>
     
     <div class="window_container">
-        <a href="/admin/class_info/class_list/view_section/view_student/65f01330d8e2aaef4e387767/2023-2024_batch/A"><button class="back_btn">Go back</button></a>
+        <a class="back_btn" href="/admin/class_info/class_list/view_section/view_student/<%= data._id %>/<%= data.id %>/<%= data.section %>"><i class='bx bx-arrow-back'></i></a>
             
         <div class="container center_title">
             View parent
@@ -65,7 +65,8 @@
     <div class="popup" id="popup">
         <div class="popup_header">
             <p class="pop_title">Documents</p>
-            <a href="/admin/viewParent/parentdoc_view/<%= data._id%>/<%= data.id %>"><span class="close_icon" id="closePopup">&times;</span></a>
+            
+            <a href="/admin/viewParent/<%= data._id%>/<%= data.id %>"><span class="close_icon" id="closePopup">&times;</span></a>
         </div>
         
             <div style="display: grid;  grid-template-columns: repeat(2,400px);" class="pop_body">
@@ -86,7 +87,7 @@
 
       
 
-    <div id="parent_edit" class="parent_edit" style="display: none;">  
+    <div id="parent_edit" class="parent_edit Edit-Parent-Personal-Details" style="display: none;">  
     <div class="popup parent_edit_form" id="popup">
       <div class="popup_header">
           <p class="pop_title">Edit Parent Personal Details</p>
@@ -197,16 +198,23 @@
               </div>
       
                 </div>
-                 
+                
               </div>
-              <div class="form_submit">
-                  <input type="submit" value="Save & Next">
-              </div>    
-         
+              <div class="admin-edit-parent-submit">
+                <div class="admin-edit-parent-btns">
+                <div class="form_submit">
+                <input type="submit" value="Save & Next">
+               </div>
+                </div> 
+              </div>
+              
           </form>
-    </div>
+          <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
 
+    </div>
+    
 </div>
+   
     </div>
    
     <script>
@@ -222,6 +230,69 @@
                 document.getElementById('parent_edit').style.display='none';
         })
     </script>
+    <style>
+        .Edit-Parent-Personal-Details{
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -7%;
+    margin-left: 77%;
+}
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -10%;
+  
+}
+.admin-edit-parent-btns{
+    width: 60%;
+}
+.admin-edit-parent-submit{
+    margin-left: 30%;
+}
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+
+    
+</script>
 
 
 

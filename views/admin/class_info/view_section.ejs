@@ -33,7 +33,9 @@
         <div class="container center_title">
             <%- name %> - <%= section_doc.section_name %>
             <div class="float_left">
-                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><button class="back_btn">Back</button></a>
+
+                <a class="back_btn" href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
+
             </div>
             <div class="float_right">
                 <button class="add_btn" onclick="display_popup_add_student()">Add Student</button>
@@ -204,7 +206,7 @@
 
 
         <!-- Edit Section Form -->
-        <div class="popup_container " id="popup_edit_section" style="display: none;">
+        <div class="popup_container fade-up" id="popup_edit_section" style="display: none;">
             <div class="popup">
                 <div class="popup_header">
                     <p class="pop_title">Edit Section</p>
@@ -235,7 +237,9 @@
                             </div>
 
                             <div class="form_submit">
+                                <div class="btn">
                                 <input type="submit">
+                                </div>
                             </div>
                             
                             <div class="form_reset">
@@ -244,15 +248,16 @@
                         </div>
                     <% } %>
                     </form>
+                    
                 </div>
             </div>
         </div>
 
         <% if (formprop.student_info_personal == "display") { %>
             <div class="popup_container form-input-detail fade-up" id="popup_add_student_personal">
-                <div class="popup display" id="popup">
+                <div class="popup display admin-form-students" id="popup">
                     <div class="popup_header">
-                        <p class="pop_title">Student Details</p>
+                        <p class="pop_title" style="font-size: 1.7rem;">Student Details</p><br><br>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup">&times;</span></a>
                     </div>
                     <div class="pop_body">
@@ -374,8 +379,8 @@
                                 </div>
             
                                 <div class="form_div select_input">
-                                    <label class="select_label" for="transport_type">Transport</label>
-                                    <select name="transport_type" id="transport_type">
+                                    <label class="select_label admin-select-labelll" for="transport_type">Transport</label>
+                                    <select name="transport_type" id="transport_type" class="admin-select-labelll">
                                         <option value=""></option>
                                         <option value="School Bus">School Bus</option>
                                         <option value="Out Bus">Out Bus</option>+</option>
@@ -443,8 +448,8 @@
                                     <label for="stu_11_img">11 th Marksheet</label>
                                 </div> -->
                            
-      
-                            <div class="form_submit">
+                           
+                            <div class="form_submit form-submits-std">
                                 <div class="btn">
                                     <input type="submit">
                                 </div>
@@ -464,10 +469,10 @@
             <div class="popup_container form-input-detail fade-up"  id="popup_add_student">
                 <div class="popup parants_popup" id="popup">
                     <div class="popup_header">
-                        <p class="pop_title">Add Parents</p>
+                        <p class="pop_title" style="font-size: 1.8rem;">Add Parents</p>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup" onclick="hide_popup_add_student()">&times;</span></a>
                     </div>
-                    <div class="pop_body">
+                    <div class="pop_body parent-add-popup">
                         <form action="/admin/class_info/class_list/view_section/submit_student_parent/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
                             <div class="form_inputs pops">
                                 <div class="form_div text_input">
@@ -490,7 +495,7 @@
                                     <label for="stu_mother_name">Mother's Name</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="file" class="input" id="stu_father_img" name="father_img" required>
+                                    <input type="file" class="input" id="stu_father_img" name="father_img">
                                     <label for="stu_father_img">Father's Image</label>
                                 </div>
                                 <div class="form_div text_input">
@@ -598,7 +603,7 @@
                             </div>  
                             </div>
                         </form>
-                        <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+                        <button id="scrollToTopBtn" class="scroll-form-std"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem; margin-top: -1%;"></i></button>
                     </div>        
                 </div>
             </div>
@@ -636,10 +641,16 @@
                         </div>
                 <% } %>
 
-                        <div class="form_submit">
-                            <input type="submit">
-                        </div>    
+                <div class="form_submits_parent">
+                    <div class="form_submit">
+                        <div class="btns">
+                        <input type="submit">
+                        </div>
+                    </div>
+                </div>  
+                </div>   
                     </form>
+                    <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;" ></i></button>
                 </div>
             </div>
         </div>
@@ -647,8 +658,15 @@
 
 
 <style>
-    .form-input-detail{
-        margin-top: 10%;
+   .form-input-detail{
+        margin-top: 40%;
+       
+       
+        
+        height: 23%;
+        
+        
+
         
     }
     .popup_container.fade-up {
@@ -672,17 +690,23 @@
     display: none;
     background: none;
     border: none;
-    width: 100%;
+    width: 10%;
     cursor: pointer;
+    margin-top: -11%;
+    margin-left: 77%;
 }
 
 #scrollToTopBtn i {
     margin-left: 90%;
+    
+    margin-top: -100%;
+  
 }
 
 .pop{
+    height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
 }
 
 .pops{
@@ -695,25 +719,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column: 1 / span 3;
-    margin-left: 43%;
+    grid-column: 1 / span 2;
+    margin-left: -40%;
+    
 }
-.btn{
-    width: 30%;
-}
+/* .btn{
+    width: 40%;
+    
+} */
 .parants_popup{
-    margin-top: 60%;
+    margin-top: 40%;
+    margin-left: 10%;
     
 }
 
-.form_submits_parent{
+
+.form_submits_parent {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Align to the left */
     grid-column: 1 / span 2;
-    margin-left: 43%;
+    margin-left: 35%;
+    width: 40%;
+     /* Adjust the left margin as needed */
 }
 
+.btn {
+    width: 80%; /* Adjust the width of the button */
+}
+
+
+.form-parants-detail{
+    margin-top: 70%;
+    
+    
+}
+.form-submits-std{
+        margin-left: 70%;
+}
+.admin-select-label{
+    margin-top: -100%;
+}
+.parent-add-popup{
+    margin-top: 3%;
+}
+
+
+#scrollToTopBtn .scroll-form-std{
+    margin-top: 100%;
+}
 </style>
 
 <script>
@@ -736,4 +790,3 @@
         document.documentElement.scrollIntoView({ behavior: "smooth" });
     });
 </script>
-

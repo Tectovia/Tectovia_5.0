@@ -18,6 +18,9 @@ exports.instruction=async (req,res,next)=>{
 
       // used to show circular notification for staff edited by purushothaman @ 27/2
       let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+       // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
       //----------------------------------------------------------------------
 
     let temp=[]
@@ -88,17 +91,8 @@ exports.instruction_send=async (req,res,next)=>{
     const staff_instruction=req.body.instruction;
     const recievers=req.body.recievers;
     const subjects=req.body.subjects;
-
-    console.log(req.body);
-    
-    
-    let objdate1= new Date()
-    let date=objdate1.getDate()+'-'+(objdate1.getMonth()+1)+'-'+objdate1.getFullYear()+" "+objdate1.getHours()+":"+objdate1.getMinutes()+":"+
-    objdate1.getSeconds()+":"+objdate1.getMilliseconds()
-  
   const new_instruction= new instruction({
     "from":staff.staff_id,
-    "date":date,
     "message":staff_instruction,
     "recievers":{
       default:true
@@ -117,9 +111,8 @@ else {
 }
   
   new_instruction.save()
+  lastVisited='sent';
   res.redirect(`/staff/instructions/${staff._id}`);
-
-   // res.send("sucess")
 }
 
 

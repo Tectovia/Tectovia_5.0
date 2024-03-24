@@ -36,12 +36,16 @@ var db = mongoose.connection;
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+
 exports.add_forum = async (req, res) => {
     try { 
         const { id } = req.params; 
         const staffdata = await staff_model.find({_id:id}); 
          // used to show circular notification for staff edited by purushothaman @ 27/2
    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
    //----------------------------------------------------------------------
         const classmodel = await class_model.findOne({'section_incharge_id': staffdata[0].staff_id});
         const forummodel = await forum_model.findOne({'forum_incharge.staff_id': staffdata[0].staff_id}); 
@@ -73,7 +77,7 @@ exports.add_forum = async (req, res) => {
             console.error("Staff is not in charge of any section");
         }
 
-        res.render('./staff/forum_classes', { staffdata, classInchargeDetails, forumDetails,title,sec,circularNotification });
+        res.render('./staff/forum_classes', { staffdata, classInchargeDetails, forumDetails,title,sec,circularNotification,classes_map });
     } catch (error) {
         console.error("Error occurred:", error);
         res.send("Internal Server Error");
@@ -96,6 +100,9 @@ async function get_staff() {
     const staffdata = await staff_model.find({_id:id}); 
      // used to show circular notification for staff edited by purushothaman @ 27/2
     let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+     // used to show circular notification for staff edited by purushothaman @ 14/3
+     circularNotification = circularNotification.unSeenCirculars
+     //----------------------------------------------------------------------
     subject_model.findById(id, function (err, item) {
       if (err) {
         console.log(err);
@@ -120,6 +127,9 @@ exports.view_section = async (req, res) => {
     const staffdata = await staff_model.find({_id:id}); 
      // used to show circular notification for staff edited by purushothaman @ 27/2
    let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars
+    //----------------------------------------------------------------------
    //----------------------------------------------------------------------
     const prop=req.params.prop;
     var name=title.split('_')[0];

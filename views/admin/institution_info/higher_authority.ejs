@@ -71,7 +71,7 @@
     <br />
     <% }) %> <% } %>
 
-    <div class="popup_container" id="popup_add" style="display: none">
+    <div class="popup_container higeher-authority-froms" id="popup_add" style="display: none">
       <div class="popup" id="popup">
         <div class="popup_header">
           <p class="pop_title"><%= page_title %></p>
@@ -86,7 +86,7 @@
             enctype="multipart/form-data"
             class="form"
           >
-            <div class="form_inputs">
+            <div class="form_inputs higeher-authority-from-inputs">
               <div class="form_div select_input">
                 <label class="select_label" for="sname">Surname</label>
                 <select name="sname" id="sname" required>
@@ -184,7 +184,7 @@
     </div>
 
     <% if (edit === "display") { %>
-    <div class="popup_container" id="popup_add">
+    <div class="popup_container higeher-authority-froms" id="popup_add">
       <div class="popup" id="popup">
         <div class="popup_header">
           <p class="pop_title"><%= page_title %></p>
@@ -199,7 +199,7 @@
             enctype="multipart/form-data"
             class="form"
           >
-            <div class="form_inputs">
+            <div class="form_inputs higeher-authority-from-inputs">
               <div class="form_div select_input">
                 <label class="select_label" for="sname">Surname</label>
                 <select name="sname" id="sname" required>
@@ -306,3 +306,25 @@
     <% } %>
   </div>
 </div>
+<style>
+.higeher-authority-froms{
+  margin-top: 6%;
+  margin-left: 5%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+.higeher-authority-from-inputs{
+  grid-template-columns: 1fr 1fr;
+}
+</style>

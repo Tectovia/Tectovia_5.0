@@ -135,9 +135,11 @@ const student_master = new mongoose.Schema({
     address: {
         type: String,
     },
-
+    seenCirculars : {
+        type:Array,
+        default:[]
+    }
     
-   
 });
 
 

@@ -102,7 +102,7 @@ exports.delete_student = async (req, res) => {
         console.log(newDocumentData);
 
         // Assuming mongoose and HostelModel are properly imported
-        const MasterStudent = mongoose.model(req.params.batch );
+        const MasterStudent = mongoose.model(req.params.batch+"_batch" );
 
         // Update the residence field to null in the master database
 
@@ -232,8 +232,7 @@ exports.transport=async (req,res)=>{
 // ----------addtransport-----------
 exports.addtransport=async (req,res)=>{
     try {
-        console.log('dfghjgbh',req.body);
-        var transportGG=bus_data
+        var transportGG = bus_data
         const newDocumentData = new transportGG ({
             bus_number: req.body.bus_number,
             number_plate: req.body.number_plate,
@@ -242,20 +241,16 @@ exports.addtransport=async (req,res)=>{
             roll_no2:req.body.roll_no2,
             Driver:req.body.Driver,
             Alterdriver:req.body.Alterdriver
-            // staff_id:req.body.staff_id
-        
         });
-        console.log('dyufhreuvj',newDocumentData);
         
-        //const newdoc = new  transportmodel(newDocumentData);
         const result = await newDocumentData.save();
         console.log(result);
         res.redirect("/admin/facilities/transport");
 
 }catch (error) {
     console.error(error);
-    red.render("error")
-}
+    res.send("error")
+    }
 };
 
 exports.transport=async (req,res)=>{
