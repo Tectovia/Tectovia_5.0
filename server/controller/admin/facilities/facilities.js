@@ -5,6 +5,7 @@ const { log } = require('util');
 const {classes_map}=require('../../universal_controller/class_map');
 const boys_hostel_model=require('../../../models/admin/boys_hostel_model');
 const girls_hostel_model=require('../../../models/admin/girls_hostel_model')
+let { coachingClassModel } = require('../../../models/admin/coachingClassModel')
 
 //-----------------hostel----------
 
@@ -318,5 +319,6 @@ exports.library=async (req,res)=>{
 }
 
 exports.coaching=async (req,res)=>{
-    res.render("admin/facilities/coaching");
+    let coachingClass = await coachingClassModel.find()
+    res.render("admin/facilities/coaching",{coachingClass});
 }

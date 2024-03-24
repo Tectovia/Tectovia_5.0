@@ -29,6 +29,7 @@ const circular_management=require('../controller/admin/circular/circular');
 const infrastructure=require('../controller/admin/infrastructure/infrastructure');
 //--------------------  Facilities -------------------------------
 const facilities=require('../controller/admin/facilities/facilities');
+const { addCoaching } = require('../controller/admin/facilities/coaching')
 // ---------------------add transport---------------------
 router.post('/admin/Transport/add_transport',facilities.addtransport)
 //--------------------  institution_info  -------------------------------
@@ -237,6 +238,9 @@ router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
  router.post('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student_submit,admin_section.view_student);
 
  router.get('/admin/yearlyUpdate',yearlyUpdate);
+
+ // add coaching
+ router.post("/admin/facilities/coaching/addCoaching",addCoaching)
  
 
 module.exports = router;

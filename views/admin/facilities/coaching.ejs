@@ -13,13 +13,21 @@
             </div>
         </div>
         <div class="display_students">
-            <table>
-                <tr>
+            <table border="1" class="table">
+                <tr class="header">
                     <th>Course name</th>
                     <th>Course fees</th>
-                    <th>Classes Available for</th>
                     <th>Staffs Handling</th>
                 </tr>
+                <%if(coachingClass){%>
+                    <%coachingClass.forEach((item)=>{%>
+                        <tr>
+                            <th><%- item.courseName %></th>
+                            <th><%- item.courseFee %></th>
+                            <th><%- (item.staffsHandling === 'outsideStaff')?  'Staff from other institution ' :  'Staff from our institution ' %></th>
+                        </tr>
+                    <%})%>
+                <%}%>
             </table>
         </div>
         <!-- -------------------------Add Coaching Form----------------------------- -->
@@ -29,22 +37,25 @@
                 <form id="courseForm" action="/admin/facilities/coaching/addCoaching" method="post"><br><br>
                     <div class="form_inputs">
                         <div class="form_div file_input">
-                            <label for="name">Couse Name:</label>
-                            <input type="text" name="name" id="name">
+                            <label for="courseName">Couse Name:</label>
+                            <input type="text" name="courseName" id="courseName">
                         </div>
-                        <div class="form_div file_input">
+                        <!-- <div class="form_div file_input">
                             <label for="class">Classes course available for :</label>
                             <select name="class" id="class">
                                 <option selected>Select Class</option>
                             </select>
+                        </div> -->
+                        <div class="form_div file_input">
+                            <label for="staffsHandling">Staffs Handling:</label>
+                            <select name="staffsHandling" id="staffsHandling">
+                                <option value="staffsInSchool">Staffs In School</option>
+                                <option value="outsideStaff">Staffs from other institutions </option>
+                            </select>
                         </div>
                         <div class="form_div file_input">
-                            <label for="rollno">Staffs Handling:</label>
-                            <select name="rollno" id="rollNumbers"></select>
-                        </div>
-                        <div class="form_div file_input">
-                            <label for="roomnumber">Course fee:</label>
-                            <input type="text" name="roomnumber" id="roomnumber">
+                            <label for="courseFee">Course fee per annum:</label>
+                            <input type="text" name="courseFee" id="courseFee">
                         </div>
                     </div>
                     <div class="form_submit">

@@ -200,9 +200,15 @@ try {
   var {id,class_name,staff,rollno}=req.params;
   var assign_model=mongoose.model(class_name+'_assign');
   const assignment=await assign_model.findById(id,{source:1});
+
+  let circularNotification = await noOfCirculars(staff);
+  // used to show circular notification for staff edited by purushothaman @ 14/3
+ circularNotification = circularNotification.unSeenCirculars
+ //----------------------------------------------------------------------
+
   var textcontent;
   const staffdata = await staff_model.find({ 'staff_id':staff },{ staff_id: 1, staff_name: 1, });
-  let circularNotification = await noOfCirculars(staffdata[0].staff_id);
+
   assignment.source.forEach(element => {
     if(element[rollno])
       textcontent=element[rollno];

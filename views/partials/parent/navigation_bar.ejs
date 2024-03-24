@@ -1,21 +1,141 @@
-<aside>
-    <nav class="container_lr nav_bar">
-        <div class="sub_container nav_list">
-            <ul>
-                <li><a href="/parent_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>">Info</a></li>
-                <li><a href="/parent/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today">Attendance</a></li>
-                <li><a href="/parent/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Time Table</a></li>
-                <li><a href="/parent/dairy/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Diary</a></li>
-                <!-- <li><a href="/parent/quiz/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Quiz</a></li> -->
-                <li><a href="/parent/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Assignment</a></li>
-                <li><a href="/parent/circular/<%=student.rollno%>/<%=student.id%>">circular</a></li>
-                <li><a href="/parent/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Fees</a></li>
-                <li><a href="/parent/academic_calendar/<%=student.rollno%>/<%=student.id%>/<%=student.section%>">Academic calendar</a></li>
-            </ul>
+
+
+
+<aside id="sidebar">
+    <a href="/" class="brand" target="_blank">
+      <i class="bx bxs-smile"></i>
+      <span class="text">ABCD Higher Secondary School</span>
+    </a>
+  
+    <ul class="side_menu top">
+      <li class="active">
+        <a
+        href="/parent_index/<%=student.rollno%>/<%=student.id%>_<%=student.section%>" title="Info"
+        >
+          <i class="bx bxs-dashboard" ></i>
+          <span class="text">Info</span>
+        </a>
+      </li>
+      <li>
+        <a
+         href="/parent/attendance/<%=student.rollno%>/<%=student.id%>/<%=student.section%>/today" title="Attendance"
+        >
+        <i class='bx bx-line-chart'></i>
+  
+          <span class="text">Attendance</span>
+      </a>
+      </li>
+  
+  
+  
+  
+  
+    
+  
+      <li>
+        <a
+        href="/parent/assignment/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Assignment"
+        >
+        <i class='bx bxs-doughnut-chart' ></i>
+          <span class="text">Assignment</span>
+        </a>
+      </li>
+      <li>
+        <a
+         href="/parent/time_table/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Time Table"
+        >
+        <i class='bx bx-table' ></i>
+          <span class="text">Time Table</span>
+        </a>
+      </li>
+      <li>
+        <a
+        href="/parent/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"title="Diary"
+        >
+        <i class='bx bxs-bookmarks'></i>
+          <span class="text">Diary</span>
+      </a>
+      </li>
+      <li>
+        <a href="/parent/fees/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Fees"
+        >
+          <i class='bx bxs-badge-dollar'></i>
+          <span class="text">Fees</span>
+        </a>
+      </li>
+      
+      <li>
+        <a  href="/parent/academic_calendar/<%=student.rollno%>/<%=student.id%>/<%=student.section%>" title="Academic calendar"> 
+          <i class='bx bx-calendar'></i>
+          <span class="text">Academic calendar</span>
+        </a>
+      </li>
+      <!-- <li>
+     
+        <a
+          href="/student/quiz/<%=student.rollno%>/<%=student.id%>/<%=student.section%>"
+        >
+        <i class='bx bxl-redux'></i>
+          <span class="text">Quiz</span>
+        </a>
+      </li> -->
+      <!-- <li>
+        <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>" title="Test Results">
+          <i class='bx bxs-book-add'></i>
+          <span class="text">Test Results</span>
+        </a>
+      </li> -->
+      <li>
+        <a href="/parent/circular/<%=student._id%>/<%=student.id%>" title="Circular">
+          <i class="bx bxs-group"></i>
+          <span class="text">Circular</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Public Forum">
+          <i class='bx bx-world'></i>
+          <span class="text">Public Forum</span>
+        </a>
+      </li>
+    </ul>
+  
+    <ul class="side_menu">
+      <li>
+        <a href="/logout" class="logout" title="Logout">
+          <i class="bx bxs-log-out-circle"></i>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  
+  <!-- top_menu -->
+  <section id="top_menu">
+    <nav>
+      <i class="bx bx-menu" title="back"></i>
+  
+      <a href="#" title="Student Dashboard" class="nav-link">Parent Dashboard</a>
+  
+      <form action="#">
+        <div class="form-input">
+          <input type="search" placeholder="Search..." />
+          <button type="submit" title="search" class="search-btn">
+            <i class="bx bx-search"></i>
+          </button>
         </div>
+      </form>
+  
+      <input type="checkbox" id="switch-mode" hidden />
+      <label for="switch-mode" class="switch-mode" title="switch mode"></label>
+  
+      <div class="notification">
+        <a href="#" class="notification-icon" title="notifications">
+          <i class="bx bxs-bell"></i>
         
-        <div class="sub_container logout">
-            <a href="/logout"><button>Logout</button></a>
-        </div>
+      </div>
+  
+      <a href="#" class="profile"  title="profile">
+        <img src="/img/download.jpg" />
+      </a>
     </nav>
-</aside>
+  </section>
