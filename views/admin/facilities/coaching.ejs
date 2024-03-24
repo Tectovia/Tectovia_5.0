@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/hostel.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -6,7 +7,71 @@
     <div class="window_container">
         <%- include('../../partials/admin/facilities_subnavbar.ejs') %>
         <div class="container center_title">
-            Coaching
+            Coaching 
+            <div class="float_right">
+                <button onclick="showForm()" >Add</button>
+            </div>
         </div>
+        <div class="display_students">
+            <table>
+                <tr>
+                    <th>Course name</th>
+                    <th>Course fees</th>
+                    <th>Classes Available for</th>
+                    <th>Staffs Handling</th>
+                </tr>
+            </table>
+        </div>
+        <!-- -------------------------Add Coaching Form----------------------------- -->
+        <div class="pop_body ">
+            <div id="formContainer" class="popup hostel_form" style="display: none;">
+                <span class="close_icon" id="closePopup" onclick="hideFormContainer()">&times;</span>
+                <form id="courseForm" action="/admin/facilities/coaching/addCoaching" method="post"><br><br>
+                    <div class="form_inputs">
+                        <div class="form_div file_input">
+                            <label for="name">Couse Name:</label>
+                            <input type="text" name="name" id="name">
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="class">Classes course available for :</label>
+                            <select name="class" id="class">
+                                <option selected>Select Class</option>
+                            </select>
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="rollno">Staffs Handling:</label>
+                            <select name="rollno" id="rollNumbers"></select>
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="roomnumber">Course fee:</label>
+                            <input type="text" name="roomnumber" id="roomnumber">
+                        </div>
+                    </div>
+                    <div class="form_submit">
+                        <input type="submit" value="Save & Next">
+                    </div>
+                </form>
+            </div>
+        </div>
+       
     </div>
 </div>
+<script>
+
+function showForm(){
+    document.getElementById('formContainer').style.display = 'flex' ;
+}
+
+function hideFormContainer(){
+    document.getElementById('formContainer').style.display = 'none' ;
+}
+
+function adjustFormPosition() {
+                var contentHeight = document.querySelector('.display_students').offsetHeight;
+                var form = document.querySelector('.hostel_form');
+                form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
+            }
+
+            window.addEventListener('load', adjustFormPosition);
+
+</script>
