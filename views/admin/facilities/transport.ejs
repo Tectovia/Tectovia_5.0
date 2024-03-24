@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/transports.css">
+0<link rel="stylesheet" href="/css/transports.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -49,19 +49,21 @@
         </div>
         
         </div>
+
         <div class="add-Transports">
             <button onclick="show()">Add transports</button>
+
         </div>
         
         <div class="pop_body">
           
             <div id="formContainer" class="popup Transport_form" style="display: none;">
-                <span class="close_icon" id="closePopup">&times;</span> <br><br>
+                <span class="close_icon" id="closePopup">&times;</span>
                 <div class="container center_title">
                     Transport Details Form
                 </div>
                 <form id="transportform" action="/admin/Transport/add_transport" method="post">
-                    <div class="form_inputs">
+                    <div class="form_inputs Transport_form-form-inputs">
                         <div class="form_div file_input">
                             <label for="name">bus number:</label>
                             <input type="text" name="bus_number" class="input-data" required>
@@ -180,8 +182,8 @@ function UpdateRoll2(optionValue) {
 </div>
 <style>
       .Transport_form {
-        margin-top: -10%;
-        margin-left: 20%;
+        margin-top: -16%;
+        margin-left: 10%;
         opacity: 0;
         transform: translateY(20px);
         animation: fadeInUp 0.5s ease-in-out forwards;
@@ -198,4 +200,7 @@ function UpdateRoll2(optionValue) {
     }
 }
 
+.Transport_form-form-inputs{
+    grid-template-columns: 1fr 1fr;
+}
 </style>
