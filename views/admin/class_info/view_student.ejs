@@ -23,7 +23,7 @@
     </div>
 
     <div class="window_container container_lr">
-        <div class="container center_title">
+        class="container center_title">
             <%- title %> - <%- sec %>
             <div class="float_left">
 
@@ -238,14 +238,14 @@
 
 <%if(edit !== false){%>
         <div class="popup_container admin-edit-from" id="popup_edit_student_details" style="display: flex;">
-            <div class="popup" id="popup">
+            <div class="popup admin-edit-from-popup" id="popup">
                 <div class="popup_header">
-                    <p class="pop_title">Student Details</p>
+                    <p class="pop_title" style="font-size: 1.6rem;">Student Details</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_edit_student_details()">&times;</span>
                 </div>
                 <div class="pop_body">
                     <form action="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>" method="post" enctype="multipart/form-data" class="form">
-                        <div class="form_inputs">
+                        <div class="form_inputs admin-edit-from-inputs">
                             <div class="form_div text_input">
                                 <input type="text" class="input" id="readonly" name="name" value="<%-(studentDetails.name !== undefined || studentDetails.name !== '') ? studentDetails.name: ' ' %> " readonly>
                                 <label for="name">Student Name</label>
@@ -404,7 +404,7 @@
                            
                     </form>
                 </div> 
-                <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>       
+                   <i class='bx bxs-up-arrow-circle' id="scrollToTopBtn" style="font-size: 2.5rem; margin-top: -14%; margin-left: 80%;"></i>       
             </div>
         </div>
 <%}%>
@@ -422,7 +422,7 @@
     .admin-edit-from{
         margin-top: 20%;
         margin-left: 5%;
-
+        
         opacity: 0;
         transform: translateY(20px);
         animation: fadeInUp 0.5s ease-in-out forwards;
@@ -454,6 +454,13 @@
     
     margin-top: -10%;
   
+}
+
+.admin-edit-from-inputs{
+    grid-template-columns: 50% 50%;
+}
+.admin-edit-from-popup{
+    width: 40.7%;
 }
 </style>
 <script>
