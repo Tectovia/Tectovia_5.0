@@ -152,13 +152,14 @@ try {
 exports.viewlist=async (req,res)=>{
   const id=req.params.id;
   const params=req.params;
+  console.log("params ",params);
   const staffdata = await staff_model.find({ _id:id },{ staff_id: 1, staff_name: 1, });
   var name = params.class.split('_')[0]+"_assign"
   var test_name = params.class.split('_')[0]+"_tests"
   const assign_model=mongoose.model(name);
 
 
- const list=await assign_model.aggregate([
+  const list=await assign_model.aggregate([
   {
     $match: {
       _id: mongoose.Types.ObjectId(params.assign_id)
@@ -198,6 +199,7 @@ res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularN
 exports.ViewAssign=async(req,res)=>{
 try {
   var {id,class_name,staff,rollno}=req.params;
+  let student = await mongoose.model(class_name+'_batch').findById({id},{id:1,section:1,_id:1})
   var assign_model=mongoose.model(class_name+'_assign');
   const assignment=await assign_model.findById(id,{source:1});
 
@@ -212,7 +214,7 @@ try {
     if(element[rollno])
       textcontent=element[rollno];
    });
-  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata,id,class_name})
+  res.render('staff/assign_view',{textcontent,circularNotification,rollno,staffdata,id,class_name,student})
 } catch (error) {
   console.log(error);
   res.redirect('/');

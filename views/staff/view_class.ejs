@@ -43,8 +43,9 @@
         <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
     <div class="window_container">
+        <a class="back_btn" href="/staff/forum/<%- staffdata[0]._id %>"><i class='bx bx-arrow-back'></i></a>
         <div class="container center_title">
-            <!-- <%- name %> - <%= section_doc.section_name %> -->
+            <%- name %> - <%= section_doc.section_name %>
             <div class="float_right">
                 <button class="add_btn" onclick="display_popup_add_student()" class="add_btn">Add Student</button>
             </div>
