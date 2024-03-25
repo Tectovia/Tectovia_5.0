@@ -17,14 +17,11 @@ exports.staff_index = async (req, res) => {
     var id=req.params.id;
 
         try{
-        const data= await staff_model.find({'staff_id':id},{})
+        const data= await staff_model.find({'staff_id':id},{staff_id:1,staff_name:1,class_incharge:1})
 
         req.session.obj_id= data[0]._id.toString();
 
         let circularNotification = await noOfCirculars(id)
-         // used to show circular notification for staff edited by purushothaman @ 14/3
-        circularNotification = circularNotification.unSeenCirculars
-        //----------------------------------------------------------------------
 
         res.render('staff_index',{'staffdata':data,circularNotification});
 

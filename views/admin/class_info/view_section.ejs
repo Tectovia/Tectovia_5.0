@@ -33,13 +33,11 @@
         <div class="container center_title">
             <%- name %> - <%= section_doc.section_name %>
             <div class="float_left">
-
-                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
-
+                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><button class="btn_warning">Go Back</button></a>
             </div>
             <div class="float_right">
-                <button class="add_btn" onclick="display_popup_add_student()">Add Student</button>
-                <button class="edit_btn" onclick="display_popup_edit_section()">Edit Section</button>
+                <button class="btn_success" onclick="display_popup_add_student()">Add Student</button>
+                <button class="btn_warning" onclick="display_popup_edit_section()">Edit Section</button>
             </div>
         </div>
 
@@ -74,7 +72,7 @@
             </div>
 
             <div class="table_header">
-                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="edit_btn">Edit Time Table</button></a>
+                <a href="/admin/class_info/class_list/view_section/time_table/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>" id="toggleButton" ><button class="btn_success">Edit Time Table</button></a>
             </div>
             <table class="table">
                 <tr class="row">
@@ -135,8 +133,8 @@
                         <td><%= item.dob %></td>
                         <td><%= item.gender %></td>
                         <td><%= item.blood_group %></td>
-                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" ><button class="view_btn">View</button></a></td>
-                        <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="delete_btn">Delete</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/view_student/<%= item._id %>/<%= title %>/<%= section_doc.section_name %>" ><button class="btn_success">View</button></a></td>
+                        <td><a href="/admin/class_info/class_list/view_section/delete_student/<%= item._id %>/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><button class="btn_danger">Delete</button></a></td>
                     </tr>
                     <% }) %>
                 </table>
@@ -237,9 +235,7 @@
                             </div>
 
                             <div class="form_submit">
-                                <div class="btn">
                                 <input type="submit">
-                                </div>
                             </div>
                             
                             <div class="form_reset">
@@ -248,16 +244,15 @@
                         </div>
                     <% } %>
                     </form>
-                    
                 </div>
             </div>
         </div>
 
         <% if (formprop.student_info_personal == "display") { %>
             <div class="popup_container form-input-detail fade-up" id="popup_add_student_personal">
-                <div class="popup display admin-form-students" id="popup">
+                <div class="popup display" id="popup">
                     <div class="popup_header">
-                        <p class="pop_title" style="font-size: 1.7rem;">Student Details</p><br><br>
+                        <p class="pop_title">Student Details</p>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup">&times;</span></a>
                     </div>
                     <div class="pop_body">
@@ -379,8 +374,8 @@
                                 </div>
             
                                 <div class="form_div select_input">
-                                    <label class="select_label admin-select-labelll" for="transport_type">Transport</label>
-                                    <select name="transport_type" id="transport_type" class="admin-select-labelll">
+                                    <label class="select_label" for="transport_type">Transport</label>
+                                    <select name="transport_type" id="transport_type">
                                         <option value=""></option>
                                         <option value="School Bus">School Bus</option>
                                         <option value="Out Bus">Out Bus</option>+</option>
@@ -448,8 +443,8 @@
                                     <label for="stu_11_img">11 th Marksheet</label>
                                 </div> -->
                            
-                           
-                            <div class="form_submit form-submits-std">
+      
+                            <div class="form_submit">
                                 <div class="btn">
                                     <input type="submit">
                                 </div>
@@ -469,10 +464,10 @@
             <div class="popup_container form-input-detail fade-up"  id="popup_add_student">
                 <div class="popup parants_popup" id="popup">
                     <div class="popup_header">
-                        <p class="pop_title" style="font-size: 1.8rem;">Add Parents</p>
+                        <p class="pop_title">Add Parents</p>
                         <a href="/admin/class_info/class_list/view_section/<%= section_doc._id %>/<%= title %>/<%= section_doc.section_name %>"><span class="close_icon" id="closePopup" onclick="hide_popup_add_student()">&times;</span></a>
                     </div>
-                    <div class="pop_body parent-add-popup">
+                    <div class="pop_body">
                         <form action="/admin/class_info/class_list/view_section/submit_student_parent/<%= current_student._id %>/<%= title %>/<%= section_doc._id %>/<%= section_doc.section_name %>" method="post" enctype="multipart/form-data" class="form">
                             <div class="form_inputs pops">
                                 <div class="form_div text_input">
@@ -495,7 +490,7 @@
                                     <label for="stu_mother_name">Mother's Name</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="file" class="input" id="stu_father_img" name="father_img">
+                                    <input type="file" class="input" id="stu_father_img" name="father_img" required>
                                     <label for="stu_father_img">Father's Image</label>
                                 </div>
                                 <div class="form_div text_input">
@@ -515,36 +510,36 @@
                                     <label for="stu_guardian_address">Guradian Address</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="parent_phone1" name="parent_phone1" required>
-                                    <label for="parent_phone1">Parent's Number-1</label>
+                                    <input type="number" class="input" id="stu_parent_phone1" name="parent_phone1" required>
+                                    <label for="stu_parent_phone1">Parent's Number-1</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="parent_phone2" name="parent_phone2" required>
-                                    <label for="parent_phone2">Parent's Number-2</label>
+                                    <input type="number" class="input" id="stu_parent_phone2" name="parent_phone2" required>
+                                    <label for="stu_parent_phone2">Parent's Number-2</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="parent_alter" name="parent_alter" required>
-                                    <label for="parent_alter">Parent's Alternative Number</label>
+                                    <input type="number" class="input" id="stu_parent_alter" name="parent_alter" required>
+                                    <label for="stu_parent_alter">Parent's Alternative Number</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="parent_whatsapp" name="parent_whatsapp" required>
-                                    <label for="parent_whatsapp">Parent's Whatsapp Number</label>
+                                    <input type="number" class="input" id="stu_parent_whatsapp" name="parent_whatsapp" required>
+                                    <label for="stu_parent_whatsapp">Parent's Whatsapp Number</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="guardian_phone1" name="guardian_phone1" required>
-                                    <label for="guardian_phone1">Guardian Number-1</label>
+                                    <input type="number" class="input" id="stu_guardian_phone1" name="guardian_phone1" required>
+                                    <label for="stu_guardian_phone1">Guardian Number-1</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="guardian_phone2" name="guardian_phone2" required>
-                                    <label for="guardian_phone2">Guardian Number-2</label>
+                                    <input type="number" class="input" id="stu_guardian_phone2" name="guardian_phone2" required>
+                                    <label for="stu_guardian_phone2">Guardian Number-2</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="guardian_alter" name="guardian_alter" required>
-                                    <label for="guardian_alter">Guardian Alternative Number</label>
+                                    <input type="number" class="input" id="stu_guardian_alter" name="guardian_alter" required>
+                                    <label for="stu_guardian_alter">Guardian Alternative Number</label>
                                 </div>
                                 <div class="form_div text_input">
-                                    <input type="number" class="input" id="guardian_whatsapp" name="guardian_whatsapp" required>
-                                    <label for="guardian_whatsapp">Guardian Whatsapp Number</label>
+                                    <input type="number" class="input" id="stu_guardian_whatsapp" name="guardian_whatsapp" required>
+                                    <label for="stu_guardian_whatsapp">Guardian Whatsapp Number</label>
                                 </div>
                                 <div class="form_div text_input">
                                     <input type="text" class="input" id="stu_father_occupation" name="father_occupation" required>
@@ -603,7 +598,7 @@
                             </div>  
                             </div>
                         </form>
-                        <button id="scrollToTopBtn" class="scroll-form-std"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem; margin-top: -1%;"></i></button>
+                        <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
                     </div>        
                 </div>
             </div>
@@ -641,16 +636,10 @@
                         </div>
                 <% } %>
 
-                <div class="form_submits_parent">
-                    <div class="form_submit">
-                        <div class="btns">
-                        <input type="submit">
-                        </div>
-                    </div>
-                </div>  
-                </div>   
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
                     </form>
-                    <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;" ></i></button>
                 </div>
             </div>
         </div>
@@ -658,15 +647,8 @@
 
 
 <style>
-   .form-input-detail{
-        margin-top: 40%;
-       
-       
-        
-        height: 23%;
-        
-        
-
+    .form-input-detail{
+        margin-top: 10%;
         
     }
     .popup_container.fade-up {
@@ -690,23 +672,17 @@
     display: none;
     background: none;
     border: none;
-    width: 10%;
+    width: 100%;
     cursor: pointer;
-    margin-top: -11%;
-    margin-left: 77%;
 }
 
 #scrollToTopBtn i {
     margin-left: 90%;
-    
-    margin-top: -100%;
-  
 }
 
 .pop{
-    height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .pops{
@@ -719,55 +695,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column: 1 / span 2;
-    margin-left: -40%;
-    
+    grid-column: 1 / span 3;
+    margin-left: 43%;
 }
-/* .btn{
-    width: 40%;
-    
-} */
+.btn{
+    width: 30%;
+}
 .parants_popup{
-    margin-top: 40%;
-    margin-left: 10%;
+    margin-top: 60%;
     
 }
 
-
-.form_submits_parent {
+.form_submits_parent{
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align to the left */
+    justify-content: center;
     grid-column: 1 / span 2;
-    margin-left: 35%;
-    width: 40%;
-     /* Adjust the left margin as needed */
+    margin-left: 43%;
 }
 
-.btn {
-    width: 80%; /* Adjust the width of the button */
-}
-
-
-.form-parants-detail{
-    margin-top: 70%;
-    
-    
-}
-.form-submits-std{
-        margin-left: 70%;
-}
-.admin-select-label{
-    margin-top: -100%;
-}
-.parent-add-popup{
-    margin-top: 3%;
-}
-
-
-#scrollToTopBtn .scroll-form-std{
-    margin-top: 100%;
-}
 </style>
 
 <script>
@@ -790,3 +736,4 @@
         document.documentElement.scrollIntoView({ behavior: "smooth" });
     });
 </script>
+

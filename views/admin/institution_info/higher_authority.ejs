@@ -1,308 +1,212 @@
 <script>
-  function hide_popup_add() {
-    var element = document.getElementById("popup_add");
-    element.style.display = "none";
-  }
 
-  function display_popup_add() {
-    var element = document.getElementById("popup_add");
-    element.style.display = "flex";
-  }
+    function hide_popup_add() {
+        var element = document.getElementById("popup_add");
+        element.style.display = "none";
+    }
+    
+    function display_popup_add() {
+        var element = document.getElementById("popup_add");
+        element.style.display = "flex";
+    }
+    
 </script>
 
 <div class="window" id="window_layout">
-  <div class="window_navbar">
-    <%- include('../../partials/admin/navigation_bar.ejs') %>
-  </div>
-
-  <div class="window_container">
-    <%- include('../../partials/admin/institution_subnavbar.ejs') %>
-    <div class="container center_title">
-      <%= page_title %>
-      <div class="float_right">
-        <button onclick="display_popup_add()" class="add_btn">Add</button>
-      </div>
+    <div class="window_navbar">
+        <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
 
-    <% if (docs) { %> <% docs.forEach(function(item) { %>
-    <div class="container_todo">
-      <div class="todo_profile">
-        <img
-          src="/uploads/instition_info/higher_authority/<%- item.profile_pic %>"
-          alt="<%= item.profile_pic %>"
-        />
-      </div>
-      <div class="todo_content">
-        <div class="todo_row">
-          <h3>Name : <%= item.sname %>. <%= item.name %></h3>
-        </div>
-        <div class="todo_row">
-          <h3>Designation : <%= item.position %></h3>
-        </div>
-        <div class="todo_row">
-          <h3>Qualification : <%= item.qualification %></h3>
-        </div>
-        <div class="todo_row">
-          <h3>Phone Number : <%= item.phone %></h3>
-        </div>
-        <div class="todo_row">
-          <h3>Email ID : <%= item.mail %></h3>
-        </div>
-        <div class="todo_row">
-          <h3>Access Level : <%= item.priority %></h3>
-        </div>
-      </div>
+    <div class="window_container">
+        <%- include('../../partials/admin/institution_subnavbar.ejs') %>
+        <div class="container center_title">
 
-      <div class="todo_buttons">
-        <div class="todo_edit">
-          <a
-            href="/admin/institution_info/higher_authority/form_higher_authority/edit/<%- item._id %>"
-            ><button class="btn_warning">Edit</button></a
-          >
-        </div>
-        <div class="todo_delete">
-          <a
-            href="/admin/institution_info/higher_authority/form_higher_authority/delete/<%- item._id %>"
-            ><button class="btn_danger">Delete</button></a
-          >
-        </div>
-      </div>
-    </div>
-    <br />
-    <% }) %> <% } %>
-
-    <div class="popup_container" id="popup_add" style="display: none">
-      <div class="popup" id="popup">
-        <div class="popup_header">
-          <p class="pop_title"><%= page_title %></p>
-          <span class="close_icon" id="closePopup" onclick="hide_popup_add()"
-            >&times;</span
-          >
-        </div>
-        <div class="pop_body">
-          <form
-            action="/admin/institution_info/higher_authority/submit_higher_authority"
-            method="post"
-            enctype="multipart/form-data"
-            class="form"
-          >
-            <div class="form_inputs">
-              <div class="form_div select_input">
-                <label class="select_label" for="sname">Surname</label>
-                <select name="sname" id="sname" required>
-                  <option value=""></option>
-                  <option value="Prof">Prof</option>
-                  <option value="Dr">Dr</option>
-                  <option value="Mr">Mr</option>
-                  <option value="Thiru">Thiru</option>
-                  <option value="Mrs">Mrs</option>
-                  <option value="Ms">Ms</option>
-                </select>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="name"
-                  name="name"
-                  required
-                />
-                <label for="name">Name</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="position"
-                  name="position"
-                  required
-                />
-                <label for="position">Position</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="qualification"
-                  name="qualification"
-                  required
-                />
-                <label for="qualification">Qualification</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="phone"
-                  name="phone"
-                  required
-                />
-                <label for="phone">Phone Number</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="email"
-                  class="input"
-                  id="mail"
-                  name="mail"
-                  required
-                />
-                <label for="mail">Email</label>
-              </div>
-
-              <div class="form_div select_input">
-                <label class="select_label" for="priority">Access Type</label>
-                <select name="priority" id="priority" required>
-                  <option value=""></option>
-                  <option value="All">All</option>
-                  <option value="Edit">Edit</option>
-                  <option value="View">View</option>
-                </select>
-              </div>
-
-              <div class="form_div file_input">
-                <label for="profile_pic">Profile Photo</label>
-                <input
-                  type="file"
-                  class="input"
-                  id="profile_pic"
-                  name="profile_pic"
-                />
-              </div>
-              <div class="form_submit form_div_span">
-                <input type="submit" />
-              </div>
+            <%= page_title %>
+            <div class="float_right">
+                <button onclick="display_popup_add()">Add</button>
             </div>
-          </form>
         </div>
-      </div>
-    </div>
 
-    <% if (edit === "display") { %>
-    <div class="popup_container" id="popup_add">
-      <div class="popup" id="popup">
-        <div class="popup_header">
-          <p class="pop_title"><%= page_title %></p>
-          <a href="/admin/institution_info/higher_authority"
-            ><span class="close_icon" id="closePopup">&times;</span></a
-          >
-        </div>
-        <div class="pop_body">
-          <form
-            action="/admin/institution_info/higher_authority/update_higher_authority/<%- old._id %>"
-            method="post"
-            enctype="multipart/form-data"
-            class="form"
-          >
-            <div class="form_inputs">
-              <div class="form_div select_input">
-                <label class="select_label" for="sname">Surname</label>
-                <select name="sname" id="sname" required>
-                  <option value="<%- old.sname %>"><%- old.sname %></option>
-                  <option value="Prof">Prof</option>
-                  <option value="Dr">Dr</option>
-                  <option value="Mr">Mr</option>
-                  <option value="Thiru">Thiru</option>
-                  <option value="Mrs">Mrs</option>
-                  <option value="Ms">Ms</option>
-                </select>
-              </div>
+        <% if (docs) { %>
+            <% docs.forEach(function(item) { %>
+                <div class="container_todo">
+                    <div class="todo_profile">
+                        <img src="/uploads/instition_info/higher_authority/<%- item.profile_pic %>" alt="<%= item.profile_pic %>">
+                    </div>
+                    <div class="todo_content">
+                        <div class="todo_row">
+                            <h3>Name : <%= item.sname %>. <%= item.name %></h3>
+                        </div>
+                        <div class="todo_row">
+                            <h3>Designation : <%= item.position %></h3>
+                        </div>
+                        <div class="todo_row">
+                            <h3>Qualification : <%= item.qualification %></h3>
+                        </div>
+                        <div class="todo_row">
+                            <h3>Phone Number : <%= item.phone %></h3>
+                        </div>
+                        <div class="todo_row">
+                            <h3>Email ID : <%= item.mail %></h3>
+                        </div>
+                        <div class="todo_row">
+                            <h3>Access Level : <%= item.priority %></h3>
+                        </div>
+                    </div>
 
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="name"
-                  name="name"
-                  value="<%- old.name %>"
-                  required
-                />
-                <label for="name">Name</label>
-              </div>
+                    <div class="todo_buttons">
+                        <div class="todo_edit">
+                            <a href="/admin/institution_info/higher_authority/form_higher_authority/edit/<%- item._id %>"><button class="btn_warning">Edit</button></a>
+                        </div>
+                        <div class="todo_delete">
+                            <a href="/admin/institution_info/higher_authority/form_higher_authority/delete/<%- item._id %>"><button class="btn_danger">Delete</button></a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            <% }) %>
+        <% } %>
 
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="position"
-                  name="position"
-                  value="<%- old.position %>"
-                  required
-                />
-                <label for="position">Position</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="qualification"
-                  name="qualification"
-                  value="<%- old.qualification %>"
-                  required
-                />
-                <label for="qualification">Qualification</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="text"
-                  class="input"
-                  id="phone"
-                  name="phone"
-                  value="<%- old.phone %>"
-                  required
-                />
-                <label for="phone">Phone Number</label>
-              </div>
-
-              <div class="form_div text_input">
-                <input
-                  type="email"
-                  class="input"
-                  id="mail"
-                  name="mail"
-                  value="<%- old.mail %>"
-                  required
-                />
-                <label for="mail">Email</label>
-              </div>
-
-              <div class="form_div select_input">
-                <label class="select_label" for="priority">Access Type</label>
-                <select name="priority" id="priority" required>
-                  <option value="<%- old.priority %>">
-                    <%- old.priority %>
-                  </option>
-                  <option value="All">All</option>
-                  <option value="Edit">Edit</option>
-                  <option value="View">View</option>
-                </select>
-              </div>
-
-              <div class="form_div file_input">
-                <label for="profile_pic">Profile Photo</label>
-                <input
-                  type="file"
-                  class="input"
-                  id="profile_pic"
-                  name="profile_pic"
-                  value="<%- old.profile_pic %>"
-                />
-              </div>
-              <div class="form_submit form_div_span">
-                <input type="submit" />
-              </div>
+        <div class="popup_container" id="popup_add" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title"><%= page_title %></p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/institution_info/higher_authority/submit_higher_authority" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div select_input">
+                                <label class="select_label" for="sname">Surname</label>
+                                <select name="sname" id="sname" required>
+                                    <option value=""></option>
+                                    <option value="Prof">Prof</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Thiru">Thiru</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                </select>
+                            </div>
+    
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="name" name="name" required>
+                                <label for="name">Name</label>
+                            </div>
+    
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="position" name="position" required>
+                                <label for="position">Position</label>
+                            </div>
+    
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="qualification" name="qualification" required>
+                                <label for="qualification">Qualification</label>
+                            </div>
+    
+                            <div class="form_div text_input">
+                                <input type="text" class="input" id="phone" name="phone" required>
+                                <label for="phone">Phone Number</label>
+                            </div>
+    
+                            <div class="form_div text_input">
+                                <input type="email" class="input" id="mail" name="mail" required>
+                                <label for="mail">Email</label>
+                            </div>
+    
+                            <div class="form_div select_input">
+                                <label class="select_label" for="priority">Access Type</label>
+                                <select name="priority" id="priority" required>
+                                    <option value=""></option>
+                                    <option value="All">All</option>
+                                    <option value="Edit">Edit</option>
+                                    <option value="View">View</option>
+                                </select>
+                            </div>
+    
+                            <div class="form_div file_input">
+                                <label for="profile_pic">Profile Photo</label>
+                                <input type="file" class="input"  id="profile_pic" name="profile_pic">
+                            </div>
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div>    
+                        </div>
+                    </form>
+                </div>        
             </div>
-          </form>
         </div>
-      </div>
+        
+        <% if (edit === "display") { %>
+            <div class="popup_container" id="popup_add">
+                <div class="popup" id="popup">
+                    <div class="popup_header">
+                        <p class="pop_title"><%= page_title %></p>
+                        <a href="/admin/institution_info/higher_authority"><span class="close_icon" id="closePopup">&times;</span></a>
+                    </div>
+                    <div class="pop_body">
+                        <form action="/admin/institution_info/higher_authority/update_higher_authority/<%- old._id %>" method="post" enctype="multipart/form-data" class="form">
+                            <div class="form_inputs">
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="sname">Surname</label>
+                                    <select name="sname" id="sname" required>
+                                        <option value="<%- old.sname %>"><%- old.sname %></option>
+                                        <option value="Prof">Prof</option>
+                                        <option value="Dr">Dr</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Thiru">Thiru</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Ms">Ms</option>
+                                    </select>
+                                </div>
+    
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="name" name="name" value="<%- old.name %>" required>
+                                    <label for="name">Name</label>
+                                </div>
+    
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="position" name="position" value="<%- old.position %>" required>
+                                    <label for="position">Position</label>
+                                </div>
+    
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="qualification" name="qualification" value="<%- old.qualification %>" required >
+                                    <label for="qualification">Qualification</label>
+                                </div>
+    
+                                <div class="form_div text_input">
+                                    <input type="text" class="input" id="phone" name="phone" value="<%- old.phone %>" required>
+                                    <label for="phone">Phone Number</label>
+                                </div>
+    
+                                <div class="form_div text_input">
+                                    <input type="email" class="input" id="mail" name="mail" value="<%- old.mail %>" required>
+                                    <label for="mail">Email</label>
+                                </div>
+    
+                                <div class="form_div select_input">
+                                    <label class="select_label" for="priority">Access Type</label>
+                                    <select name="priority" id="priority" required>
+                                        <option value="<%- old.priority %>"><%- old.priority %></option>
+                                        <option value="All">All</option>
+                                        <option value="Edit">Edit</option>
+                                        <option value="View">View</option>
+                                    </select>
+                                </div>
+    
+                                <div class="form_div file_input">
+                                    <label for="profile_pic">Profile Photo</label>
+                                    <input type="file" class="input"  id="profile_pic" name="profile_pic" value="<%- old.profile_pic %>">
+                                </div>
+                                <div class="form_submit form_div_span">
+                                    <input type="submit">
+                                </div>  
+                            </div>
+                        </form>
+                    </div>        
+                </div>
+            </div>
+        <% } %>
     </div>
-    <% } %>
-  </div>
 </div>

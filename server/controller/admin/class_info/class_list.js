@@ -88,8 +88,7 @@ if (fees!=null) {
   console.log("title here : ",title);
   
       var staff = await get_staff();
-      const sec=await class_model.find({id:title,in:true});
-      // finding the section that are available, that is 
+      const sec=await class_model.find({id:title,in:true});// finding the section that are available, that is 
       
     console.log(staff);
 

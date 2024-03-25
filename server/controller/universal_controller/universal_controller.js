@@ -4,25 +4,21 @@ const express = require("express");
 require("./../../database/database");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-
-const circularModel = require('../../models/admin/circular_model')
 const login_data = require("../../models/login_data/login_info_model");
 const attendance_schema=require('../../models/admin/attendance_model')
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-// let {yearlyUpdate} = require('../universal_controller/notificationFunction')
-let date = new Date()
 
 
 
 exports.uni_index = async (req, res) => {
-console.log('batch');
-  console.log(req.session.role);
   
   if (req.session.user_id) {
     if (req.session.role=='admin') {
      res.redirect("/admin_index");
+    
+
   }
   else if (req.session.role.includes("Standard")) {
     res.redirect(`/student_index/${req.session.user_id}/${req.session.role}`);
@@ -34,7 +30,6 @@ console.log('batch');
     res.render("universal/home_page");
   }
   } 
-
   else {
     console.log("session not found");
     res.render("universal/home_page",);
@@ -80,6 +75,9 @@ exports.login_submission = async (req, res) => {
   login_data.findOne({ user_id: id }).then(async (data) => {
     if (data) {
 
+
+      console.log(data);
+    
       var valid_password = await bcrypt.compare(password, data.password);
      
       if (valid_password) {
@@ -123,7 +121,7 @@ exports.login_submission = async (req, res) => {
 };
 
 // adding user data
-// adduser()
+//adduser()
 function adduser() {
   var user = "admin";
   var password = "123";
@@ -154,6 +152,6 @@ exports.logout_session = async (req, res) => {
   return res.redirect("/");
 };
 
-//adduser();
+//  adduser();
 
 

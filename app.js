@@ -39,6 +39,7 @@ const admin_routes = require("./server/routes/admin_router");
 const staff_routes = require("./server/routes/staff_router");
 const student_routes = require("./server/routes/student_router");
 const parent_routes = require("./server/routes/parent_router");
+const forem_router = require("./server/routes/forem_router")
 
 
 app.use(universal_routes);
@@ -46,6 +47,7 @@ app.use(admin_routes);
 app.use(staff_routes);
 app.use(student_routes);
 app.use(parent_routes);
+app.use(forem_router);
 
 app.listen(port, () => console.log(`click here : http://localhost:${port}`));
 

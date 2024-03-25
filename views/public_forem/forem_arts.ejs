@@ -1,0 +1,248 @@
+<!-- <script src="/js/public_forem.js"></script> -->
+<link rel="stylesheet" href="../../css/forum_arts.css">
+<div class="container">
+    <div class="back_button">
+    <% if (role == 'staff') { %>
+
+       <a href="/staff/forem/index/redirection/<%= user %>"><i class='bx bx-arrow-back back_arrow'></i></a>
+
+   <%   } else if(role == 'admin') { %> 
+
+        <a href="/admin/forem/index"><i class='bx bx-arrow-back back_arrow'></i></a>
+
+    <% } else{%>
+
+        <a href="/student/forem/index/redirect/<%= user %>/<%= role %>"><i class='bx bx-arrow-back back_arrow'></i></a>
+        
+    <% } %>
+    </div>
+
+
+    <!-- Refresh Button -->
+ <div class="referesh_button">  <a href="/forem/arts"><i class='fas fa-sync-alt'  style="font-size: 24px;"></i></a><br></div>
+   <div class="arts_main_heading"> <h2>Public Forem Arts Page</h2></div>
+    <div class="visitor">
+        <h4 class="hello">Hello : <%= user ? user : "guest" %></h4>
+        <h4><i class='bx bxs-id-card visitors' ></i>: <%= role ? role : 'Visitor' %></h4>
+    </div>
+
+    <button onclick="toggleForm()" class="add_question"><span class="span_add_question">Add Question</span></button>
+
+<!-- Searching Questions -->
+<div class="arts_search">
+<form action="/QuestA" method="post" id="squ">
+    <div class="inputGroup">
+        <input type="text"  placeholder="Enter Your Questions Here"  name="question">
+        
+        <button type="submit"><i class='bx bx-search-alt-2'></i></button>
+    </div>
+    
+    
+</form></div>
+
+<div class="arts_form">
+    <br> <form action="/public_forem/filter_Arts_question" method="post" onsubmit="return validateForm()">
+        <div class="custom-select">
+            <select name="AnsNO" id="filterSelect">
+              <option value="default" hidden selected disabled>Filter</option>
+              <option value="Yes">Answered</option>
+              <option value="No">Not Answered</option>
+            </select>
+            <span class="arrow"></span>
+          </div>
+       <button type="submit" value="filter">Filter</button>
+        <!-- <button type="submit">Filter</button> -->
+    </form></div>
+
+    <!-- Inserting New Question -->
+    <div class="dropdown_question">
+        <div id="NewqForm" class="form-container">
+            <form action="/forem/new_arts_question" method="post">
+                <label for="newQuestion">Enter your new question:</label><br>
+                <textarea id="newQuestion" name="Nquestion" rows="4" cols="50"></textarea><br>
+                <button type="submit" class="question_submit">Submit</button>
+            </form>
+        </div></div>
+<!--  Answering Questions -->
+
+<div  id="myForm"  style="display:none;">
+  
+    <form action="/forem/arts_answers" method="post"  >
+       
+      <input type="text" id="obj" name="obji" ><br><br>
+
+      <span class="answer_question">   <i class='bx bxl-quora'></i><span class="colon">:</span><h3 id="quee"></h3></span>
+        <textarea name="answerr" cols="50" rows="5" required placeholder="enter your answer here"></textarea>
+       <button type="submit">Submit</button>
+    </form>
+</div>  
+
+
+ 
+<div class="question_heading">
+<h2 >Questions And Answers</h2></div>
+
+<% if (vim !== null && vim.length > 0) { %>
+    <% vim.reverse() %>
+  
+    <div >
+     
+        <% vim.forEach((item) => { %>
+            <div class="question-container">
+                
+                
+                <div class="question-scroll">
+                <p><%= item.question %></p></div>
+                <div class="question_inside">
+              
+
+
+
+                <% item.postedBY.forEach((postedBy) => { %>
+                    <% if (postedBy.role == 'staff') { %>
+                        <h4><i class='bx bxs-user'></i>: <%= postedBy.username %>  (<span style="color: rgb(3, 19, 255);"> <%= postedBy.role.toUpperCase() %></span> )</h4>
+                    <% } else if (postedBy.role == 'admin') { %>
+                        <h4 class="admin_user"><i class='bx bxs-user ' ></i>: <%= postedBy.username %>  (<span style="color: rgb(255, 21, 21);"> <%= postedBy.role.toUpperCase() %></span> )</h4>
+                    <% } else { %>
+                        <h4><i class='bx bxs-user'></i>: <%= postedBy.username %>   (<span style="color: rgb(10, 167, 117);">Student</span>)</h4>
+                        <h4><i class='bx bxs-id-card' ></i>: <span ><%= postedBy.role %></span></h4>
+                    <% } %>
+                <% }) %>
+                <button onclick="showUpdateForm('<%= item._id %>')" class="answer_button" >Give Answer</button><br></div>
+
+          
+                <button onclick="toggleAnswers(this)">Answers</button>
+                <% if (item.answer.length > 0) { %>
+                    <div class="answer-container" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">  
+                        <% item.answer.forEach((answerObj, index) => { %>
+                            <% if (answerObj.verified === true) { %>
+                                <div class="answer verified">
+                                    <h3><%= index + 1 %>) Answer : <%= answerObj.answer %></h3>
+                                    <h4><i class='bx bxs-user'></i>: <%= answerObj.Answeredby%> (<span style="color: rgb(188, 4, 4);"><%= answerObj.role.toUpperCase() %></span>)<span class="verified">Verified &#10004;</span></h4>
+                                </div>
+                            <% } else { %>
+                                <div class="answer">
+                                    <h3> <%= index + 1 %> )Answer : <%= answerObj.answer %></h3>
+                                    <div class="answer_user_icon">
+                                        <div class="answer_user">
+                                            <% if(answerObj.role == 'staff' || answerObj.role == 'admin'){ %>
+                                                <h4><i class='bx bxs-user'></i>: <%= answerObj.Answeredby %> (<span style="color: rgb(188, 4, 4);"><%= answerObj.role.toUpperCase() %></span>)</h4>
+                                            <% } else { %>
+                                                <h4><i class='bx bxs-user'></i>: <%= answerObj.Answeredby %> (<span style="color: rgb(10, 167, 117);">Student</span>)</h4>
+                                            <% } %>
+                                            <h4><i class='bx bxs-id-card'></i>: <span><%= answerObj.role %></span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                <% } %>
+                
+            </div>
+        <% }) %>
+    </div>
+<% } else { %>
+    <p>No Questions related to your search</p>
+<% } %>
+</div>
+
+
+
+
+
+<script>
+    function toggleAnswers(button) {
+        var answerContainer = button.nextElementSibling;
+        if (answerContainer.style.maxHeight === '0px' || answerContainer.style.maxHeight === '') {
+            answerContainer.style.maxHeight = answerContainer.scrollHeight + 'px';
+        } else {
+            answerContainer.style.maxHeight = '0';
+        }
+    }
+
+    function verify(button) {
+        var answerValue = button.parentElement.querySelector('.answerValue').value;
+        var questionValue = button.parentElement.querySelector('.questionValue').value;
+
+        console.log("Answer: " + answerValue);
+        console.log("Question: " + questionValue);
+
+        // Your verification logic goes here
+    }
+   
+    function toggleForm() {
+        var form = document.getElementById('NewqForm');
+        form.classList.toggle('active');
+    }
+
+
+
+
+function showUpdateForm(objId, question) {
+    var formDiv = document.getElementById('myForm');
+    var inp = document.getElementById('obj');
+    console.log(objId);
+    console.log(question);
+   
+    if (formDiv.style.display == 'none') {
+        formDiv.style.display='block';
+        inp.style.display ='none';
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Optional: smooth scrolling animation
+        });
+    }
+    else {
+        formDiv.style.display = 'none';
+    }
+
+ 
+ document.getElementById('quee').textContent = question;
+ inp.value = objId;
+ 
+}
+
+
+    function validateForm() {
+        var selectedOption = document.getElementById('filterSelect').value;
+        if (selectedOption === 'default') {
+            alert('Please select a valid option.');
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+
+
+
+
+
+
+
+
+    async function ver() {
+        var answer = document.getElementById('answerValue').value;
+        var question = document.getElementById('questionValue').value;
+
+        console.log(answer);
+        console.log(question);
+        try {
+            const response = await fetch(`/forem_verification_arts/${answer}/${question}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answer)
+            });
+            if (response.ok) {
+                console.log('Verification successful');
+                location.reload(); // Reload the page
+            } else {
+                console.error('Verification failed');
+            }
+        } catch (error) {
+            console.error('Error sending data to backend:', error);
+        }
+    }
+
+</script>

@@ -1,15 +1,17 @@
-<link rel="stylesheet" href="/css/students_test_result.css">
 <% function formatDate(date) {
     const formattedDate = new Date(date);
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return formattedDate.toLocaleDateString('en-GB', options);
 } %>
 
-    <% function formatTime(date) { const formattedTime=new Date(date); const hours=formattedTime.getHours() % 12 || 12;
-        const minutes=formattedTime.getMinutes(); const ampm=formattedTime.getHours()>= 12 ? 'PM' : 'AM';
+<% function formatTime(date) {
+    const formattedTime = new Date(date);
+    const hours = formattedTime.getHours() % 12 || 12;
+    const minutes = formattedTime.getMinutes();
+    const ampm = formattedTime.getHours() >= 12 ? 'PM' : 'AM';
 
-        return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
-        } %>
+    return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+} %>
 
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
@@ -23,40 +25,32 @@
         </div>
     <%}%>
     <div class="window_container">
-        <div class="container center_title">
-            Circulars
-        </div>
         <%if(datas){%>
-            <%datas.reverse().map((item)=>{%> 
-            <a href="/student/circularSeen/<%- item._id %>/<%- student._id %>/<%- student.id %>">
-               <div class="container_marks box"> 
-                    <div class="main_date">
-                        title:<h1> <%- item.title %> </h1>
+            <%datas.map((item)=>{%> 
+                <div class="circular_container" id="<%- item._id %>">
+                    <div class="circular_header">
+                        <div class="circular_info">
+                            <div class="from">From : <%- item.from %> </div>
+                            <div class="time">Date : <%- formatDate(item.date) %> </div>
+                            <div class="time">Time : <%- formatTime(item.date) %> </div>
+                        </div>
                     </div>
-                    <div class="main_date">
-                        date<h1><%- formatDate(item.date) %> </h1>
+                    <div class="circular_title">
+                        <div class="title"><%- item.title %></div>
                     </div>
-                    <div class="main_date">
-                        time<h1><%- formatTime(item.date) %> </h1>
+                    <div class="circular_message">
+                        <div class="message">
+                            <p><%- item.message %></p>
+                        </div>
                     </div>
-                        <%if(!student.seenCirculars.includes(item._id)){%>
-                            <div class="main_date">
-                                <br>
-                                <h1 style="color: green;">new</h1>
-                            </div>
-                        <%}%>
-                </div> 
-            </a>
+                </div>
             <%})%>
-        <%}else{%>
-            <h1>No circular</h1>
         <%}%>
     </div>
 </div>
 <script>
 function hideCircular(id){
     document.getElementById(id).style.display='none';
-    document.getElementsByName(id)[0].style.display = 'none';
 }
 
 function hideSeenCircularContainer(){
@@ -65,9 +59,6 @@ function hideSeenCircularContainer(){
 function showPopUp(){
     document.getElementById('seenCircularContainer').style.display='flex';
 }
-
-function showCircular(id){
-    document.getElementById(id).style.display="flex"
-    document.getElementsByName(id)[0].style.display = 'block'
-}
 </script>
+
+

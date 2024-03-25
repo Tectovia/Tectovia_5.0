@@ -72,8 +72,8 @@ function hide_edit_popup_forum() {
               <% }) %>
           <% } %>
       </div>
-        <div class="popup_forum  admin-forum-form" id="popup_forum" style="display: none;">
-            <div class="popup admin-forum-form-pop" id="popup">
+        <div class="popup_forum" id="popup_forum" style="display: none;">
+            <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Forum</p>
                     <span class="close_icon" id="closePopup" onclick="hide_popup_forum()">&times;</span>
@@ -117,21 +117,20 @@ function hide_edit_popup_forum() {
                       </div>
                     </div>
                               </div>       
-                            <div class="form_submitss form_div_span">
+                            <div class="form_submit form_div_span">
                             <input type="submit">
                         </div>  
                         </div>  
                     </form>
-                </div> 
-                <button id="scrollToTopBtncircular"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>       
+                </div>        
             </div>
         </div>
         <%if(edit === true){%>
           
           <%}%>
        <% if ( forum != null ) { %>
-    <div class="forum admin-forum-form" id="edit_popup_forum" >
-        <div class="popup admin-forum-edit-form" id="popup">
+    <div class="forum" id="edit_popup_forum" >
+        <div class="popup" id="popup">
             <div class="popup_header">
                 <p class="pop_title">Edit Forum</p>
                 <span class="close_icon" id="closeEditPopup" onclick="hide_edit_popup_forum()">&times;</span>
@@ -278,89 +277,4 @@ function hide_edit_popup_forum() {
     new CheckboxDropdown(checkboxesDropdowns[i]);
   }
 })(jQuery);
-
-window.onscroll = function () {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var scrollToTopBtncircular= document.getElementById("scrollToTopBtncircular");
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    }
-
-    document.getElementById("scrollToTopBtn-circular").addEventListener("click", function () {
-        // For smooth scrolling, use the scrollIntoView method
-        document.documentElement.scrollIntoView({ behavior: "smooth" });
-    });
-
-
 </script>
-<style>
-  .admin-forum-form{
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-in-out forwards;
-    
-}
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.admin-forum-forms{
-    margin-top: -10%;
-}
-.admin-forum-form-pop{
-    margin-top: -30%;
-}
-  
-.admin-forum-form{
-  margin-top: -5%;
-  margin-left: 26%;
-}  
-
-#scrollToTopBtncircular {
-    display: none;
-    background: none;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-    color: black;
-}
-
-#scrollToTopBtncircular i {
-    margin-left: 90%;
-}
-.form_submitss {
-    width: 100%;
-    
-
-}
-
-.form_submitss input[type=submit] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: var(--primary-color);
-}
-
-.form_submitss input[type="submit"]:hover {
-    background-color: var(--success-color-light);
-}
-.admin-forum-edit-form{
-    margin-top: -25%;
-}
-</style>

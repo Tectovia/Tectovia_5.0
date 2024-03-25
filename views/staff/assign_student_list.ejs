@@ -1,7 +1,7 @@
 <script>
    function viewcontent(content) {
       const text = document.getElementById('source');
-      console.log("content",content);
+      console.log(content);
       // text.value=content;
       // display_popup_subject();
 
@@ -49,11 +49,11 @@
                      </div>
                      <div class="todo_content">
                         <div class="todo_row">
-                           <h4>Rollno : <%= element.rollno %>
+                           <h4>Name : <%= element.name %>
                            </h4>
                         </div>
                         <div class="todo_row">
-                           <h4>Mark : <%= assign.mark %>
+                           <h4>Rollno : <%= element.rollno %>
                            </h4>
                         </div>
 
@@ -82,11 +82,11 @@
                      </div>
                      <div class="todo_content">
                         <div class="todo_row">
-                           <h4>Rollno : <%= element.rollno %>
+                           <h4>Name : <%= element.name %>
                            </h4>
                         </div>
                         <div class="todo_row">
-                           <h4>Mark : <%= assign.mark %>
+                           <h4>Rollno : <%= element.rollno %>
                            </h4>
                         </div>
                        
@@ -95,9 +95,9 @@
                    
                      <div class="todo_buttons pending">
                               
-                
+                     <% var text=assign.source %>
                
-                           <a href="/staff/assignment/view/<%= staffdata[0].staff_id %>/<%= assign.ref_id %>/<%= element.batch %>/<%= element.rollno %>"><button
+                           <a onclick='viewcontent(`<%=text%>`)'><button
                                  class="pending_btn">View</button></a>
 
 

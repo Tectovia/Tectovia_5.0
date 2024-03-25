@@ -18,7 +18,7 @@
     border-collapse: collapse;
     width: auto;
     height: 100px;
-    
+    box-shadow: 0 0 20px var(--primary-color);
 }
 
 .table .row {
@@ -39,11 +39,19 @@ td {
     background-color: var(--bg-color);
 }
 
-
+.header{
+<<<<<<< Updated upstream
+    background-image: linear-gradient(to top, #14f52e, #08af1c);
+=======
+   background-color: var(--primary-color);
+>>>>>>> Stashed changes
+    color: #000000;
+    
+}
 
 .table .row:hover{
-    background-color: var(--primary-color);
-   
+    background-color: var(--primary-color-light);
+    transform: scale(1.01);
     border: none;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2),-1px -1px 8px rgba(0,0,0,0.2);
 }

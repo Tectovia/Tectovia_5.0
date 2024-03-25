@@ -26,21 +26,14 @@
         <div class="container center_title">
             <%- title %> - <%- sec %>
             <div class="float_left">
-
-                <a class="back_btn" href="/admin/class_info/class_list/view_section/<%- classId._id %>/<%- student_doc.id %>/<%= student_doc.section %>"><i class='bx bx-arrow-back'></i></a>
-
-             </div>
-
-            <div class="float_right">
                <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>
-
-            <!-- <div class="float_right">
-                <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="delete_btn">Delete</button></a>
-            </div> -->
+            <div class="float_right">
+                <a href="/admin/class_info/class_list/view_section/delete_student/<%= student_doc._id %>/<%= title %>" id="toggleButton"><button class="btn_danger">Delete</button></a>
+            </div>
         </div>
 
-        <div class="student_section" style="z-index: 10;">
+        <div class="student_section">
             <div class="student_section_title">
                 <h1 class="section_title">Basic Information</h1>
             </div>
@@ -57,7 +50,11 @@
                         <h1>:</h1>
                         <h1><%- student_doc.rollno %></h1>
                     </div>
-                   
+                    <div class="section_row">
+                        <h1>Password</h1>
+                        <h1>:</h1>
+                        <h1><%- hash_student_password %></h1>
+                    </div>
                 </div>
             </div>
             <!-- <div class="edit_student">
@@ -67,7 +64,7 @@
             </div> -->
         </div>
 
-        <div class="student_section" style="z-index: 10;">
+        <div class="student_section">
             <div class="student_section_title">
                 <h1 class="section_title">Personal Information</h1>
             </div>
@@ -124,13 +121,11 @@
                     </div>
                 </div>
             </div>
-            <br>
             <div class="edit_section">
                 <a href="/admin/edit_studentPersonal/<%= student_doc._id %>/<%= title %>">
-                    <button class="edit_btn edit_section_btn">Edit student personal details</button>
+                    <button class="btn_success edit_section_btn">Edit student personal details</button>
                 </a>
             </div>
-            <br>
         </div>
 </div>
 
@@ -237,7 +232,7 @@
 <!-- Student Edit Form 2 -->
 
 <%if(edit !== false){%>
-        <div class="popup_container admin-edit-from" id="popup_edit_student_details" style="display: flex;">
+        <div class="popup_container" id="popup_edit_student_details" style="display: flex;">
             <div class="popup" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Student Details</p>
@@ -392,89 +387,15 @@
                                     </div>
                                 </div>
                             </div> 
-                             <div class="view-edit-form-submit">
-                                <div class="admin-edit-btn">
-                                <div class="form_submit">
-                                     <input type="submit">
-                               </div>
-                                </div>
-                             </div>                 
+
+                                               
                         </div>
 
-                           
+                        <div class="form_submit">
+                            <input type="submit">
+                        </div>    
                     </form>
-                </div> 
-                <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>       
+                </div>        
             </div>
         </div>
 <%}%>
-
-<style>
-    .view-edit-form-submit{
-        margin-left: 80%;
-        
-    
-    }
-    .admin-edit-btn{
-        width: 250%;
-        
-    }
-    .admin-edit-from{
-        margin-top: 20%;
-        margin-left: 5%;
-
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.5s ease-in-out forwards;
-    }
-    @keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-#scrollToTopBtn {
-    display: none;
-    background: none;
-    border: none;
-    width: 10%;
-    cursor: pointer;
-    margin-top: -15%;
-    margin-left: 77%;
-}
-
-
-
-#scrollToTopBtn i {
-    margin-left: 90%;
-    
-    margin-top: -10%;
-  
-}
-</style>
-<script>
-    window.onscroll = function () {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    }
-
-    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
-        // For smooth scrolling, use the scrollIntoView method
-        document.documentElement.scrollIntoView({ behavior: "smooth" });
-    });
-
-    
-</script>

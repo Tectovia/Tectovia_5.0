@@ -1,20 +1,27 @@
 <div class="window" id="window_layout">
-  <div class="window_navbar">
-    <%- include('partials/admin/navigation_bar.ejs') %>
-  </div>
+    <div class="window_navbar">
+        <%- include('partials/admin/navigation_bar.ejs') %>
+    </div>
 
-  <div class="window_container">
-    <% if (docs) { %> <% docs.forEach(function(item) { %>
-    <h3><%= item.id %></h3>
-    <h3><%= item.school_name %></h3>
-    <h3><%= item.school_address %></h3>
-    <h3><%= item.board_of_education %></h3>
-    <img
-      src="/uploads/instition_info/common_info/<%- item.school_logo %>"
-      alt="<%= item.school_logo %>"
-    />
-    <% }); %> <% } else { %>
-    <p>User not found</p>
-    <% } %>
-  </div>
+    <div class="window_container">
+        <% if (docs) { %>
+            <% docs.forEach(function(item) { %>
+                <h3><%= item.id %></h3>
+                <h3><%= item.school_name %></h3>
+                <h3><%= item.school_address %></h3>
+                <h3><%= item.board_of_education %></h3>
+                <img src="/uploads/instition_info/common_info/<%- item.school_logo %>" alt="<%= item.school_logo %>">
+            <% }); %>
+            
+        <% } else { %>
+            <p>User not found</p>
+        <% } %>
+    </div>
 </div>
+
+
+    
+
+
+
+

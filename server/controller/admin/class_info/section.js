@@ -273,18 +273,17 @@ exports.view_student = async (req, res) => {
     let studentDetails = req.data;
     let edit=false;
     console.log("params");
-    console.log(title,sec,id);
+    console.log(req.params);
     console.log("data");
     console.log(req.data);
-      class_model.find({ id: title, section_name:sec }).then((section_doc) => {  console.log(section_doc);});
+    
     if(studentDetails !== undefined){
         edit=true
     }
 
-    let classId = await class_model.findOne({id:title,section_name:sec},{_id:1})
+    const {obj_id} =  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
 
-    const obj_id=  await selectedModel.findOne({_id:id},{rollno:1,obj_id:1})  
-
+   
 
     if (!selectedModel) {
         console.log("Invalid title");
@@ -293,17 +292,18 @@ exports.view_student = async (req, res) => {
 
         var hash_student_password;
 
-   
+        login_data.find({_id:obj_id}).then(async (login_doc) => {
+            hash_student_password = login_doc[0].password;
         selectedModel.findById(id, (err, student_doc) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send("Error retrieving student document");
             } else {
-                res.render("admin/class_info/view_student", { title, sec, id, student_doc,edit,studentDetails,classId });
+                res.render("admin/class_info/view_student", { title, sec, id, student_doc, hash_student_password,edit,studentDetails });
             }
         });
-    }
-
+    })
+}
 
 //------------------- SECTION FUNCTIONS -------------------
 

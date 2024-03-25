@@ -42,10 +42,6 @@ exports.mark_entry_index=async(req,res)=>{
 
     // used to show circular notification for staff edited by purushothaman @ 27/2
     let circularNotification = await noOfCirculars(staffdata[0].staff_id)
-     // used to show circular notification for staff edited by purushothaman @ 14/3
-     circularNotification = circularNotification.unSeenCirculars
-     //----------------------------------------------------------------------
-
     //----------------------------------------------------------------------
 
     res.render("./staff/mark_entry_index",{
@@ -77,9 +73,6 @@ exports.mark_entry=async (req,res)=>{
 
         // used to show circular notification for staff edited by purushothaman @ 27/2
         let circularNotification = await noOfCirculars(staffdata[0].staff_id)
-         // used to show circular notification for staff edited by purushothaman @ 14/3
-        circularNotification = circularNotification.unSeenCirculars
-        //----------------------------------------------------------------------
         //----------------------------------------------------------------------
 
     res.render("./staff/mark_entry",{

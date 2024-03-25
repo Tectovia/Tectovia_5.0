@@ -2,7 +2,7 @@ require("../../../database/database");
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
-const { eachDayOfInterval, format } = require("date-fns");
+const {eachDayOfInterval,format}=require('date-fns')
 
 // Models Here!
 const class_model = require("../../../models/admin/section_model");
@@ -20,8 +20,8 @@ exports.academic_calendar = async (req, res) => {
   //   .findOne({})
   //   .then((data) => {
   //     // console.log(data);
-  res.render("admin/academic_calendar/academic_calend");
-  // });
+      res.render("admin/academic_calendar/academic_calend");
+    // });
 };
 
 // academic_year();
@@ -99,9 +99,9 @@ exports.add_event = async (req, res) => {
   var desc = req.body.desc;
   if (!desc) {
     console.log("not found");
-    desc = "null";
+    desc='null';
   }
-
+ 
   const update = {
     $set: {
       [date + ".status"]: status,

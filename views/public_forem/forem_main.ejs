@@ -1,0 +1,153 @@
+
+<div class="window" id="window_layout">
+    <%if(role==="student"){%>
+        <div class="window_navbar">
+            <%- include('../partials/student/navigation_bar.ejs') %>
+        </div>
+    <%}else if(role === 'staff'){%>
+        <div class="window_navbar">
+            <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+          </div>
+    <%}else if(role ==='admin'){%>
+        <div class="window_navbar">
+            <%- include('../partials/admin/navigation_bar.ejs') %>
+        </div>
+    <% } %>
+<div class="window_container">
+   <div class="public_forum_heading"> <h1>Public Forem </h1> </div>
+   <div class="visitor">
+    <h4 class="hello"> Hello :<%= user ? user : "guest" %></h4>
+    <h4><i class='bx bxs-id-card visitors' ></i>: <%= role ? role : 'Visitor' %></h4>
+</div>
+    <div class="main_page">
+    <div class="Vanakam">
+        <a href="/forem/arts">
+            <div class="card-content"></div>
+        </a>
+    </div>
+    
+    <div class="Vanakam1">
+        <a href="/forem/science">
+            <div class="card-content"></div>
+        </a>
+    </div>
+    <div class="Vanakam3">
+        <a href="/forem/UserQuestion">
+            <div class="card-content"></div>
+        </a>
+    </div></div>
+</div>
+
+</div>  
+<style>
+    .visitor{
+        margin-left: 530px;
+        display: flex;
+    }
+    .visitors{
+        margin-left: 30px;
+    }
+.public_forum_heading{
+    margin-left: 500px;
+    
+}
+.public_forum_heading h1{
+    font-size: 40px;
+}
+    .main_page{
+        display: flex;
+        margin-top: 100px;
+    }
+    .main_page div{
+        margin-left: 30px;
+    } 
+    .Vanakam {
+        width: 400px;
+        height: 300px;
+      background-color: #007bff;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; /* Adjusted position */
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0px 0px 13px 3px rgb(255, 255, 255);
+        transition: transform 0.3s ease-in-out;
+    }
+
+.Vanakam:hover {
+    transform: translateY(-5px);
+}
+
+.Vanakam a {
+    display: block; /* Ensure the link takes up the entire card area */
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #212529;
+}
+
+.Vanakam a:hover {
+    color: #007bff;
+}
+.Vanakam1 {
+    width: 400px;
+    height: 300px;
+    background-image: ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Adjusted position */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 13px 3px rgb(255, 255, 255);
+    transition: transform 0.3s ease-in-out;
+}
+.Vanakam1:hover {
+transform: translateY(-5px);
+}
+
+.Vanakam1 a {
+display: block; /* Ensure the link takes up the entire card area */
+width: 100%;
+height: 100%;
+text-decoration: none;
+color: #212529;
+}
+
+.Vanakam1 a:hover {
+color: #007bff;
+}
+.Vanakam3 {
+    width: 400px;
+    height: 300px;
+    background-image: ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Adjusted position */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 13px 3px rgb(255, 255, 255);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Vanakam3:hover {
+transform: translateY(-5px);
+}
+
+.Vanakam3 a {
+display: block; /* Ensure the link takes up the entire card area */
+width: 100%;
+height: 100%;
+text-decoration: none;
+color: #212529;
+}
+
+.Vanakam3 a:hover {
+color: #007bff;
+}
+    </style>

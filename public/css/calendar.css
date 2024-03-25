@@ -11,7 +11,7 @@
 }
 
 .header #month {
-  color: var(--text-color);
+  color: white;
   font-size: 30px;
   font-weight: 600;
 }
@@ -45,7 +45,6 @@ button {
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
 }
 
 #calendar {

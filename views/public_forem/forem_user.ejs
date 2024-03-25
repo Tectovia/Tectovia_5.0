@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="../../css/forum_your_page.css">
+<div class="container">
+   <div class="back_button">
+<% if (role == 'staff') { %>
+       
+   <a href="/staff/forem/index/redirection/<%= user %>"><i class='bx bx-arrow-back back_arrow'></i></a>
+  
+<%  } else if(role == 'admin') { %> 
+   
+   <a href="/admin/forem/index"><i class='bx bx-arrow-back back_arrow'></i></a>
+   
+<% } else{%>
+
+       <a href="/student/forem/index/redirect/<%= user %>/<%= role %>"><i class='bx bx-arrow-back back_arrow'></i></a>
+
+       <% } %>
+
+   </div>
+   <div class="arts_main_heading"> <h2>Your Page</h2></div>
+   <div class="visitor">
+      <h4 class="hello"> Hello :<%= user ? user : "guest" %></h4>
+      <h4><i class='bx bxs-id-card visitors' ></i>: <%= role ? role : 'Visitor' %></h4>
+  </div>
+
+
+
+
+  <% if(value && value.length > 0){ %>
+   <% value.forEach(values => { %>
+       <div class="question-container">
+         <span class="question_delete">  <h5>Question</h5>
+           <span class="delete_button_main">
+            <% if (values.stream == 'arts') { %>
+                <button class="delete-btn"><a href="/forem/deleteArts/<%= values._id %>"  onclick="return confirm('Are you sure you want to delete this question')">Delete</a></button><br>
+            <% } %>
+            <% if( values.stream == 'science'){ %>
+                <button class="delete-btn"><a href="/forem/deleteScience/<%= values._id %>" onclick="return confirm('Are you sure you want to delete this question')">Delete</a></button>
+            <% } %></span></span>
+           <h6>Stream: <%= values.stream ? values.stream: " " %></h6>
+           <%= values.question ? values.question: "no" %>
+           <!-- <button>Edit</button> -->
+         
+       </div>
+       <div class="answer-container" style="height: 200px; overflow-y: auto;"  >
+           <h5>Answers</h5>
+           <% values.answer.forEach((answerObj) => { %>
+               <% Object.keys(answerObj).forEach((key) => { %>
+                   <% if (key !== 'verified') { %>
+                       <p><%= key %>: <%= answerObj[key] %> </p>  
+                   <% } else if(answerObj[key]=== true){ %>
+                       <span style='color:green'>Verified &#10004</span><br>
+                       <!-- <p id="Count">//<%= key %> :<%= answerObj[key] %></p> -->
+                   <% } %>     
+               <% }) %>
+           <% }) %>
+       </div>
+   <% }) %>
+<% } %>
+
+    <style>
+      /* Style for Question */
+      .question-container {
+         background-color: #f0f0f0; /* Change to the desired color */
+         padding: 10px;
+         margin-bottom: 20px;
+     }
+     
+     /* Style for Answer Container */
+     .answer-container {
+         background-color: #e0e0e0; /* Change to the desired color */
+         padding: 10px;
+         margin-bottom: 20px;
+     }
+h5 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style for Stream */
+h6 {
+    font-size: 1em;
+    font-weight: normal;
+    color: #666;
+}
+
+/* Style for Answers */
+p {
+    font-size: 1em;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* Style for Verified Answers */
+span {
+    font-size: 1em;
+    color: green;
+}
+
+/* Style for Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1em;
+   
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for Links inside Buttons */
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Style for Delete Button */
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #bd2130;
+}
+
+
+.delete-btn {
+   background-color: #dc3545;
+   color: white;
+   border: none;
+   padding: 8px 15px;
+   text-align: center;
+   cursor: pointer;
+   font-size: 1em;
+   margin-left: 850px; /* Adjust as needed */
+   margin-top: 10px;
+}
+.question_delete{
+   display: flex;
+
+}
+    </style>

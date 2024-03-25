@@ -4,18 +4,34 @@
     <%- include('partials/student/navigation_bar.ejs',{notification}) %>
   </div>
 
-<div class="window_container">
+  <div class="window_container">
     <div class="student_information">
-
-     <img src="/img/profile.jpg" alt="" class="user_profile">
-     <div class="student_main_name"><h1> Name :  <%=student.name %></h1></div>
-     <div class="student_main_id"><h1> Roll no :  <%=student.rollno %></h1></div>
+     <img src="/img/download.jpg" alt="" class="user_profile">
         <div class="information_container">
-
             <div class="user_id">
                   <div class="user_detail">
                       <div class="user_title">
-                      Batch
+                        User Id
+                      </div>
+                      <div class="user_colon">
+                        :
+                      </div>
+                      <div class="user_data">
+                        <%=student.rollno %>
+                      </div>
+
+                      <div class="user_title">
+                        Name
+                      </div>
+                      <div class="user_colon">
+                        :
+                      </div>
+                      <div class="user_data">
+                        <%=student.name %>
+                      </div>
+
+                      <div class="user_title">
+                        STD
                       </div>
                       <div class="user_colon">
                         :
@@ -25,33 +41,13 @@
                       </div>
 
                       <div class="user_title">
-                        Std
-                      </div>
-                      <div class="user_colon">
-                        :
-                      </div>
-                      <div class="user_data">
-                        <%=student.std%>
-                      </div>
-
-                      <div class="user_title">
-                        Section
+                        Sec
                       </div>
                       <div class="user_colon">
                         :
                       </div>
                       <div class="user_data">
                         <%=student.section%>
-                      </div>
-
-                      <div class="user_title">
-                       Class incharge
-                      </div>
-                      <div class="user_colon">
-                        :
-                      </div>
-                      <div class="user_data">
-                        <%=student.incharge%>
                       </div>
                   </div>
             </div>
@@ -97,70 +93,66 @@
                     <div class="conatct_data">
                       <%=student.email%>
                     </div>
-                    <div class="contact_title">
-                      Aadhar No 
-                    </div>
-                    <div class="conatct_colon">
-                      :
-                    </div>
-                    <div class="conatct_data">
-                      <%=student.aadhar_no%>
-                    </div>
                </div>
             </div>
             
             <div class="basic_details">
                 <div class="basic_data">
                     <div class="detail_1">
-                      <div class="basic_title_1">
-                        Blood Group
-                      </div>
-                      <div class="basic_colon_1">
-                        :
-                      </div>
-                      <div class="basic_data_1">
-                        <%=student.blood_group%>
-                      </div>
                           <div class="basic_title_1">
-                          Community 
+                            GR No 
                           </div>
                           <div class="basic_colon_1">
                             :
                           </div>
                           <div class="basic_data_1">
-                            <%=student. community%>
+                            <%=student.guardian_phone1%>
                           </div>
+
                           <div class="basic_title_1">
-                         Gender 
-                            </div>
-                            <div class="basic_colon_1">
-                              :
-                            </div>
-                            <div class="basic_data_1">
-                              <%=student. gender%>
-                            </div>
-                            <div class="basic_title_2">
-                              Disablity
-                            </div>
-                            <div class="basic_colon_2">
-                              :
-                            </div>
-                            <div class="basic_data_2">
-                              <%=student.disability%>
-                            </div>
+                            Father's Name
+                          </div>
+                          <div class="basic_colon_1">
+                            :
+                          </div>
+                          <div class="basic_data_1">
+                            <%=student.guardian_phone1%>
+                          </div>
 
-                         
+                          <div class="basic_title_1">
+                            Mother's Name
+                          </div>
+                          <div class="basic_colon_1">
+                            :
+                          </div>
+                          <div class="basic_data_1">
+                            <%=student.mother_name%>
+                          </div>
 
-                        
-                        
+                          <div class="basic_title_1">
+                            Blood Group
+                          </div>
+                          <div class="basic_colon_1">
+                            :
+                          </div>
+                          <div class="basic_data_1">
+                            <%=student.blood_group%>
+                          </div>
 
-                         
+                          <div class="basic_title_1">
+                            UID No 
+                          </div>
+                          <div class="basic_colon_1">
+                            :
+                          </div>
+                          <div class="basic_data_1">
+                            <%=student.id%>
+                          </div>
                     </div>
 
                     <div class="detail_2">
-                     
                           <div class="basic_title_2">
-                          Community
+                            Caste 
                           </div>
                           <div class="basic_colon_2">
                             :
@@ -168,34 +160,16 @@
                           <div class="basic_data_2">
                             <%=student.community%>
                           </div>
+
                           <div class="basic_title_2">
-                           Father name
-                            </div>
-                            <div class="basic_colon_2">
-                              :
-                            </div>
-                            <div class="basic_data_2">
-                              <%=student.father_name %>
-                            </div>
-                            <div class="basic_title_2">
-                              Mother name
-                               </div>
-                               <div class="basic_colon_2">
-                                 :
-                               </div>
-                               <div class="basic_data_2">
-                                 <%=student.mother_name %>
-                               </div>
-                               <div class="basic_title_2">
-                                Mother name
-                                 </div>
-                                 <div class="basic_colon_2">
-                                   :
-                                 </div>
-                                 <div class="basic_data_2">
-                                   <%=student.mother_name %>
-                                 </div>
-                         
+                            Disablity
+                          </div>
+                          <div class="basic_colon_2">
+                            :
+                          </div>
+                          <div class="basic_data_2">
+                            <%=student.disability%>
+                          </div>
 
                           <!-- <div class="basic_title_2">
                             GR No 

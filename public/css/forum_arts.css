@@ -1,0 +1,381 @@
+@import url(root.css);
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@400..700&family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Frijole&family=Gantari:ital,wght@0,100..900;1,100..900&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Langar&family=Madimi+One&family=Metal+Mania&family=Moirai+One&family=Revalia&display=swap');
+body {
+    background-color: #c6c6c6;
+   
+font-family: Arial, sans-serif;
+margin: 0%; 
+padding: 5%; 
+    
+}
+.answer:nth-child(odd) {
+    background-color:  rgb(255, 255, 255);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    margin-bottom: 5px;
+   /* Change background color for even answers */
+}
+.answer:nth-child(even) {
+    background-color:#acacbe4f; 
+    border : 2px solid rgb(255, 255, 255)/* Change background color for even answers */;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+.container {
+    /* max-width: 800px; */
+    /* margin: 0 auto; */
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    /* background-color: rgba(226, 226, 226, 0.632); */
+    background-color: #ececec;
+    height: auto;
+    box-shadow: 0px 0px 14px 3px rgba(255, 255, 255, 0.378);
+  
+  border-radius: 24px ;
+ 
+}
+
+.question-container{
+    background-color: #dddfe2;
+    padding: 20px;
+    border-radius: 20px;
+    
+    box-shadow:  inset 0px 0px 14px 3px rgba(202, 202, 202, 0.605);
+}
+
+
+h4 {
+    margin: 5px 0;
+}
+
+
+
+
+
+form {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    transition: smooth;
+   
+}
+
+.question-container {
+    margin-bottom: 20px;
+    margin-top: 40px;
+   
+}
+.question-scroll {
+    max-height: 5em; 
+    overflow-y: scroll;
+    padding: 5px; /* Add padding for better visual appearance */
+}
+
+/* Style for Textarea inside Scrollable Question */
+.question-scroll p {
+    /* Make textarea fill the available height */
+    border: none; /* Remove default textarea border */
+    resize: none; /* Prevent resizing */
+    outline: none; /* Remove outline when focused */
+    overflow-y: auto; /* Allow scrolling within textarea if content exceeds height */
+}
+
+.answer-container {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.answer {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.7s;
+    transition: ease-in-out;
+}
+
+
+.answer_user_icon{
+  display: flex;
+
+  margin-top: 30px;
+  margin-left: 565px;
+}
+.answer_user{
+    margin-right: 35px;
+    display: flex;
+}
+.answer_user h4{
+    margin-left: 30px;
+}
+.answer:nth-child(even):hover{
+    box-shadow: 0px 3px 5px 1px rgb(170, 160, 160) ;
+    border: 2px solid rgb(0, 0, 0);
+    transform: scale(1.001);
+    z-index: 100;
+}
+
+.answer:nth-child(odd):hover{
+    border: 2px solid rgb(17, 14, 14);
+    transform: scale(1.001);
+}
+.answer h3 {
+    margin: 0;
+}
+
+.answer h4 {
+    margin: 5px 0;
+}
+
+.admin-controls {
+    margin-top: 10px;
+}
+
+.admin-controls button {
+   margin-left: 30px;
+   margin-top: -50px;
+}
+.verified_tick{
+    margin-left: 970px;
+ 
+
+}
+.back_arrow{
+    font-size: 35px;
+}
+.referesh_button i{
+    margin-left: 10px;
+    margin-top: -60px;
+    
+}
+.referesh_button{
+ 
+    margin-top: -28px;
+}
+.back_button{
+   
+    width: 50px;
+    margin-left: -40px;
+
+}
+
+.admin-controls button:hover {
+    background-color: #218838;
+}
+
+.verified {
+    color: green;
+}
+.arts_main_heading{
+    margin-left: 33%;
+}
+.arts_main_heading h2{
+    font-size: 38px;
+}
+.visitor{
+    margin-left: 330px;
+    display: flex;
+}
+.visitors{
+    margin-left: 30px;
+}
+.answer_question{
+    display: flex;
+}
+.answer_question h3{
+  margin-top: -5px;
+  margin-left: 5px;
+}
+.colon{
+  margin-top: -4px;
+}
+.hello{
+    margin-left: 100px;
+}
+.add_question{
+    margin-left: 1000px;
+    margin-top: 50px;
+    height: 40px;
+}
+.span_add_question{
+    margin-top: -30px;
+    font-size: 10px;
+}
+.arts_search{
+    margin-left: 700px;
+    margin-top: -40px;
+}
+.arts_form{
+    margin-top: -70px;
+}
+.dropdown_question textarea{
+    resize: none;
+}
+.dropdown_question{
+    overflow: hidden;
+    transition: max-height 0.5s ease; 
+}
+.question_submit{
+    margin-left: 1010px;
+}
+.inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    max-width: 390px;
+    position: relative;
+    display: flex;
+    margin-left: -100px;
+    margin-top: -20px;
+  }
+  .inputGroup button{
+  margin-left: 10px;
+  height: 40px;
+  }
+  
+  .inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+   
+  }
+  
+  .inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+  }
+  
+  .inputGroup :is(input:focus, input:valid)~label {
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: #e8e8e8;
+  }
+  
+  .inputGroup :is(input:focus, input:valid) {
+    border-color: rgb(150, 150, 200);
+  }
+  .question_heading{
+    margin-left: 380px;
+    margin-top: 50px;
+  }
+.question_heading h2{
+font-size: 30px;
+}
+
+.question_inside{
+   margin-left: 550px;
+   margin-top: -20px;
+    display: flex;
+
+    
+}
+.question_inside h4{
+    margin-left: 40px;
+}
+.answer_button{
+    margin-left: 20px;
+    margin-top: 50px;
+    font-size: 13px;
+}
+#answersContainer {
+    display: none;
+}
+.answer h3{
+    font-weight: 400;
+}
+.form-container {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s, max-height 0.3s;
+}
+.form-container.active {
+    opacity: 1;
+    max-height: 1000px; /* Adjust the max-height value as needed */
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffffd2;
+    border: 0.3px solid black;
+    padding: 10px 25px 10px 10px;
+    font-size: 16px;
+    border-radius: 18px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .custom-select select:focus {
+    outline: none;
+  }
+  
+  .custom-select .arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #555;
+  }
+  
+  .custom-select:hover .arrow {
+    border-top-color: #333;
+  }
+  
+  .custom-select select option:nth-child(even) {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fbfbfb;
+  }
+  .custom-select select option:nth-child(odd) {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #cbfcf769;
+  }
+  #myForm textarea{
+    resize: none;
+  }
+  #myForm button{
+    margin-left: 1000px;
+  }
+  .answer_user h4{
+    margin-right: 48px;
+  }
+  .admin_user{
+    width: 330px;
+  
+   margin-top: 50px;
+  
+  }
+  button{
+    background-color: #5ae195fc;
+  }

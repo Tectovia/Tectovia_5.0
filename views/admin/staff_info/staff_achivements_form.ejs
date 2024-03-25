@@ -4,7 +4,7 @@
     </div>
     <div class="window_container">
        
-<div class="popup admin-staff-achivements" id="popup">
+<div class="popup" id="popup">
     <div class="popup_header">
         <p class="pop_title">Achivements</p>
         <a href="/admin/staff_info"><span class="close_icon" id="closePopup">&times;</span></a>
@@ -20,13 +20,11 @@
                     <label for="staff_achievement_img1">Achivement </label>
                     <input class="input" type="file" id="staff_achievement_img1" name="staff_achievement_img1">
                 </div>
-                <div class="achivement-form-submit">
-                <div class="form_submit Achivement-submit">
-                    <input type="submit">
-                </div>
-                </div>  
+              
             </div>
-                
+            <div class="form_submit">
+                <input type="submit">
+            </div>    
         </form>
         
     </div>
@@ -34,51 +32,3 @@
 </div>
     </div>
 </div>
-<style>
-.admin-staff-achivements{
-    margin-top: 6%;
-    margin-left: 17%;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-in-out forwards;
-}
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.achivement-form-submit{
-    margin-left: 7%;
-   
-}
-.Achivement-submit{
-   
-    margin-left: 110%;
-}
-</style>
-<script>
-    window.onscroll = function () {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    }
-
-    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
-        // For smooth scrolling, use the scrollIntoView method
-        document.documentElement.scrollIntoView({ behavior: "smooth" });
-    });
-
-</script>

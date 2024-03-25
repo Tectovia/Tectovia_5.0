@@ -3,25 +3,14 @@
     position: relative;
     background-color:var(--bg-color);
     height: 1100px;
-    margin-top: 80px;
+    margin-top: 0px;
     display: grid;
     border-radius: 10px 10px 0 0;
-    width: 100%;
+    margin-left: -100px;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
-    margin-left: 10px;
-
-    
-   
     
   }
-  .subject_input_value input[type="checkbox"] {
-    width: 40px; /* Increase checkbox width */
-    height: 40px; /* Increase checkbox height */
-    margin-right: 10px; /* Adjust spacing between checkbox and label */
-}
-  
-  
   
   /* Styles for staff profile image */
   .staff_main_container img {
@@ -29,7 +18,7 @@
     width: 250px;
     height: 250px;
     margin-top: -250px;
-    margin-left: -1050px;
+    margin-left: -1130px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     transform: scale(1);
@@ -51,7 +40,7 @@
     height: 50px;
     width: 700px;
     border-radius: 30px;
-    margin-left: 300px;
+    margin-left: 280px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     
   }
@@ -69,7 +58,7 @@
     background-color:var( --box-color);
     margin-top: -40px;
     height: 50px;
-    width: 650px;
+    width: 700px;
     border-radius: 30px;
     margin-left: -500px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -82,14 +71,13 @@
   /* Styles for staff emails */
   .staff_emails {
     margin-top: -420px;
-    margin-left: 680px;
+    margin-left: 750px;
   }
   
   /* Styles for staff email headings */
   .staff_emails h3 {
     padding: 12px;
     margin-top: 5px;
-    margin-left: 0px;
   }
   
   /* Styles for staff name, image, and ID container */
@@ -105,9 +93,9 @@
  
     background-color:var( --box-color);
     height: 430px;
-    margin-left: 30px;
+    margin-left: 80px;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 100px;
     width: 550px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     transition: box-shadow 0.3s ease;
@@ -118,7 +106,7 @@
     border: 2px solid white;
     background-color:var( --box-color);
     height: 430px;
-    margin-left: 640px;
+    margin-left: 700px;
     border-radius: 10px;
     margin-top: -410px;
     width: 550px;
@@ -139,7 +127,7 @@
   /* Styles for staff name details */
   .staff_name_details {
     margin-top: -420px;
-    margin-left: 30px;
+    margin-left: 100px;
     width: 660px;
   }
   
@@ -158,12 +146,12 @@
   /* Styles for tertiary staff details container */
   .staff_main_details_3 {
     display: flex;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid white;
     background-color:var( --box-color);
     height: 300px;
     margin-top: 70px;
     border-radius: 10px;
-    margin-left: 30px;
+    margin-left: 80px;
     width: 1170px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
@@ -172,8 +160,7 @@
   .staff_details_3 {
     display: flex;
     margin-top: -280px;
-    margin-left:50px;
-    width: 1000px;
+    margin-left:150px;
   }
   
   /* Styles for tertiary staff details headings */
@@ -197,8 +184,8 @@
   .education_info{
    margin-top:0px;
    background-color:var(--bg-color);
-   margin-left: 10px;
-  width: 100%;
+    margin-left: -100px;
+    height: 300px;
     height: 500px;
    display: flex;
    border-radius: 0 0 10px 10px;
@@ -210,11 +197,11 @@
    
     width: 550px;
     padding: 30px;
-    
-    border-radius: 10px;
+    margin-left: 20px;
+    border-radius: 20px;
     margin-top:10px;
     height: 300px;
-    margin-left: 30px;
+    margin-left: 80px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
   .education_details h3{
@@ -226,7 +213,7 @@
   .acheivement_box{
     margin-top:-28px;
   
-    margin-left: -30px;
+     margin-left: -100px;
      height: 100px;
   display: flex;
  
@@ -238,10 +225,10 @@
     width: 550px;
     padding: 30px;
     
-    border-radius: 10px;
-    margin-top:-463px;
+    border-radius: 20px;
+    margin-top:-460px;
     height: 300px;
-    margin-left: 680px;
+    margin-left: 700px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
   .acheivement_value h1{
@@ -289,7 +276,7 @@
 .staff_emails h1{
   margin-top: -30px;
   font-size: 30px;
-  margin-left: 0px;
+  margin-left: -30px;
 }
 .staff_colon_7{
   margin-left: 30px;
@@ -356,7 +343,7 @@
 }
 .side{
   margin-left: 600px;
-  margin-top: -170px;
+  margin-top: -210px;
 }
 .staff_colon_24{
   margin-left: 50px;

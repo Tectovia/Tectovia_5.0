@@ -21,9 +21,6 @@ const bonafide_schema = new mongoose.Schema({
  approval:{
     type:Boolean
     
- },
- cancel:{
-  type:Boolean
  }
 })
 const bonafide= mongoose.model("bonafide",bonafide_schema);

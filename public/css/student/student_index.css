@@ -7,12 +7,12 @@
 .information_container {
   position: relative;
   display: grid;
-  height: 120vh;
-  width: 99%;
-  margin-left: 2%;
+  height: 110vh;
+  width: 95%;
+  margin-left: 2.5%;
   margin-bottom: 4%;
-  margin-top: 2%;
-  background:var(--bg-color);
+  margin-top: 20%;
+  background: var(--primary-gradient-right);
   box-shadow: 0 10px 20px 0 rgb(0, 0, 0);
   border-radius: 10px;
   border: 1px solid rgb(0, 0, 0);
@@ -22,26 +22,20 @@
 
 .user_profile {
   position: absolute;
-  top: -55px;
-  left: 10%;
+  top: -170px;
+  left: 50%;
   transform: translateX(-50%);
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  box-shadow: 7px 8px 8px 0px rgba(0, 0, 0, 1);
-  background: var(--bg-color)  center/cover;
+  background: var(--bg-color) url("/img/logo.svg") center/cover;
   z-index: 10;
-  transform: scale(1);
-   
-  transition: transform 0.3s ease;
- 
+  box-shadow: 0 0 50px var(--primary-color);
 }
-.user_profile:hover{
-  transform: scale(1.05);
-}
+
 .user_id {
-  margin-top: 20%;
-  margin-left: 9%;
+  margin-top: 15%;
+  margin-left: 10%;
   height: 280px;
   width: 500px;
   background: var(--bg-color);
@@ -73,10 +67,10 @@
 }
 
 .user_contact {
-  margin-left: 12%;
-  margin-top: 20.09%;
+  margin-left: 10%;
+  margin-top: 15%;
   height: 280px;
-  width: 490px;
+  width: 500px;
   background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
@@ -113,9 +107,9 @@
 }
 
 .basic_details {
-  margin-left: 9%;
+  margin-left: 5%;
   height: 300px;
-  width: 80%;
+  width: 90%;
   font-weight: 700;
   background: var(--bg-color);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -130,16 +124,13 @@
   grid-template-columns: auto auto;
   gap: 10px;
   margin-top: 15px;
-  
- 
 }
 
 .detail_1,
 .detail_2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 7px;
-  
+  gap: 10px;
 }
 
 .basic_title_1,
@@ -161,46 +152,4 @@
 .detail_1,
 .detail_2 {
   margin: 10px;
-}
-.student_main_name{
-  background:var(--bg-color);
-  margin-left: 420px;
-  margin-top: 150px;
-  padding: 20px;
-  border-radius: 30px;
-  width: 350px;
-  border:  solid gainsboro;
-  transform: scale(1);
-   
-  transition: transform 0.3s ease;
-}
-.student_main_name h1{
-  font-size: 20px;
-  margin-left: 70px;
-
- 
-}
-.student_main_name:hover{
-  transform: scale(1.02);
-}
-.student_main_id{
-  background:var(--bg-color);
-  margin-left: 800px;
-  margin-top: -76px;
-  padding: 20px;
-  border-radius: 30px;
-  width: 350px;
-  border:  solid gainsboro;
-  transform: scale(1);
-   
-  transition: transform 0.3s ease;
-}
-.student_main_id h1{
-  font-size: 20px;
-  margin-left: 90px;
-
- 
-}
-.student_main_id:hover{
-  transform: scale(1.02);
 }

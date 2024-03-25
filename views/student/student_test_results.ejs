@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/students_test_result.css">
 <div class="window" id="window_layout">
-    <% if(role==="student" ) { %>
+    <% if(role==="student") { %>
         <div class="window_navbar">
             <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
         </div>
@@ -9,146 +9,126 @@
             <%- include('../partials/parent/navigation_bar.ejs') %>
         </div>
     <% } %>
-                <div class="window_container">
-                    <div class="test_conatiner_main">
-                        <div class="test_result_heading">
 
-                            <h1>TEST RESULTS</h1>
-                        </div>
-                        <% if (testMarks!=null) { %>
-
-                            <% testMarks.test_marks.reverse().forEach((item, index)=> { %>
-                                <div>
-                                    <div class="container_marks box">
-                                        <div class="main_date">
-                                            date<h1>
-                                                <%= item.date %>
-                                            </h1>
-                                        </div>
-                                        <div class="main_date">
-                                            testtitle<h1>
-                                                <%= item.testtitle %>
-                                            </h1>
-                                        </div>
-                                        <div class="main_date">
-                                            maximumMarks<h1>
-                                                <%= item.maximumMarks %>
-                                            </h1>
-                                        </div>
-                                        <button onclick="toggleDetails('<%= index %>')"
-                                            class="mark_button">Show</button>
-                                    </div>
-
-                                    <div class="blurred-background" id="blurred_background_<%= index %>"></div>
-                                    <!-- Blurred background -->
-                                    <div id="details_<%= index %>" class="marks_popup">
-                                        <div onclick="toggleDetails('<%= index %>')" class="mark_popup_button close"> <i
-                                                class="fa-solid fa-x"></i> </div>
-                                        <!-- for image -->
-                                        <div class="mark_popup_grade">
-
-                                            <h1>
-                                                <% if (item.staus==='pass' ) { if (item.marks==100) { %> <img
-                                                        src="/img/A+.png" class="A1_grade" alt="">
-                                                    <% } else if (item.marks>= 90) {
-                                                        %> <img src="/img/A.png" alt="a" class="A1_grade">
-                                                        <% } else if (item.marks>= 80) {
-                                                            %> <img src="/img/B+.png" alt="b" class="A1_grade">
-                                                            <% } else if (item.marks>= 70) {
-                                                                %> <img src="/img/B.png" alt="b" class="A1_grade">
-                                                                <% } else if (item.marks>= 60) {
-                                                                    %> <img src="/img/C.png" alt="c" class="A1_grade">
-                                                                    <% } else if (item.marks>= 50) {
-                                                                        %> <img src="/img/D.png" alt="d"
-                                                                            class="A1_grade">
-                                                                        <% } else { %> <img src="/img/E.png" alt="e"
-                                                                                class="A1_grade">
-                                                                            <% } } else { %> <img src="/img/F.png"
-                                                                                    alt="f" class="A1_grade">
-                                                                                <% } %>
-                                            </h1>
-                                        </div>
-                                        <!-- for quotes -->
-                                        <div class="mark_popup_quotes grade">
-
-                                            <h1>
-                                                <% if (item.staus==='pass' ) { if (item.marks==100) { %> Way to go,
-                                                    Centum rockstar! Your grade is as stellar as you are! 🎉🚀 <% } else
-                                                        if (item.marks>= 90) {
-                                                        %> <div class="a_grade"> "A" grade awesomeness! You nailed it!
-                                                            🎉👏 </div>
-                                                        <% } else if (item.marks>= 80) {
-                                                            %>
-                                                            "" B+"! You're one step closer to excellence! Keep up the
-                                                            great work! 🌟📚 <% } else if (item.marks>= 70) {
-                                                                %> "B" is for Bravo! Keep up the good work and keep
-                                                                aiming high! 🎉📚<% } else if (item.marks>= 60) {
-                                                                    %>
-                                                                    "C"! Keep pushing forward and never give up! Your
-                                                                    effort matters most! 💪📚 <% } else if (item.marks>=
-                                                                        50) {
-                                                                        %>" D"! Don't let setbacks define you, keep
-                                                                        pushing forward and strive for improvement!
-                                                                        You've got this! 💪📚 <% } else { %> "Embrace
-                                                                            every 'E' as an opportunity to Evolve and
-                                                                            Excel, for your journey to success is
-                                                                            uniquely yours!" 🌟📚 <% } } else { %> "F!
-                                                                                Failure is just the first step towards
-                                                                                success. Keep pushing forward, your
-                                                                                journey doesn't end here! "💪📚 <% } %>
-                                            </h1>
-                                        </div>
-
-                                        <div class="mark_popup_heading">
-                                            <h1>Score Card</h1>
-                                        </div>
-                                        <div class="mark_popup_date">
-                                            <pre>  date:</pre>
-                                            <h1>
-                                                <%= item.date %>
-                                            </h1>
-                                        </div>
-                                        <div class="mark_popup_title">
-                                            <h1>
-                                                <%= item.testtitle %>
-                                            </h1>
-                                        </div>
-                                        <div class="main_marks_popup_container">
-                                            <div class="mark_popup_maxmarks">
-                                                maximumMarks:<h1>
-                                                    <%= item.maximumMarks %>
-                                                </h1>
-                                            </div>
-                                            <div class="mark_popup_minmarks">
-                                                minimumMark:<h1>
-                                                    <%= item.minimumMark %>
-                                                </h1>
-                                            </div>
-                                            <div class="mark_popup_obtainedmarks">
-                                                Obtained marks:<h1>
-                                                    <%= item.marks %>
-                                                </h1>
-                                            </div>
-                                            <div class="mark_popup_status">
-                                                status:<h1>
-                                                    <%= item.staus %>
-                                                </h1>
-                                            </div>
-
-                                        </div>
-                                        <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button class="add_btn">
-                                                verified</button></a>
-                                        <button onclick="toggleDetails('<%= index %>')"
-                                            class="mark_popup_button back_btn">back</button>
-                                    </div>
-                                </div>
-                                <% }) %>
-                            <% } %>
-
+    <div class="window_container">
+        <div class="test_conatiner_main">
+        <div class="test_result_heading">
+            
+            <h1>TEST RESULTS</h1>
+        </div>
+        <% if (testMarks!=null) { %>
+         
+        <% testMarks.test_marks.reverse().forEach((item, index) => { %>
+            <div>
+                <div class="container_marks box">
+                    <div class="main_date">
+                        date<h1><%= item.date %></h1>
                     </div>
+                    <div class="main_date">
+                        testtitle<h1><%= item.testtitle %></h1>
+                    </div>
+                    <div class="main_date">
+                        maximumMarks<h1><%= item.maximumMarks %></h1>
+                    </div>
+                    <button onclick="toggleDetails('<%= index %>')" class="mark_button">Show</button>
                 </div>
+               
+                <div class="blurred-background" id="blurred_background_<%= index %>"></div> <!-- Blurred background -->
+                <div id="details_<%= index %>" class="marks_popup">
+                    <div onclick="toggleDetails('<%= index %>')" class="mark_popup_button close" > <i class="fa-solid fa-x"></i>  </div>
+                   <!-- for image -->
+                    <div class="mark_popup_grade">
+                          
+                        <h1 >
+                            <% 
+                                if (item.staus === 'pass') {
+                                    if (item.marks == 100) {
+                                        %> <img src="/img/A+.png" class="A1_grade" alt=""> <% 
+                                    } else if (item.marks >= 90) {
+                                        %> <img src="/img/A.png" alt="a" class="A1_grade"> <% 
+                                    } else if (item.marks >= 80) {
+                                        %> <img src="/img/B+.png" alt="b" class="A1_grade"> <% 
+                                    } else if (item.marks >= 70) {
+                                        %> <img src="/img/B.png" alt="b" class="A1_grade"> <% 
+                                    } else if (item.marks >= 60) {
+                                        %> <img src="/img/C.png" alt="c" class="A1_grade"> <% 
+                                    } else if (item.marks >= 50) {
+                                        %> <img src="/img/D.png" alt="d" class="A1_grade"> <% 
+                                    } else {
+                                        %> <img src="/img/E.png" alt="e" class="A1_grade"> <% 
+                                    }
+                                } else {
+                                    %> <img src="/img/F.png" alt="f" class="A1_grade"> <% 
+                                }
+                            %>
+                        </h1>
+                    </div>
+                    <!-- for quotes -->
+                    <div class="mark_popup_quotes grade">
+                          
+                        <h1>
+                            <% 
+                                if (item.staus === 'pass') {
+                                    if (item.marks == 100) {
+                                        %>  Way to go, Centum rockstar! Your grade is as stellar as you are! 🎉🚀 <% 
+                                    } else if (item.marks >= 90) {
+                                        %>  <div class="a_grade">     "A" grade awesomeness! You nailed it! 🎉👏 </div> <% 
+                                    } else if (item.marks >= 80) {
+                                        %> 
+                                       "" B+"! You're one step closer to excellence! Keep up the great work! 🌟📚 <% 
+                                    } else if (item.marks >= 70) {
+                                        %> "B" is for Bravo! Keep up the good work and keep aiming high! 🎉📚<% 
+                                    } else if (item.marks >= 60) {
+                                        %> 
+                                        "C"! Keep pushing forward and never give up! Your effort matters most! 💪📚 <% 
+                                    } else if (item.marks >= 50) {
+                                        %>" D"! Don't let setbacks define you, keep pushing forward and strive for improvement! You've got this! 💪📚 <% 
+                                    } else {
+                                        %> "Embrace every 'E' as an opportunity to Evolve and Excel, for your journey to success is uniquely yours!" 🌟📚 <% 
+                                    }
+                                } else {
+                                    %> "F! Failure is just the first step towards success. Keep pushing forward, your journey doesn't end here! "💪📚 <% 
+                                }
+                            %>
+                        </h1>
+                    </div>
+                
+                    <div class="mark_popup_heading">
+                        <h1>Score Card</h1>
+                    </div>
+                    <div class="mark_popup_date">
+                        <pre>  date:</pre><h1><%= item.date %></h1>
+                    </div>
+                    <div class="mark_popup_title">
+                        <h1><%= item.testtitle %></h1>
+                    </div>
+                    <div class="main_marks_popup_container">
+                        <div class="mark_popup_maxmarks">
+                            maximumMarks:<h1><%= item.maximumMarks %></h1>
+                        </div>
+                        <div class="mark_popup_minmarks">
+                            minimumMark:<h1><%= item.minimumMark %></h1>
+                        </div>
+                        <div class="mark_popup_obtainedmarks">
+                            Obtained marks:<h1><%= item.marks %></h1>
+                        </div>
+                        <div class="mark_popup_status">
+                            status:<h1 > <%= item.staus %></h1>
+                        </div>
+                       
+                    </div>
+                    <a href="/student/testMarksSeen/<%=student._id%>/<%=student.id%>/<%-item.id%>"><button>Ok verified</button></a>
+                    <button onclick="toggleDetails('<%= index %>')" class="mark_popup_button">back</button>
+                </div>
+            </div>
+        <% }) %>
+        <% } else{%>
+            <h1>No Test Assigned</h1>
+        <%}%>
+        
+        </div>
+    </div>
 </div>
-
 <script>
     function toggleDetails(index) {
         var details = document.getElementById('details_' + index);
@@ -161,5 +141,5 @@
             background.style.display = 'none'; // Hide blurred background
         }
     }
-
+    
 </script>

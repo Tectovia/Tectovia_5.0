@@ -1,54 +1,7 @@
-<script>
-
-    function hide_popup_add() {
-        var element = document.getElementById("popup_add");
-        element.style.display = "none";
-    }
-    
-    function display_popup_add() {
-        var element = document.getElementById("popup_add");
-        element.style.display = "flex";
-    }
-</script>
-
-<div class="window" id="window_layout">
-    <div class="window_navbar">
-        <%- include('../../partials/admin/navigation_bar.ejs') %>
+<%- include('../../partials/admin/institution_subnavbar.ejs') %>
+<div class="container center_title">
+    <%= page_title %>
+    <div class="float_right">
+        <a href="/institution_info/common_info/form_common_info" id="toggleButton"><button>Edit</button></a>
     </div>
-    <div class="window_container">
-        <%- include('../../partials/admin/institution_subnavbar.ejs') %>
-        <div class="container center_title">
-            <%- page_title %>
-            <div class="float_right">
-                <button onclick="display_popup_add()">Add</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="popup_container" id="popup_add" style="display: none;">
-        <div class="popup" id="popup">
-            <div class="popup_header">
-                <p class="pop_title"><%= page_title %></p>
-                <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
-            </div>
-            <div class="pop_body">
-                <form action="/admin/institution_info/annual_report" method="post" enctype="multipart/form-data" class="form">
-                    <div class="form_inputs">
-                        <div class="form_div text_input">
-                            <input type="text" class="input" id="annual_report_year" name="annual_report_year" required>
-                            <label for="annual_report_year">Year</label>
-                        </div>
-                        <div class="form_div text_input">
-                            <input type="file" class="input" id="annual_report_pdf" name="annual_report_pdf" >
-                            <label for="annual_report_pdf">Pdf</label>
-                        </div>
-                        <div class="form_submit form_div_span">
-                            <input type="submit">
-                        </div>   
-                    </div>
-                </form>
-            </div>        
-        </div>
-    </div>
-
 </div>

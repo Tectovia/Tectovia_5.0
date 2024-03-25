@@ -6,24 +6,23 @@
 
     <div class="window_container">
         <%- include('../../partials/admin/facilities_subnavbar.ejs') %>
-        <div class="container center_title transport-title">
+        <div class="container center_title">
             Transport
         </div>
-        <div class="display_transport">
-            <div class="transport_container">
-            <table border="1" class="transports-tablee">
+        <div class="display_students">
+            <div class="boys_container">
+            <table border="1" class=" tablee">
                 <h1 class="Transport_bus"> Transport details </h1>
-                <tr class="headerr">
+                <tr class="header">
                     <th>bus number</th>
                     <th>number plate</th>
                    
                     <th>Route</th>
                     <!-- <th>staff designation</th> -->
                     <th>Roll no1</th>
-                    <th>alternate Driver </th>
                     <th>Roll no2</th>
                     <th>Diver name</th>
-                    
+                    <th>alternate Driver </th>
                     
                 </tr>
                 
@@ -49,15 +48,15 @@
         </div>
         
         </div>
-        <div class="add-Transports">
+        <div class="add_students">
             <button onclick="show()">Add transports</button>
         </div>
         
         <div class="pop_body">
           
-            <div id="formContainer" class="popup Transport_form" style="display: none;">
+            <div id="formContainer" class="popup hostel_form" style="display: none;">
                 <span class="close_icon" id="closePopup">&times;</span> <br><br>
-                <form id="transportform" action="/admin/Transport/add_transport" method="post">
+                <form id="studentForm" action="/admin/Transport/add_transport" method="post">
                     <div class="form_inputs">
                         <div class="form_div file_input">
                             <label for="name">bus number:</label>
@@ -68,7 +67,7 @@
                             <label for="classes">number plate:</label>
                             <input type="text" name="number_plate" class="input-data" required>
                         </div>
-                        <div class="form_div file_input input-route" style=" height: 70%; margin-top: -10%;"  >
+                        <div class="form_div file_input">
                             <label >Route:</label>
                             <input type="text" name="route" class="input-data" required>
                         </div>
@@ -85,13 +84,13 @@
                         
                         <div class="form_div file_input input-rollalter">
                             <label class="name-driver">select alternate driver:</label>
-                            <input type="text" id="alternate_driver_Name" name="Alterdriver" class="input-driver">
+                            <input type="text" id="driName" name="Alterdriver" class="input-driver">
                            
                         </div>
                         
                         <div class="form_dive file_input input-roll">
-                            <label class="select-rollno" >Roll no2:</label>
-                            <select id="" name="roll_no2" class="input-select-rollno" onchange="UpdateRoll2(this.value)">
+                            <label >Roll no2:</label>
+                            <select id="" name="roll_no2" class="input-data" onchange="UpdateRoll2(this.value)">
                                 <option value="default" class="input-data">choose a roll no</option>
                                 <% nonteach.forEach(nonteach => { %>
                                     <option value="<%- nonteach.staff_id %>" class="input-data"><%- nonteach.staff_id %></option>
@@ -101,18 +100,14 @@
                        
 
                         <div class="form_div file_input">
-                            <label class="input-select-drivers">select driver:</label>
-                            <input type="text" id="driver_Name" name="Driver" class="input-data-driver">
+                            <label class="input-dataa">select driver:</label>
+                            <input type="text" id="drName" name="Driver" class="input-dataa">
                            
                         </div>
                                     
                     </div>
-                    <div class="transport-submit-form">
-                        <div class="transport-submit-form-btns">
                     <div class="form_submit">
                         <input type="submit" value="Submit">
-                    </div>
-                    </div>
                     </div>
                 </form>
             </div>
@@ -120,7 +115,7 @@
         
         <script>
          
-            var drivername = document.getElementById('driver_Name')
+            var drivername = document.getElementById('drName')
          function show(){ 
             document.getElementById("formContainer").style.display = "block";
            }
@@ -128,7 +123,7 @@
            document.getElementById("closePopup").addEventListener('click',()=>{
              document.getElementById("formContainer").style.display = "none";
             })
-             var alternate_driver = document.getElementById('alternate_driver_Name')
+             var alternate_driver = document.getElementById('driName')
          function show(){ 
             document.getElementById("formContainer").style.display = "block";
            }
@@ -175,24 +170,3 @@ function UpdateRoll2(optionValue) {
         
     </div>
 </div>
-<style>
-      .Transport_form {
-        margin-top: -10%;
-        margin-left: 20%;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-</style>

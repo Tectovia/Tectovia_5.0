@@ -3,19 +3,14 @@
         <%- include('../partials/student/navigation_bar.ejs',{notification}) %>
     </div>
     <div class="window_container">
-        <h1>unseen notifications</h1><br>
-        <%if(notification.unSeenCircular!==null){%>
-            <%notification.unSeenCircular.reverse().map((item)=>{%> 
-                <a href="/student/circular/<%=student._id%>/<%=student.id%>"><div>new <%- item.title %></div></a><br>
-            <%})%>    
+        <%if(notification.circular!==null){%>
+            <a href="/student/circular/<%=student._id%>/<%=student.id%>"><div>new circular</div></a>
         <%}%>
         <%notification.newTest.map((item)=>{%>
-           <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>new <%- item.testtitle %></div></a><br>
+           <a href="/student/testmarks/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>new <%- item.testtitle %></div></a>
         <%})%>
         <%notification.digitalDairy.map((item)=>{%>
-            <%if(!notification.seenDigitalDairy.includes(item._id)){%>
-            <a href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>instruction from <%- item.from %></div></a><br>
-            <%}%>
+            <a href="/student/dairy/<%=student._id%>/<%=student.id%>/<%=student.section%>"><div>instruction from <%- item.from %></div></a>
         <%})%>
     </div>
 </div>

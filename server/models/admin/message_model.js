@@ -1,12 +1,11 @@
 const mongoose=require('mongoose')
-let date = new Date()
+
 const message_models= new mongoose.Schema({
     "from":{
         type:String
     },
     "date":{
-        type:Date,
-        default:Date.now()
+        type:String
     },
     "message":{
         type:String
