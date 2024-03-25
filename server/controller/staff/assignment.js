@@ -198,10 +198,15 @@ res.render('staff/assign_student_list',{staffdata,list:list[0],params ,circularN
 exports.ViewAssign=async(req,res)=>{
 try {
   var {id,class_name,staff,rollno}=req.params;
-  let student = await mongoose.model(class_name+'_batch').findById({id},{id:1,section:1,_id:1})
+  console.log(req.params);
+  console.log("ok1");
+  let student_model = await mongoose.model(class_name+'_batch');
+  let student=await student_model.findOne({'rollno':rollno},{'id':1,'section':1});
+  
   var assign_model=mongoose.model(class_name+'_assign');
+  console.log("ok2");
   const assignment=await assign_model.findById(id,{source:1});
-
+  console.log("ok3");
   let circularNotification = await noOfCirculars(staff);
   // used to show circular notification for staff edited by purushothaman @ 14/3
  circularNotification = circularNotification.unSeenCirculars
