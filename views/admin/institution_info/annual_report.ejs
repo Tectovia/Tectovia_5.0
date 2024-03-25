@@ -4,4 +4,83 @@
     <div class="float_right">
         <a href="/institution_info/common_info/form_common_info" id="toggleButton"><button>Edit</button></a>
     </div>
+    <div class="window_container">
+        <%- include('../../partials/admin/institution_subnavbar.ejs') %>
+        <div class="container center_title">
+            <%- page_title %>
+            <div class="float_right">
+                <button onclick="display_popup_add()">Add</button>
+            </div>
+        </div>
+        <% if (annualReports && annualReports.length > 0) { %>
+            <% annualReports.forEach(function(doc) { %>
+              <% doc.forEach(function(report) { %>
+                <div class="container_todo">
+                  <div class="todo_content">
+                    <div class="todo_row">
+                      <h3>Annual Report year: <%= report.annual_report_year %></h3>
+                    </div>
+                  </div>
+                  <div class="todo_buttons">
+                    <div class="todo_edit">
+                      <a href="/uploads/common_info/<%= report.annual_report_pdf %>">
+                        <button class="view_btn">View</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+            <% }) %>
+          <% } else { %>
+            <p>No annual reports available</p>
+          <% } %>
+    <div class="popup_container admin-annual-report" id="popup_add" style="display: none;">
+        <div class="popup" id="popup">
+            <div class="popup_header">
+                <p class="pop_title"><%= page_title %></p>
+                <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+            </div>
+            <div class="pop_body">
+                <form action="/admin/institution_info/annual_report" method="post" enctype="multipart/form-data" class="form">
+                    <div class="form_inputs admin-annual-report-form-inputs">
+                        <div class="form_div text_input">
+                            <input type="text" class="input" id="annual_report_year" name="annual_report_year" required>
+                            <label for="annual_report_year">Year</label>
+                        </div>
+                        <div class="form_div text_input">
+                            <input type="file" class="input" id="annual_report_pdf" name="annual_report_pdf" >
+                            <label for="annual_report_pdf">Pdf</label>
+                        </div>
+                        <div class="form_submit form_div_span">
+                            <input type="submit">
+                        </div>   
+                    </div>
+                </form>
+            </div>        
+        </div>
+    </div>
+
 </div>
+<style>
+.admin-annual-report{
+    margin-left: 5%;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards;
+} 
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    } 
+
+    .admin-annual-report-form-inputs{
+        grid-template-columns: 1fr 1fr;
+    }
+</style>

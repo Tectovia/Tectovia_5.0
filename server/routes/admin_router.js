@@ -29,6 +29,7 @@ const circular_management=require('../controller/admin/circular/circular');
 const infrastructure=require('../controller/admin/infrastructure/infrastructure');
 //--------------------  Facilities -------------------------------
 const facilities=require('../controller/admin/facilities/facilities');
+const { addCoaching } = require('../controller/admin/facilities/coaching')
 // ---------------------add transport---------------------
 router.post('/admin/Transport/add_transport',facilities.addtransport)
 //--------------------  institution_info  -------------------------------
@@ -47,7 +48,7 @@ const fees_controller=require('../controller/fees_controller/fees')
 const forum=require('../controller/admin/forum/forum');
 //---------------------bonafide---------------------------//
 const bonafide=require('../controller/admin/bonafide_admin/bonafide');
-
+const {yearlyUpdate}=require('../controller/universal_controller/notificationFunction')
 
 
 
@@ -84,20 +85,14 @@ const bonafide=require('../controller/admin/bonafide_admin/bonafide');
     router.get('/admin/institution_info/achievements/form_achievements' ,admin_achievement.form_achievements);
     router.post('/admin/institution_info/achievements/submit_achievements' ,admin_achievement.submit_achievements);
 
+        //----------- Annual report -----------
+
+    router.get('/admin/institution_info/annual_report',admin_annual_report.annual_report);
+    router.post('/admin/institution_info/annual_report',admin_annual_report.submit_annual_report);
+    router.get('/admin/institution_info/annual_report/delete_annual/:_id',admin_annual_report.delete_annual_report);
 //---------------------------------------------bonafide-------------------//
 router.get('/admin/bonafide_admin',bonafide.boo);
 router.post('/bonafide_approval',bonafide.bonafide_approval);
-
-
-
-
-// router.get('/admin/bonafide/bonafide_certificate',bonafide.certificate);
-    //----------- Annual report -----------
-   // router.get('/admin/institution_info/annual_report' , admin_annual_report.annual_report);
-
-
-    //------------ Others -----------------
-    //router.get('/admin/institution_info/others' , admin_others.others);
 
 
 
@@ -147,7 +142,8 @@ router.get('/admin/staff_info/staff_list/view_document/:id' ,admin_staff_list.st
     //view section and subject
     router.get('/admin/class_info/class_list/view_section/:id/:title/:section/' ,admin_class.view_section);
     router.get('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject);
-    
+    router.post('/admin/class_info/class_list/view_subject/:id/:title', admin_class.view_subject_syllabus);
+    router.get('/admin/class_info/class_list/view_subject/delete_syllabus/:_id/:title',admin_class.delete_subject_syllabus);
     //delete section and subject
     router.get('/admin/class_info/class_list/delete_section/:id/:title/:section', admin_class.delete_section);
     router.get('/admin/class_info/class_list/delete_subject/:id/:title', admin_class.delete_subject);
@@ -234,6 +230,12 @@ router.get('/admin/attendance_graph/:date', attendance_graph.attendance_graph);
  //edit student
  router.get('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student,admin_section.view_student);
  router.post('/admin/edit_studentPersonal/:_id/:batch' , admin_section.edit_student_submit,admin_section.view_student);
+
+ router.get('/admin/yearlyUpdate',yearlyUpdate);
+
+ // add coaching
+ router.post("/admin/facilities/coaching/addCoaching",addCoaching)
+ 
 
 module.exports = router;
     

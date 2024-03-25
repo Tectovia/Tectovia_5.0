@@ -129,15 +129,15 @@
         <% } %>
 
         <% if(item !== null) { %>
-            <div class="popup_container" id="popup" style="display: none;">
-                <div class="popup">
+            <div class="popup_container admin-common-info-details" id="popup" style="display: none;">
+                <div class="popup  ">
                     <div class="popup_header">
                         <p class="pop_title">Edit - School Information</p>
                     <span class="close_icon" id="closePopup"  onclick="hide_popup()">&times;</span>
                     </div>
                     <div class="pop_body">
                         <form action="/admin/institution_info/common_info/update_common_info" method="post" enctype="multipart/form-data" class="form">
-                            <div class="form_inputs">
+                            <div class="form_inputs admin-common-info-details-edit">
                                 <div class="form_div text_input">
                                     <input class="input" type="text" id="school_name" name="school_name" value="<%- item.school_name %>">
                                     <label for="school_name">School Name</label>
@@ -207,8 +207,102 @@
                 </div>
             </div>
         <% } %>
-
-        
-             
+        <div class="popup_container" id="yearlyCircularUpadatePopUp" style="display: none; margin-left: 10%;">
+            <div class="popup">
+                <div class="popup_header">
+                    <p class="pop_title">Disclaimer</p>
+                <span class="close_icon" id="closePopup"  onclick="hideYearlyCircularUpadatePopUp()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <p>
+                        if you upadte all the circulars you sent before and the
+                        instructions sent by stafss will be disappeared permanently 
+                        do you want to update
+                    </p>
+                    <br>
+                    <a id="update" href=""><button>Update</button></a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+    .admin-common-info-details{
+        margin-top: 6%;
+        margin-left: 5%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+    
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.admin-common-info-details-edit{
+    grid-template-columns: 1fr 1fr;
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -8%;
+    margin-left: 77%;
+}
+
+
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -100%;
+  
+}
+.common-info-btn{
+    width: 60%;
+}
+.common-info-form-submit{
+    margin-top: 30%;
+    margin-left: -70%;
+}
+.common-info-form-submits{
+    margin-top: 30%;
+    margin-left: -70%;
+}
+.Medium-of-Education{
+    margin-top: -30%;
+}
+.medium-of-educations-label{
+    margin-top: -30%;
+}
+
+</style>
+<script>
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+        // For smooth scrolling, use the scrollIntoView method
+        document.documentElement.scrollIntoView({ behavior: "smooth" });
+    });
+</script>

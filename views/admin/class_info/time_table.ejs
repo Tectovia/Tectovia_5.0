@@ -1,6 +1,50 @@
 <div class="window" id="window_layout">
-    <div class="window_navbar">
-        <%- include('../../partials/admin/navigation_bar.ejs') %>
+  <div class="window_navbar">
+    <%- include('../../partials/admin/navigation_bar.ejs') %>
+  </div>
+
+  <div class="window_container">
+    <div class="container">
+      <div class="float_right">
+        <a href="/admin/class_info/class_list/view_section/<%= data.id %>/<%= data.title %>/<%= data.sec %>" id="toggleButton" class="back_btn"><i class='bx bx-arrow-back'></i></a>
+ </div>
+      <table class="table">
+        <tr class="row">
+          <th class="header">D/H</th>
+          <%for(let i=1;i<=dayhour.hr;i++){%>
+          <th class="header"><%=i%></th>
+          <%}%>
+        </tr>
+
+        <%for(let i=1;i<=dayhour.day;i++){%>
+        <tr>
+          <th class="header"><%=i%></th>
+          <%for(let j=0;j< dayhour.hr;j++){%>
+          <td>
+            <% let disp=true; %> <%classdata.forEach((item)=>{%> <% if
+            (item.time_table['day' + i][j].sub !== 'null') { %>
+            <p><%=item.time_table['day' + i][j].sub%></p>
+            <p>
+              <%=item.time_table['day' +
+              i][j].staff_name%>-<%=item.time_table['day' + i][j].staff_id%>
+            </p>
+            <a
+              href="/admin/class_info/class_list/view_section/delete_day/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>/<%=item.time_table['day' + i][j].sub%>/<%=item.time_table['day' + i][j].staff_name%>/<%=item.time_table['day' + i][j].staff_id%>"
+            >
+              <button>Remove</button>
+            </a>
+            <% disp=false; %> <%}%> <%})%> <% if(disp){%>
+            <a
+              href="/admin/class_info/class_list/view_section/add_form/<%= data.id %>/<%= data.title %>/<%= data.sec %>/<%= i %>/<%= j %>"
+            >
+              <button class="add_btn">Add</button>
+            </a>
+            <%}%>
+          </td>
+          <%}%>
+        </tr>
+        <%}%>
+      </table>
     </div>
 
     <div class="window_container">

@@ -1,23 +1,138 @@
+<script>
+
+    function hide_popup_add() {
+        var element = document.getElementById("popup_add");
+        element.style.display = "none";
+    }
+    
+    function display_popup_add() {
+        var element = document.getElementById("popup_add");
+        element.style.display = "flex";
+    }
+    function hide_popup_add_syllabus() {
+        var element = document.getElementById("popup_add_syllabus");
+        element.style.display = "none";
+    }
+    
+    function display_popup_add_syllabus() {
+        var element = document.getElementById("popup_add_syllabus");
+        element.style.display = "flex";
+    }
+</script>
 <div class="window" id="window_layout">
     <div class="window_navabr">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
-
     <div class="window_container">
         <div class="container center_title">
-            <%- title %>
+            <%- name %>
+            <div class="float_right">
+                <button onclick="display_popup_add()">Add Syllabus</button>
+            </div>
             <div class="float_left">
-                <a href="/admin/class_info/class_list" id="toggleButton"><button class="btn_warning">Go Back</button></a>
+                <a class="back_btn" href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
             </div>
         </div>
-        <div class="row">
-            <h3>Subject Name :</h3>
+        <br>
+        <% if (syllabusData && syllabusData.length > 0) { %>
+            <% syllabusData.forEach(function(syllabus) { %>
+              <div class="container_todo">
+                <div class="todo_content">
+                  <div class="">
+                    <h3>Syllabus: <%= syllabus.subject_syllabus %></h3>
+                    <h3>Subject Code:<%=item.subject_code %> </h3>
+                    <h3>Subject Medium:<%=item.subject_medium %></h3>
+                    <h3>Syllabus Year:<%=syllabus.subject_syllabus_year %></h3>
+                  </div>
+                </div>
+                <div class="todo_buttons">
+                  <div class="todo_edit">
+                    <a href="/uploads/subject_info/<%= syllabus.subject_syllabus_pdf %>">
+                      <button class="view_btn">View Syllabus</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <h3>No syllabus available</h3>
+          <% } %>
+        <div class="popup_container" id="popup_add" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title"><%= page_title %></p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/class_info/class_list/view_subject/<%= item._id %>/<%= title %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <p>Subject</p>
+                                <input type="text" class="input" id="subject_syllabus" name="subject_syllabus" readonly value="<%= item.subject_name %>"  required>
+                            </div>
+                            <div class="form_div text_input">
+                                <p>Year</p>
+                                <input type="number" class="input" id="subject_syllabus_year" name="subject_syllabus_year" required>
+                            </div>
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="subject_syllabus_pdf" name="subject_syllabus_pdf" >
+                                <label for="subject_syllabus_pdf">Pdf</label>
+                            </div>
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div>   
+                        </div>
+                    </form>
+                </div>        
+            </div>
         </div>
-        <div class="row">
-            <h3>Subject Code :</h3>
-        </div>
-        <div class="row">
-            <h3>Subject Medium : </h3>
+        <div class="popup_container" id="popup_add_syllabus" style="display: none;">
+            <div class="popup" id="popup">
+                <div class="popup_header">
+                    <p class="pop_title"><%= page_title %></p>
+                    <span class="close_icon" id="closePopup" onclick="hide_popup_add_syllabus()">&times;</span>
+                </div>
+                <div class="pop_body">
+                    <form action="/admin/class_info/class_list/view_subject/<%= item._id %>/<%= title %>" method="post" enctype="multipart/form-data" class="form">
+                        <div class="form_inputs">
+                            <div class="form_div text_input">
+                                <p>Subject</p>
+                                <input type="text" class="input" id="subject_syllabus" name="subject_syllabus" readonly value="<%= item.subject_name %>"  required>
+                            </div>
+                            <div class="form_div">
+                                <div class="dropdown" data-control="checkbox-dropdown">
+                                    <label for="class">Class</label>
+                                    <div class="dropdown-label">Select class</div>
+                                    <div class="dropdown-list">
+                                        <% 
+                                            const uniqueYears = new Set();
+                                            syllabusData.forEach(function(syllabus) {
+                                                if (!uniqueYears.has(syllabus.subject_syllabus)) {
+                                                    uniqueYears.add(syllabus.subject_syllabus);
+                                        %>
+                                        <label class="dropdown-option">
+                                            <input type="checkbox" value="<%- syllabus.subject_syllabus %>" name="subject_year">
+                                            <%= syllabus.subject_syllabus %>
+                                        </label>
+                                        <% 
+                                                }
+                                            });
+                                        %>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form_div text_input">
+                                <input type="file" class="input" id="subject_syllabus_pdf" name="subject_syllabus_pdf" >
+                                <label for="subject_syllabus_pdf">Pdf</label>
+                            </div>
+                            <div class="form_submit form_div_span">
+                                <input type="submit">
+                            </div>   
+                        </div>
+                    </form>
+                </div>        
+            </div>
         </div>
     </div>
 </div>

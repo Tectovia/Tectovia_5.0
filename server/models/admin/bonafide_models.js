@@ -3,6 +3,9 @@ const bonafide_schema = new mongoose.Schema({
     id:{
         type:String
     },
+    name:{
+        type:String
+    },
     class:{
         type:String
     },

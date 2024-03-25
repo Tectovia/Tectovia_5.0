@@ -24,20 +24,23 @@
             Inbox
         </div>
 
-        <!-- Previous Circulars -->
-        <% circular.forEach(function(item) { %>
-            <% if(item.delete === false) { %>
-              <div class="circular_container">
-                  <div class="circular_header">
-                    <div class="circular_info">
-                        <div class="from">From : <%- item.from %> </div>
-                        <div class="time">Date : <%- formatDate(item.date) %> </div>
-                        <div class="time">Time : <%- formatTime(item.date) %> </div>
-                    </div>
-                    <div class="circular_buttons">
-                        <div class="delete">
-                            <!-- <a href="/staff/message_seen/<%-staffdata[0].staff_id%>/<%- item._id %>"></a> -->
-                            <button onclick="showSeenCircularContainer(`<%-staffdata[0].staff_id%>` , `<%- item._id %>`)" >mark as seen</button>
+            <!-- Previous Circulars -->
+            <% circular.reverse().forEach(function(item) { %>
+                <% if(item.delete === false) { %>
+                <div></div>
+                <a href="/staff/message_seen/<%-staffdata[0]._id%>/<%- item._id %>" class="circular-staff-view">
+
+                    <div class="circular_container">   
+                        <div class="circular_header ">
+                            <div class="circular_info ">
+                                <div class="from staff-cirular-titale" >From : <%- item.from %> </div>
+                                <div class="time staff-cirular-date">Date : <%- formatDate(item.date) %> </div>
+                                <div class="time staff-cirular-time" >Time : <%- formatTime(item.date) %> </div>
+                                    <%if(unSeenCirculars.includes(item._id)){%>
+                                        <h1 style="color: green;">new</h1>
+                                    <%}%>
+                            </div>
+                            
                         </div>
                         <div class="popup_container" id="seenCircularContainer" style="display: none;">
                             <div class="popup">
@@ -71,14 +74,38 @@
               <% } %>
           <% }) %>
     </div>
+        <script>
+            function showSeenCircularContainer(staffId, circularId) {
+                document.getElementById('seenCircularContainer').style.display = 'flex';
+                document.getElementById('seenCircular').href = `/staff/message_seen/${staffId}/${circularId}`
+            }
+            function hideSeenCircularContainer() {
+                document.getElementById('seenCircularContainer').style.display = 'none';
+            }
+        </script>
 
-</div>
-<script>
-    function showSeenCircularContainer(staffId,circularId){
-        document.getElementById('seenCircularContainer').style.display='flex';
-        document.getElementById('seenCircular').href=`/staff/message_seen/${staffId}/${circularId}`
-    }
-    function hideSeenCircularContainer(){
-        document.getElementById('seenCircularContainer').style.display='none';
-    }
-</script>
+<style>
+
+.staff-cirular-date{
+    
+    width: 20%;
+    
+    
+}
+
+.staff-cirular-time{
+    margin-left: 0%;
+
+
+}
+
+.staff-cirular-page-inbox .staff-cirular-time{
+
+   margin-left: 70%;
+   width: 40%;
+   height: 10%;
+   
+    
+}
+
+</style>        

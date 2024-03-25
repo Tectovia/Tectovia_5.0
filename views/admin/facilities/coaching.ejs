@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/hostel.css">
 <div class="window" id="window_layout">
     <div class="window_navbar">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
@@ -6,7 +7,82 @@
     <div class="window_container">
         <%- include('../../partials/admin/facilities_subnavbar.ejs') %>
         <div class="container center_title">
-            Coaching
+            Coaching 
+            <div class="float_right">
+                <button onclick="showForm()" >Add</button>
+            </div>
         </div>
+        <div class="display_students">
+            <table border="1" class="table">
+                <tr class="header">
+                    <th>Course name</th>
+                    <th>Course fees</th>
+                    <th>Staffs Handling</th>
+                </tr>
+                <%if(coachingClass){%>
+                    <%coachingClass.forEach((item)=>{%>
+                        <tr>
+                            <th><%- item.courseName %></th>
+                            <th><%- item.courseFee %></th>
+                            <th><%- (item.staffsHandling === 'outsideStaff')?  'Staff from other institution ' :  'Staff from our institution ' %></th>
+                        </tr>
+                    <%})%>
+                <%}%>
+            </table>
+        </div>
+        <!-- -------------------------Add Coaching Form----------------------------- -->
+        <div class="pop_body ">
+            <div id="formContainer" class="popup hostel_form" style="display: none;">
+                <span class="close_icon" id="closePopup" onclick="hideFormContainer()">&times;</span>
+                <form id="courseForm" action="/admin/facilities/coaching/addCoaching" method="post"><br><br>
+                    <div class="form_inputs">
+                        <div class="form_div file_input">
+                            <label for="courseName">Couse Name:</label>
+                            <input type="text" name="courseName" id="courseName">
+                        </div>
+                        <!-- <div class="form_div file_input">
+                            <label for="class">Classes course available for :</label>
+                            <select name="class" id="class">
+                                <option selected>Select Class</option>
+                            </select>
+                        </div> -->
+                        <div class="form_div file_input">
+                            <label for="staffsHandling">Staffs Handling:</label>
+                            <select name="staffsHandling" id="staffsHandling">
+                                <option value="staffsInSchool">Staffs In School</option>
+                                <option value="outsideStaff">Staffs from other institutions </option>
+                            </select>
+                        </div>
+                        <div class="form_div file_input">
+                            <label for="courseFee">Course fee per annum:</label>
+                            <input type="text" name="courseFee" id="courseFee">
+                        </div>
+                    </div>
+                    <div class="form_submit">
+                        <input type="submit" value="Save & Next">
+                    </div>
+                </form>
+            </div>
+        </div>
+       
     </div>
 </div>
+<script>
+
+function showForm(){
+    document.getElementById('formContainer').style.display = 'flex' ;
+}
+
+function hideFormContainer(){
+    document.getElementById('formContainer').style.display = 'none' ;
+}
+
+function adjustFormPosition() {
+                var contentHeight = document.querySelector('.display_students').offsetHeight;
+                var form = document.querySelector('.hostel_form');
+                form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
+            }
+
+            window.addEventListener('load', adjustFormPosition);
+
+</script>

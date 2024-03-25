@@ -35,8 +35,11 @@ function hide_popup_add_fees() {
 function display_popup_add_fees() {
     var element = document.getElementById("popup_add_fees");
     element.style.display = "flex";
-    
-}
+    window.scrollTo({
+  top: 0,
+  behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
+  }
 
 function hide_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
@@ -46,6 +49,10 @@ function hide_popup_update_fees() {
 function display_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
     element.style.display = "flex";
+    window.scrollTo({
+  top: 0,
+  behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
     calculateupdateTotalAmount();
 }
 
@@ -207,6 +214,21 @@ function calculateupdateTotalAmount() {
                 <button onclick="display_popup_section()">Add Section</button>
                 <button onclick="display_popup_subject()">Add Subject</button>
             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup_container fade-up" id="popup_subject" style="display: none">
+      <div class="popup" id="popup">
+        <div class="popup_header">
+          <p class="pop_title">Add Subject</p>
+          <span
+            class="close_icon"
+            id="closePopup"
+            onclick="hide_popup_subject()"
+            >&times;</span
+          >
         </div>
 
         <div class="table_container">
@@ -329,27 +351,47 @@ function calculateupdateTotalAmount() {
                 <div class="table_header">
                     <center><h1 class="title">I - MID TERM</h1></center>
                 </div>
-                <% var total=0 %>
-                <table class="table">
-                    <tr class="header">
-                        <th>Title</th>
-                        <th>Amount</th>
-                    </tr>
-                
-                <% fees.I_mid_term.forEach((item)=>{%>
-                    <tr>
-                    <td> <%= item.fees_title %></td>
-                    <td> <%= item.fees_amount %></td>
-                    <%  total +=parseFloat(item.fees_amount)%>
-                    </tr>
-                    <%}) %>
-                    <tr class="header">
-                        <th>Total</th>
-                        <th><%=total %></th>
-                    </tr> 
-                
-                </table>
+                <div class="form_div text_input">
+                  <input
+                    type="text"
+                    class="input"
+                    id="fees_title"
+                    name="fees_title"
+                    required
+                  />
+                  <label for="fees_title">Fees Title</label>
+                </div>
+                <div class="form_div text_input">
+                  <input
+                    type="number"
+                    class="input"
+                    id="fees_amount"
+                    name="fees_amount"
+                    required
+                    oninput="calculateTotalAmount()"
+                  />
+                  <label for="fees_amount">Amount</label>
+                </div>
+                <div class="button-container">
+                  <a onclick="addFees()"> <button>+</button></a>
+                  <a onclick="removeLastFees()"><button>-</button></a>
+                </div>
+              </div>
+              
+              <div class="form_submit form_div_span">
+                <input type="submit" />
+              </div>
             </div>
+            <div id="totalAmountDisplay">
+              Total Amount: <span id="totalAmount">0</span>
+            </div>
+            
+            
+          </form>
+        </div>
+        
+      </div>
+    </div>
 
             <div class="table_container">
                 <div class="table_header">
@@ -596,5 +638,10 @@ function calculateupdateTotalAmount() {
         opacity: 1;
         transform: translateY(0);
     }
-}
+  }
+
+  #totalAmountDisplay{
+    background-color: red;
+    height: 1%;
+  }
 </style>

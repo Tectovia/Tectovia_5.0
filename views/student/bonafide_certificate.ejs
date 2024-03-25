@@ -1,64 +1,92 @@
- 
-<link rel="stylesheet" href="/css/admin/institution_info/common_info.css">
 <style>
-  p.space{
-    word-spacing: 0.1cm;
-  }
-</style>
-<script>
-   document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('printButton').addEventListener('click', function() {
-            window.print();
-        });
-    });
-  function redirectToPrint() {
-    // Redirect to the print page or perform your print logic
-    window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
-  }
-    
-            
-  </script>
-
-<div class="window" id="window_layout">
-    <%if(role==="student"){%>
-
-      <div class="window_navbar">
-          <%- include('../partials//student/navigation_bar.ejs') %>
-          </div>
-       
-    <%}else{%>
-      <div class="window_navbar">
-        <%- include('../partials/parent/navigation_bar.ejs') %>
-      </div>
-    <%}%>
-
-    <div class="window_container">  
-      <div class="container center_title">
-      BONAFIDE CERTIFICATE
-      </div>
-      <div class="popup_container">
-        <div class="popup" id="popup">
-            <div class="popup_header">
-                <span class="close_icon" id="closePopup"></span>
-            </div>
-            
-            
-              <div class="popup_header">
-                <p class="pop_title">Bonafide certificate</p>
-            </div>
-                    
-              <pre><p class="space">This is to certify that MR./MRS <b> <%= student.name %></b>,S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
-with Roll Number <b><%= student.rollno %></b>  is a student of year <b> <%=student.id %></b> section of the student<b> <%=student.section%></b> 
-<br>studying in (school/college)<b> <%= common[0].school_name %>.</b></p><br>
--------------------                        ----------------------------        ------------------                  
-<br> Signature of the principal/Dean        University/College/School Address             Date                                                            
-                                                                 
-                    </div>  
-                
-            </div>        
+    .info {
+            margin-top: 20%; 
+            margin-left: 20%;
+            font-size: 200%;
+            font-style: bold;
+            word-spacing: 0.3cm;
+   } 
+   .print-button{
+      position: absolute;
+      bottom: 170%;
+      left: 50%;
       
+   }
+.close{
+  position: absolute;
+  bottom: 450px;
+  
 
-            
+}
+         @media print {
+            .print-button {
+                display: none;
+            }
+            .close{
+              display: none;
+             
+            }
+
+          } 
+          h1{
+            text-align: center;
+          }
+              
+          
+    </style>
+     <div></div>
+    <div class="info">  
+      <div class="window_container"> 
+        <div class="popup_container">
+          <div class="popup" id="popup">
+            <div class="popup_header">
+              <p class="pop_title">Bonafide certificate</p>
+            </div>
+      <button class="print-button" onclick="printPage()">Print</button>
+      <button onclick="closeTab()" class="close">Close</button>
+        <h1>Bonafide certificate</h1>
+        <p>This is to certify that MR./MRS <b><%= student.name %></b>, S/O or D/O of Mr./Mrs, Father's Name: <b><%= student.father_name %></b><br>
+          with Roll Number <b><%= student.rollno %></b>  is a student of year <b><%= student.id %></b> section of the student <b><%= student.section %></b> 
+          <br>studying in (school/college) <b><%= common[0].school_name %>.</b>
+        </p>
+        <br>
+        <p>-------------------                        ----------------------------        ------------------</p>
+        <p>Signature of the principal/Dean        University/College/School Address             Date</p>
+    
+      </div>    
     </div>
-</body>
-</html>
+    </div>
+    </div>
+      </div>
+    
+    <div id="pdfContainer"></div>
+    <script>
+        function printPage() {
+            window.print();
+        }
+
+        async function generatePDF() {
+            const pdfContainer = document.getElementById("pdfContainer");
+            pdfContainer.innerHTML = "<p>Generating PDF...</p>";
+
+            // Hide print button during PDF generation
+            const printButton = document.querySelector(".print-button");
+            printButton.style.display = "none";
+
+            // HTML content to be converted to PDF
+            const htmlContent = document.querySelector(".info").innerHTML;
+
+            // Generating PDF
+            const pdf = new jsPDF();
+            pdf.text(htmlContent, 10, 10);
+            pdf.save("Document.pdf");
+
+            // Show print button after PDF generation
+            printButton.style.display = "block";
+
+            pdfContainer.innerHTML = ""; // Clear the container
+        }
+        function closeTab() {
+            window.close();
+        }
+    </script>

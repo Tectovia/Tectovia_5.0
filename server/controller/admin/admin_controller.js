@@ -127,7 +127,7 @@ if(req.session.id){
 // };
 
 
-//attendance_graph
+// attendance_graph
 
 
 

@@ -197,11 +197,165 @@
             </div>
           </div>
 
+                <div class="popup_container admin-Compose-Circular-form" id="popup_add" style="display: none">
+                  <div class="popup">
+                    <div class="popup_header">
+                      <p class="pop_title">Compose Circular</p>
+                      <span class="close_icon" id="closePopup" onclick="hide_popup_add()">&times;</span>
+                    </div>
+                    <div class="pop_body">
+                      <form action="/admin/circular/message_sent" method="post" class="circular_form">
+                        <div class="form_inputs">
+                          <div class="form_div text_input form_div_span">
+                            <input type="text" class="input" id="circular_title" name="title" required />
+                            <label for="circular_title">Circular Title</label>
+                          </div>
 
 
 
-      <%if(show===true){%>
-        <div class="popup_container" id="popup_edit" style="display: flex;">
+                          <div class="form_div">
+                            <div class="dropdown" data-control="checkbox-dropdown">
+                              <label for="circular_discription">Non-Teaching Staff</label>
+                              <div class="dropdown-label">Select Options</div>
+                              <div class="dropdown-list">
+                                <% staff_data.forEach(function(item) { %>
+                                  <% if(item.staff_designation=='non-teaching' ) { %>
+                                    <label class="dropdown-option"><input type="checkbox" value="<%- item.staff_id %>"
+                                        name="staff" /><%- item.staff_id %></label>
+                                    <% } %>
+                                      <% }) %>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form_div">
+                            <div class="dropdown" data-control="checkbox-dropdown">
+                              <label for="circular_discription">Standard</label>
+                              <div class="dropdown-label">Select Options</div>
+                              <div class="dropdown-list">
+                                <% class_info.forEach(function(item) { %>
+                                  <label class="dropdown-option"><input type="checkbox" value="<%- item.batch %>"
+                                      name="classes" /><%- item.class %> - <%- item.batch %></label>
+                                  <% }) %>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form_div textarea">
+                            <label for="message">Circular Discription</label>
+                            <textarea id="desc" name="message"></textarea>
+                          </div>
+
+                          <div class="form_submit form_div_span">
+                            <input type="submit" onsubmit="" />
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <%if(show===true){%>
+                  <div class="popup_container admin-edit-Circular-form" id="popup_edit" style="display: flex">
+                    <div class="popup">
+                      <div class="popup_header">
+                        <p class="pop_title">Edit Circular</p>
+                        <a href="/admin/circular"><span class="close_icon" id="closePopup" onclick="hide_popup_edit()">&times;</span></a>
+                      </div>
+                      <div class="pop_body">
+                        <form action="/admin/circular/messageEditDone/<%= editCircular._id %>" method="post"
+                          class="circular_form">
+                          <div class="form_inputs">
+                            <div class="form_div text_input form_div_span">
+                              <input type="text" class="input" id="circular_title" value="<%= editCircular.title %>"
+                                name="title" required />
+                              <label for="circular_title">Circular Title</label>
+                            </div>
+
+                            <div class="form_div text_input">
+                              <input type="text" class="input" id="from" name="from" value="<%= editCircular.from %>"
+                                required />
+                              <label for="from">From</label>
+                            </div>
+
+                            <div class="form_div">
+                              <div class="dropdown" data-control="checkbox-dropdown">
+                                <label for="circular_discription">Teaching Staff</label>
+                                <div class="dropdown-label">Select Options</div>
+                                <div class="dropdown-list">
+                                  <% staff_data.forEach(function(item) { %>
+                                    <% if(item.staff_designation=='teaching' ) { %>
+                                      <%if(Object.keys(editCircular.staffs).includes(item.staff_id )){%>
+                                        <label class="dropdown-option"><input type="checkbox"
+                                            value="<%- item.staff_id %>" name="staff" checked /><%- item.staff_id
+                                            %></label>
+                                        <%}else {%>
+                                          <label class="dropdown-option"><input type="checkbox"
+                                              value="<%- item.staff_id %>" name="staff" /><%- item.staff_id %></label>
+                                          <%}%>
+                                            <% } %>
+                                              <% }) %>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form_div">
+                              <div class="dropdown" data-control="checkbox-dropdown">
+                                <label for="circular_discription">Non-Teaching Staff</label>
+                                <div class="dropdown-label">Select Options</div>
+                                <div class="dropdown-list">
+                                  <% staff_data.forEach(function(item) { %>
+                                    <% if(item.staff_designation=='non-teaching' ) { %>
+                                      <%if(Object.keys(editCircular.staffs).includes(item.staff_id )){%>
+                                        <label class="dropdown-option"><input type="checkbox"
+                                            value="<%- item.staff_id %>" name="staff" checked /><%- item.staff_id
+                                            %></label>
+                                        <%}else {%>
+                                          <label class="dropdown-option"><input type="checkbox"
+                                              value="<%- item.staff_id %>" name="staff" /><%- item.staff_id %></label>
+                                          <%}%>
+                                            <% } %>
+                                              <% }) %>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form_div">
+                              <div class="dropdown" data-control="checkbox-dropdown">
+                                <label for="circular_discription">Standard</label>
+                                <div class="dropdown-label">Select Options</div>
+                                <div class="dropdown-list">
+                                  <% class_info.forEach(function(item) { %>
+                                    <%if(editCircular.classes.includes(item.batch)){%>
+                                      <label class="dropdown-option"><input type="checkbox" value="<%- item.batch %>"
+                                          name="classes" checked /><%- item.class %> - <%- item.batch %></label>
+                                      <%}else {%>
+                                        <label class="dropdown-option"><input type="checkbox"
+                                          value="<%- item.batch %>" name="classes" /><%- item.class %> - <%-item.batch %></label>
+                                        <%}%>
+                                      <% }) %>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form_div textarea">
+                              <label for="message">Circular Discription</label>
+                              <textarea id="desc" name="message"><%= editCircular.message %></textarea>
+                            </div>
+
+                            <div class="form_submit form_div_span">
+                              <input type="submit" value="Edit and Resubmit" />
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <%}%>
+      </div>
+
+      <%if(lastVisited==='sent'){%>
+        <div class="popup_container" id="messageSentContainer">
           <div class="popup">
             <div class="popup_header">
               <p class="pop_title">Edit Circular</p>
@@ -408,5 +562,28 @@ function hideMessageContainer(){
   document.getElementById('messageSentContainer').style.display='none'
 }
 </script>
+<style>
+  .admin-Compose-Circular-form{
+        
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+.admin-edit-Circular-form{
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
+}
+</style>

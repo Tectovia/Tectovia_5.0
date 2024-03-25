@@ -45,3 +45,10 @@ exports.noOfNotificationsForStudents = async (rollNo,batch)=>{
         noOfNotifications
     }
 }
+
+
+exports.yearlyUpdate = async (req,res) =>{
+    await circularModel.updateMany({},{$set:{permanent_delete:true,delete:true}})
+    await messageModel.updateMany({},{$set:{show : false}})
+    res.redirect('/admin/institution_info/common_info')
+}

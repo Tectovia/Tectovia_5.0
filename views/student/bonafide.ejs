@@ -14,13 +14,14 @@
 
     function redirectToPrint() {
     // Redirect to the print page or perform your print logic
-    window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    // window.location.href = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    var url = "/student/bonafide_certificate/<%=student.rollno%>/<%=student.id%>/<%=student.section%>";
+    window.open(url, '_blank');
   }
     </script>
 
 <div class="window" id="window_layout">
     <%if(role==="student"){%>
-
       <div class="window_navbar">
           <%- include('../partials//student/navigation_bar.ejs') %>
        </div>
@@ -32,11 +33,9 @@
     
     <div class="window_container">
         <div class="container center_title">
-            <div class="float_left">
-                <a href="/student_index/101/2023-2024_batch_A" id="toggleButton"><button class="btn_warning">Go Back</button></a>
-            </div>
-            <div class="float_right">
-                <button onclick="display_popup_bono()">Add Bonafide</button>
+          Bonafide
+                <div class="float_right">
+                  <button onclick="display_popup_bono()">Add Bonafide</button>
             </div>
         </div>
 
@@ -56,17 +55,16 @@
                                 <input type="text" class="input" id="bonafide_title" name="bonafide_title" required>
                                 <label for="bonafide_title">Bonafide Title</label>
                             </div>
-                            <div class="form_div text_input">
-                                <input type="text" class="input" id="bonafide_des" name="bonafide_des" required>
-                                <label for="bonafide_des">Description</label>
-                            </div>
-
-                            
+                            <div class="form_div textarea">
+                              <label for="bonafide_des">Discription</label>
+                              <textarea name="bonafide_des" id="bonafide_des"></textarea>
+                          </div>
                         </div>
+                        <div class="form_submit form_div_span">
+                          <input type="submit">
+                      </div>
                     </div>
-                    <div class="form_submit form_div_span">
-                        <input type="submit">
-                    </div>
+                    
                 </form>
             </div>
         </div>

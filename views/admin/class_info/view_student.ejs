@@ -17,14 +17,14 @@
     }
 </script>
 
-<div class="window">
+<div class="window" id="window_layout">
     <div class="window_navabr">
         <%- include('../../partials/admin/navigation_bar.ejs') %>
     </div>
 
     <div class="window_container container_lr">
         <div class="container center_title">
-            <%- title %> - <%- sec %>
+            <%-classes_map[title.split('_batch')[0]] %> - <%- sec %>
             <div class="float_left">
                <a href="/admin/viewParent/<%= student_doc._id %>/<%= title %>"> <button class="btn_success">Parent Details</button></a>
             </div>

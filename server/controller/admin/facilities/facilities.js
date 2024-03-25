@@ -5,6 +5,7 @@ const { log } = require('util');
 const {classes_map}=require('../../universal_controller/class_map');
 const boys_hostel_model=require('../../../models/admin/boys_hostel_model');
 const girls_hostel_model=require('../../../models/admin/girls_hostel_model')
+let { coachingClassModel } = require('../../../models/admin/coachingClassModel')
 
 //-----------------hostel----------
 
@@ -232,8 +233,7 @@ exports.transport=async (req,res)=>{
 // ----------addtransport-----------
 exports.addtransport=async (req,res)=>{
     try {
-        console.log('dfghjgbh',req.body);
-        var transportGG=bus_data
+        var transportGG = bus_data
         const newDocumentData = new transportGG ({
             bus_number: req.body.bus_number,
             number_plate: req.body.number_plate,
@@ -242,20 +242,16 @@ exports.addtransport=async (req,res)=>{
             roll_no2:req.body.roll_no2,
             Driver:req.body.Driver,
             Alterdriver:req.body.Alterdriver
-            // staff_id:req.body.staff_id
-        
         });
-        console.log('dyufhreuvj',newDocumentData);
         
-        //const newdoc = new  transportmodel(newDocumentData);
         const result = await newDocumentData.save();
         console.log(result);
         res.redirect("/admin/facilities/transport");
 
 }catch (error) {
     console.error(error);
-    red.render("error")
-}
+    res.send("error")
+    }
 };
 
 exports.transport=async (req,res)=>{
@@ -323,5 +319,6 @@ exports.library=async (req,res)=>{
 }
 
 exports.coaching=async (req,res)=>{
-    res.render("admin/facilities/coaching");
+    let coachingClass = await coachingClassModel.find()
+    res.render("admin/facilities/coaching",{coachingClass});
 }

@@ -211,10 +211,15 @@
                                 <label for=" staff_social_media1">Website</label>
                             </div>
 
-                            <div class="form_div text_input">
-                                <input class="input" type="text" id=" staff_social_media2" name=" staff_social_media2" >
-                                <label for=" staff_social_media2">Website</label>
+
+                            <div class="form_div text_input  Website-input-details">
+                                <input class="input" type="text" id="staff_social_media2" name="staff_social_media2" >
+                                <label for="staff_social_media2">Website</label>
                             </div>
+               
+                           <div class="staff-form-submit">
+                            <div class="form_submit form_div_span staff-personal-detail">
+                                <input type="submit">
 
                             <div class="form_submit form_div_span">
                                 <input type="submit">
@@ -222,13 +227,60 @@
                         </div>
                     </form>
                 </div>
+                  <i class='bx bxs-up-arrow-circle'  id="scrollToTopBtn" style="font-size: 2.5rem;"></i>
             </div>
         </div>
     </div>
 </div>
 <style>
     .staff_details{
-        margin-top: 800px;
-        margin-left: 60px;
+        margin-top: 60%;
+        margin-left: 5%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-in-out forwards;
     }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#scrollToTopBtn {
+    display: none;
+    background: none;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    margin-top: -8%;
+    margin-left: 77%;
+}
+
+
+
+#scrollToTopBtn i {
+    margin-left: 90%;
+    
+    margin-top: -100%;
+  
+}
+.staff-personal-detail{
+    width: 4%;
+}
+.staff-form-submit{
+    margin-top: 20%;
+    margin-left: -30%;
+    width: 50%;
+}
+.Website-input-details{
+    
+
+    height: 60%;
+}
+
 </style>

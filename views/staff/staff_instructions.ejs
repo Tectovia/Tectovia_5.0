@@ -1,9 +1,16 @@
 <link rel="stylesheet" href="../../css/instructions.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<% function formatDate(date) { const formattedDate=new Date(date); const options={ day: '2-digit' , month: '2-digit' ,
+    year: 'numeric' }; return formattedDate.toLocaleDateString('en-GB', options); } %>
 
-<div class="staff">
-    <div class="staff_navbar">
-        <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
+<% function formatTime(date) { const formattedTime=new Date(date); const hours=formattedTime.getHours() % 12 || 12;
+    const minutes=formattedTime.getMinutes(); const ampm=formattedTime.getHours()>= 12 ? 'PM' : 'AM';
+
+    return `${hours}:${minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 })} ${ampm}`;
+    } %>
+<div class="window" id="window_layout">
+    <div class="window_navbar">
+        <%- include('../partials/staff/navigation_bar.ejs') %>
     </div>
 
 <div class="instructions_main">
@@ -114,6 +121,8 @@
                 <% oldMessage.reverse().map((item) => { %>
                     <div class="history_messages">
                         <h1><%= item.message %></h1>
+                        <h1><%= formatDate(item.date) %></h1>
+                        <h1><%= formatTime(item.date) %></h1>
                     </div>
                     <div class="history_delete_button">
                         <a href="/staff/deleteInstructions/<%= item._id %>/<%= staffdata[0]._id %>">

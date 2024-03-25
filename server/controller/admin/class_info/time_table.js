@@ -54,8 +54,7 @@ exports.add_form = async (req, res) => {
   name=classes_map[name];
 
   var staffdata = await staff_model.find({
-    [`time_table.day${data.spcf_day}.${data.spcf_hr}.sub`]: "null",
-  });
+    [`time_table.day${data.spcf_day}.${data.spcf_hr}.sub`]: "null","available":true});
 
   var classdata = await class_model.find({
     id: data.title,

@@ -1,8 +1,15 @@
 .hostel_addstudent_button{
     margin-left: 1050px;
 }            
-.hostel_form{
-    margin-top: -100px;
+.Transport_form{
+    margin-top: -19%;
+    margin-left: 17%;
+    justify-content: center;
+    align-items: center;
+}
+/* .Transport_form {
+    position: fixed;
+    margin-top: -450px;
     margin-left: 350px;
 }
 .gender_option{

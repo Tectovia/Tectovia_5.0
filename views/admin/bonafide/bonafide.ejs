@@ -101,30 +101,33 @@
         
             <% bonafide_data.forEach(function(bonafide) { %>
               <!-- Start of the form for each bonafide item -->
-              <form action="/bonafide_approval" method="post" class="card_container">
-                <div class="card">
-                  <div class="card_content">
-                    <div class="row">
-                      <label for="id_<%= bonafide.id %>">Student id:</label>
-                      <input type="text" id="id_<%= bonafide.id %>" name="id" value="<%= bonafide.id %>" readonly>
-                    </div>
-                    <div class="row">
-                      <label for="classs_<%= bonafide.id %>">Student Class:</label>
-                      <input name="classs" type="text" id="classs_<%= bonafide.id %>" value="<%= bonafide.class %>" readonly>
-                    </div>
-                    <div class="row">
-                      <label for="section_<%= bonafide.id %>">Student Section: </label>
-                      <input name="section" type="text" id="section_<%= bonafide.id %>" value="<%= bonafide.section %>" readonly>
-                    </div>
-                    <div class="row">
-                      <label for="title_<%= bonafide.id %>">Bonafide Title:</label>
-                      <input name="title" type="text" id="title_<%= bonafide.id %>" value="<%= bonafide.bonafide_title %>" readonly>
-                    </div>
-                    <div class="row">
-                      <label for="description_<%= bonafide.id %>">Bonafide Description:</label>
-                      <input name="description" type="text" id="description_<%= bonafide.id %>" value="<%= bonafide.bonafide_des %>" readonly>
-                    </div>
-                    <input type="submit" value="Submit">
+              <h1 class="admin-bonafide-tatile">student Bonafide</h1>
+                  <table border="1" class="table table-admin-bonafide">
+                  
+                      <tr class="header">
+                
+                          <th>Roll No</th>
+                            <th>Name</th>
+                         <th>Description</th>
+                           <th>Title</th>
+                           <th colspan="2">Options</th>
+                      </tr>
+                      <% bonafide_data.forEach(function(bonafide) { %>
+                        <%if(bonafide.approval!==true && bonafide.cancel!==true){%>
+        
+                          <tr> 
+                            <td><%- bonafide.id %></td>
+                            <td><%- bonafide.name %></td>
+                             <!-- <td><%- bonafide.section %></td> -->
+                            <td><%- bonafide.bonafide_title%></td>
+                            <td><%- bonafide.bonafide_des %></td>
+                            <td><button><a href="/admin/bonafide/approval/<%=bonafide._id%>">Approve</a></button></td>
+                            <td><button><a href="/admin/bonafide/cancel/<%=bonafide._id%>">cancel</a></button></td>
+                          </tr>
+                          <%}%>
+                  <% }) %>
+              </table>
+                    
                     <!-- Removed the inline onclick handler for the approval button to separate concerns -->
                     <!-- Consider handling the approval click using JavaScript separately -->
                   </div>
@@ -135,3 +138,26 @@
           </div>
         </div>
         
+<style>
+  .table-admin-bonafide{
+    margin-top: 70%;
+   
+    box-shadow: 0 0 20px var(--primary-color);
+  
+    border-collapse: collapse;
+    width: auto;
+  
+    
+   
+  }
+  .admin-bonafide-tatile{
+    margin-top: 30%;
+    margin-left: 180%;
+    height: 2%;
+    width: 100%;
+   
+    font-size: 1.8rem;
+  }
+
+  
+</style>
