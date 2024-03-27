@@ -9,7 +9,6 @@ mongoose.connect(process.env.LOCALDBURL, {
 
 const db = mongoose.connection;
 
-
 mongoose.set("strictQuery", false);
 db.on("error", console.error.bind(console, "connection error:"));-``  
 db.once("open", function () {

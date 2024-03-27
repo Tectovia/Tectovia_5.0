@@ -36,6 +36,7 @@ var db = mongoose.connection;
 // Body-Parser
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+
 exports.add_forum = async (req, res) => {
     try { 
         const { id } = req.params; 
@@ -76,7 +77,7 @@ exports.add_forum = async (req, res) => {
             console.error("Staff is not in charge of any section");
         }
 
-        res.render('./staff/forum_classes', { staffdata, classInchargeDetails, forumDetails,title,sec,circularNotification });
+        res.render('./staff/forum_classes', { staffdata, classInchargeDetails, forumDetails,title,sec,circularNotification,classes_map });
     } catch (error) {
         console.error("Error occurred:", error);
         res.send("Internal Server Error");

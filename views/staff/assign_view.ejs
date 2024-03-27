@@ -1,10 +1,13 @@
 <link rel="stylesheet" href="/css/card.css">
 <div class="window" id="window_layout">
-    <div class="window_navbar">
+   <div class="window_navbar">
       <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
     </div>
   
     <div class="window_container">
+     
+     <a style="z-index: 1000; position: absolute;" class="back_btn" id="toggleButton" href="/staff/assignment/viewlist/<%- staffdata[0]._id %>/<%- student.id %>/<%- student.section %>/<%-id %>"><i class='bx bx-arrow-back'></i></a>
+
         <div class="popup_container" id="popup_subject">
             <div class="popup" id="popup">
                <div id="content">

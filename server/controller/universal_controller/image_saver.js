@@ -5,9 +5,8 @@ function image_saver(image,middle_name,filepath,id){
       console.log("No File Upload!");
       return "null"
     } else {
-      let date = new Date().toLocaleDateString("de-DE");
+      let date =  Date.now();
       const file_format = image.name.slice(((image.name.lastIndexOf(".") - 1) >>> 0) + 2 );
-
       
       new_name =middle_name + date + "." + file_format;
        var uploadpath =filepath + new_name;

@@ -34,7 +34,7 @@
             <%- name %> - <%= section_doc.section_name %>
             <div class="float_left">
 
-                <a href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
+                <a class="back_btn" href="/admin/class_info/class_list/<%- title %>" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
 
             </div>
             <div class="float_right">
@@ -206,7 +206,7 @@
 
 
         <!-- Edit Section Form -->
-        <div class="popup_container " id="popup_edit_section" style="display: none;">
+        <div class="popup_container fade-up" id="popup_edit_section" style="display: none;">
             <div class="popup">
                 <div class="popup_header">
                     <p class="pop_title">Edit Section</p>
@@ -457,7 +457,7 @@
                          </div>  
                         </form>
                     </div>
-                    <button id="scrollToTopBtn"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>
+                       <i class='bx bxs-up-arrow-circle' id="scrollToTopBtn" style="font-size: 2.5rem; margin-left: 85%; margin-top: -12%;"></i>
                     </div>
                  </div> 
                 </div>        
@@ -603,7 +603,7 @@
                             </div>  
                             </div>
                         </form>
-                        <button id="scrollToTopBtn" class="scroll-form-std"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem; margin-top: -1%;"></i></button>
+                        <i class='bx bxs-up-arrow-circle' id="scrollToTopBtn" style="font-size: 2.5rem; margin-top: -9%; margin-left: 85%;"></i>
                     </div>        
                 </div>
             </div>

@@ -36,6 +36,10 @@
   function display_popup_add_fees() {
     var element = document.getElementById("popup_add_fees");
     element.style.display = "flex";
+    window.scrollTo({
+  top: 0,
+  behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
   }
 
   function hide_popup_update_fees() {
@@ -46,6 +50,10 @@
   function display_popup_update_fees() {
     var element = document.getElementById("popup_update_fees");
     element.style.display = "flex";
+    window.scrollTo({
+  top: 0,
+  behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
     calculateupdateTotalAmount();
   }
 
@@ -205,7 +213,7 @@
     <div class="container center_title">
        <%- name %>
      <div class="float_left">
-                <a href="/admin/class_info/class_list" id="toggleButton" class="back_btn"><i class='bx bx-arrow-back'></i></a>
+                <a href="/admin/class_info/class_list" id="toggleButton"><i class='bx bx-arrow-back'></i></a>
          </div>
       </div>
       <div class="float_right">
@@ -503,7 +511,7 @@
       </div>
     </div>
 
-    <div class="popup_container" id="popup_subject" style="display: none">
+    <div class="popup_container fade-up" id="popup_subject" style="display: none">
       <div class="popup" id="popup">
         <div class="popup_header">
           <p class="pop_title">Add Subject</p>
@@ -621,15 +629,19 @@
                   <a onclick="removeLastFees()"><button>-</button></a>
                 </div>
               </div>
+              
+              <div class="form_submit form_div_span">
+                <input type="submit" />
+              </div>
             </div>
             <div id="totalAmountDisplay">
               Total Amount: <span id="totalAmount">0</span>
             </div>
-            <div class="form_submit form_div_span">
-              <input type="submit" />
-            </div>
+            
+            
           </form>
         </div>
+        
       </div>
     </div>
 
@@ -732,5 +744,10 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  #totalAmountDisplay{
+    background-color: red;
+    height: 1%;
   }
 </style>

@@ -32,7 +32,7 @@
                     <td><%- student.rollno %></td>
                     <td><%- student.roomnumber %></td>
                     <td><a href="" onclick="show1(`<%- student.name %>`,`<%- student.rollno %>`,`<%- student.roomnumber %>`,`<%- student.class %>`,`<%- student.gender %>`); event.preventDefault();"><button class="edit_btn">Edit</button></a></td>
-                    <td><a href="/admin/hostel/<%- student.rollno %>/<%- student.class %>"><button class="delete_btn">Delete</button></a></td>
+                    <td><button onclick="showDelelteStudent(`<%- student.rollno %>`,`<%- student.class %>`)" class="delete_btn">Delete</button></td>
                 </tr>
             <% }) %>
         </table>
@@ -54,7 +54,7 @@
                     <td><%- student.rollno %></td>
                     <td><%- student.roomnumber %></td>
                     <td><a href="" onclick="show1(`<%- student.name %>`,`<%- student.rollno %>`,`<%- student.roomnumber %>`,`<%- student.class %>`,`<%- student.gender %>`); event.preventDefault();"><button class="edit_btn">Edit</button></a></td>
-                    <td><a href="/admin/hostel/<%- student.rollno %>/<%- student.class %>"><button class="delete_btn">Delete</button></a></td>
+                    <td><button onclick="showDelelteStudent(`<%- student.rollno %>`,`<%- student.class %>`)" class="delete_btn">Delete</button></td>
                 </tr>
             <% }) %>
         </table>
@@ -182,9 +182,23 @@
             </form>
         </div>
     </div>
-   
 
-        <script>
+    <div class="popup_container" id="delete_student_container" style="display: none;" >
+        <div class="popup">
+          <div class="popup_header">
+            <p class="pop_title">Confirm Delete</p>
+            <span class="close_icon" id="closePopup" onclick="hideStudentDelete()">&times;</span>
+          </div>
+          <div class="pop_body">
+            <p>Do You Want to Delete Student permanently ?</p>
+            <div class="delete">
+              <a href="" id="DeleteStudent"><button class="view_btn">YES</button></a>
+              <button onclick="hideStudentDelete()" class="delete">NO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
 
            function show(){ 
             document.getElementById("formContainer").style.display = "block";
@@ -195,6 +209,11 @@
              
              
            })
+
+           function showDelelteStudent(rollno,batch){
+                document.getElementById('delete_student_container').style.display = 'flex';
+                document.getElementById('DeleteStudent').href = `/admin/hostel/${rollno}/${batch}`
+           }
 
            function show1(name,roll,room,cls,gender){ 
             
@@ -213,14 +232,17 @@
              
            })
            // JavaScript
-function adjustFormPosition() {
-    var contentHeight = document.querySelector('.display_students').offsetHeight;
-    var form = document.querySelector('.hostel_form');
-    form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
-}
+            function adjustFormPosition() {
+                var contentHeight = document.querySelector('.display_students').offsetHeight;
+                var form = document.querySelector('.hostel_form');
+                form.style.marginTop = -1 * (contentHeight + 150) + 'px'; // Adjust the value 50 according to your needs
+            }
 
-window.addEventListener('load', adjustFormPosition);
+            window.addEventListener('load', adjustFormPosition);
 
+            function hideStudentDelete(){
+                document.getElementById('delete_student_container').style.display = 'none'
+            }
 
         </script>
         
@@ -262,9 +284,5 @@ window.addEventListener('load', adjustFormPosition);
         console.error("Invalid gender value:", student_gender);
     }
 });
-
-
-
-
 
 </script>

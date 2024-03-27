@@ -14,7 +14,7 @@
                 <%- include('../partials/staff/navigation_bar.ejs',{circularNotification}) %>
             </div>
             <div class="window_container">
-                <a href="/staff/inbox/<%- staffdata[0]._id %>"><button>Back</button></a>
+                <a class="back_btn" href="/staff/inbox/<%- staffdata[0]._id %>"><i class='bx bx-arrow-back'></i></a>
                 <div class="container center_title">
                     <%- newCircular.title %>
                </div>

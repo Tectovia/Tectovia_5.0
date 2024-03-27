@@ -4,6 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const yearcal = require("date-fns");
 require("dotenv").config();
+const fs = require("fs");
+const image_saver = require("../../universal_controller/image_saver");
+
 
 // Models Here!
 const class_model = require("../../../models/admin/section_model");
@@ -400,7 +403,7 @@ exports.delete_section = async (req, res) => {
 exports.submit_subject = async (req, res) => {
   const title = req.params.title;
   var name=title.split('_')[0];
-  name=classes_map[name]; 
+  name=classes_map[name];
   
   try {
     const subject_submit = new subject_model({
@@ -420,20 +423,107 @@ exports.submit_subject = async (req, res) => {
 
 exports.view_subject = async (req, res) => {
   const title = req.params.title;
-  var id = req.params.id;
-
-  subject_model.findById(id, function (err, item) {
+  const id = req.params.id;
+  var name=title.split('_')[0];
+  name=classes_map[name];
+  subject_model.findById(id, async function (err, item) {
     if (err) {
       console.log(err);
     } else {
+      const syllabusData = item.syllabus; 
+      console.log("Syllabus Data", syllabusData);
+
       res.render("admin/class_info/view_subject", {
         item,
         title,
+        name,
+        page_title: "Add Syllabus",
         add_section: "none",
         add_subject: "none",
+        syllabusData: syllabusData
       });
     }
   });
+};
+
+
+exports.view_subject_syllabus = async (req, res) => {
+  try {
+    const title = req.params.title;
+    const id = req.params.id;
+    var name=title.split('_')[0];
+    name=classes_map[name];
+
+    let imageUploadFile;
+    const subject_syllabus = req.body.subject_syllabus;
+    const subject_syllabus_year=req.body.subject_syllabus_year;
+
+    let subjectModel = await subject_model.findById(id);
+  
+    if (!subjectModel) {
+      subjectModel = new subject_model();
+    }
+
+    if (req.files && req.files.subject_syllabus_pdf) {
+      imageUploadFile = req.files.subject_syllabus_pdf;
+      const path = require("path").resolve("./") + "/public/uploads/subject_info";
+
+      if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+      }
+
+      const uploadpath = require("path").resolve("./") + "/public/uploads/subject_info/";
+      const imageName = image_saver(imageUploadFile, `Subject_syllabus_${subject_syllabus}_`, uploadpath);
+      subjectModel.syllabus.push({
+        subject_syllabus: subject_syllabus,
+        subject_syllabus_pdf: imageName,
+        subject_syllabus_year:subject_syllabus_year
+      });
+    }
+
+    await subjectModel.save();
+    subject_model.findById(id, async function (err, item) {
+      if (err) {
+        console.log(err);
+      } else {
+    const syllabusData = item.syllabus;
+    console.log("Syllabus Data", syllabusData);
+    res.render("admin/class_info/view_subject", {
+      item: subjectModel,
+      title,
+      name,
+      page_title: "Add Syllabus",
+      add_section: "none",
+      add_subject: "none",
+      syllabusData: syllabusData
+    });
+  }
+})
+  } catch (error) {
+    console.log("Internal Error", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.delete_subject_syllabus = async (req, res) => {
+  try {
+    const subjectId = req.params.subjectId;
+    const syllabusId = req.params.syllabusId;
+
+    const subject = await subject_model.findById(subjectId);
+
+    if (!subject) {
+      return res.status(404).send("Subject not found");
+    }
+
+    subject.syllabus.pull({ _id: syllabusId });
+
+    await subject.save();
+    res.status(200).send("Syllabus deleted successfully");
+  } catch (error) {
+    console.log("Error deleting syllabus:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 exports.delete_subject = async (req, res) => {
