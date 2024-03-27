@@ -150,8 +150,12 @@ exports.attendance_link_edit= async (req, res) => {
   const stu_data=data[req_data.date][section];
   console.log("student data is" ,stu_data);
   const staffdata=await staff_model.find({ _id: req_data.id }, { staff_id: 1, staff_name: 1 })
+   // used to show circular notification for staff edited by purushothaman @ 27/2
+   let circularNotification = await noOfCirculars(staffdata[0].staff_id)
+    // used to show circular notification for staff edited by purushothaman @ 14/3
+    circularNotification = circularNotification.unSeenCirculars;
   
-   res.render("staff/attendance_list_edit", {staffdata, stu_data,req_data, });
+   res.render("staff/attendance_list_edit", {staffdata, stu_data,req_data,circularNotification });
 };
 exports.attendance_submit = async (req, res) => {
   var req_data = req.params;
