@@ -9,10 +9,19 @@ function hide_popup_forum() {
 function display_popup_forum() {
     var element = document.getElementById("popup_forum");
     element.style.display = "flex";
+    window.scrollTo({
+    top: -10,
+    behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
 }
 function hide_edit_popup_forum() {
     var element = document.getElementById("edit_popup_forum");
     element.style.display = "none";
+    window.scrollTo({
+    top: -10,
+    behavior: 'smooth' // Optional: Add smooth scrolling behavior
+});
+   
 }
   function display_edit_popup_forum(forumId) {
         var editPopup = document.getElementById("edit_popup_forum");
@@ -72,7 +81,7 @@ function hide_edit_popup_forum() {
               <% }) %>
           <% } %>
       </div>
-        <div class="popup_forum  admin-forum-form" id="popup_forum" style="display: none;">
+        <div class="popup_forum  admin-forum-formss" id="popup_forum" style="display: none;">
             <div class="popup admin-forum-form-pop" id="popup">
                 <div class="popup_header">
                     <p class="pop_title">Forum</p>
@@ -123,7 +132,7 @@ function hide_edit_popup_forum() {
                         </div>  
                     </form>
                 </div> 
-                <button id="scrollToTopBtncircular"><i class='bx bxs-up-arrow-circle' style="font-size: 2.5rem;"></i></button>       
+                       
             </div>
         </div>
         <%if(edit === true){%>
@@ -300,14 +309,38 @@ window.onscroll = function () {
 
 
 </script>
+
 <style>
-  .admin-forum-form{
+    /* Center the popup form vertically and horizontally */
+.popup_forum, .admin-forum-formss {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s ease-in-out forwards;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     
+     /* Ensure it's above other elements */
 }
 
+.popup.admin-forum-form-pop, .popup.admin-forum-edit-form {
+    
+    padding: 20px;
+    border-radius: 10px;
+    width: 47%; /* Adjust the width as needed */
+    
+    
+}
+.admin-forum-form-pop{
+    width: 600%;
+}
+/* Fade in animation */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -318,49 +351,43 @@ window.onscroll = function () {
         transform: translateY(0);
     }
 }
-.admin-forum-forms{
-    margin-top: -10%;
+.admin-forum-edit-form {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    animation: fadeInUp 0.5s ease-in-out forwards;
 }
-.admin-forum-form-pop{
-    margin-top: -30%;
-}
-  
-.admin-forum-form{
-  margin-top: -5%;
-  margin-left: 26%;
-}  
 
-#scrollToTopBtncircular {
-    display: none;
-    background: none;
-    border: none;
-    width: 100%;
+
+/* Style for close icon */
+.close_icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
-    color: black;
 }
 
-#scrollToTopBtncircular i {
-    margin-left: 90%;
-}
+/* Adjustments for the submit button */
 .form_submitss {
     width: 100%;
-    
-
+    text-align: center; /* Center the button */
 }
 
-.form_submitss input[type=submit] {
+.form_submitss input[type="submit"] {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     background-color: var(--primary-color);
+    color: white; /* Text color */
+    font-size: 16px; /* Adjust font size as needed */
 }
 
 .form_submitss input[type="submit"]:hover {
     background-color: var(--success-color-light);
 }
-.admin-forum-edit-form{
-    margin-top: -25%;
-}
+
 </style>
