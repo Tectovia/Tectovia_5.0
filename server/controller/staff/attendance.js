@@ -285,7 +285,6 @@ const job = schedule.scheduleJob("0 10 * * *", function (fireDate) {
   console.log("This job was supposed to run at " + fireDate);
   Timetable_gen();
 });
-
 // Timetable_gen();
 
 

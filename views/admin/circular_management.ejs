@@ -52,6 +52,7 @@
           Circular
           <div class="float_right">
             <button class="add_btn" onclick="display_popup_add()">Add</button>
+          
           </div>
         </div>
         <% sent_circular.reverse().forEach(function(item) { %>
@@ -63,6 +64,32 @@
                   <div class="time">Date : <%- formatDate(item.date) %></div>
                   <div class="time">Time : <%- formatTime(item.date) %></div>
                 </div>
+                <div class="mobile_dropdown_view">
+                  <div class="form_div">
+                      <div class="dropdown"  data-control="checkbox-dropdown">
+                                <div class="dropdown-label" data-id="RecievedStaffs"></div>
+                                <div class="dropdown-list">
+                                  <%Object.keys(item.staffs).map((i)=>{%>
+                                       <label for=""><%- i %></label><%if(item.staffs[i]===false){%>-Delivered<br><%}else{%>-Read<br><%}%>                                 
+                                  <%})%>
+                                </div>   
+                      </div> 
+                  </div >  
+                  <div class="form_div">
+                    <div class="dropdown"  data-control="checkbox-dropdown">
+                              <div class="dropdown-label" data-id="RecievedClass"></div>
+                              <div class="dropdown-list">
+                                <%item.classes.map((i)=>{%>
+                                     <%class_info.map((j)=>{%>
+                                      <%if(j.batch===i){%>
+                                        <label><%-j.class%></label><br>
+                                      <%}%>
+                                    <%})%>                                
+                                <%})%>
+                              </div>   
+                    </div> 
+                </div>              
+                </div>
                 <div class="circular_buttons">
                   <div class="edit">
                     <a href="/admin/circular/edit_circular/<%= item._id %>" id="toggleButton">
@@ -70,37 +97,13 @@
                     </a>
                   </div>
                   <div class="delete">
-                    <button class="delete" onclick="display_delete_circular(`<%- item._id %>`)">
+                    <button class="delete btn_danger " onclick="display_delete_circular(`<%- item._id %>`)">
                       Delete
                     </button>
                   </div>
                 </div>
-                <div class="form_div">
-                    <div class="dropdown"  data-control="checkbox-dropdown">
-                              <div class="dropdown-label" data-id="RecievedStaffs"></div>
-                              <div class="dropdown-list">
-                                <%Object.keys(item.staffs).map((i)=>{%>
-                                     <label for=""><%- i %></label><%if(item.staffs[i]===false){%>-Delivered<br><%}else{%>-Read<br><%}%>                                 
-                                <%})%>
-                              </div>   
-                    </div> 
-                </div>  
-                <div class="form_div">
-                  <div class="dropdown"  data-control="checkbox-dropdown">
-                            <div class="dropdown-label" data-id="RecievedClass"></div>
-                            <div class="dropdown-list">
-                              <%item.classes.map((i)=>{%>
-                                   <%class_info.map((j)=>{%>
-                                    <%if(j.batch===i){%>
-                                      <label><%-j.class%></label><br>
-                                    <%}%>
-                                  <%})%>                                
-                              <%})%>
-                            </div>   
-                  </div> 
-              </div>              
-              </div>
-
+               </div>
+<div class="circular_message">
               <div class="circular_title">
                 <div class="title"><%- item.title %></div>
               </div>
@@ -108,7 +111,7 @@
                 <div class="message">
                   <p><%- item.message %></p>
                 </div>
-              </div>
+              </div></div>
             </div>
 
           <% } %>

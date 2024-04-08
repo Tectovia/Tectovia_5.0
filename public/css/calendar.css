@@ -56,7 +56,6 @@ button {
 }
 
 .day {
-  
   height: 100px;
   padding: 10px;
   cursor: pointer;
@@ -134,16 +133,19 @@ button {
   overflow: hidden;
 }
 
-.hide_cal{
+.hide_cal {
   visibility: hidden;
 }
+
 #btnSave {
   background-color: #2ed573;
 }
-.closebuttondiv{
+
+.closebuttondiv {
   width: 100%;
   text-align: right;
 }
+
 .btnClose {
   font-size: 20px;
   color: red;
@@ -162,6 +164,59 @@ button {
   border-color: #ea2027 !important;
 }
 
-.display{
+.display {
   display: block;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 767px) {
+  .calender_container {
+    width: 100%;
+    margin: auto;
+    margin-left: 0px;
+  }
+
+  .weekdays {
+    font-size: 14px;
+  }
+
+  .day {
+    height: 80px;
+    font-size: 12px;
+    width: 50px;
+    margin-left: -60px;
+  }
+  
+  .day {
+    height: 100px; /* Adjust height as needed */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px #cbd4c2;
+    color: #7187a6;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .weekdays{
+    margin-left: 0px;   
+  }
+
+  .holiday{
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 10px;
+    font-size: 9px;
+    width: 40px;
+  }
+
+  .calender_for_back_button{
+    display: flex;
+  }
+  .calender_for_back_button button{
+    height: 30px;
+    margin-top: 40px;
+  }
 }

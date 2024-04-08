@@ -61,6 +61,7 @@
 #sidebar .side_menu {
   width: 100%;
   margin-top: 48px;
+
 }
 
 #sidebar .side_menu li {
@@ -555,4 +556,6 @@
   #top_menu main .table-data .todo .todo-list {
     min-width: 420px;
   }
+  
+  
 }

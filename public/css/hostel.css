@@ -69,4 +69,298 @@
 .table:hover{
     transform:scale(1.04);
 }
+.mobile_edit{
+    display: none;
+}
+.boys_mobile_delete_button{
+    display: none;
+}
+.user_adding_div{
+    display: none;
+}
+@media (max-width: 700px) {
+    .display_students {
+        display: block;
+        margin-left: -70px;
+        margin-top: 70px;
+    }
 
+    .display_students h1 {
+        width: 300px;
+        margin-left: 70px;
+    }
+
+    .boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+
+    .delete_btn.boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+    .boys_mobile_delete{
+        display: none;
+    }
+    .mobile_edit{
+        display: block;
+    }  
+
+    .boys_mobile_delete_button{
+        display: block;
+
+    }
+    .boys_mobile_delete_button i{
+        color: var(  --danger-color-dark);
+    }
+    .hostel_addstudent_button{
+        margin-left: 170px;
+    
+    }
+    .user_adding_div{
+        display: block;
+        background-color: var(--success-color-light);
+        width: 70px;
+        border-radius: 20px;
+        margin-left: 370px;
+        margin-top: -105px;
+        
+    }
+    .user_adding_div i{
+        font-size: 25px;
+        padding: 20px;
+        color: #000;
+    }
+    .hostel_addstudent_button{
+        display: none;
+    }
+    .center_title{
+        margin-left: -50px;
+    }
+    .girls_container h1{
+        margin-left: 90px;
+    }
+    .girls_container{
+        margin-top: 50px;
+      
+        margin-left: 40px;
+    }
+    .boys_container{
+        margin-left: 40px;
+    }
+   
+}
+@media (max-width: 500px) {
+    .display_students {
+        display: block;
+        margin-left: -60px;
+        margin-top: 70px;
+    }
+
+    .display_students h1 {
+        width: 300px;
+        margin-left: 70px;
+    }
+
+    .boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+
+    .delete_btn.boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+    .boys_mobile_delete{
+        display: none;
+    }
+    .mobile_edit{
+        display: block;
+    }  
+
+    .boys_mobile_delete_button{
+        display: block;
+
+    }
+    .boys_mobile_delete_button i{
+        color: var(  --danger-color-dark);
+    }
+    .hostel_addstudent_button{
+        margin-left: 170px;
+    
+    }
+    .user_adding_div{
+        display: block;
+        background-color: var(--success-color-light);
+        width: 70px;
+        border-radius: 20px;
+        margin-left: 200px;
+        margin-top: -105px;
+        
+    }
+    .user_adding_div i{
+        font-size: 25px;
+        padding: 20px;
+        color: #000;
+    }
+    .hostel_addstudent_button{
+        display: none;
+    }
+    .center_title{
+        margin-left: -50px;
+    }
+    .girls_container h1{
+        margin-left: 90px;
+    }
+    .girls_container{
+        margin-top: 50px;
+      
+        margin-left: 40px;
+    }
+    .boys_container{
+        margin-left: 40px;
+    }
+   
+}
+@media (max-width: 400px) {
+    .display_students {
+        display: block;
+        margin-left: -50px;
+        margin-top: 70px;
+    }
+
+    .display_students h1 {
+        width: 300px;
+        margin-left: 70px;
+    }
+
+    .boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+
+    .delete_btn.boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+    .boys_mobile_delete{
+        display: none;
+    }
+    .mobile_edit{
+        display: block;
+    }  
+
+    .boys_mobile_delete_button{
+        display: block;
+
+    }
+    .boys_mobile_delete_button i{
+        color: var(  --danger-color-dark);
+    }
+    .hostel_addstudent_button{
+        margin-left: 170px;
+    
+    }
+    .user_adding_div{
+        display: block;
+        background-color: var(--success-color-light);
+        width: 70px;
+        border-radius: 20px;
+        margin-left: 200px;
+        margin-top: -105px;
+        
+    }
+    .user_adding_div i{
+        font-size: 25px;
+        padding: 20px;
+        color: #000;
+    }
+    .hostel_addstudent_button{
+        display: none;
+    }
+    .center_title{
+        margin-left: -50px;
+    }
+    .girls_container h1{
+        margin-left: 90px;
+    }
+    .girls_container{
+        margin-top: 50px;
+      
+        margin-left: 40px;
+    }
+    .boys_container{
+        margin-left: 40px;
+        width: 300px;
+    }
+   
+}
+@media (max-width: 350px) {
+    .display_students {
+        display: block;
+        margin-left: -70px;
+        margin-top: 70px;
+        width: 300px;
+        font-size: 20px;
+    }
+    
+
+    .display_students h1 {
+        width: 300px;
+        margin-left: 70px;
+    }
+
+    .boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+
+    .delete_btn.boys_mobile_delete {
+        width: 40px !important; /* Adjust the width as needed */
+    }
+    .boys_mobile_delete{
+        display: none;
+    }
+    .mobile_edit{
+        display: block;
+    }  
+
+    .boys_mobile_delete_button{
+        display: block;
+
+    }
+    .boys_mobile_delete_button i{
+        color: var(  --danger-color-dark);
+    }
+    .hostel_addstudent_button{
+        margin-left: 170px;
+    
+    }
+    .user_adding_div{
+        display: block;
+        background-color: var(--success-color-light);
+        width: 70px;
+        border-radius: 20px;
+        margin-left: 200px;
+        margin-top: -105px;
+        
+    }
+    .user_adding_div i{
+        font-size: 25px;
+        padding: 20px;
+        color: #000;
+    }
+    .hostel_addstudent_button{
+        display: none;
+    }
+    .center_title{
+        margin-left: -50px;
+    }
+    .girls_container h1{
+        margin-left: 90px;
+    }
+    .girls_container{
+        margin-top: 50px;
+      
+        margin-left: 40px;
+    }
+    .boys_container{
+        margin-left: 40px;
+        width: 300px;
+    }
+    
+   
+}
