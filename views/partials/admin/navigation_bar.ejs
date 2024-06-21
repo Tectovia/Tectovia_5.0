@@ -22,6 +22,8 @@
 
 <!-- side_menu -->
 <aside id="sidebar" class="">
+  <i class="bx bx-menu navbar_back" title="back"></i>
+
   <a href="/" class="brand" target="_blank" title="">
     <i class="bx bxs-smile"></i>
     <span class="text">ABCD Higher Secondary School</span>
@@ -150,4 +152,20 @@
     </a>
   </nav>
 </section>
+<script>
+  // Add JavaScript to close sidebar on page refresh in mobile view
+  const screenWidth = window.matchMedia("(max-width: 576px)");
+
+  function closeSidebarOnRefresh(screenWidth) {
+      if (screenWidth.matches) {
+          // Close sidebar
+          document.getElementById("sidebar").classList.add("hide");
+      }
+  }
+
+  closeSidebarOnRefresh(screenWidth); // Call function on page load
+
+  // Listen for screen width changes and close sidebar accordingly
+  screenWidth.addListener(closeSidebarOnRefresh);
+</script>
 

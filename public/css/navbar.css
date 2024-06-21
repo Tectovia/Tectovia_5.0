@@ -555,4 +555,54 @@
   #top_menu main .table-data .todo .todo-list {
     min-width: 420px;
   }
+  #top_menu {
+    width: 100%; /* Change width to 100% */
+    left: 0; /* Reset left positioning */
+  }
+
+  #top_menu nav {
+    padding: 0 16px; /* Adjust padding */
+  }
+
+  #sidebar {
+    width: 70%; /* Adjust sidebar width */
+  }
+  #sidebar .brand{
+    font-size: 30px;
+ 
+  }
+ .side_menu .text{
+  font-size: 20px;
+  margin-left: 50px;
+  font-weight: 500;
+ }
+#sidebar li{
+  margin-bottom: 30px;
+
+}
+.brand .text{
+font-size: 30px;
+ margin-top: -110px;
+}
+#sidebar a{
+  background-color: #ffce26;
+}
+.side_menu a{
+  height: 50px;
+}
+.navbar_back{
+  margin-left: 330px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+font-size: larger;
+  
+}
+.brand i {
+  margin-top: -100px;
+  font-size: 30px; /* Increase the font size as desired */
+}
+i{
+  font-size: 25px;
+}
+ 
 }

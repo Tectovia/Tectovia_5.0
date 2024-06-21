@@ -385,29 +385,84 @@
   margin-top: -10px;
   margin-left: 20px;
 }
-   @media only screen and (max-width: 768px) {
-    .staff_main_container {
-      border-radius: 5px;
-      margin-left: 0;
-      grid-template-columns: auto; 
-      width: 2400px;
-    }
-    .education_info{
-    margin-left: 10px;
-      width: 2000px;
-    }
-     .acheivement_box{
-      width: 600px;
-     }
-.education_details{
-  margin-left: 170px;
-}
-.acheivement_value{
-  margin-left: 850px ;
-  width: 600px;
-}
-.staff_edit_button{
-  margin-right: 800px;
-}
-  } 
+@media only screen and (max-width: 768px) {
+  .staff_main_container {
+      flex-direction: column;
+  }
+
+  .staff_name img {
+      margin-top: 0;
+  }
   
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Staff Details Styles */
+.staff_main_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.staff_details {
+  flex-basis: 100%;
+  margin-top: 20px;
+}
+
+.staff_name, .staff_id {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.staff_name img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.staff_name h3 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.staff_id h3 {
+  font-size: 18px;
+}
+
+/* Basic Details Styles */
+.staff_name_details, .staff_emails, .staff_details_3 {
+  flex-basis: 100%;
+}
+
+.staff_name_details h1, .staff_emails h1, .staff_details_3 h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 5px;
+}
+
+.staff_basic_details {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.staff_colon {
+  margin-left: 5px;
+}
+
+}

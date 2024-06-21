@@ -204,3 +204,39 @@
 .student_main_id:hover{
   transform: scale(1.02);
 }
+@media screen and (max-width: 768px) {
+
+  .user_profile {
+    width: 150px; /* Decrease profile picture size */
+    height: 150px;
+    top: -30px; /* Adjust position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+  }
+
+  .information_container {
+    grid-template-columns: 1fr; /* Change to a single column layout */
+    height: auto; /* Remove fixed height */
+  }
+
+  .user_id,
+  .user_contact,
+  .basic_details {
+    width: 90%; /* Adjust width to fit the screen */
+    margin: 20px auto; /* Center horizontally */
+  }
+
+  .user_main_name,
+  .student_main_id {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .user_main_name h1,
+  .student_main_id h1 {
+    margin-left: 0;
+    font-size: 16px; /* Decrease font size */
+  }
+}

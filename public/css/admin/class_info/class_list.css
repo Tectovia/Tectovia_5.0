@@ -140,3 +140,15 @@
   color: var(--text-color);
   background: var(--box-color);
 }
+@media (max-width:700px) {
+  .ag-courses_box{
+    display: block;
+    width: 350px;
+    height: 350px;
+    margin-left: 40px;
+  }
+  .center_title{
+    width: 500px;
+    margin-left: -15px;
+  }
+}
